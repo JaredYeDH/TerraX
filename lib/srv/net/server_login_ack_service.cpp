@@ -14,9 +14,9 @@ ServerLoginAckService::ServerLoginAckService(ServerAcceptService& accept_service
     for (int i = 1; i < max_conns_; i++) {
         server_ids_.push(i);
     }
-    ServerTable::GetInstance().SetServerTableEventCB(
-        [this](const std::vector<Net_Object>& objs, const Net_Object& net_obj,
-               ServerTableEvent_t ev) { this->OnServerTableEvent(objs, net_obj, ev); });
+    ServerTable::GetInstance().SetAddNetObjectEventCB(
+        [this](const std::vector<Net_Object>& objs, const Net_Object& net_obj
+               ) { this->OnAddNetObjectEvent(objs, net_obj); });
 
     REG_PACKET_HANDLER_ARG3(MsgRegisterSW, this, OnMessage_RegisterSW);
 }
@@ -29,11 +29,10 @@ void ServerLoginAckService::OnLoginOut(TcpConnection* conn)
     server_ids_.push(net_object->server_id_);
 }
 
-void ServerLoginAckService::OnServerTableEvent(const std::vector<Net_Object>& objs, const Net_Object& net_obj, ServerTableEvent_t ev)
+void ServerLoginAckService::OnAddNetObjectEvent(const std::vector<Net_Object>& objs, const Net_Object& net_obj)
 {
     if (net_obj.peer_type_ == PeerType_t::GATESERVER) {
         MsgServerInfoWS msg;
-        msg.set_event(int(ev));
         for (const auto& obj : objs) {
             if (obj.peer_type_ == PeerType_t::NODESERVER) {
                 const auto& srv_info = msg.add_server_info();
@@ -48,7 +47,6 @@ void ServerLoginAckService::OnServerTableEvent(const std::vector<Net_Object>& ob
         for (const auto& obj : objs) {
             if (obj.peer_type_ == PeerType_t::GATESERVER) {
 				MsgServerInfoWS msg;
-                msg.set_event(int(ev));
                 const auto& srv_info = msg.add_server_info();
                 srv_info->set_peer_type(int(net_obj.peer_type_)); //该node的ip发送给其他gate
                 srv_info->set_server_id(net_obj.server_id_);

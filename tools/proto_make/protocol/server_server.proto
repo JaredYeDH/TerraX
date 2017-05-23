@@ -20,8 +20,7 @@ message MsgServerInfoWS
         string listen_ip = 3;
         int32 listen_port = 4;
     }
-    int32 event = 1;
-    repeated ServerInfo server_info = 2;
+    repeated ServerInfo server_info = 1;
 }
 message MsgEnterPermissionReq
 {

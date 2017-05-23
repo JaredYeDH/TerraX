@@ -420,16 +420,10 @@ class MsgServerInfoWS : public ::google::protobuf::Message /* @@protoc_insertion
 
   // accessors -------------------------------------------------------
 
-  // optional int32 event = 1;
-  void clear_event();
-  static const int kEventFieldNumber = 1;
-  ::google::protobuf::int32 event() const;
-  void set_event(::google::protobuf::int32 value);
-
-  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
   int server_info_size() const;
   void clear_server_info();
-  static const int kServerInfoFieldNumber = 2;
+  static const int kServerInfoFieldNumber = 1;
   const ::packet_ss::MsgServerInfoWS_ServerInfo& server_info(int index) const;
   ::packet_ss::MsgServerInfoWS_ServerInfo* mutable_server_info(int index);
   ::packet_ss::MsgServerInfoWS_ServerInfo* add_server_info();
@@ -444,7 +438,6 @@ class MsgServerInfoWS : public ::google::protobuf::Message /* @@protoc_insertion
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::RepeatedPtrField< ::packet_ss::MsgServerInfoWS_ServerInfo > server_info_;
-  ::google::protobuf::int32 event_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
@@ -852,21 +845,7 @@ inline void MsgServerInfoWS_ServerInfo::set_listen_port(::google::protobuf::int3
 
 // MsgServerInfoWS
 
-// optional int32 event = 1;
-inline void MsgServerInfoWS::clear_event() {
-  event_ = 0;
-}
-inline ::google::protobuf::int32 MsgServerInfoWS::event() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgServerInfoWS.event)
-  return event_;
-}
-inline void MsgServerInfoWS::set_event(::google::protobuf::int32 value) {
-  
-  event_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgServerInfoWS.event)
-}
-
-// repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+// repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
 inline int MsgServerInfoWS::server_info_size() const {
   return server_info_.size();
 }

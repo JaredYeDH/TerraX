@@ -22,7 +22,7 @@ namespace terra
 		~ServerLoginAckService();
 		void OnLoginOut(TcpConnection* conn);
 	private:
-		void OnServerTableEvent(const std::vector<Net_Object>& objs, const Net_Object& net_obj, ServerTableEvent_t ev);
+		void OnAddNetObjectEvent(const std::vector<Net_Object>& objs, const Net_Object& net_obj);
 
 		void OnMessage_RegisterSW(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgRegisterSW* msg);
 	};

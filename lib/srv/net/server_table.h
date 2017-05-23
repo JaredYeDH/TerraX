@@ -26,12 +26,11 @@ namespace terra
         int fd_{0};
         TcpConnection* conn_{nullptr};
     };
-    enum class ServerTableEvent_t {
-        NETOBJECT_ADD,
-        NETOBJECT_REMOVE,
-    };
-    using ServerTableEventCB =
-        std::function<void(const std::vector<Net_Object>&, const Net_Object&, ServerTableEvent_t)>;
+
+    using AddNetObjectCB =
+        std::function<void(const std::vector<Net_Object>&, const Net_Object&)>;
+	using RemoveNetObjectCB =
+		std::function<void(const std::vector<Net_Object>&, const Net_Object&)>;
     class ServerTable
     {
         DISABLE_COPY(ServerTable);
@@ -41,8 +40,8 @@ namespace terra
 		PeerType_t self_peer_{ PeerType_t::UNDEFINE };
 		int self_server_id_{ -1 };
         std::vector<Net_Object> servers_;
-        ServerTableEventCB cb_;
-
+        AddNetObjectCB addcb_;
+		RemoveNetObjectCB remcb_;
     public:
         ServerTable(){};
         ~ServerTable() = default;
@@ -52,13 +51,13 @@ namespace terra
 			self_peer_ = peer;
 			self_server_id_ = server_id;
 		}
-        void SetServerTableEventCB(ServerTableEventCB cb) { cb_ = cb; }
+        void SetAddNetObjectEventCB(AddNetObjectCB cb) { addcb_ = cb; }
 
         Net_Object* GetNetObjectByServerID(int server_id);
         Net_Object* GetNetObjectByFD(int fd);
         Net_Object* GetNetObjectByConn(TcpConnection* conn);
 
-        void AddServerInfo(PeerType_t peer, int server_id, const char* ip, int port, TcpConnection* conn);
+        void AddServerInfo(PeerType_t peer, int server_id, const char* listen_ip, int listen_port, TcpConnection* conn);
         void RemoveByServerID(int server_id);
         void RemoveByFD(int fd);
         void RemoveByConn(TcpConnection* conn);

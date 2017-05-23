@@ -42,9 +42,9 @@ void ServerTable::AddServerInfo(PeerType_t peer, int server_id, const char* list
 {
 	Net_Object net_obj(peer, server_id, listen_ip, listen_port, conn->get_fd(), conn);
 	servers_.push_back(net_obj);
-	if (cb_)
+	if (addcb_)
 	{
-		cb_(servers_, net_obj, ServerTableEvent_t::NETOBJECT_ADD);
+		addcb_(servers_, net_obj);
 	}
 }
 
@@ -56,9 +56,9 @@ void ServerTable::RemoveByServerID(int server_id)
 	});
 	if(iter != servers_.end())
 	{
-		if (cb_)
+		if (remcb_)
 		{
-			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+			remcb_(servers_, *iter);
 		}
 		servers_.erase(iter);
 	}
@@ -72,9 +72,9 @@ void ServerTable::RemoveByFD(int fd)
 	});
 	if (iter != servers_.end())
 	{
-		if (cb_)
+		if (remcb_)
 		{
-			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+			remcb_(servers_, *iter);
 		}
 		servers_.erase(iter);
 	}
@@ -88,9 +88,9 @@ void ServerTable::RemoveByConn(TcpConnection* conn)
 	});
 	if (iter != servers_.end())
 	{
-		if (cb_)
+		if (remcb_)
 		{
-			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+			remcb_(servers_, *iter);
 		}
 		servers_.erase(iter);
 	}

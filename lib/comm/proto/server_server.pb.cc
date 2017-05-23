@@ -84,8 +84,7 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgRegisterWS, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgRegisterWS, _is_default_instance_));
   MsgServerInfoWS_descriptor_ = file->message_type(2);
-  static const int MsgServerInfoWS_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerInfoWS, event_),
+  static const int MsgServerInfoWS_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerInfoWS, server_info_),
   };
   MsgServerInfoWS_reflection_ =
@@ -204,17 +203,16 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "\n\023server_server.proto\022\tpacket_ss\"J\n\rMsgR"
     "egisterSW\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tlisten_i"
     "p\030\002 \001(\t\022\023\n\013listen_port\030\003 \001(\005\"\"\n\rMsgRegis"
-    "terWS\022\021\n\tserver_id\030\001 \001(\005\"\270\001\n\017MsgServerIn"
-    "foWS\022\r\n\005event\030\001 \001(\005\022:\n\013server_info\030\002 \003(\013"
-    "2%.packet_ss.MsgServerInfoWS.ServerInfo\032"
-    "Z\n\nServerInfo\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tserv"
-    "er_id\030\002 \001(\005\022\021\n\tlisten_ip\030\003 \001(\t\022\023\n\013listen"
-    "_port\030\004 \001(\005\"B\n\025MsgEnterPermissionReq\022\024\n\014"
-    "account_name\030\001 \001(\t\022\023\n\013session_key\030\002 \001(\t\""
-    "y\n\025MsgEnterPermissionAck\022=\n\014check_result"
-    "\030\001 \001(\0162\'.packet_ss.MsgEnterPermissionAck"
-    ".Result\"!\n\006Result\022\006\n\002ok\020\000\022\017\n\013key_invalid"
-    "\020\001b\006proto3", 530);
+    "terWS\022\021\n\tserver_id\030\001 \001(\005\"\251\001\n\017MsgServerIn"
+    "foWS\022:\n\013server_info\030\001 \003(\0132%.packet_ss.Ms"
+    "gServerInfoWS.ServerInfo\032Z\n\nServerInfo\022\021"
+    "\n\tpeer_type\030\001 \001(\005\022\021\n\tserver_id\030\002 \001(\005\022\021\n\t"
+    "listen_ip\030\003 \001(\t\022\023\n\013listen_port\030\004 \001(\005\"B\n\025"
+    "MsgEnterPermissionReq\022\024\n\014account_name\030\001 "
+    "\001(\t\022\023\n\013session_key\030\002 \001(\t\"y\n\025MsgEnterPerm"
+    "issionAck\022=\n\014check_result\030\001 \001(\0162\'.packet"
+    "_ss.MsgEnterPermissionAck.Result\"!\n\006Resu"
+    "lt\022\006\n\002ok\020\000\022\017\n\013key_invalid\020\001b\006proto3", 515);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -1261,7 +1259,6 @@ void MsgServerInfoWS_ServerInfo::InternalSwap(MsgServerInfoWS_ServerInfo* other)
 // -------------------------------------------------------------------
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgServerInfoWS::kEventFieldNumber;
 const int MsgServerInfoWS::kServerInfoFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -1286,7 +1283,6 @@ MsgServerInfoWS::MsgServerInfoWS(const MsgServerInfoWS& from)
 void MsgServerInfoWS::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
-  event_ = 0;
 }
 
 MsgServerInfoWS::~MsgServerInfoWS() {
@@ -1326,7 +1322,6 @@ MsgServerInfoWS* MsgServerInfoWS::New(::google::protobuf::Arena* arena) const {
 
 void MsgServerInfoWS::Clear() {
 // @@protoc_insertion_point(message_clear_start:packet_ss.MsgServerInfoWS)
-  event_ = 0;
   server_info_.Clear();
 }
 
@@ -1340,24 +1335,9 @@ bool MsgServerInfoWS::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 event = 1;
+      // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
       case 1: {
-        if (tag == 8) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &event_)));
-
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_server_info;
-        break;
-      }
-
-      // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_server_info:
+        if (tag == 10) {
           DO_(input->IncrementRecursionDepth());
          parse_loop_server_info:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
@@ -1365,7 +1345,7 @@ bool MsgServerInfoWS::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(18)) goto parse_loop_server_info;
+        if (input->ExpectTag(10)) goto parse_loop_server_info;
         input->UnsafeDecrementRecursionDepth();
         if (input->ExpectAtEnd()) goto success;
         break;
@@ -1395,15 +1375,10 @@ failure:
 void MsgServerInfoWS::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:packet_ss.MsgServerInfoWS)
-  // optional int32 event = 1;
-  if (this->event() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->event(), output);
-  }
-
-  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
   for (unsigned int i = 0, n = this->server_info_size(); i < n; i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, this->server_info(i), output);
+      1, this->server_info(i), output);
   }
 
   // @@protoc_insertion_point(serialize_end:packet_ss.MsgServerInfoWS)
@@ -1412,16 +1387,11 @@ void MsgServerInfoWS::SerializeWithCachedSizes(
 ::google::protobuf::uint8* MsgServerInfoWS::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgServerInfoWS)
-  // optional int32 event = 1;
-  if (this->event() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->event(), target);
-  }
-
-  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
   for (unsigned int i = 0, n = this->server_info_size(); i < n; i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageNoVirtualToArray(
-        2, this->server_info(i), false, target);
+        1, this->server_info(i), false, target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgServerInfoWS)
@@ -1432,14 +1402,7 @@ int MsgServerInfoWS::ByteSize() const {
 // @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgServerInfoWS)
   int total_size = 0;
 
-  // optional int32 event = 1;
-  if (this->event() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->event());
-  }
-
-  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+  // repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
   total_size += 1 * this->server_info_size();
   for (int i = 0; i < this->server_info_size(); i++) {
     total_size +=
@@ -1476,9 +1439,6 @@ void MsgServerInfoWS::MergeFrom(const MsgServerInfoWS& from) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
   server_info_.MergeFrom(from.server_info_);
-  if (from.event() != 0) {
-    set_event(from.event());
-  }
 }
 
 void MsgServerInfoWS::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1505,7 +1465,6 @@ void MsgServerInfoWS::Swap(MsgServerInfoWS* other) {
   InternalSwap(other);
 }
 void MsgServerInfoWS::InternalSwap(MsgServerInfoWS* other) {
-  std::swap(event_, other->event_);
   server_info_.UnsafeArenaSwap(&other->server_info_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -1612,21 +1571,7 @@ void MsgServerInfoWS_ServerInfo::clear_listen_port() {
 
 // MsgServerInfoWS
 
-// optional int32 event = 1;
-void MsgServerInfoWS::clear_event() {
-  event_ = 0;
-}
- ::google::protobuf::int32 MsgServerInfoWS::event() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgServerInfoWS.event)
-  return event_;
-}
- void MsgServerInfoWS::set_event(::google::protobuf::int32 value) {
-  
-  event_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgServerInfoWS.event)
-}
-
-// repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 2;
+// repeated .packet_ss.MsgServerInfoWS.ServerInfo server_info = 1;
 int MsgServerInfoWS::server_info_size() const {
   return server_info_.size();
 }

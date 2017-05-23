@@ -33,20 +33,13 @@ void ServerLoginReqService::OnMessage_RegisterWS(MsgRegisterWS* msg)
 	CONSOLE_DEBUG_LOG(LEVEL_INFO, "register success! server id: %d", server_id);
 }
 
-//TODO
+//TODO removeÇé¿ö?
 void ServerLoginReqService::OnMessage_ServerInfoWS(MsgServerInfoWS* msg) 
 {
-	if (msg->event() == static_cast<int>(ServerTableEvent_t::NETOBJECT_ADD))
+	for (int i = 0; i < msg->server_info_size(); ++i)
 	{
-		for (int i = 0; i < msg->server_info_size(); ++i)
-		{
-			//const auto& si = msg->server_info(i);
-			//ServerTable::GetInstance().AddServerInfo(si.peer_type, si.server_id)
-		}
-	}
-
-	if (msg->event() == static_cast<int>(ServerTableEvent_t::NETOBJECT_REMOVE))
-	{
-
+		const auto& si = msg->server_info(i);
+		TcpConnection* conn = conn_service_.Connect(si.listen_ip().c_str(), si.listen_port(), nullptr, nullptr);
+		ServerTable::GetInstance().AddServerInfo(static_cast<PeerType_t>(si.peer_type()), si.server_id(), si.listen_ip().c_str(), si.listen_port(), conn);
 	}
 }
