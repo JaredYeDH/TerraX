@@ -22,6 +22,7 @@ void WorldNetModule::StartAccept()
 
 bool WorldNetModule::Init()
 {
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "World Server Start...");
 	InitWorldNetInfo();
 	StartAccept();
 	return true;

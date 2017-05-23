@@ -30,6 +30,23 @@ void ServerLoginReqService::OnMessage_RegisterWS(MsgRegisterWS* msg)
 {
     int server_id = msg->server_id();
     ServerTable::GetInstance().InitSelfServerInfo(kSelfPeer, server_id);
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "register success! server id: %d", server_id);
 }
 
-void ServerLoginReqService::OnMessage_ServerInfoWS(MsgServerInfoWS* msg) {}
+//TODO
+void ServerLoginReqService::OnMessage_ServerInfoWS(MsgServerInfoWS* msg) 
+{
+	if (msg->event() == static_cast<int>(ServerTableEvent_t::NETOBJECT_ADD))
+	{
+		for (int i = 0; i < msg->server_info_size(); ++i)
+		{
+			//const auto& si = msg->server_info(i);
+			//ServerTable::GetInstance().AddServerInfo(si.peer_type, si.server_id)
+		}
+	}
+
+	if (msg->event() == static_cast<int>(ServerTableEvent_t::NETOBJECT_REMOVE))
+	{
+
+	}
+}

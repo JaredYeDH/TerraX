@@ -69,7 +69,7 @@ void ServerLoginAckService::OnMessage_RegisterSW(TcpConnection* conn, int32_t av
     server_ids_.pop();
     int peer_type = msg->peer_type();
 
-    LOG_INFO(LEVEL_INFO, "%s:\t %d \n", NetHelper::ServerName(PeerType_t(peer_type)), server_id);
+    CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s:\t %d", NetHelper::ServerName(PeerType_t(peer_type)), server_id);
 
 	MsgRegisterWS msgWS;
 	msgWS.set_server_id(server_id);

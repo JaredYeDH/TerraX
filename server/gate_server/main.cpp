@@ -11,4 +11,6 @@ int main(int argc, char* argv[])
 		GateServer::GetInstance().BeforeShut();
 		GateServer::GetInstance().Shut();
 	}
+
+	return 0;
 }

@@ -56,9 +56,12 @@ void ServerTable::RemoveByServerID(int server_id)
 	});
 	if(iter != servers_.end())
 	{
+		if (cb_)
+		{
+			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+		}
 		servers_.erase(iter);
 	}
-	cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
 }
 
 void ServerTable::RemoveByFD(int fd)
@@ -69,9 +72,12 @@ void ServerTable::RemoveByFD(int fd)
 	});
 	if (iter != servers_.end())
 	{
+		if (cb_)
+		{
+			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+		}
 		servers_.erase(iter);
 	}
-	cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
 }
 
 void ServerTable::RemoveByConn(TcpConnection* conn)
@@ -82,7 +88,10 @@ void ServerTable::RemoveByConn(TcpConnection* conn)
 	});
 	if (iter != servers_.end())
 	{
+		if (cb_)
+		{
+			cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
+		}
 		servers_.erase(iter);
 	}
-	cb_(servers_, *iter, ServerTableEvent_t::NETOBJECT_REMOVE);
 }

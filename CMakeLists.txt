@@ -6,6 +6,10 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
+if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
+    add_definitions(-D NDEBUG)
+endif()
+
 set(CXX_FLAGS
  -g
  # -DVALGRIND
@@ -47,4 +51,5 @@ add_subdirectory(lib/comm)
 add_subdirectory(lib/srv)
 add_subdirectory(server/world_server)
 add_subdirectory(server/gate_server)
+add_subdirectory(server/node_server)
 #add_subdirectory(client)

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "base/types.h"
-#include "base/module_interface.h"
 #include "srv/net/net_base_module.h"
 #include "srv/net/server_conn_service.h"
 namespace terra
@@ -23,7 +22,9 @@ namespace terra
 		bool BeforeShut();
 		bool Shut();
 	private:
-
+		void InitNodeNetInfo();
+		void StartConnectWorldServer();
+		void AcceptGateServer();
 		//void AcceptClient() {};
 		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};

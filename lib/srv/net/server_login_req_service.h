@@ -11,7 +11,7 @@ namespace terra
 	{
 	private:
 		ServerConnService& conn_service_;
-		const PeerType_t& kSelfPeer;
+		const PeerType_t kSelfPeer;
 	public:
 		ServerLoginReqService(ServerConnService& conn_service, PeerType_t peer);
 		~ServerLoginReqService() = default;

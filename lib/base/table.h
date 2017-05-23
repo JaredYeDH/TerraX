@@ -6,6 +6,7 @@
 
 namespace terra
 {
+	/*
 	template<typename Col, typename Key, typename... Args>
 	class Table
 	{
@@ -39,5 +40,5 @@ namespace terra
 			}
 			return nullptr;
 		}
-	};
+	};*/
 }

@@ -31,6 +31,7 @@ void GateNetModule::StartConnectWorldServer()
 
 bool GateNetModule::Init()
 {
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "Gate Server Start...");
 	InitGateNetInfo();
 	StartConnectWorldServer();
     return true;

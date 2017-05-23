@@ -42,9 +42,9 @@ void TcpServer::NewConnectionCallback(struct evconnlistener* listener, evutil_so
                                       struct sockaddr* address, int socklen, void* ctx)
 {
     SetTcpNodelay(fd);
-    printf("newConnectionCallback\n");
+	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "newConnectionCallback");
 	struct sockaddr_in* addr_in = (sockaddr_in*) address;
-	printf("ip: %s, port: %d\n", inet_ntoa(addr_in->sin_addr), addr_in->sin_port);
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "ip: %s, port: %d", inet_ntoa(addr_in->sin_addr), addr_in->sin_port);
     TcpServer* self = static_cast<TcpServer*>(ctx);
     assert(self->evlistener_ == listener);
     self->OnConnect(fd);

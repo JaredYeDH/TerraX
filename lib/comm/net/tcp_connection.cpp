@@ -115,13 +115,13 @@ void TcpConnection::EventCallback(struct bufferevent* bev, short events, void* p
 {
     TcpConnection* self = static_cast<TcpConnection*>(ptr);
     if (events & BEV_EVENT_CONNECTED) {
-        printf("connected\n");
+        CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "connected");
         self->Connected();
     } else if (events & BEV_EVENT_EOF) {
-        printf("disconnected\n");
+		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "disconnected");
         self->Disconnected();
     } else if (events & BEV_EVENT_ERROR) {
-        printf("connect error\n");
+		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "connect error");
         self->ConnectError();
     }
 }

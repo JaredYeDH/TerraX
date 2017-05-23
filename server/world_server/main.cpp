@@ -11,4 +11,6 @@ int main(int argc, char* argv[])
 		WorldServer::GetInstance().BeforeShut();
 		WorldServer::GetInstance().Shut();
 	}
+
+	return 0;
 }

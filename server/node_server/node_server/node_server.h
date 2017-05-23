@@ -23,6 +23,5 @@ namespace terra
 
 	private:
 		bool exit_{ false };
-		//std::vector<class IMoudle*> modules_;
 	};
 }

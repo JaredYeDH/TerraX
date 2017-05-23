@@ -11,4 +11,6 @@ int main(int argc, char* argv[])
 		NodeServer::GetInstance().BeforeShut();
 		NodeServer::GetInstance().Shut();
 	}
+
+	return 0;
 }
