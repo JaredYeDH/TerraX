@@ -7,8 +7,8 @@
 #include "comm/net/tcp_connection.h"
 namespace terra
 {
-    struct Net_Object {
-        Net_Object(PeerType_t peer_type, int server_id, const char* listen_ip, int listen_port, int fd, TcpConnection* conn)
+    struct NetObject {
+        NetObject(PeerType_t peer_type, int server_id, const char* listen_ip, int listen_port, int fd, TcpConnection* conn)
             : peer_type_(peer_type), 
 			server_id_(server_id), 
 			listen_port_(listen_port),
@@ -28,18 +28,17 @@ namespace terra
     };
 
     using AddNetObjectCB =
-        std::function<void(const std::vector<Net_Object>&, const Net_Object&)>;
+        std::function<void(const std::vector<NetObject>&, const NetObject&)>;
 	using RemoveNetObjectCB =
-		std::function<void(const std::vector<Net_Object>&, const Net_Object&)>;
+		std::function<void(const std::vector<NetObject>&, const NetObject&)>;
     class ServerTable
     {
         DISABLE_COPY(ServerTable);
-        MAKE_INSTANCE(ServerTable);
 
     private:
 		PeerType_t self_peer_{ PeerType_t::UNDEFINE };
 		int self_server_id_{ -1 };
-        std::vector<Net_Object> servers_;
+        std::vector<NetObject> servers_;
         AddNetObjectCB addcb_;
 		RemoveNetObjectCB remcb_;
     public:
@@ -53,9 +52,9 @@ namespace terra
 		}
         void SetAddNetObjectEventCB(AddNetObjectCB cb) { addcb_ = cb; }
 
-        Net_Object* GetNetObjectByServerID(int server_id);
-        Net_Object* GetNetObjectByFD(int fd);
-        Net_Object* GetNetObjectByConn(TcpConnection* conn);
+        NetObject* GetNetObjectByServerID(int server_id);
+        NetObject* GetNetObjectByFD(int fd);
+        NetObject* GetNetObjectByConn(TcpConnection* conn);
 
         void AddServerInfo(PeerType_t peer, int server_id, const char* listen_ip, int listen_port, TcpConnection* conn);
         void RemoveByServerID(int server_id);

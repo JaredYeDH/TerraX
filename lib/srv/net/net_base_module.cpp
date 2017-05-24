@@ -3,14 +3,16 @@
 
 using namespace terra;
 
-NetBaseModule::NetBaseModule(PeerType_t peer) : kSelfPeer(peer)
+NetBaseModule::NetBaseModule(PeerType_t peer) 
+	: kSelfPeer(peer),
+	packet_processor_(*this)
 {
 
 }
 
 void NetBaseModule::ProcessServerMessage(TcpConnection* conn, evbuffer* evbuf)
 {
-	PacketProcessor::GetInstance().ProcessServerPacket(conn, evbuf);
+	packet_processor_.ProcessServerPacket(conn, evbuf);
 }
 
 void NetBaseModule::InitConnectInfo(const std::string& ip, int port)

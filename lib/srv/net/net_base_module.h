@@ -6,6 +6,7 @@
 #include "comm/net/tcp_server.h"
 #include "base/module_interface.h"
 #include "server_table.h"
+#include "packet_processor.h"
 
 namespace terra
 {
@@ -22,6 +23,7 @@ namespace terra
 		int conn_port_{ 0 };
 
 		ServerTable server_table_;
+		PacketProcessor packet_processor_;
 	public:
 		NetBaseModule(PeerType_t peer);
 		virtual ~NetBaseModule(){}
@@ -34,7 +36,7 @@ namespace terra
 		int get_listen_port() { return listen_port_;  }
 
 		ServerTable& get_server_table() { return server_table_; }
-
+		PacketProcessor& get_packet_processor() { return packet_processor_; }
 		virtual void ProcessServerMessage(TcpConnection* conn, evbuffer* evbuf);
 	protected:
 		void InitConnectInfo(const std::string& ip, int port);

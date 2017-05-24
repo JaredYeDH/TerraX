@@ -13,7 +13,7 @@ namespace terra
 	private:
 		std::unique_ptr<ServerAcceptService> accept_service_;
 	public:
-		WorldNetModule() = default;
+		WorldNetModule();
 		~WorldNetModule() = default;
 
 		bool Init();
@@ -24,5 +24,14 @@ namespace terra
 	private:
 		void InitWorldNetInfo();
 		void StartAccept();
+
+		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+
+		void OnGateConnected(NetObject* net_object);
+		void OnGateDisconnected(NetObject* net_object);
+
+		void OnNodeConnected(NetObject* net_object);
+		void OnNodeDisconnected(NetObject* net_object);
 	};
 }

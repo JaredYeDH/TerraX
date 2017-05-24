@@ -31,11 +31,11 @@ namespace terra
 		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
 		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnWorldConnected() {};
-		void OnWorldDisconnected() {};
+		void OnWorldConnected(NetObject* net_object);
+		void OnWorldDisconnected(NetObject* net_object);
 
-		void OnNodeConnected() {};
-		void OnNodeDisconnected() {};
+		void OnNodeConnected(NetObject* net_object);
+		void OnNodeDisconnected(NetObject* net_object);
 
 	};
 }

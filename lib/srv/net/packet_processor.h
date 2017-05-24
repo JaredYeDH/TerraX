@@ -1,17 +1,21 @@
 #pragma once
 
 #include <event2/bufferevent.h>
+#include <google/protobuf/message.h>
 #include "base/types.h"
 #include "comm/net/net_define.h"
-#include <google/protobuf/message.h>
 namespace terra
 {
+	class NetBaseModule;
+	class ServerTable;
 	class PacketProcessor
 	{
 		DISABLE_COPY(PacketProcessor);
-		MAKE_INSTANCE(PacketProcessor);
+	private:
+		NetBaseModule& net_;
+		ServerTable& server_table_;
 	public:
-		PacketProcessor(){}
+		PacketProcessor(NetBaseModule&);
 		~PacketProcessor(){}
 
 		void SendPacket2World(google::protobuf::Message& msg);

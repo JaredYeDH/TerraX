@@ -1,9 +1,7 @@
 #pragma once
-
-#include "net_base_module.h"
 #include "comm/net/tcp_connection.h"
-#include <map>
 #include <memory>
+#include "net_base_module.h"
 
 namespace terra
 {
@@ -18,6 +16,7 @@ namespace terra
 		ServerConnService(NetBaseModule& net);
 		~ServerConnService();
 
+		NetBaseModule& get_net_base_module() { return net_; }
 		const char* get_listen_ip() { return net_.get_listen_ip(); }
 		int get_listen_port() { return net_.get_listen_port(); }
 
@@ -27,8 +26,5 @@ namespace terra
 		TcpConnection* Connect(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
 
 	private:
-
-		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
-		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 	};
 }

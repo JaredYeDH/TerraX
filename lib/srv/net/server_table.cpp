@@ -2,7 +2,7 @@
 #include <algorithm>
 using namespace terra;
 
-Net_Object* ServerTable::GetNetObjectByServerID(int server_id)
+NetObject* ServerTable::GetNetObjectByServerID(int server_id)
 {
 	for (auto& val : servers_)
 	{
@@ -14,7 +14,7 @@ Net_Object* ServerTable::GetNetObjectByServerID(int server_id)
 	return nullptr;
 }
 
-Net_Object* ServerTable::GetNetObjectByFD(int fd)
+NetObject* ServerTable::GetNetObjectByFD(int fd)
 {
 	for (auto& val : servers_)
 	{
@@ -26,7 +26,7 @@ Net_Object* ServerTable::GetNetObjectByFD(int fd)
 	return nullptr;
 }
 
-Net_Object* ServerTable::GetNetObjectByConn(TcpConnection* conn)
+NetObject* ServerTable::GetNetObjectByConn(TcpConnection* conn)
 {
 	for (auto& val : servers_)
 	{
@@ -40,7 +40,7 @@ Net_Object* ServerTable::GetNetObjectByConn(TcpConnection* conn)
 
 void ServerTable::AddServerInfo(PeerType_t peer, int server_id, const char* listen_ip, int listen_port, TcpConnection* conn)
 {
-	Net_Object net_obj(peer, server_id, listen_ip, listen_port, conn->get_fd(), conn);
+	NetObject net_obj(peer, server_id, listen_ip, listen_port, conn->get_fd(), conn);
 	servers_.push_back(net_obj);
 	if (addcb_)
 	{
@@ -51,7 +51,7 @@ void ServerTable::AddServerInfo(PeerType_t peer, int server_id, const char* list
 void ServerTable::RemoveByServerID(int server_id)
 {
 	auto iter = std::find_if(servers_.begin(), servers_.end(),
-		[server_id](const Net_Object& obj) {
+		[server_id](const NetObject& obj) {
 		return obj.server_id_ == server_id;
 	});
 	if(iter != servers_.end())
@@ -67,7 +67,7 @@ void ServerTable::RemoveByServerID(int server_id)
 void ServerTable::RemoveByFD(int fd)
 {
 	auto iter = std::find_if(servers_.begin(), servers_.end(),
-		[fd](const Net_Object& obj) {
+		[fd](const NetObject& obj) {
 		return obj.fd_ == fd;
 	});
 	if (iter != servers_.end())
@@ -83,7 +83,7 @@ void ServerTable::RemoveByFD(int fd)
 void ServerTable::RemoveByConn(TcpConnection* conn)
 {
 	auto iter = std::find_if(servers_.begin(), servers_.end(),
-		[conn](const Net_Object& obj) {
+		[conn](const NetObject& obj) {
 		return obj.conn_ == conn;
 	});
 	if (iter != servers_.end())

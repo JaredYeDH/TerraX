@@ -11,6 +11,9 @@ namespace terra
 	{
 	private:
 		ServerConnService& conn_service_;
+		ServerTable& server_table_;
+		PacketProcessor& packet_processor_;
+
 		const PeerType_t kSelfPeer;
 	public:
 		ServerLoginReqService(ServerConnService& conn_service, PeerType_t peer);
@@ -18,7 +21,7 @@ namespace terra
 
 		void Login2World(TcpConnection* conn);
 
-		void OnLoginOut(TcpConnection* conn);
+		void OnLogout(TcpConnection* conn);
 	private:
 		void OnMessage_RegisterWS(packet_ss::MsgRegisterWS* msg);
 		void OnMessage_ServerInfoWS(packet_ss::MsgServerInfoWS* msg);

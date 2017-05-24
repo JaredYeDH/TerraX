@@ -5,6 +5,7 @@
 #include "srv/net/server_conn_service.h"
 namespace terra
 {
+	//TODO
 	class ServerConnService;
 	class NodeNetModule final : public NetBaseModule
 	{
@@ -13,7 +14,7 @@ namespace terra
 	private:
 		std::unique_ptr<ServerConnService> conn_service_;
 	public:
-		NodeNetModule() = default;
+		NodeNetModule();
 		~NodeNetModule() = default;
 
 		bool Init();

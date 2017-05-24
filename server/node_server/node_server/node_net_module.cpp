@@ -5,6 +5,8 @@
 
 using namespace terra;
 
+NodeNetModule::NodeNetModule() : NetBaseModule(PeerType_t::WORLDSERVER) {}
+
 void NodeNetModule::InitNodeNetInfo()
 {
 	ServerConfig::GetInstance().LoadConfigFromJson("node_server.json");

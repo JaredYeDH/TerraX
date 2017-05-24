@@ -5,12 +5,21 @@
 #include "comm/net/packet.h"
 #include "comm/net/packet_dispatcher.h"
 #include "server_table.h"
+#include "net_base_module.h"
+
 using namespace terra;
 
 enum class MessageError_t {
     eNoError,
     eInvalidLength,
 };
+
+PacketProcessor::PacketProcessor(NetBaseModule& net)
+	: net_(net),
+	server_table_(net.get_server_table())
+{
+
+}
 
 void PacketProcessor::SendPacket2World(google::protobuf::Message& msg) 
 { 
@@ -19,7 +28,7 @@ void PacketProcessor::SendPacket2World(google::protobuf::Message& msg)
 
 void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
 {
-	Net_Object* net_object = ServerTable::GetInstance().GetNetObjectByConn(conn);
+	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
 	if (!net_object) {
 		return;
 	}
@@ -32,7 +41,7 @@ void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message&
 
 void PacketProcessor::SendPacket(int server_id, google::protobuf::Message& msg)
 {
-    Net_Object* net_object = ServerTable::GetInstance().GetNetObjectByServerID(server_id);
+    NetObject* net_object = server_table_.GetNetObjectByServerID(server_id);
     if (!net_object) {
         return;
 	}
