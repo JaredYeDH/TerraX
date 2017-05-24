@@ -12,7 +12,7 @@ namespace terra
 	{
 	private:
 		NetBaseModule& net_;
-		std::map<int, std::unique_ptr<TcpConnection>> conns_;
+		std::unique_ptr<TcpConnection> conn_;
 		std::unique_ptr<ServerLoginReqService> login_req_;
 	public:
 		ServerConnService(NetBaseModule& net);
@@ -21,11 +21,11 @@ namespace terra
 		const char* get_listen_ip() { return net_.get_listen_ip(); }
 		int get_listen_port() { return net_.get_listen_port(); }
 
-		void InitLoginReqService(PeerType_t peer);
+		void CreateLoginReqService();
+		void Login2World(TcpConnection* conn);
 
-		void Connect2World();
 		TcpConnection* Connect(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
-		
+
 	private:
 
 		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);

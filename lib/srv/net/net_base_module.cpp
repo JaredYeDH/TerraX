@@ -3,6 +3,11 @@
 
 using namespace terra;
 
+NetBaseModule::NetBaseModule(PeerType_t peer) : kSelfPeer(peer)
+{
+
+}
+
 void NetBaseModule::ProcessServerMessage(TcpConnection* conn, evbuffer* evbuf)
 {
 	PacketProcessor::GetInstance().ProcessServerPacket(conn, evbuf);

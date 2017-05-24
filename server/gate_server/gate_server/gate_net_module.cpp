@@ -4,6 +4,10 @@
 #include "comm/config/server_config.h"
 
 using namespace terra;
+GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER)
+{
+
+}
 
 
 void GateNetModule::InitGateNetInfo()
@@ -25,8 +29,13 @@ void GateNetModule::InitGateNetInfo()
 
 void GateNetModule::StartConnectWorldServer()
 {
-	conn_service_.reset(new ServerConnService(*this));
-	conn_service_->InitLoginReqService(PeerType_t::GATESERVER);
+	world_conn_service_.reset(new ServerConnService(*this));
+	world_conn_service_->CreateLoginReqService();
+	
+	TcpConnection* conn = world_conn_service_->Connect(conn_ip_.c_str(), conn_port_, 
+		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
+	ServerTable::GetInstance().AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(), conn_port_, conn);
 }
 
 bool GateNetModule::Init()
@@ -38,7 +47,6 @@ bool GateNetModule::Init()
 }
 bool GateNetModule::AfterInit()
 {
-    conn_service_->Connect2World();
     return true;
 }
 bool GateNetModule::Execute()
@@ -48,3 +56,33 @@ bool GateNetModule::Execute()
 }
 bool GateNetModule::BeforeShut() { return true; }
 bool GateNetModule::Shut() { return true; }
+
+
+void GateNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+{
+	NetObject no = servers
+	switch (conn_state) {
+	case ConnState_t::CONNECTED:
+
+		if (login_req_)
+		{
+			login_req_->Login2World(conn);
+		}
+		break;
+	case ConnState_t::DISCONNECTED:
+		if (login_req_)
+		{
+			login_req_->OnLoginOut(conn);
+		}
+		ServerTable::GetInstance().RemoveByConn(conn);
+		conn_.reset(nullptr);
+		// ReConnect();
+		break;
+	default:
+		break;
+	}
+}
+void GateNetModule::OnMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+{
+	net_.ProcessServerMessage(conn, evbuf);
+}

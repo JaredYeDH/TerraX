@@ -12,26 +12,25 @@ ServerConnService::ServerConnService(NetBaseModule& net)
 }
 ServerConnService::~ServerConnService() {}
 
-void ServerConnService::InitLoginReqService(PeerType_t peer)
+void ServerConnService::CreateLoginReqService()
 {
-	login_req_.reset(new ServerLoginReqService(*this, peer));
+	login_req_.reset(new ServerLoginReqService(*this, net_.get_peer_type()));
 }
 
-void ServerConnService::Connect2World()
+void ServerConnService::Login2World(TcpConnection* conn)
 {
-	TcpConnection* conn = Connect(net_.get_conn_ip(), net_.get_conn_port(),
-            [this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
-            [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
-
-	ServerTable::GetInstance().AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, net_.get_conn_ip(), net_.get_conn_port(), conn);
+	if (login_req_)
+	{
+		login_req_->Login2World(conn);
+	}
 }
+
 
 TcpConnection* ServerConnService::Connect(const char* ip, int port,
                                 SocketEventCB sock_cb, MessageEventCB msg_cb)
 {
-	TcpConnection* conn = new TcpConnection(net_.get_event_loop(), ip, port, sock_cb, msg_cb);
-	conns_[conn->get_fd()].reset(conn);
-	return conn;
+	conn_.reset(new TcpConnection(net_.get_event_loop(), ip, port, sock_cb, msg_cb));
+	return conn_.get();
 }
 
 void ServerConnService::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
@@ -49,7 +48,7 @@ void ServerConnService::OnSocketEvent(TcpConnection* conn, ConnState_t conn_stat
 				login_req_->OnLoginOut(conn);
 			}
 			ServerTable::GetInstance().RemoveByConn(conn);
-            conns_.erase(conn->get_fd());
+			conn_.reset(nullptr);
             // ReConnect();
             break;
         default:

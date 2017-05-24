@@ -25,7 +25,7 @@ void NodeNetModule::InitNodeNetInfo()
 void NodeNetModule::StartConnectWorldServer()
 {
 	conn_service_.reset(new ServerConnService(*this));
-	conn_service_->InitLoginReqService(PeerType_t::NODESERVER);
+	conn_service_->CreateLoginReqService();
 }
 
 bool NodeNetModule::Init()

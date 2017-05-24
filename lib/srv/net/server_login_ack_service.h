@@ -14,7 +14,7 @@ namespace terra
 	{
 	private:
 		ServerAcceptService& accept_service_;
-		const PeerType_t& kSelfPeer;
+		const PeerType_t kSelfPeer;
 		const int max_conns_;
 		std::queue<int> server_ids_;
 	public:

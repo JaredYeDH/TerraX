@@ -33,7 +33,6 @@ void ServerLoginReqService::OnMessage_RegisterWS(MsgRegisterWS* msg)
 	CONSOLE_DEBUG_LOG(LEVEL_INFO, "register success! server id: %d", server_id);
 }
 
-//TODO removeÇé¿ö?
 void ServerLoginReqService::OnMessage_ServerInfoWS(MsgServerInfoWS* msg) 
 {
 	for (int i = 0; i < msg->server_info_size(); ++i)

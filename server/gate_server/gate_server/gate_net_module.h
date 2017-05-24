@@ -11,9 +11,9 @@ namespace terra
 		DISABLE_COPY(GateNetModule);
 		MAKE_INSTANCE(GateNetModule);
 	private:
-		std::unique_ptr<ServerConnService> conn_service_;
+		std::unique_ptr<ServerConnService> world_conn_service_;
 	public:
-		GateNetModule() = default;
+		GateNetModule();
 		~GateNetModule() = default;
 
 		bool Init();
@@ -28,8 +28,14 @@ namespace terra
 		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
+		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
+		void OnWorldConnected() {};
+		void OnWorldDisconnected() {};
 
+		void OnNodeConnected() {};
+		void OnNodeDisconnected() {};
 
 	};
 }
