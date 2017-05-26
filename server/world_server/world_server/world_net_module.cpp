@@ -1,10 +1,16 @@
 #include "world_net_module.h"
 
 #include "comm/config/server_config.h"
-#include "srv/net/server_login_ack_service.h"
-using namespace terra;
 
-WorldNetModule::WorldNetModule() : NetBaseModule(PeerType_t::WORLDSERVER) {}
+using namespace terra;
+using namespace packet_ss;
+
+WorldNetModule::WorldNetModule() : NetBaseModule(PeerType_t::WORLDSERVER) 
+{
+	server_table_.SetAddNetObjectEventCB(
+		[this](const std::vector<NetObject>& objs, const NetObject& net_obj
+			) { this->OnAddNetObjectEvent(objs, net_obj); });
+}
 
 void WorldNetModule::InitWorldNetInfo()
 {
@@ -18,9 +24,8 @@ void WorldNetModule::InitWorldNetInfo()
 
 void WorldNetModule::StartAccept()
 {
-    accept_service_.reset(new ServerAcceptService(*this));
-    accept_service_->InitLoginAckService(PeerType_t::WORLDSERVER, 64);
-    accept_service_->AcceptConnection(
+    world_accept_service_.reset(new WorldAcceptService(*this, 64));
+    world_accept_service_->AcceptConnection(
         get_listen_port(), 64,
         [this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
@@ -45,28 +50,11 @@ bool WorldNetModule::Shut() { return true; }
 
 void WorldNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
 {
-    NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-    assert(net_object);
-    if (!net_object) {
-        return;
-    }
     switch (conn_state) {
         case ConnState_t::CONNECTED: {
-            if (net_object->peer_type_ == PeerType_t::GATESERVER) {
-                OnGateConnected(net_object);
-            }
-            if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeConnected(net_object);
-            }
         } break;
         case ConnState_t::DISCONNECTED: {
-            if (net_object->peer_type_ == PeerType_t::GATESERVER) {
-                OnGateDisconnected(net_object);
-            }
-            if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeDisconnected(net_object);
-            }
-            // accept_service_->LoginOut()
+			world_accept_service_->OnLogout(conn);
             server_table_.RemoveByConn(conn);
         } break;
         default:
@@ -78,12 +66,22 @@ void WorldNetModule::OnMessageEvent(TcpConnection* conn, evbuffer* evbuf)
     ProcessServerMessage(conn, evbuf);
 }
 
-void WorldNetModule::OnGateConnected(NetObject* net_object) { assert(net_object); }
 
-void WorldNetModule::OnGateDisconnected(NetObject* net_object)
+void WorldNetModule::OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj)
 {
-    // ReConnect();
+	if (net_obj.peer_type_ == PeerType_t::GATESERVER) {
+		MsgServerInfoWS msg;
+		for (const auto& obj : objs) {
+			if (obj.peer_type_ == PeerType_t::NODESERVER) {
+				const auto& srv_info = msg.add_server_info();
+				srv_info->set_peer_type(int(obj.peer_type_));
+				srv_info->set_server_id(obj.server_id_);
+				srv_info->set_listen_ip(obj.listen_ip_);
+				srv_info->set_listen_port(obj.listen_port_);
+			}
+		}
+		packet_processor_.SendPacket(net_obj.conn_, msg);
+	}
+	else {
+	}
 }
-
-void WorldNetModule::OnNodeConnected(NetObject* net_object) {}
-void WorldNetModule::OnNodeDisconnected(NetObject* net_object) {}

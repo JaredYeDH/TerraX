@@ -39,6 +39,7 @@ void protobuf_ShutdownFile_server_5fserver_2eproto();
 
 class MsgEnterPermissionAck;
 class MsgEnterPermissionReq;
+class MsgLogin2NodeGN;
 class MsgRegisterSW;
 class MsgRegisterWS;
 class MsgServerInfoWS;
@@ -445,6 +446,95 @@ class MsgServerInfoWS : public ::google::protobuf::Message /* @@protoc_insertion
 
   void InitAsDefaultInstance();
   static MsgServerInfoWS* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgLogin2NodeGN : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgLogin2NodeGN) */ {
+ public:
+  MsgLogin2NodeGN();
+  virtual ~MsgLogin2NodeGN();
+
+  MsgLogin2NodeGN(const MsgLogin2NodeGN& from);
+
+  inline MsgLogin2NodeGN& operator=(const MsgLogin2NodeGN& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgLogin2NodeGN& default_instance();
+
+  void Swap(MsgLogin2NodeGN* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgLogin2NodeGN* New() const { return New(NULL); }
+
+  MsgLogin2NodeGN* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgLogin2NodeGN& from);
+  void MergeFrom(const MsgLogin2NodeGN& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgLogin2NodeGN* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 peer_type = 1;
+  void clear_peer_type();
+  static const int kPeerTypeFieldNumber = 1;
+  ::google::protobuf::int32 peer_type() const;
+  void set_peer_type(::google::protobuf::int32 value);
+
+  // optional int32 server_id = 2;
+  void clear_server_id();
+  static const int kServerIdFieldNumber = 2;
+  ::google::protobuf::int32 server_id() const;
+  void set_server_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgLogin2NodeGN)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 peer_type_;
+  ::google::protobuf::int32 server_id_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgLogin2NodeGN* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -877,6 +967,38 @@ MsgServerInfoWS::server_info() const {
 
 // -------------------------------------------------------------------
 
+// MsgLogin2NodeGN
+
+// optional int32 peer_type = 1;
+inline void MsgLogin2NodeGN::clear_peer_type() {
+  peer_type_ = 0;
+}
+inline ::google::protobuf::int32 MsgLogin2NodeGN::peer_type() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2NodeGN.peer_type)
+  return peer_type_;
+}
+inline void MsgLogin2NodeGN::set_peer_type(::google::protobuf::int32 value) {
+  
+  peer_type_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2NodeGN.peer_type)
+}
+
+// optional int32 server_id = 2;
+inline void MsgLogin2NodeGN::clear_server_id() {
+  server_id_ = 0;
+}
+inline ::google::protobuf::int32 MsgLogin2NodeGN::server_id() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2NodeGN.server_id)
+  return server_id_;
+}
+inline void MsgLogin2NodeGN::set_server_id(::google::protobuf::int32 value) {
+  
+  server_id_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2NodeGN.server_id)
+}
+
+// -------------------------------------------------------------------
+
 // MsgEnterPermissionReq
 
 // optional string account_name = 1;
@@ -986,6 +1108,8 @@ inline void MsgEnterPermissionAck::set_check_result(::packet_ss::MsgEnterPermiss
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

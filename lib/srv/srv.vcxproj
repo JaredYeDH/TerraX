@@ -130,8 +130,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="net\server_accept_service.h" />
-    <ClInclude Include="net\server_login_ack_service.h" />
-    <ClInclude Include="net\server_login_req_service.h" />
     <ClInclude Include="net\net_base_module.h" />
     <ClInclude Include="net\packet_processor.h" />
     <ClInclude Include="net\server_table.h" />
@@ -142,8 +140,6 @@
     <ClCompile Include="net\net_base_module.cpp" />
     <ClCompile Include="net\packet_processor.cpp" />
     <ClCompile Include="net\server_accept_service.cpp" />
-    <ClCompile Include="net\server_login_ack_service.cpp" />
-    <ClCompile Include="net\server_login_req_service.cpp" />
     <ClCompile Include="net\server_table.cpp" />
     <ClCompile Include="net\server_conn_service.cpp" />
   </ItemGroup>

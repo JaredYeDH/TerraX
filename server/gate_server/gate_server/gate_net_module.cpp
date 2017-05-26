@@ -1,14 +1,19 @@
 #include "gate_net_module.h"
 
 #include "comm/config/server_config.h"
-#include "srv/net/server_login_req_service.h"
+#include "comm/net/packet_dispatcher.h"
 
 using namespace terra;
-GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER) {}
+using namespace packet_ss;
+
+GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER) 
+{
+	REG_PACKET_HANDLER_ARG1(MsgServerInfoWS, this, OnMessage_ServerInfoWS);
+}
 
 void GateNetModule::InitGateNetInfo()
 {
-    ServerConfig::GetInstance().LoadConfigFromJson("gate_server.json");
+	ServerConfig::GetInstance().LoadConfigFromJson("gate_server.json");
 
     std::string conn_ip;
     int conn_port;
@@ -26,12 +31,11 @@ void GateNetModule::InitGateNetInfo()
 void GateNetModule::StartConnectWorldServer()
 {
     world_conn_service_.reset(new ServerConnService(*this));
-    world_conn_service_->CreateLoginReqService();
 
     TcpConnection* conn = world_conn_service_->Connect(
         conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
-        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
+        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 	server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(),
                                              conn_port_, conn);
 }
@@ -52,7 +56,7 @@ bool GateNetModule::Execute()
 bool GateNetModule::BeforeShut() { return true; }
 bool GateNetModule::Shut() { return true; }
 
-void GateNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void GateNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_state)
 {
     NetObject* net_object = server_table_.GetNetObjectByConn(conn);
     assert(net_object);
@@ -62,18 +66,18 @@ void GateNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
     switch (conn_state) {
         case ConnState_t::CONNECTED: {
             if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
-                OnWorldConnected(net_object);
+                OnWorldConnected(conn);
             }
             if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeConnected(net_object);
+                OnNodeConnected(conn);
             }
         } break;
         case ConnState_t::DISCONNECTED: {
             if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
-                OnWorldDisconnected(net_object);
+                OnWorldDisconnected(conn);
             }
             if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeDisconnected(net_object);
+                OnNodeDisconnected(conn);
             }
             server_table_.RemoveByConn(conn);
         } break;
@@ -81,23 +85,45 @@ void GateNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
             break;
     }
 }
-void GateNetModule::OnMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+void GateNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
 }
 
-void GateNetModule::OnWorldConnected(NetObject* net_object)
+void GateNetModule::OnWorldConnected(TcpConnection* conn)
 {
-    assert(net_object);
-    if (world_conn_service_ && net_object->conn_) {
-        world_conn_service_->Login2World(net_object->conn_);
+    assert(conn);
+    if (world_conn_service_ && conn) {
+        world_conn_service_->Login2World(conn);
     }
 };
-void GateNetModule::OnWorldDisconnected(NetObject* net_object)
+void GateNetModule::OnWorldDisconnected(TcpConnection* conn)
 {
     world_conn_service_.reset(nullptr);
     // ReConnect();
 }
 
-void GateNetModule::OnNodeConnected(NetObject* net_object) {}
-void GateNetModule::OnNodeDisconnected(NetObject* net_object) {}
+void GateNetModule::OnNodeConnected(TcpConnection* conn) 
+{
+
+}
+void GateNetModule::OnNodeDisconnected(TcpConnection* conn) {}
+
+
+void GateNetModule::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
+{
+	for (int i = 0; i < msg->server_info_size(); ++i) {
+		const auto& si = msg->server_info(i);
+		if (si.peer_type() == static_cast<int>(PeerType_t::NODESERVER))
+		{
+			std::unique_ptr<ServerConnService> node_conn_service(new ServerConnService(*this));
+			TcpConnection* conn = node_conn_service->Connect(si.listen_ip().c_str(), si.listen_port(),
+				[this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
+				[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
+			node_conn_services_[si.server_id()] = std::move(node_conn_service);
+			server_table_.AddServerInfo(static_cast<PeerType_t>(si.peer_type()), si.server_id(),
+				si.listen_ip().c_str(), si.listen_port(), conn);
+		}
+
+	}
+}

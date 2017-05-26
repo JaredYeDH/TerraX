@@ -3,6 +3,8 @@
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
 #include "srv/net/server_conn_service.h"
+#include "comm/proto/server_server.pb.h"
+
 namespace terra
 {
 	class ServerConnService;
@@ -12,6 +14,7 @@ namespace terra
 		MAKE_INSTANCE(GateNetModule);
 	private:
 		std::unique_ptr<ServerConnService> world_conn_service_;
+		std::map<int, std::unique_ptr<ServerConnService> > node_conn_services_;
 	public:
 		GateNetModule();
 		~GateNetModule() = default;
@@ -28,14 +31,18 @@ namespace terra
 		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
-		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+		void OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnWorldConnected(NetObject* net_object);
-		void OnWorldDisconnected(NetObject* net_object);
+		void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
+		void OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnNodeConnected(NetObject* net_object);
-		void OnNodeDisconnected(NetObject* net_object);
+		void OnWorldConnected(TcpConnection* conn);
+		void OnWorldDisconnected(TcpConnection* conn);
 
+		void OnNodeConnected(TcpConnection* conn);
+		void OnNodeDisconnected(TcpConnection* conn);
+
+		void OnMessage_ServerInfoWS(packet_ss::MsgServerInfoWS* msg);
 	};
 }

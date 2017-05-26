@@ -1,6 +1,5 @@
 #include "node_net_module.h"
 
-#include "srv/net/server_login_req_service.h"
 #include "comm/config/server_config.h"
 
 using namespace terra;
@@ -26,8 +25,22 @@ void NodeNetModule::InitNodeNetInfo()
 
 void NodeNetModule::StartConnectWorldServer()
 {
-	conn_service_.reset(new ServerConnService(*this));
-	conn_service_->CreateLoginReqService();
+	world_conn_service_.reset(new ServerConnService(*this));
+	TcpConnection* conn = world_conn_service_->Connect(
+		conn_ip_.c_str(), conn_port_,
+		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
+	server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(),
+		conn_port_, conn);
+}
+
+void NodeNetModule::StartAcceptGateServer()
+{
+	gate_accept_service_.reset(new ServerAcceptService(*this));
+	gate_accept_service_->AcceptConnection(
+		get_listen_port(), 64,
+		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
 }
 
 bool NodeNetModule::Init()
@@ -39,7 +52,6 @@ bool NodeNetModule::Init()
 }
 bool NodeNetModule::AfterInit()
 {
-    conn_service_->Connect2World();
     return true;
 }
 bool NodeNetModule::Execute()
@@ -49,3 +61,53 @@ bool NodeNetModule::Execute()
 }
 bool NodeNetModule::BeforeShut() { return true; }
 bool NodeNetModule::Shut() { return true; }
+
+void NodeNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+{
+	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
+	assert(net_object);
+	if (!net_object) {
+		return;
+	}
+	switch (conn_state) {
+	case ConnState_t::CONNECTED: {
+		if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
+			OnWorldConnected(conn);
+		}
+		if (net_object->peer_type_ == PeerType_t::GATESERVER) {
+			OnGateConnected(conn);
+		}
+	} break;
+	case ConnState_t::DISCONNECTED: {
+		if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
+			OnWorldDisconnected(conn);
+		}
+		if (net_object->peer_type_ == PeerType_t::GATESERVER) {
+			OnGateDisconnected(conn);
+		}
+		server_table_.RemoveByConn(conn);
+	} break;
+	default:
+		break;
+	}
+}
+void NodeNetModule::OnMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+{
+	ProcessServerMessage(conn, evbuf);
+}
+
+void NodeNetModule::OnWorldConnected(TcpConnection* conn)
+{
+	assert(conn);
+	if (world_conn_service_ && conn) {
+		world_conn_service_->Login2World(conn);
+	}
+};
+void NodeNetModule::OnWorldDisconnected(TcpConnection* conn)
+{
+	world_conn_service_.reset(nullptr);
+	// ReConnect();
+}
+
+void NodeNetModule::OnGateConnected(TcpConnection* conn) {}
+void NodeNetModule::OnGateDisconnected(TcpConnection* conn) {}

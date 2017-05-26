@@ -33,6 +33,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgServerInfoWS_ServerInfo_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgServerInfoWS_ServerInfo_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgLogin2NodeGN_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MsgLogin2NodeGN_reflection_ = NULL;
 const ::google::protobuf::Descriptor* MsgEnterPermissionReq_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgEnterPermissionReq_reflection_ = NULL;
@@ -116,7 +119,23 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgServerInfoWS_ServerInfo),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerInfoWS_ServerInfo, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerInfoWS_ServerInfo, _is_default_instance_));
-  MsgEnterPermissionReq_descriptor_ = file->message_type(3);
+  MsgLogin2NodeGN_descriptor_ = file->message_type(3);
+  static const int MsgLogin2NodeGN_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, peer_type_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, server_id_),
+  };
+  MsgLogin2NodeGN_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      MsgLogin2NodeGN_descriptor_,
+      MsgLogin2NodeGN::default_instance_,
+      MsgLogin2NodeGN_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(MsgLogin2NodeGN),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, _is_default_instance_));
+  MsgEnterPermissionReq_descriptor_ = file->message_type(4);
   static const int MsgEnterPermissionReq_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, account_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, session_key_),
@@ -132,7 +151,7 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgEnterPermissionReq),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, _is_default_instance_));
-  MsgEnterPermissionAck_descriptor_ = file->message_type(4);
+  MsgEnterPermissionAck_descriptor_ = file->message_type(5);
   static const int MsgEnterPermissionAck_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionAck, check_result_),
   };
@@ -170,6 +189,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgServerInfoWS_ServerInfo_descriptor_, &MsgServerInfoWS_ServerInfo::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      MsgLogin2NodeGN_descriptor_, &MsgLogin2NodeGN::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgEnterPermissionReq_descriptor_, &MsgEnterPermissionReq::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgEnterPermissionAck_descriptor_, &MsgEnterPermissionAck::default_instance());
@@ -186,6 +207,8 @@ void protobuf_ShutdownFile_server_5fserver_2eproto() {
   delete MsgServerInfoWS_reflection_;
   delete MsgServerInfoWS_ServerInfo::default_instance_;
   delete MsgServerInfoWS_ServerInfo_reflection_;
+  delete MsgLogin2NodeGN::default_instance_;
+  delete MsgLogin2NodeGN_reflection_;
   delete MsgEnterPermissionReq::default_instance_;
   delete MsgEnterPermissionReq_reflection_;
   delete MsgEnterPermissionAck::default_instance_;
@@ -207,24 +230,28 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "foWS\022:\n\013server_info\030\001 \003(\0132%.packet_ss.Ms"
     "gServerInfoWS.ServerInfo\032Z\n\nServerInfo\022\021"
     "\n\tpeer_type\030\001 \001(\005\022\021\n\tserver_id\030\002 \001(\005\022\021\n\t"
-    "listen_ip\030\003 \001(\t\022\023\n\013listen_port\030\004 \001(\005\"B\n\025"
-    "MsgEnterPermissionReq\022\024\n\014account_name\030\001 "
-    "\001(\t\022\023\n\013session_key\030\002 \001(\t\"y\n\025MsgEnterPerm"
-    "issionAck\022=\n\014check_result\030\001 \001(\0162\'.packet"
-    "_ss.MsgEnterPermissionAck.Result\"!\n\006Resu"
-    "lt\022\006\n\002ok\020\000\022\017\n\013key_invalid\020\001b\006proto3", 515);
+    "listen_ip\030\003 \001(\t\022\023\n\013listen_port\030\004 \001(\005\"7\n\017"
+    "MsgLogin2NodeGN\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tse"
+    "rver_id\030\002 \001(\005\"B\n\025MsgEnterPermissionReq\022\024"
+    "\n\014account_name\030\001 \001(\t\022\023\n\013session_key\030\002 \001("
+    "\t\"y\n\025MsgEnterPermissionAck\022=\n\014check_resu"
+    "lt\030\001 \001(\0162\'.packet_ss.MsgEnterPermissionA"
+    "ck.Result\"!\n\006Result\022\006\n\002ok\020\000\022\017\n\013key_inval"
+    "id\020\001b\006proto3", 572);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
   MsgRegisterWS::default_instance_ = new MsgRegisterWS();
   MsgServerInfoWS::default_instance_ = new MsgServerInfoWS();
   MsgServerInfoWS_ServerInfo::default_instance_ = new MsgServerInfoWS_ServerInfo();
+  MsgLogin2NodeGN::default_instance_ = new MsgLogin2NodeGN();
   MsgEnterPermissionReq::default_instance_ = new MsgEnterPermissionReq();
   MsgEnterPermissionAck::default_instance_ = new MsgEnterPermissionAck();
   MsgRegisterSW::default_instance_->InitAsDefaultInstance();
   MsgRegisterWS::default_instance_->InitAsDefaultInstance();
   MsgServerInfoWS::default_instance_->InitAsDefaultInstance();
   MsgServerInfoWS_ServerInfo::default_instance_->InitAsDefaultInstance();
+  MsgLogin2NodeGN::default_instance_->InitAsDefaultInstance();
   MsgEnterPermissionReq::default_instance_->InitAsDefaultInstance();
   MsgEnterPermissionAck::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_server_5fserver_2eproto);
@@ -1599,6 +1626,316 @@ const ::google::protobuf::RepeatedPtrField< ::packet_ss::MsgServerInfoWS_ServerI
 MsgServerInfoWS::server_info() const {
   // @@protoc_insertion_point(field_list:packet_ss.MsgServerInfoWS.server_info)
   return server_info_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MsgLogin2NodeGN::kPeerTypeFieldNumber;
+const int MsgLogin2NodeGN::kServerIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MsgLogin2NodeGN::MsgLogin2NodeGN()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:packet_ss.MsgLogin2NodeGN)
+}
+
+void MsgLogin2NodeGN::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+MsgLogin2NodeGN::MsgLogin2NodeGN(const MsgLogin2NodeGN& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgLogin2NodeGN)
+}
+
+void MsgLogin2NodeGN::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  peer_type_ = 0;
+  server_id_ = 0;
+}
+
+MsgLogin2NodeGN::~MsgLogin2NodeGN() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgLogin2NodeGN)
+  SharedDtor();
+}
+
+void MsgLogin2NodeGN::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void MsgLogin2NodeGN::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MsgLogin2NodeGN::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgLogin2NodeGN_descriptor_;
+}
+
+const MsgLogin2NodeGN& MsgLogin2NodeGN::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
+  return *default_instance_;
+}
+
+MsgLogin2NodeGN* MsgLogin2NodeGN::default_instance_ = NULL;
+
+MsgLogin2NodeGN* MsgLogin2NodeGN::New(::google::protobuf::Arena* arena) const {
+  MsgLogin2NodeGN* n = new MsgLogin2NodeGN;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MsgLogin2NodeGN::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgLogin2NodeGN)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(MsgLogin2NodeGN, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<MsgLogin2NodeGN*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(peer_type_, server_id_);
+
+#undef ZR_HELPER_
+#undef ZR_
+
+}
+
+bool MsgLogin2NodeGN::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgLogin2NodeGN)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 peer_type = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &peer_type_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_server_id;
+        break;
+      }
+
+      // optional int32 server_id = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_server_id:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &server_id_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgLogin2NodeGN)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgLogin2NodeGN)
+  return false;
+#undef DO_
+}
+
+void MsgLogin2NodeGN::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgLogin2NodeGN)
+  // optional int32 peer_type = 1;
+  if (this->peer_type() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->peer_type(), output);
+  }
+
+  // optional int32 server_id = 2;
+  if (this->server_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->server_id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgLogin2NodeGN)
+}
+
+::google::protobuf::uint8* MsgLogin2NodeGN::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgLogin2NodeGN)
+  // optional int32 peer_type = 1;
+  if (this->peer_type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->peer_type(), target);
+  }
+
+  // optional int32 server_id = 2;
+  if (this->server_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->server_id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgLogin2NodeGN)
+  return target;
+}
+
+int MsgLogin2NodeGN::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgLogin2NodeGN)
+  int total_size = 0;
+
+  // optional int32 peer_type = 1;
+  if (this->peer_type() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->peer_type());
+  }
+
+  // optional int32 server_id = 2;
+  if (this->server_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->server_id());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MsgLogin2NodeGN::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgLogin2NodeGN)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const MsgLogin2NodeGN* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgLogin2NodeGN>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgLogin2NodeGN)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgLogin2NodeGN)
+    MergeFrom(*source);
+  }
+}
+
+void MsgLogin2NodeGN::MergeFrom(const MsgLogin2NodeGN& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgLogin2NodeGN)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  if (from.peer_type() != 0) {
+    set_peer_type(from.peer_type());
+  }
+  if (from.server_id() != 0) {
+    set_server_id(from.server_id());
+  }
+}
+
+void MsgLogin2NodeGN::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgLogin2NodeGN)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgLogin2NodeGN::CopyFrom(const MsgLogin2NodeGN& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgLogin2NodeGN)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgLogin2NodeGN::IsInitialized() const {
+
+  return true;
+}
+
+void MsgLogin2NodeGN::Swap(MsgLogin2NodeGN* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MsgLogin2NodeGN::InternalSwap(MsgLogin2NodeGN* other) {
+  std::swap(peer_type_, other->peer_type_);
+  std::swap(server_id_, other->server_id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MsgLogin2NodeGN::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgLogin2NodeGN_descriptor_;
+  metadata.reflection = MsgLogin2NodeGN_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MsgLogin2NodeGN
+
+// optional int32 peer_type = 1;
+void MsgLogin2NodeGN::clear_peer_type() {
+  peer_type_ = 0;
+}
+ ::google::protobuf::int32 MsgLogin2NodeGN::peer_type() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2NodeGN.peer_type)
+  return peer_type_;
+}
+ void MsgLogin2NodeGN::set_peer_type(::google::protobuf::int32 value) {
+  
+  peer_type_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2NodeGN.peer_type)
+}
+
+// optional int32 server_id = 2;
+void MsgLogin2NodeGN::clear_server_id() {
+  server_id_ = 0;
+}
+ ::google::protobuf::int32 MsgLogin2NodeGN::server_id() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2NodeGN.server_id)
+  return server_id_;
+}
+ void MsgLogin2NodeGN::set_server_id(::google::protobuf::int32 value) {
+  
+  server_id_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2NodeGN.server_id)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

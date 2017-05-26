@@ -6,8 +6,9 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
 endif()
 
-if(${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    add_definitions(-D NDEBUG)
+if(NOT ${CMAKE_BUILD_TYPE} MATCHES "Debug")
+    add_definitions(-DNDEBUG)
+    #message( STATUS "NDEBUG MACRO")
 endif()
 
 set(CXX_FLAGS

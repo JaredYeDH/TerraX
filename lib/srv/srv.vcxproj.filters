@@ -14,12 +14,6 @@
     <ClCompile Include="net\server_conn_service.cpp">
       <Filter>net</Filter>
     </ClCompile>
-    <ClCompile Include="net\server_login_ack_service.cpp">
-      <Filter>net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\server_login_req_service.cpp">
-      <Filter>net</Filter>
-    </ClCompile>
     <ClCompile Include="net\server_accept_service.cpp">
       <Filter>net</Filter>
     </ClCompile>
@@ -35,12 +29,6 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\server_conn_service.h">
-      <Filter>net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\server_login_req_service.h">
-      <Filter>net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\server_login_ack_service.h">
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="net\server_accept_service.h">

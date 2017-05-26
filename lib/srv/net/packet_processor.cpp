@@ -21,11 +21,6 @@ PacketProcessor::PacketProcessor(NetBaseModule& net)
 
 }
 
-void PacketProcessor::SendPacket2World(google::protobuf::Message& msg) 
-{ 
-	SendPacket(WORD_SERVER_ID, msg);
-}
-
 void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
 {
 	NetObject* net_object = server_table_.GetNetObjectByConn(conn);

@@ -41,11 +41,11 @@ NetObject* ServerTable::GetNetObjectByConn(TcpConnection* conn)
 void ServerTable::AddServerInfo(PeerType_t peer, int server_id, const char* listen_ip, int listen_port, TcpConnection* conn)
 {
 	NetObject net_obj(peer, server_id, listen_ip, listen_port, conn->get_fd(), conn);
-	servers_.push_back(net_obj);
 	if (addcb_)
 	{
 		addcb_(servers_, net_obj);
 	}
+	servers_.push_back(net_obj);
 }
 
 void ServerTable::RemoveByServerID(int server_id)

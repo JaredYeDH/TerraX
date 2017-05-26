@@ -7,6 +7,7 @@
 #include "base/module_interface.h"
 #include "server_table.h"
 #include "packet_processor.h"
+#include "comm/proto/server_server.pb.h"
 
 namespace terra
 {

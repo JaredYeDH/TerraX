@@ -30,7 +30,7 @@ public:                                              \
 #define LEVEL_BLUE "\033[33m"
 #define LEVEL_PURPLE "\033[33m"
 
-#ifdef NDEBUG
+#ifndef NDEBUG
 #define CONSOLE_DEBUG_LOG(level, ...)                                       \
     {                                                              \
         fprintf(stdout, level);                                    \

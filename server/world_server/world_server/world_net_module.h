@@ -2,7 +2,7 @@
 
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
-#include "srv/net/server_accept_service.h"
+#include "world_accept_service.h"
 
 namespace terra
 {
@@ -11,7 +11,7 @@ namespace terra
 		DISABLE_COPY(WorldNetModule);
 		MAKE_INSTANCE(WorldNetModule);
 	private:
-		std::unique_ptr<ServerAcceptService> accept_service_;
+		std::unique_ptr<WorldAcceptService> world_accept_service_;
 	public:
 		WorldNetModule();
 		~WorldNetModule() = default;
@@ -28,10 +28,6 @@ namespace terra
 		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
 		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnGateConnected(NetObject* net_object);
-		void OnGateDisconnected(NetObject* net_object);
-
-		void OnNodeConnected(NetObject* net_object);
-		void OnNodeDisconnected(NetObject* net_object);
+		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);
 	};
 }

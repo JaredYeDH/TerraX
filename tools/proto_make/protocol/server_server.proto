@@ -7,10 +7,12 @@ message MsgRegisterSW
     string listen_ip = 2;
     int32 listen_port = 3;
 }
+
 message MsgRegisterWS
 {
     int32 server_id = 1;
 }
+
 message MsgServerInfoWS
 {
     message ServerInfo
@@ -22,6 +24,13 @@ message MsgServerInfoWS
     }
     repeated ServerInfo server_info = 1;
 }
+
+message MsgLogin2NodeGN
+{
+    int32 peer_type = 1;
+    int32 server_id = 2;
+}
+
 message MsgEnterPermissionReq
 {
     string account_name = 1;

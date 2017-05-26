@@ -18,7 +18,6 @@ namespace terra
 		PacketProcessor(NetBaseModule&);
 		~PacketProcessor(){}
 
-		void SendPacket2World(google::protobuf::Message& msg);
 		void SendPacket(int server_id, google::protobuf::Message& msg);
 		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
 
