@@ -4,11 +4,10 @@
 using namespace terra;
 using namespace packet_ss;
 
-WorldAcceptService::WorldAcceptService(NetBaseModule& net, int aceept_max_conns) 
-	: ServerAcceptService(net),
-	max_conns_(aceept_max_conns)
+WorldAcceptService::WorldAcceptService(NetBaseModule& net, uint32_t aceept_max_conns)
+	: ServerAcceptService(net, aceept_max_conns)
 {
-	for (int i = 1; i < max_conns_; i++) {
+	for (std::size_t i = 1; i < max_conns_; i++) {
 		server_ids_.push(i);
 	}
 
@@ -30,7 +29,7 @@ void WorldAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avata
 	server_ids_.pop();
 	int peer_type = msg->peer_type();
 
-	CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s:\t %d", NetHelper::ServerName(PeerType_t(peer_type)), server_id);
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s:\t %d", NetHelper::ServerName((PeerType_t)peer_type), server_id);
 
 	MsgRegisterWS msgWS;
 	msgWS.set_server_id(server_id);

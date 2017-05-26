@@ -7,7 +7,6 @@
 
 namespace terra
 {
-	//TODO: connservice 继承 根据不同server实现
 	class ServerConnService;
 	class NodeNetModule final : public NetBaseModule
 	{
@@ -33,11 +32,14 @@ namespace terra
 		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
-		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+		void OnWorldSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnWorldMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnWorldConnected(TcpConnection* conn);
 		void OnWorldDisconnected(TcpConnection* conn);
+
+		void OnGateSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnGateConnected(TcpConnection* conn);
 		void OnGateDisconnected(TcpConnection* conn);

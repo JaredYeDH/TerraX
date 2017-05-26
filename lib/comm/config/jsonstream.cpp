@@ -50,7 +50,7 @@ void JsonStream::LoadFile(const std::string& path)
 		return;
 	}
 	std::size_t file_length = statBuf.st_size;
-	char* buffer = new char[file_length];
+	char* buffer = new char[file_length + 1] (); //+'\0'
 	std::size_t readsize = fread(buffer, 1, file_length, fp);
 	assert(readsize == file_length);
 	fclose(fp);

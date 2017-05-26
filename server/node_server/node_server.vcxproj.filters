@@ -13,12 +13,18 @@
     <ClCompile Include="node_server\node_server.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="node_server\node_accept_service.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="node_server\node_net_module.h">
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="node_server\node_server.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="node_server\node_accept_service.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

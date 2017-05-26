@@ -11,6 +11,7 @@ namespace terra
     {
 	protected:
 		NetBaseModule& net_;
+		const uint32_t max_conns_;
 		const PeerType_t kSelfPeer;
 		ServerTable& server_table_;
 		PacketProcessor& packet_processor_;
@@ -18,12 +19,12 @@ namespace terra
 		std::unique_ptr<TcpServer> server_;
 
     public:
-        ServerAcceptService(NetBaseModule& net);
+        ServerAcceptService(NetBaseModule& net, uint32_t aceept_max_conns);
         virtual ~ServerAcceptService();
 
 		NetBaseModule& get_net_base_module() { return net_; }
 
-        void AcceptConnection(int port, uint32_t max_conns, SocketEventCB sock_cb, MessageEventCB msg_cb);
+        void AcceptConnection(int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
 
     };
 }

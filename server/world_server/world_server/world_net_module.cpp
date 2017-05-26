@@ -26,7 +26,7 @@ void WorldNetModule::StartAccept()
 {
     world_accept_service_.reset(new WorldAcceptService(*this, 64));
     world_accept_service_->AcceptConnection(
-        get_listen_port(), 64,
+        get_listen_port(), 
         [this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
 }
@@ -81,6 +81,20 @@ void WorldNetModule::OnAddNetObjectEvent(const std::vector<NetObject>& objs, con
 			}
 		}
 		packet_processor_.SendPacket(net_obj.conn_, msg);
+	}
+	else if (net_obj.peer_type_ == PeerType_t::NODESERVER) {
+		MsgServerInfoWS msg;
+		for (const auto& obj : objs) {
+			if (obj.peer_type_ == PeerType_t::GATESERVER) {
+				const auto& srv_info = msg.add_server_info();
+				srv_info->set_peer_type(int(net_obj.peer_type_));
+				srv_info->set_server_id(net_obj.server_id_);
+				srv_info->set_listen_ip(net_obj.listen_ip_);
+				srv_info->set_listen_port(net_obj.listen_port_);
+				packet_processor_.SendPacket(obj.conn_, msg);
+				std::cout << __FUNCTION__ << std::endl;
+			}
+		}
 	}
 	else {
 	}

@@ -6,6 +6,7 @@
 using namespace terra;
 using namespace packet_ss;
 
+//TODO 数据包处理必须为Instance()
 GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER) 
 {
 	REG_PACKET_HANDLER_ARG1(MsgServerInfoWS, this, OnMessage_ServerInfoWS);
@@ -79,7 +80,6 @@ void GateNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_st
             if (net_object->peer_type_ == PeerType_t::NODESERVER) {
                 OnNodeDisconnected(conn);
             }
-            server_table_.RemoveByConn(conn);
         } break;
         default:
             break;
@@ -99,15 +99,41 @@ void GateNetModule::OnWorldConnected(TcpConnection* conn)
 };
 void GateNetModule::OnWorldDisconnected(TcpConnection* conn)
 {
-    world_conn_service_.reset(nullptr);
+	world_conn_service_.reset(nullptr);
+	server_table_.RemoveByConn(conn);
     // ReConnect();
 }
 
 void GateNetModule::OnNodeConnected(TcpConnection* conn) 
 {
-
+	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
+	assert(net_object);
+	if (!net_object)
+	{
+		return;
+	}
+	auto iter = node_conn_services_.find(net_object->server_id_);
+	assert(iter != node_conn_services_.end());
+	if (iter != node_conn_services_.end())
+	{
+		iter->second->Login2Node(conn);
+	}
 }
-void GateNetModule::OnNodeDisconnected(TcpConnection* conn) {}
+void GateNetModule::OnNodeDisconnected(TcpConnection* conn) 
+{
+	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
+	assert(net_object);
+	if (net_object)
+	{
+		auto iter = node_conn_services_.find(net_object->server_id_);
+		assert(iter != node_conn_services_.end());
+		if (iter != node_conn_services_.end())
+		{
+			node_conn_services_.erase(iter);
+		}
+	}
+	server_table_.RemoveByConn(conn);
+}
 
 
 void GateNetModule::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
