@@ -12,7 +12,7 @@ namespace terra
 
         virtual bool AfterInit() { return true; }
 
-		virtual bool Execute() { return true; }
+		virtual bool Tick() { return true; }
 
         virtual bool BeforeShut() { return true; }
 

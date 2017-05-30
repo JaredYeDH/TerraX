@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 	if (GateServer::GetInstance().Init())
 	{
 		GateServer::GetInstance().AfterInit();
-		GateServer::GetInstance().Execute();
+		GateServer::GetInstance().Tick();
 		GateServer::GetInstance().BeforeShut();
 		GateServer::GetInstance().Shut();
 	}

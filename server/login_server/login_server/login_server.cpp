@@ -1,22 +1,22 @@
-#include "gate_server.h"
+#include "login_server.h"
 #include <chrono>
 #include <thread>
-#include "gate_net_module.h"
+#include "login_net_module.h"
 using namespace terra;
 
-bool GateServer::Init()
+bool LoginServer::Init()
 {
 	GateNetModule::GetInstance().Init();
 	return true;
 }
 
-bool GateServer::AfterInit()
+bool LoginServer::AfterInit()
 {
 	GateNetModule::GetInstance().AfterInit();
 	return true;
 }
 
-bool GateServer::Tick()
+bool LoginServer::Tick()
 {
 	while (!exit_) {
 		GateNetModule::GetInstance().Tick();
@@ -25,12 +25,12 @@ bool GateServer::Tick()
 	return true;
 }
 
-bool GateServer::BeforeShut()
+bool LoginServer::BeforeShut()
 {
 	return true;
 }
 
-bool GateServer::Shut()
+bool LoginServer::Shut()
 {
 	return true;
 }

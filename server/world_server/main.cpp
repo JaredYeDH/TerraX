@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 	if (WorldServer::GetInstance().Init())
 	{
 		WorldServer::GetInstance().AfterInit();
-		WorldServer::GetInstance().Execute();
+		WorldServer::GetInstance().Tick();
 		WorldServer::GetInstance().BeforeShut();
 		WorldServer::GetInstance().Shut();
 	}

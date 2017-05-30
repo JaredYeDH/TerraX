@@ -16,10 +16,10 @@ bool NodeServer::AfterInit()
 	return true;
 }
 
-bool NodeServer::Execute()
+bool NodeServer::Tick()
 {
 	while (!exit_) {
-		NodeNetModule::GetInstance().Execute();
+		NodeNetModule::GetInstance().Tick();
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	return true;

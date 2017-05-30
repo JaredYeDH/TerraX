@@ -42,7 +42,7 @@ bool WorldNetModule::Init()
     return true;
 }
 bool WorldNetModule::AfterInit() { return true; }
-bool WorldNetModule::Execute()
+bool WorldNetModule::Tick()
 {
     get_event_loop()->loop();
     return true;

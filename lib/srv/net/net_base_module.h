@@ -4,14 +4,12 @@
 #include "comm/net/eventloop.h"
 #include "comm/net/tcp_connection.h"
 #include "comm/net/tcp_server.h"
-#include "base/module_interface.h"
 #include "server_table.h"
 #include "packet_processor.h"
 #include "comm/proto/server_server.pb.h"
 
 namespace terra
 {
-	class TcpConnection;
 	class NetBaseModule
 	{
 	protected:

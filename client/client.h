@@ -2,18 +2,17 @@
 
 #include "base/types.h"
 #include "base/module_interface.h"
-#include "node_net_module.h"
-//#include <vector>
+
 namespace terra
 {
-	class NodeServer final : public IModule
+	class Client final : public IModule
 	{
-		DISABLE_COPY(NodeServer);
-		MAKE_INSTANCE(NodeServer);
+		DISABLE_COPY(Client);
+		MAKE_INSTANCE(Client);
 
 	public:
-		NodeServer() = default;
-		~NodeServer() = default;
+		Client() = default;
+		~Client() = default;
 
 		bool Init() override;
 		bool AfterInit() override;

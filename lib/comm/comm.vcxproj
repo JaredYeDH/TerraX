@@ -101,6 +101,8 @@
     <ClInclude Include="net\eventloop.h" />
     <ClInclude Include="net\net_define.h" />
     <ClInclude Include="net\packet.h" />
+    <ClInclude Include="net\packet_define.h" />
+    <ClInclude Include="net\packet_template.h" />
     <ClInclude Include="net\packet_dispatcher.h" />
     <ClInclude Include="net\socketopt-inl.h" />
     <ClInclude Include="net\tcp_connection.h" />

@@ -21,7 +21,7 @@ namespace terra
 
 		bool Init();
 		bool AfterInit();
-		bool Execute();
+		bool Tick();
 		bool BeforeShut();
 		bool Shut();
 	private:

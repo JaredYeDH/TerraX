@@ -3,12 +3,45 @@
 #include <google/protobuf/message.h>
 #include "base/types.h"
 #include <arpa/inet.h>
+#include "packet_template.h"
 
 namespace terra
 {
-    const int MAX_PACKET_SIZE = 64000;  // TCP MSS = 65535B-40B
-    const int PACKET_BUFFER_SIZE = 4000;
-    class MsgTag
+	class NullTag_t
+	{
+	public:
+		static const int TAG_SIZE = 0;
+	public:
+		NullTag_t() = default;
+		~NullTag_t() = default;
+
+		bool InitialWithMsg(char* buffer) { return true; }
+		bool InitialFromBuffer(char* buffer) { return true; }
+
+		void set_server_id(int server_id) {}
+		int get_tag_size() { return TAG_SIZE; }
+	};
+
+	class NullData_t
+	{
+	public:
+		static const int MIN_MSG_DATA_SIZE = 0;
+
+		bool InitialWithMsg(char* buffer) { return true; }
+		bool InitialFromBuffer(char* buffer) { return true; }
+
+		void set_avatar_id(int avatar_id) {}
+		int get_avatar_id() const { return 0; }
+
+		const char* get_msg_data() { return ""; }
+		int get_msg_data_size() { return 0; }
+
+		const char* get_msg_name() { return ""; }
+		const char* get_msg() { return ""; }
+		int get_msg_size() { return 0; }
+	};
+
+    class SrvInfoTag
     {
 	public:
 		static const int TAG_SIZE = sizeof(int);
@@ -17,8 +50,8 @@ namespace terra
         int server_id_{-1};
 
     public:
-        MsgTag() = default;
-        ~MsgTag() = default;
+        SrvInfoTag() = default;
+        ~SrvInfoTag() = default;
 
         bool InitialWithMsg(char* buffer);
         bool InitialFromBuffer(char* buffer);
@@ -35,7 +68,7 @@ namespace terra
     class MsgData
     {
 	public:
-		static const int MIN_MSG_DATA_SIZE = sizeof(uint16_t) + sizeof(int) + 2;
+		static const int MIN_MSG_DATA_SIZE = sizeof(uint16_t) + sizeof(int);
     private:
 		// msg_data_size_ + avatar_id_ + 1('\0') + 1
         char* msg_data_{nullptr};
@@ -68,47 +101,5 @@ namespace terra
         const char* get_msg_name() { return msg_name_; }
         const char* get_msg() { return msg_; }
         int get_msg_size() { return msg_size_; }
-    };
-
-    class Packet
-    {
-	public:
-		static const int MIN_PACKET_SIZE = sizeof(uint16_t) + MsgData::MIN_MSG_DATA_SIZE;
-		static const int MIN_PACKET_SIZE_WITH_TAG = MIN_PACKET_SIZE + MsgTag::TAG_SIZE;
-    private:
-		//bool use_alloc_buffer{false};
-		//buffer = smallbufer;
-        char small_buffer_[4096]{0};
-        // char* buffer_{ nullptr };
-        uint16_t total_len_{0};
-        MsgTag msg_tag_;
-        MsgData msg_data_;
-        uint16_t avatar_count_{0};
-        uint16_t max_avatar_count_{0};
-        int* avatars_{nullptr};
-
-    public:
-        Packet() = default;
-        ~Packet() { /*delete[] big_buffer_;*/}
-        void InitialWithMsg(google::protobuf::Message& msg, int max_avatar_count = 0);
-        void InitialFromBuffer(uint16_t total_len);
-
-        char* get_buffer() { return small_buffer_; }
-        uint16_t get_total_len() { return total_len_; }
-
-        void set_avatar_id(int avatar_id) { msg_data_.set_avatar_id(avatar_id); }
-        void set_server_id(int server_id) { msg_tag_.set_server_id(server_id); }
-
-        MsgTag& get_msg_tag() { return msg_tag_; }
-        MsgData& get_msg_data() { return msg_data_; }
-
-    private:
-        void set_total_len(uint16_t len)
-        {
-            assert(len);
-            total_len_ = len;
-			uint16_t be16 = htons(len);
-            memcpy(small_buffer_, &be16, sizeof be16);
-        }
     };
 }

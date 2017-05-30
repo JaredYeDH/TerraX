@@ -15,7 +15,7 @@ namespace terra
 
 		bool Init() override;
 		bool AfterInit() override;
-		bool Execute() override;
+		bool Tick() override;
 		bool BeforeShut() override;
 		bool Shut() override;
 

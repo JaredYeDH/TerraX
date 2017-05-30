@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 	if (NodeServer::GetInstance().Init())
 	{
 		NodeServer::GetInstance().AfterInit();
-		NodeServer::GetInstance().Execute();
+		NodeServer::GetInstance().Tick();
 		NodeServer::GetInstance().BeforeShut();
 		NodeServer::GetInstance().Shut();
 	}

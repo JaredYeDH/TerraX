@@ -49,7 +49,7 @@ bool GateNetModule::Init()
     return true;
 }
 bool GateNetModule::AfterInit() { return true; }
-bool GateNetModule::Execute()
+bool GateNetModule::Tick()
 {
     get_event_loop()->loop();
     return true;

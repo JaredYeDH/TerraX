@@ -48,6 +48,12 @@
     <ClInclude Include="config\server_config.h">
       <Filter>config</Filter>
     </ClInclude>
+    <ClInclude Include="net\packet_template.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="net\packet_define.h">
+      <Filter>net</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="net\packet_dispatcher.cpp">

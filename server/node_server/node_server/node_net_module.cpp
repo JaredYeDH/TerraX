@@ -56,7 +56,7 @@ bool NodeNetModule::Init()
     return true;
 }
 bool NodeNetModule::AfterInit() { return true; }
-bool NodeNetModule::Execute()
+bool NodeNetModule::Tick()
 {
     get_event_loop()->loop();
     return true;

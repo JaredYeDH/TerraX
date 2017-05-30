@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "lib\base\base.vcxproj", "{55F6B41F-B662-4D80-9B7B-09E01BCB81D6}"
 EndProject
@@ -31,6 +31,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "node_server", "server\node_server\node_server.vcxproj", "{6FCA2C76-7661-4BC7-A17C-714F3DE44264}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comm", "lib\comm\comm.vcxproj", "{E726EBCA-F343-4F3B-8813-5DB1F4AEFCC9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,6 +221,24 @@ Global
 		{E726EBCA-F343-4F3B-8813-5DB1F4AEFCC9}.Release|x64.Build.0 = Release|x64
 		{E726EBCA-F343-4F3B-8813-5DB1F4AEFCC9}.Release|x86.ActiveCfg = Release|x86
 		{E726EBCA-F343-4F3B-8813-5DB1F4AEFCC9}.Release|x86.Build.0 = Release|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|ARM.ActiveCfg = Debug|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|ARM.Build.0 = Debug|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|x64.ActiveCfg = Debug|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|x64.Build.0 = Debug|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|x86.ActiveCfg = Debug|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Debug|x86.Build.0 = Debug|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|ARM.ActiveCfg = Release|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|ARM.Build.0 = Release|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|x64.ActiveCfg = Release|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|x64.Build.0 = Release|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|x86.ActiveCfg = Release|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.lib|x86.Build.0 = Release|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|ARM.ActiveCfg = Release|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|ARM.Build.0 = Release|ARM
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|x64.ActiveCfg = Release|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|x64.Build.0 = Release|x64
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|x86.ActiveCfg = Release|x86
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -234,5 +254,6 @@ Global
 		{89162C3E-AA2C-44D7-B75D-F683BF8E28CC} = {0F277130-C96F-404B-AD0E-CCD81DB7FD37}
 		{6FCA2C76-7661-4BC7-A17C-714F3DE44264} = {0F277130-C96F-404B-AD0E-CCD81DB7FD37}
 		{E726EBCA-F343-4F3B-8813-5DB1F4AEFCC9} = {CE812A8F-624A-4850-8FFF-D5B57B158D90}
+		{DA0B9F25-88EF-4C69-977D-C51EEC01ABCF} = {C35B07BE-22FB-47E1-BDEE-6627E1D6FDEE}
 	EndGlobalSection
 EndGlobal

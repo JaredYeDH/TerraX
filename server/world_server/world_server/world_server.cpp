@@ -16,10 +16,10 @@ bool WorldServer::AfterInit()
 	return true;
 }
 
-bool WorldServer::Execute()
+bool WorldServer::Tick()
 {
 	while (!exit_) {
-		WorldNetModule::GetInstance().Execute();
+		WorldNetModule::GetInstance().Tick();
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	return true;

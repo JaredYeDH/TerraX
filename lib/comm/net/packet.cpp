@@ -2,20 +2,21 @@
 
 using namespace terra;
 
-bool MsgTag::InitialWithMsg(char* buffer)
+bool SrvInfoTag::InitialWithMsg(char* buffer)
 {
     msg_tag_ = buffer;
     set_server_id(-1);
     return true;
 }
 
-bool MsgTag::InitialFromBuffer(char* buffer)
+bool SrvInfoTag::InitialFromBuffer(char* buffer)
 {
     msg_tag_ = buffer;
     memcpy(&server_id_, msg_tag_, sizeof(server_id_));
     server_id_ = ntohl(server_id_);
     return true;
 }
+
 //////////////////////////////////////////////////////////////////////////
 bool MsgData::InitialWithMsg(char* buffer, int size, google::protobuf::Message& msg)
 {
@@ -69,41 +70,4 @@ bool MsgData::InitialFromBuffer(char* buffer)
     msg_ = msg_data_ + offset;
     msg_size_ = msg_data_size_ - offset;
 	return true;
-}
-//////////////////////////////////////////////////////////////////////////
-void Packet::InitialWithMsg(google::protobuf::Message& msg, int max_avatar_count /* = 0*/)
-{
-    max_avatar_count_ = max_avatar_count;
-	int offset = sizeof(total_len_);
-    char* msg_tag_buffer = small_buffer_ + offset;
-    msg_tag_.InitialWithMsg(msg_tag_buffer);
-	offset += msg_tag_.get_tag_size();
-    char* msg_data_buffer = small_buffer_ + offset;
-    int rest_size = PACKET_BUFFER_SIZE - sizeof(total_len_) - msg_tag_.get_tag_size() -
-                    sizeof(max_avatar_count_) - max_avatar_count_ * sizeof(int);
-    msg_data_.InitialWithMsg(msg_data_buffer, rest_size, msg);
-
-    set_total_len(sizeof(total_len_) + msg_tag_.get_tag_size() + msg_data_.get_msg_data_size());
-}
-
-void Packet::InitialFromBuffer(uint16_t total_len)
-{
-    total_len_ = total_len;
-	int offset = sizeof(total_len_);
-    char* msg_tag_buffer = small_buffer_ + offset;
-    msg_tag_.InitialFromBuffer(msg_tag_buffer);
-	offset += msg_tag_.get_tag_size();
-	
-    char* msg_data_buffer = small_buffer_ + offset;
-    msg_data_.InitialFromBuffer(msg_data_buffer);
-	offset += msg_data_.get_msg_data_size();
-	int rest_size = total_len_ - offset;
-	if (rest_size > 0)
-	{
-		assert((rest_size % 4 == 2) && (rest_size >= 6));
-		uint16_t avatar_count;
-		memcpy(&avatar_count, small_buffer_ + offset, sizeof(uint16_t));
-		max_avatar_count_ = avatar_count_ = ntohs(avatar_count);
-		//copy avatars
-	}
 }
