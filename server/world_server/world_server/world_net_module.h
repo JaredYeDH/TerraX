@@ -11,7 +11,7 @@ namespace terra
 		DISABLE_COPY(WorldNetModule);
 		MAKE_INSTANCE(WorldNetModule);
 	private:
-		std::unique_ptr<WorldAcceptService> world_accept_service_;
+		WorldAcceptService& world_accept_service_;
 	public:
 		WorldNetModule();
 		~WorldNetModule() = default;

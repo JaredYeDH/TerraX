@@ -7,8 +7,10 @@ using namespace terra;
 using namespace packet_ss;
 
 //TODO 数据包处理必须为Instance()
-GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER) 
+GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER),
+conn_service_(ServerConnService::GetInstance())
 {
+	conn_service_.InitNetModule(this);
 	REG_PACKET_HANDLER_ARG1(MsgServerInfoWS, this, OnMessage_ServerInfoWS);
 }
 
@@ -31,9 +33,7 @@ void GateNetModule::InitGateNetInfo()
 
 void GateNetModule::StartConnectWorldServer()
 {
-    world_conn_service_.reset(new ServerConnService(*this));
-
-    TcpConnection* conn = world_conn_service_->Connect(
+    TcpConnection* conn = conn_service_.NewConnect(
         conn_ip_.c_str(), conn_port_,
         [this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
@@ -79,7 +79,8 @@ void GateNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_st
             }
             if (net_object->peer_type_ == PeerType_t::NODESERVER) {
                 OnNodeDisconnected(conn);
-            }
+			}
+			//server_table_.PrintServerTable();
         } break;
         default:
             break;
@@ -92,15 +93,12 @@ void GateNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 
 void GateNetModule::OnWorldConnected(TcpConnection* conn)
 {
-    assert(conn);
-    if (world_conn_service_ && conn) {
-        world_conn_service_->Login2World(conn);
-    }
+    conn_service_.Login2World(conn);
 };
 void GateNetModule::OnWorldDisconnected(TcpConnection* conn)
 {
-	world_conn_service_.reset(nullptr);
 	server_table_.RemoveByConn(conn);
+	conn_service_.DestroyConnection(conn);
     // ReConnect();
 }
 
@@ -108,31 +106,15 @@ void GateNetModule::OnNodeConnected(TcpConnection* conn)
 {
 	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
 	assert(net_object);
-	if (!net_object)
+	if (net_object)
 	{
-		return;
-	}
-	auto iter = node_conn_services_.find(net_object->server_id_);
-	assert(iter != node_conn_services_.end());
-	if (iter != node_conn_services_.end())
-	{
-		iter->second->Login2Node(conn);
+		conn_service_.Login2Node(conn);
 	}
 }
 void GateNetModule::OnNodeDisconnected(TcpConnection* conn) 
 {
-	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-	assert(net_object);
-	if (net_object)
-	{
-		auto iter = node_conn_services_.find(net_object->server_id_);
-		assert(iter != node_conn_services_.end());
-		if (iter != node_conn_services_.end())
-		{
-			node_conn_services_.erase(iter);
-		}
-	}
 	server_table_.RemoveByConn(conn);
+	conn_service_.DestroyConnection(conn);
 }
 
 
@@ -142,11 +124,9 @@ void GateNetModule::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
 		const auto& si = msg->server_info(i);
 		if (si.peer_type() == static_cast<int>(PeerType_t::NODESERVER))
 		{
-			std::unique_ptr<ServerConnService> node_conn_service(new ServerConnService(*this));
-			TcpConnection* conn = node_conn_service->Connect(si.listen_ip().c_str(), si.listen_port(),
+			TcpConnection* conn = conn_service_.NewConnect(si.listen_ip().c_str(), si.listen_port(),
 				[this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
 				[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
-			node_conn_services_[si.server_id()] = std::move(node_conn_service);
 			server_table_.AddServerInfo(static_cast<PeerType_t>(si.peer_type()), si.server_id(),
 				si.listen_ip().c_str(), si.listen_port(), conn);
 		}

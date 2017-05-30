@@ -14,17 +14,22 @@ enum class MessageError_t {
     eInvalidLength,
 };
 
-PacketProcessor::PacketProcessor(NetBaseModule& net)
-	: net_(net),
-	server_table_(net.get_server_table())
+PacketProcessor::PacketProcessor()
+	: server_table_(ServerTable::GetInstance())
 {
 
 }
 
 void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
 {
+	assert(conn);
+	if (!conn)
+	{
+		return;
+	}
 	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
 	if (!net_object) {
+		assert(0);
 		return;
 	}
 	Packet pkt;

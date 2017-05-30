@@ -41,11 +41,12 @@ NetObject* ServerTable::GetNetObjectByConn(TcpConnection* conn)
 void ServerTable::AddServerInfo(PeerType_t peer, int server_id, const char* listen_ip, int listen_port, TcpConnection* conn)
 {
 	NetObject net_obj(peer, server_id, listen_ip, listen_port, conn->get_fd(), conn);
+	servers_.push_back(net_obj);
 	if (addcb_)
 	{
 		addcb_(servers_, net_obj);
 	}
-	servers_.push_back(net_obj);
+	//PrintServerTable();
 }
 
 void ServerTable::RemoveByServerID(int server_id)
@@ -56,11 +57,11 @@ void ServerTable::RemoveByServerID(int server_id)
 	});
 	if(iter != servers_.end())
 	{
+		servers_.erase(iter);
 		if (remcb_)
 		{
 			remcb_(servers_, *iter);
 		}
-		servers_.erase(iter);
 	}
 }
 
@@ -72,26 +73,38 @@ void ServerTable::RemoveByFD(int fd)
 	});
 	if (iter != servers_.end())
 	{
+		servers_.erase(iter);
 		if (remcb_)
 		{
 			remcb_(servers_, *iter);
 		}
-		servers_.erase(iter);
 	}
 }
 
 void ServerTable::RemoveByConn(TcpConnection* conn)
 {
+	assert(conn);
 	auto iter = std::find_if(servers_.begin(), servers_.end(),
 		[conn](const NetObject& obj) {
 		return obj.conn_ == conn;
 	});
 	if (iter != servers_.end())
 	{
+		servers_.erase(iter);
 		if (remcb_)
 		{
 			remcb_(servers_, *iter);
 		}
-		servers_.erase(iter);
 	}
+}
+
+void ServerTable::PrintServerTable()
+{
+#ifndef NDEBUG
+	CONSOLE_DEBUG_LOG(LEVEL_WARNING, "%s", __FUNCTION__);
+	for (auto& val : servers_)
+	{
+		CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s %d %s %d %d", NetHelper::ServerName(val.peer_type_), val.server_id_, val.listen_ip_, val.listen_port_, val.fd_);
+	}
+#endif // !NDEBUG
 }

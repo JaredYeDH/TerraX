@@ -13,8 +13,7 @@ namespace terra
 		DISABLE_COPY(GateNetModule);
 		MAKE_INSTANCE(GateNetModule);
 	private:
-		std::unique_ptr<ServerConnService> world_conn_service_;
-		std::map<int, std::unique_ptr<ServerConnService> > node_conn_services_;
+		ServerConnService& conn_service_;
 	public:
 		GateNetModule();
 		~GateNetModule() = default;

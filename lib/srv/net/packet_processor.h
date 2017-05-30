@@ -11,11 +11,11 @@ namespace terra
 	class PacketProcessor
 	{
 		DISABLE_COPY(PacketProcessor);
+		MAKE_INSTANCE(PacketProcessor);
 	private:
-		NetBaseModule& net_;
 		ServerTable& server_table_;
 	public:
-		PacketProcessor(NetBaseModule&);
+		PacketProcessor();
 		~PacketProcessor(){}
 
 		void SendPacket(int server_id, google::protobuf::Message& msg);

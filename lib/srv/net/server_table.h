@@ -35,7 +35,8 @@ namespace terra
     using RemoveNetObjectCB = std::function<void(const std::vector<NetObject>&, const NetObject&)>;
     class ServerTable
     {
-        DISABLE_COPY(ServerTable);
+		DISABLE_COPY(ServerTable);
+		MAKE_INSTANCE(ServerTable);
 
     private:
         PeerType_t self_peer_{PeerType_t::UNDEFINE};
@@ -66,5 +67,7 @@ namespace terra
         void RemoveByServerID(int server_id);
         void RemoveByFD(int fd);
         void RemoveByConn(TcpConnection* conn);
+
+		void PrintServerTable();
     };
 }

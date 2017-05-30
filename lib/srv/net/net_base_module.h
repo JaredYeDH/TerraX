@@ -23,8 +23,8 @@ namespace terra
 		std::string conn_ip_;
 		int conn_port_{ 0 };
 
-		ServerTable server_table_;
-		PacketProcessor packet_processor_;
+		ServerTable& server_table_;
+		PacketProcessor& packet_processor_;
 	public:
 		NetBaseModule(PeerType_t peer);
 		virtual ~NetBaseModule(){}
