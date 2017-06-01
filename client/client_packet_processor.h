@@ -7,16 +7,13 @@
 namespace terra
 {
 	class NetBaseModule;
-	class ServerTable;
-	class PacketProcessor
+	class ClientPacketProcessor
 	{
-		DISABLE_COPY(PacketProcessor);
-		MAKE_INSTANCE(PacketProcessor);
-	private:
-		ServerTable& server_table_;
+		DISABLE_COPY(ClientPacketProcessor);
+		MAKE_INSTANCE(ClientPacketProcessor);
 	public:
-		PacketProcessor();
-		~PacketProcessor() {}
+		ClientPacketProcessor();
+		~ClientPacketProcessor() {}
 
 		void SendPacket(int server_id, google::protobuf::Message& msg);
 		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);

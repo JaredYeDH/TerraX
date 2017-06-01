@@ -36,7 +36,7 @@ namespace terra
 		void Connected();
 		void Disconnected();
 
-		void SetConnState(ConnState_t eState) { conn_state_ = eState; }
+		void SetConnState(ConnState_t state) { conn_state_ = state; }
 
 		static void ReadCallback(struct bufferevent* bev, void* ptr);
 		static void EventCallback(struct bufferevent* bev, short events, void* ptr);

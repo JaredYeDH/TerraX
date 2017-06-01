@@ -1,13 +1,14 @@
 #include "client_net_module.h"
 #include "comm/net/packet_dispatcher.h"
 #include "client_conn_service.h"
-
+#include "game_state_manager.h"
 using namespace terra;
 using namespace packet_cs;
 
 //TODO 数据包处理必须为Instance()
 ClientNetModule::ClientNetModule()
 	: kSelfPeer(PeerType_t::CLIENT),
+	packet_processor_(ClientPacketProcessor::GetInstance()),
 	conn_service_(ClientConnService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
@@ -15,30 +16,20 @@ ClientNetModule::ClientNetModule()
 
 void ClientNetModule::InitLoginNetInfo()
 {
-	/*ServerConfig::GetInstance().LoadConfigFromJson("gate_server.json");
+	//ServerConfig::GetInstance().LoadConfigFromJson("loginserver.json");
 
-	std::string conn_ip;
-	int conn_port;
-	ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_ip", conn_ip);
-	ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_port", conn_port);
-	InitConnectInfo(conn_ip, conn_port);
-
-	std::string listen_ip;
-	int listen_port;
-	ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", listen_ip);
-	ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", listen_port);
-	InitListenInfo(listen_ip, listen_port);
-	*/
+	std::string conn_ip = "127.0.0.1";
+	int conn_port = 10080;
+	login_info_.emplace_back(IPInfo(std::move(conn_ip), conn_port));
 }
 
 void ClientNetModule::StartConnectLoginServer()
 {
-	/*TcpConnection* conn = conn_service_.NewConnect(
-		conn_ip_.c_str(), conn_port_,
-		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
-		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
-	server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(),
-		conn_port_, conn);*/
+	assert(login_conn_ == nullptr);
+	login_conn_ = conn_service_.NewConnect(
+		login_info_[0].ip_.c_str(), login_info_[0].port_,
+		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnLoginSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnLoginMessageEvent(conn, evbuf); });
 }
 
 bool ClientNetModule::Init()
@@ -54,11 +45,21 @@ bool ClientNetModule::AfterInit()
 }
 bool ClientNetModule::Tick()
 {
-	loop_.loop();
+	get_event_loop()->loop();
 	return true;
 }
 bool ClientNetModule::BeforeShut() { return true; }
 bool ClientNetModule::Shut() { return true; }
+
+void ClientNetModule::SendPacket2LoginServer(google::protobuf::Message& msg)
+{
+	packet_processor_.SendPacket(login_conn_, msg);
+}
+
+void ClientNetModule::SendPacket2GateServer(google::protobuf::Message& msg)
+{
+	packet_processor_.SendPacket(gate_conn_, msg);
+}
 
 void ClientNetModule::OnLoginSocketEvent(TcpConnection* conn, ConnState_t conn_state)
 {
@@ -80,10 +81,13 @@ void ClientNetModule::OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 
 void ClientNetModule::OnLoginConnected(TcpConnection* conn)
 {
+	GameStateManager::GetInstance().NextState(GameState_t::ACCOUNT_LOGGINGIN);
 };
 void ClientNetModule::OnLoginDisconnected(TcpConnection* conn)
 {
+	//
 	conn_service_.DestroyConnection(conn);
+	login_conn_ = nullptr;
 	// ReConnect();
 }
 

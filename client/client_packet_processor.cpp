@@ -1,11 +1,10 @@
-#include "packet_processor.h"
+#include "client_packet_processor.h"
 
 #include <event2/buffer.h>
 #include <functional>
+#include "comm/net/tcp_connection.h"
 #include "comm/net/packet.h"
 #include "comm/net/packet_dispatcher.h"
-#include "net_base_module.h"
-#include "server_table.h"
 
 using namespace terra;
 
@@ -14,40 +13,21 @@ enum class MessageError_t {
 	eInvalidLength,
 };
 
-PacketProcessor::PacketProcessor() : server_table_(ServerTable::GetInstance()) {}
+ClientPacketProcessor::ClientPacketProcessor() {}
 
-void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
+void ClientPacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
 {
 	assert(conn);
 	if (!conn) {
 		return;
 	}
-	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-	if (!net_object) {
-		assert(0);
-		return;
-	}
-	PacketT<SrvInfoTag, MsgData> pkt;
+	PacketT<NullTag_t, MsgData> pkt;
 	pkt.InitialWithMsg(msg);
-	pkt.set_server_id(net_object->server_id_);
-	assert(net_object->conn_);
-	net_object->conn_->SendMsg(pkt.get_buffer(), pkt.get_total_len());
+	conn->SendMsg(pkt.get_buffer(), pkt.get_total_len());
 }
 
-void PacketProcessor::SendPacket(int server_id, google::protobuf::Message& msg)
-{
-	NetObject* net_object = server_table_.GetNetObjectByServerID(server_id);
-	if (!net_object) {
-		return;
-	}
-	PacketT<SrvInfoTag, MsgData> pkt;
-	pkt.InitialWithMsg(msg);
-	pkt.set_server_id(server_id);
-	assert(net_object->conn_);
-	net_object->conn_->SendMsg(pkt.get_buffer(), pkt.get_total_len());
-}
 
-void PacketProcessor::ProcessServerPacket(TcpConnection* conn, evbuffer* evbuf)
+void ClientPacketProcessor::ProcessServerPacket(TcpConnection* conn, evbuffer* evbuf)
 {
 	std::size_t readable = evbuffer_get_length(evbuf);
 	int32_t min_msg_length = PacketT<SrvInfoTag, MsgData>::MIN_PACKET_SIZE;  // checksum
