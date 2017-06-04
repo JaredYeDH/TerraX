@@ -124,11 +124,17 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="login_account\login_account.cpp" />
+    <ClCompile Include="login_account\login_account_manager.cpp" />
+    <ClCompile Include="login_account\login_account_state.cpp" />
     <ClCompile Include="login_server\login_net_module.cpp" />
     <ClCompile Include="login_server\login_server.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="login_account\Login_account.h" />
+    <ClInclude Include="login_account\login_account_manager.h" />
+    <ClInclude Include="login_account\login_account_state.h" />
     <ClInclude Include="login_server\login_net_module.h" />
     <ClInclude Include="login_server\login_server.h" />
   </ItemGroup>

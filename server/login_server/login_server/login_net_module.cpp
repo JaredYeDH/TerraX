@@ -99,5 +99,4 @@ void LoginNetModule::OnClientConnected(TcpConnection* conn)
 }
 void LoginNetModule::OnClientDisconnected(TcpConnection* conn)
 {
-	server_table_.RemoveByConn(conn);
 }

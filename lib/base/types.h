@@ -9,4 +9,6 @@
 #include <iostream>
 #include <cstdio>
 
+#include <memory>
+
 #include "macro.h"

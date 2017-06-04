@@ -4,6 +4,9 @@
     <Filter Include="login_server">
       <UniqueIdentifier>{e46a3d54-1dd5-43c4-a693-e21d24b762ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="login_account">
+      <UniqueIdentifier>{934d6b61-a9c0-4346-8a30-506288d6ebd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="login_server\login_server.cpp">
@@ -12,6 +15,16 @@
     <ClCompile Include="login_server\login_net_module.cpp">
       <Filter>login_server</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="login_account\login_account.cpp">
+      <Filter>login_account</Filter>
+    </ClCompile>
+    <ClCompile Include="login_account\login_account_manager.cpp">
+      <Filter>login_account</Filter>
+    </ClCompile>
+    <ClCompile Include="login_account\login_account_state.cpp">
+      <Filter>login_account</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="login_server\login_server.h">
@@ -19,6 +32,15 @@
     </ClInclude>
     <ClInclude Include="login_server\login_net_module.h">
       <Filter>login_server</Filter>
+    </ClInclude>
+    <ClInclude Include="login_account\Login_account.h">
+      <Filter>login_account</Filter>
+    </ClInclude>
+    <ClInclude Include="login_account\login_account_manager.h">
+      <Filter>login_account</Filter>
+    </ClInclude>
+    <ClInclude Include="login_account\login_account_state.h">
+      <Filter>login_account</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

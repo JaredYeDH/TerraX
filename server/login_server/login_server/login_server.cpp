@@ -6,20 +6,20 @@ using namespace terra;
 
 bool LoginServer::Init()
 {
-	GateNetModule::GetInstance().Init();
+	LoginNetModule::GetInstance().Init();
 	return true;
 }
 
 bool LoginServer::AfterInit()
 {
-	GateNetModule::GetInstance().AfterInit();
+	LoginNetModule::GetInstance().AfterInit();
 	return true;
 }
 
 bool LoginServer::Tick()
 {
 	while (!exit_) {
-		GateNetModule::GetInstance().Tick();
+		LoginNetModule::GetInstance().Tick();
 		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	return true;
