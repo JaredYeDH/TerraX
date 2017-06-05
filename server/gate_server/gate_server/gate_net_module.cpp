@@ -35,7 +35,7 @@ void GateNetModule::StartConnectWorldServer()
 {
     TcpConnection* conn = conn_service_.NewConnect(
         conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 	server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(),
                                              conn_port_, conn);
@@ -57,15 +57,15 @@ bool GateNetModule::Tick()
 bool GateNetModule::BeforeShut() { return true; }
 bool GateNetModule::Shut() { return true; }
 
-void GateNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void GateNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     NetObject* net_object = server_table_.GetNetObjectByConn(conn);
     assert(net_object);
     if (!net_object) {
         return;
     }
-    switch (conn_state) {
-        case ConnState_t::CONNECTED: {
+    switch (ev) {
+        case SocketEvent_t::CONNECTED: {
             if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
                 OnWorldConnected(conn);
             }
@@ -73,7 +73,8 @@ void GateNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_st
                 OnNodeConnected(conn);
             }
         } break;
-        case ConnState_t::DISCONNECTED: {
+		case SocketEvent_t::CONNECT_ERROR:
+        case SocketEvent_t::DISCONNECTED: {
             if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
                 OnWorldDisconnected(conn);
             }
@@ -125,7 +126,7 @@ void GateNetModule::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
 		if (si.peer_type() == static_cast<int>(PeerType_t::NODESERVER))
 		{
 			TcpConnection* conn = conn_service_.NewConnect(si.listen_ip().c_str(), si.listen_port(),
-				[this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
+				[this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
 				[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 			server_table_.AddServerInfo(static_cast<PeerType_t>(si.peer_type()), si.server_id(),
 				si.listen_ip().c_str(), si.listen_port(), conn);

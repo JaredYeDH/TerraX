@@ -55,10 +55,10 @@ namespace terra
 		void InitLoginNetInfo();
 
 
-		void OnLoginSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnGateSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnLoginConnected(TcpConnection* conn);

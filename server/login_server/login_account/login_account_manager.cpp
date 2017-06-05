@@ -18,6 +18,9 @@ void LoginAccountManager::OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avat
 		assert(0);
 		return;
 	}
-	LoginAccount* account = CreateAccount();
-	account->EnterState();
+}
+
+void LoginAccountManager::CreateAccount(TcpConnection* conn)
+{
+
 }

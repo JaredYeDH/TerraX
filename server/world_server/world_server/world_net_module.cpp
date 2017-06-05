@@ -30,7 +30,7 @@ void WorldNetModule::StartAccept()
     world_accept_service_.InitAvaliableIDCount(64);
     world_accept_service_.AcceptConnection(
         get_listen_port(), 64,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
 }
 
@@ -50,12 +50,13 @@ bool WorldNetModule::Tick()
 bool WorldNetModule::BeforeShut() { return true; }
 bool WorldNetModule::Shut() { return true; }
 
-void WorldNetModule::OnSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void WorldNetModule::OnSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-    switch (conn_state) {
-        case ConnState_t::CONNECTED: {
+    switch (ev) {
+        case SocketEvent_t::CONNECTED: {
         } break;
-        case ConnState_t::DISCONNECTED: {
+		case SocketEvent_t::CONNECT_ERROR:
+        case SocketEvent_t::DISCONNECTED: {
             world_accept_service_.OnLogout(conn);
 			//server_table_.PrintServerTable();
         } break;

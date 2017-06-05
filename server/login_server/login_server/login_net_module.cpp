@@ -2,6 +2,7 @@
 
 #include "comm/config/server_config.h"
 #include "comm/net/packet_dispatcher.h"
+#include "login_account/login_account_manager.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -34,7 +35,7 @@ void LoginNetModule::StartConnectMasterServer()
 {
     TcpConnection* conn = conn_service_.NewConnect(
         conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnServerSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 	server_table_.AddServerInfo(PeerType_t::MASTERSERVER, 0, conn_ip_.c_str(),
                                              conn_port_, conn);
@@ -43,7 +44,7 @@ void LoginNetModule::StartConnectMasterServer()
 void LoginNetModule::StartAcceptClient()
 {
 	accpet_service_.AcceptConnection(get_listen_port(), 1024, 
-		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnClientSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnClientSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnClientMessageEvent(conn, evbuf); }););
 }
 
@@ -64,13 +65,14 @@ bool LoginNetModule::Tick()
 bool LoginNetModule::BeforeShut() { return true; }
 bool LoginNetModule::Shut() { return true; }
 
-void LoginNetModule::OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void LoginNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-    switch (conn_state) {
-        case ConnState_t::CONNECTED: {
+    switch (ev) {
+        case SocketEvent_t::CONNECTED: {
 			OnMasterConnected(conn);
         } break;
-        case ConnState_t::DISCONNECTED: {
+		case SocketEvent_t::CONNECT_ERROR:
+        case SocketEvent_t::DISCONNECTED: {
 			OnMasterDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
@@ -96,6 +98,7 @@ void LoginNetModule::OnMasterDisconnected(TcpConnection* conn)
 
 void LoginNetModule::OnClientConnected(TcpConnection* conn) 
 {
+	LoginAccountManager::GetInstance().CreateAccount(conn);
 }
 void LoginNetModule::OnClientDisconnected(TcpConnection* conn)
 {

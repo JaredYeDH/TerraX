@@ -28,7 +28,7 @@ void ClientNetModule::StartConnectLoginServer()
 	assert(login_conn_ == nullptr);
 	login_conn_ = conn_service_.NewConnect(
 		login_info_[0].ip_.c_str(), login_info_[0].port_,
-		[this](TcpConnection* conn, ConnState_t conn_state) { this->OnLoginSocketEvent(conn, conn_state); },
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnLoginSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnLoginMessageEvent(conn, evbuf); });
 }
 
@@ -61,13 +61,14 @@ void ClientNetModule::SendPacket2GateServer(google::protobuf::Message& msg)
 	packet_processor_.SendPacket(gate_conn_, msg);
 }
 
-void ClientNetModule::OnLoginSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void ClientNetModule::OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-	switch (conn_state) {
-	case ConnState_t::CONNECTED: {
+	switch (ev) {
+	case SocketEvent_t::CONNECTED: {
 		OnLoginConnected(conn);
 	} break;
-	case ConnState_t::DISCONNECTED: {
+	case SocketEvent_t::CONNECT_ERROR:
+	case SocketEvent_t::DISCONNECTED: {
 		OnLoginDisconnected(conn);
 	} break;
 	default:
@@ -91,13 +92,14 @@ void ClientNetModule::OnLoginDisconnected(TcpConnection* conn)
 	// ReConnect();
 }
 
-void ClientNetModule::OnGateSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void ClientNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-	switch (conn_state) {
-	case ConnState_t::CONNECTED: {
+	switch (ev) {
+	case SocketEvent_t::CONNECTED: {
 		OnGateConnected(conn);
 	} break;
-	case ConnState_t::DISCONNECTED: {
+	case SocketEvent_t::CONNECT_ERROR:
+	case SocketEvent_t::DISCONNECTED: {
 		OnGateDisconnected(conn);
 	} break;
 	default:

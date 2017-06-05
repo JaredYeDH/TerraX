@@ -46,6 +46,12 @@ void TcpConnection::SendMsg(const char* buf, int len)
     }
 }
 
+void TcpConnection::ForceClose()
+{
+	bufferevent_disable(evconn_, EV_READ);
+	SetConnState(ConnState_t::DISCONNECTING);
+}
+
 void TcpConnection::OnRead()
 {
     struct evbuffer* input = bufferevent_get_input(evconn_);
@@ -70,7 +76,14 @@ void TcpConnection::OnWrite()
 void TcpConnection::ConnectError()
 {
     connect_failed_ = true;
-	Disconnected();
+	SetConnState(ConnState_t::DISCONNECTED);
+	if (socket_event_cb_) {
+		socket_event_cb_(this, SocketEvent_t::CONNECT_ERROR);
+	}
+	if (server_)
+	{
+		server_->OnDisconnected(get_fd());
+	}
 }
 
 void TcpConnection::Connected()
@@ -80,7 +93,7 @@ void TcpConnection::Connected()
         bufferevent_enable(evconn_, EV_READ | EV_WRITE);
 
         if (socket_event_cb_) {
-            socket_event_cb_(this, ConnState_t::CONNECTED);
+            socket_event_cb_(this, SocketEvent_t::CONNECTED);
         }
     }
 }
@@ -89,7 +102,7 @@ void TcpConnection::Disconnected()
 {
     SetConnState(ConnState_t::DISCONNECTED);
     if (socket_event_cb_) {
-        socket_event_cb_(this, ConnState_t::DISCONNECTED);
+        socket_event_cb_(this, SocketEvent_t::DISCONNECTED);
 	}
 	if (server_)
 	{

@@ -27,6 +27,8 @@ namespace terra
 		~TcpConnection();
 		
 		void SendMsg(const char* buf, int len);
+		void ForceClose();
+
 		int get_fd() { return bufferevent_getfd(evconn_); }
 	private:
 		void OnRead();

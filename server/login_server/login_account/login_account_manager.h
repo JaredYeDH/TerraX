@@ -18,9 +18,9 @@ namespace terra
 		LoginAccountManager();
 		~LoginAccountManager() = default;
 
-		void OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginCL* msg);
+		void CreateAccount(TcpConnection*);
 
 	private:
-		LoginAccount* CreateAccount();
+		void OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginCL* msg);
 	};
 }

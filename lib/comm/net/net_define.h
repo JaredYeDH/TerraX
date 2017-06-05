@@ -10,10 +10,10 @@ namespace terra
 
 	const int WORD_SERVER_ID = 0;
 	class TcpConnection;
-	enum class ConnState_t;
+	enum class SocketEvent_t;
 
 
-	using SocketEventCB = std::function<void(TcpConnection*, ConnState_t)>;
+	using SocketEventCB = std::function<void(TcpConnection*, SocketEvent_t)>;
 	using MessageEventCB = std::function<void(TcpConnection*, struct evbuffer*)>;
 
     // when we need to logout, we should first tell the gate server
@@ -27,6 +27,12 @@ namespace terra
         CONNECTED,  // register
         DISCONNECTING
     };
+
+	enum class SocketEvent_t {
+		CONNECTED,
+		CONNECT_ERROR,
+		DISCONNECTED
+	};
 
     enum class PeerType_t {
         UNDEFINE = 0,

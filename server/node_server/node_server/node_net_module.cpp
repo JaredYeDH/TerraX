@@ -34,7 +34,7 @@ void NodeNetModule::StartConnectWorldServer()
 {
     TcpConnection* conn = conn_service_.NewConnect(
         conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnWorldSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnWorldSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnWorldMessageEvent(conn, evbuf); });
     server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(), conn_port_, conn);
 }
@@ -43,7 +43,7 @@ void NodeNetModule::StartAccept()
 {
     node_accept_service.AcceptConnection(
         get_listen_port(), 64,
-        [this](TcpConnection* conn, ConnState_t conn_state) { this->OnGateSocketEvent(conn, conn_state); },
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnGateSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnGateMessageEvent(conn, evbuf); });
 }
 
@@ -64,13 +64,14 @@ bool NodeNetModule::Tick()
 bool NodeNetModule::BeforeShut() { return true; }
 bool NodeNetModule::Shut() { return true; }
 
-void NodeNetModule::OnWorldSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void NodeNetModule::OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-    switch (conn_state) {
-        case ConnState_t::CONNECTED: {
+    switch (ev) {
+        case SocketEvent_t::CONNECTED: {
             OnWorldConnected(conn);
         } break;
-        case ConnState_t::DISCONNECTED: {
+		case SocketEvent_t::CONNECT_ERROR:
+        case SocketEvent_t::DISCONNECTED: {
 			OnWorldDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
@@ -83,13 +84,14 @@ void NodeNetModule::OnWorldMessageEvent(TcpConnection* conn, evbuffer* evbuf)
     ProcessServerMessage(conn, evbuf);
 }
 
-void NodeNetModule::OnGateSocketEvent(TcpConnection* conn, ConnState_t conn_state)
+void NodeNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-    switch (conn_state) {
-        case ConnState_t::CONNECTED: {
+    switch (ev) {
+        case SocketEvent_t::CONNECTED: {
             OnGateConnected(conn);
-        } break;
-        case ConnState_t::DISCONNECTED: {
+		} break;
+		case SocketEvent_t::CONNECT_ERROR:
+        case SocketEvent_t::DISCONNECTED: {
 			OnGateDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;

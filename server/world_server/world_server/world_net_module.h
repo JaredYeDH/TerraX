@@ -25,7 +25,7 @@ namespace terra
 		void InitWorldNetInfo();
 		void StartAccept();
 
-		void OnSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);

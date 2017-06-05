@@ -29,13 +29,13 @@ namespace terra
 		void InitLoginNetInfo();
 		void StartConnectMasterServer();
 		void StartAcceptClient();
-		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
+		//void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnServerSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
+		void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev) {};
 		void OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf) {};
 
 		void OnMasterConnected(TcpConnection* conn);

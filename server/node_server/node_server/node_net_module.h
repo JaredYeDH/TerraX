@@ -29,16 +29,16 @@ namespace terra
 		void StartConnectWorldServer();
 		void StartAccept();
 		//void AcceptClient() {};
-		//void OnClientSocketEvent(TcpConnection* conn, ConnState_t conn_state) {};
+		//void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnWorldSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnWorldMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnWorldConnected(TcpConnection* conn);
 		void OnWorldDisconnected(TcpConnection* conn);
 
-		void OnGateSocketEvent(TcpConnection* conn, ConnState_t conn_state);
+		void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnGateConnected(TcpConnection* conn);

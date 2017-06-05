@@ -60,7 +60,7 @@ void TcpServer::OnConnect(evutil_socket_t fd)
     }
 	std::unique_ptr<TcpConnection> conn(new TcpConnection(this, loop_->eventBase(), fd, socket_event_cb_, message_cb_));
     if (socket_event_cb_) {
-        socket_event_cb_(conn.get(), ConnState_t::CONNECTED);
+        socket_event_cb_(conn.get(), SocketEvent_t::CONNECTED);
     }
     tcp_conns_[fd] = std::move(conn);
 }
