@@ -86,7 +86,7 @@ namespace terra
 		int rest_size = total_len_ - offset;
 		if (rest_size > 0)
 		{
-			assert((rest_size % sizeof(int) == sizeof(avatar_count_)) && (rest_size >= (sizeof(int) + sizeof(avatar_count_))));
+			assert((rest_size % sizeof(int) == sizeof(avatar_count_)) && (rest_size >= static_cast<int>(sizeof(int) + sizeof(avatar_count_))));
 			uint16_t avatar_count = 0;
 			memcpy(&avatar_count, buffer_ + offset, sizeof(uint16_t));
 			max_avatar_count_ = avatar_count_ = ntohs(avatar_count);
