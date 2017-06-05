@@ -1,50 +1,52 @@
 #pragma once
 
+#include <arpa/inet.h>
 #include <google/protobuf/message.h>
 #include "base/types.h"
-#include <arpa/inet.h>
-#include "packet_template.h"
 
 namespace terra
 {
-	class NullTag_t
-	{
-	public:
-		static const int TAG_SIZE = 0;
-	public:
-		NullTag_t() = default;
-		~NullTag_t() = default;
+    class NullTag_t
+    {
+    public:
+        static const int TAG_SIZE = 0;
 
-		bool InitialWithMsg(char* buffer) { return true; }
-		bool InitialFromBuffer(char* buffer) { return true; }
+    public:
+        NullTag_t() = default;
+        ~NullTag_t() = default;
 
-		void set_server_id(int server_id) {}
-		int get_tag_size() { return TAG_SIZE; }
-	};
+        bool InitialWithMsg(char* buffer) { return true; }
+        bool InitialFromBuffer(char* buffer) { return true; }
 
-	class NullData_t
-	{
-	public:
-		static const int MIN_MSG_DATA_SIZE = 0;
+        void set_server_id(int server_id) {}
+        int get_server_id() { return 0; }
+        int get_tag_size() { return TAG_SIZE; }
+    };
 
-		bool InitialWithMsg(char* buffer) { return true; }
-		bool InitialFromBuffer(char* buffer) { return true; }
+    class NullData_t
+    {
+    public:
+        static const int MIN_MSG_DATA_SIZE = 0;
 
-		void set_avatar_id(int avatar_id) {}
-		int get_avatar_id() const { return 0; }
+        bool InitialWithMsg(char* buffer) { return true; }
+        bool InitialFromBuffer(char* buffer) { return true; }
 
-		const char* get_msg_data() { return ""; }
-		int get_msg_data_size() { return 0; }
+        void set_avatar_id(int avatar_id) {}
+        int get_avatar_id() const { return 0; }
 
-		const char* get_msg_name() { return ""; }
-		const char* get_msg() { return ""; }
-		int get_msg_size() { return 0; }
-	};
+        const char* get_msg_data() { return ""; }
+        int get_msg_data_size() { return 0; }
+
+        const char* get_msg_name() { return ""; }
+        const char* get_msg() { return ""; }
+        int get_msg_size() { return 0; }
+    };
 
     class SrvInfoTag
     {
-	public:
-		static const int TAG_SIZE = sizeof(int);
+    public:
+        static const int TAG_SIZE = sizeof(int);
+
     private:
         char* msg_tag_{nullptr};
         int server_id_{-1};
@@ -62,22 +64,24 @@ namespace terra
             int be32 = htonl(server_id);
             memcpy(msg_tag_, &be32, sizeof be32);
         }
+        int get_server_id() { return server_id_; };
         int get_tag_size() { return TAG_SIZE; }
     };
 
     class MsgData
     {
-	public:
-		static const int MIN_MSG_DATA_SIZE = sizeof(uint16_t) + sizeof(int);
+    public:
+        static const int MIN_MSG_DATA_SIZE = sizeof(uint16_t) + sizeof(int);
+
     private:
-		// msg_data_size_ + avatar_id_ + 1('\0') + 1
+        // msg_data_size_ + avatar_id_ + 1('\0') + 1
         char* msg_data_{nullptr};
         uint16_t msg_data_size_{0};
-		int avatar_id_{ 0 };
-		char* msg_name_{ nullptr };
-		uint8_t msg_name_size_{ 0 };
-		char* msg_{ nullptr };
-		int msg_size_{ 0 };
+        int avatar_id_{0};
+        char* msg_name_{nullptr};
+        uint8_t msg_name_size_{0};
+        char* msg_{nullptr};
+        int msg_size_{0};
 
     public:
         MsgData() = default;

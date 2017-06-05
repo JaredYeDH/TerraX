@@ -4,6 +4,7 @@
 #include "base/types.h"
 #include <arpa/inet.h>
 #include "packet_define.h"
+#include "packet.h"
 
 namespace terra
 {
@@ -35,7 +36,7 @@ namespace terra
 		void set_avatar_id(int avatar_id) { msg_data_.set_avatar_id(avatar_id); }
 		void set_server_id(int server_id) { msg_tag_.set_server_id(server_id); }
 
-		Data& get_msg_tag() { return msg_tag_; }
+		Tag& get_msg_tag() { return msg_tag_; }
 		Data& get_msg_data() { return msg_data_; }
 
 		void append_avatar(int avatar_id){}

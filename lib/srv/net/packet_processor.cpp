@@ -2,7 +2,7 @@
 
 #include <event2/buffer.h>
 #include <functional>
-#include "comm/net/packet.h"
+#include "comm/net/packet_template.h"
 #include "comm/net/packet_dispatcher.h"
 #include "net_base_module.h"
 #include "server_table.h"

@@ -3,7 +3,7 @@
 #include <event2/buffer.h>
 #include <functional>
 #include "comm/net/tcp_connection.h"
-#include "comm/net/packet.h"
+#include "comm/net/packet_template.h"
 #include "comm/net/packet_dispatcher.h"
 
 using namespace terra;
