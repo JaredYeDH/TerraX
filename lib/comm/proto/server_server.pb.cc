@@ -36,13 +36,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgLogin2NodeGN_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgLogin2NodeGN_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgEnterPermissionReq_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* MsgReqServerListLM_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgEnterPermissionReq_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgEnterPermissionAck_descriptor_ = NULL;
+  MsgReqServerListLM_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgServerListML_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgEnterPermissionAck_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* MsgEnterPermissionAck_Result_descriptor_ = NULL;
+  MsgServerListML_reflection_ = NULL;
 
 }  // namespace
 
@@ -135,38 +134,38 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgLogin2NodeGN),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2NodeGN, _is_default_instance_));
-  MsgEnterPermissionReq_descriptor_ = file->message_type(4);
-  static const int MsgEnterPermissionReq_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, account_name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, session_key_),
+  MsgReqServerListLM_descriptor_ = file->message_type(4);
+  static const int MsgReqServerListLM_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqServerListLM, account_name_),
   };
-  MsgEnterPermissionReq_reflection_ =
+  MsgReqServerListLM_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgEnterPermissionReq_descriptor_,
-      MsgEnterPermissionReq::default_instance_,
-      MsgEnterPermissionReq_offsets_,
+      MsgReqServerListLM_descriptor_,
+      MsgReqServerListLM::default_instance_,
+      MsgReqServerListLM_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgEnterPermissionReq),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionReq, _is_default_instance_));
-  MsgEnterPermissionAck_descriptor_ = file->message_type(5);
-  static const int MsgEnterPermissionAck_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionAck, check_result_),
+      sizeof(MsgReqServerListLM),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqServerListLM, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqServerListLM, _is_default_instance_));
+  MsgServerListML_descriptor_ = file->message_type(5);
+  static const int MsgServerListML_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, result_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, servers_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, post_back_),
   };
-  MsgEnterPermissionAck_reflection_ =
+  MsgServerListML_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgEnterPermissionAck_descriptor_,
-      MsgEnterPermissionAck::default_instance_,
-      MsgEnterPermissionAck_offsets_,
+      MsgServerListML_descriptor_,
+      MsgServerListML::default_instance_,
+      MsgServerListML_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgEnterPermissionAck),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionAck, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgEnterPermissionAck, _is_default_instance_));
-  MsgEnterPermissionAck_Result_descriptor_ = MsgEnterPermissionAck_descriptor_->enum_type(0);
+      sizeof(MsgServerListML),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _is_default_instance_));
 }
 
 namespace {
@@ -191,9 +190,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgLogin2NodeGN_descriptor_, &MsgLogin2NodeGN::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgEnterPermissionReq_descriptor_, &MsgEnterPermissionReq::default_instance());
+      MsgReqServerListLM_descriptor_, &MsgReqServerListLM::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgEnterPermissionAck_descriptor_, &MsgEnterPermissionAck::default_instance());
+      MsgServerListML_descriptor_, &MsgServerListML::default_instance());
 }
 
 }  // namespace
@@ -209,10 +208,10 @@ void protobuf_ShutdownFile_server_5fserver_2eproto() {
   delete MsgServerInfoWS_ServerInfo_reflection_;
   delete MsgLogin2NodeGN::default_instance_;
   delete MsgLogin2NodeGN_reflection_;
-  delete MsgEnterPermissionReq::default_instance_;
-  delete MsgEnterPermissionReq_reflection_;
-  delete MsgEnterPermissionAck::default_instance_;
-  delete MsgEnterPermissionAck_reflection_;
+  delete MsgReqServerListLM::default_instance_;
+  delete MsgReqServerListLM_reflection_;
+  delete MsgServerListML::default_instance_;
+  delete MsgServerListML_reflection_;
 }
 
 void protobuf_AddDesc_server_5fserver_2eproto() GOOGLE_ATTRIBUTE_COLD;
@@ -222,22 +221,23 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
+  ::pb_base::protobuf_AddDesc_base_5ftype_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\023server_server.proto\022\tpacket_ss\"J\n\rMsgR"
-    "egisterSW\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tlisten_i"
-    "p\030\002 \001(\t\022\023\n\013listen_port\030\003 \001(\005\"\"\n\rMsgRegis"
-    "terWS\022\021\n\tserver_id\030\001 \001(\005\"\251\001\n\017MsgServerIn"
-    "foWS\022:\n\013server_info\030\001 \003(\0132%.packet_ss.Ms"
-    "gServerInfoWS.ServerInfo\032Z\n\nServerInfo\022\021"
-    "\n\tpeer_type\030\001 \001(\005\022\021\n\tserver_id\030\002 \001(\005\022\021\n\t"
-    "listen_ip\030\003 \001(\t\022\023\n\013listen_port\030\004 \001(\005\"7\n\017"
-    "MsgLogin2NodeGN\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tse"
-    "rver_id\030\002 \001(\005\"B\n\025MsgEnterPermissionReq\022\024"
-    "\n\014account_name\030\001 \001(\t\022\023\n\013session_key\030\002 \001("
-    "\t\"y\n\025MsgEnterPermissionAck\022=\n\014check_resu"
-    "lt\030\001 \001(\0162\'.packet_ss.MsgEnterPermissionA"
-    "ck.Result\"!\n\006Result\022\006\n\002ok\020\000\022\017\n\013key_inval"
-    "id\020\001b\006proto3", 572);
+    "\n\023server_server.proto\022\tpacket_ss\032\017base_t"
+    "ype.proto\"J\n\rMsgRegisterSW\022\021\n\tpeer_type\030"
+    "\001 \001(\005\022\021\n\tlisten_ip\030\002 \001(\t\022\023\n\013listen_port\030"
+    "\003 \001(\005\"\"\n\rMsgRegisterWS\022\021\n\tserver_id\030\001 \001("
+    "\005\"\251\001\n\017MsgServerInfoWS\022:\n\013server_info\030\001 \003"
+    "(\0132%.packet_ss.MsgServerInfoWS.ServerInf"
+    "o\032Z\n\nServerInfo\022\021\n\tpeer_type\030\001 \001(\005\022\021\n\tse"
+    "rver_id\030\002 \001(\005\022\021\n\tlisten_ip\030\003 \001(\t\022\023\n\013list"
+    "en_port\030\004 \001(\005\"7\n\017MsgLogin2NodeGN\022\021\n\tpeer"
+    "_type\030\001 \001(\005\022\021\n\tserver_id\030\002 \001(\005\"*\n\022MsgReq"
+    "ServerListLM\022\024\n\014account_name\030\001 \001(\t\"|\n\017Ms"
+    "gServerListML\022\016\n\006result\030\001 \001(\005\022\'\n\007servers"
+    "\030\002 \003(\0132\026.pb_base.ServerProfile\0220\n\tpost_b"
+    "ack\030\003 \001(\0132\035.packet_ss.MsgReqServerListLM"
+    "b\006proto3", 568);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -245,15 +245,15 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgServerInfoWS::default_instance_ = new MsgServerInfoWS();
   MsgServerInfoWS_ServerInfo::default_instance_ = new MsgServerInfoWS_ServerInfo();
   MsgLogin2NodeGN::default_instance_ = new MsgLogin2NodeGN();
-  MsgEnterPermissionReq::default_instance_ = new MsgEnterPermissionReq();
-  MsgEnterPermissionAck::default_instance_ = new MsgEnterPermissionAck();
+  MsgReqServerListLM::default_instance_ = new MsgReqServerListLM();
+  MsgServerListML::default_instance_ = new MsgServerListML();
   MsgRegisterSW::default_instance_->InitAsDefaultInstance();
   MsgRegisterWS::default_instance_->InitAsDefaultInstance();
   MsgServerInfoWS::default_instance_->InitAsDefaultInstance();
   MsgServerInfoWS_ServerInfo::default_instance_->InitAsDefaultInstance();
   MsgLogin2NodeGN::default_instance_->InitAsDefaultInstance();
-  MsgEnterPermissionReq::default_instance_->InitAsDefaultInstance();
-  MsgEnterPermissionAck::default_instance_->InitAsDefaultInstance();
+  MsgReqServerListLM::default_instance_->InitAsDefaultInstance();
+  MsgServerListML::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_server_5fserver_2eproto);
 }
 
@@ -1943,84 +1943,80 @@ void MsgLogin2NodeGN::clear_server_id() {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgEnterPermissionReq::kAccountNameFieldNumber;
-const int MsgEnterPermissionReq::kSessionKeyFieldNumber;
+const int MsgReqServerListLM::kAccountNameFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgEnterPermissionReq::MsgEnterPermissionReq()
+MsgReqServerListLM::MsgReqServerListLM()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(constructor:packet_ss.MsgReqServerListLM)
 }
 
-void MsgEnterPermissionReq::InitAsDefaultInstance() {
+void MsgReqServerListLM::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-MsgEnterPermissionReq::MsgEnterPermissionReq(const MsgEnterPermissionReq& from)
+MsgReqServerListLM::MsgReqServerListLM(const MsgReqServerListLM& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgReqServerListLM)
 }
 
-void MsgEnterPermissionReq::SharedCtor() {
+void MsgReqServerListLM::SharedCtor() {
     _is_default_instance_ = false;
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
   account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  session_key_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-MsgEnterPermissionReq::~MsgEnterPermissionReq() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgEnterPermissionReq)
+MsgReqServerListLM::~MsgReqServerListLM() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgReqServerListLM)
   SharedDtor();
 }
 
-void MsgEnterPermissionReq::SharedDtor() {
+void MsgReqServerListLM::SharedDtor() {
   account_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  session_key_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
 
-void MsgEnterPermissionReq::SetCachedSize(int size) const {
+void MsgReqServerListLM::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgEnterPermissionReq::descriptor() {
+const ::google::protobuf::Descriptor* MsgReqServerListLM::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgEnterPermissionReq_descriptor_;
+  return MsgReqServerListLM_descriptor_;
 }
 
-const MsgEnterPermissionReq& MsgEnterPermissionReq::default_instance() {
+const MsgReqServerListLM& MsgReqServerListLM::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgEnterPermissionReq* MsgEnterPermissionReq::default_instance_ = NULL;
+MsgReqServerListLM* MsgReqServerListLM::default_instance_ = NULL;
 
-MsgEnterPermissionReq* MsgEnterPermissionReq::New(::google::protobuf::Arena* arena) const {
-  MsgEnterPermissionReq* n = new MsgEnterPermissionReq;
+MsgReqServerListLM* MsgReqServerListLM::New(::google::protobuf::Arena* arena) const {
+  MsgReqServerListLM* n = new MsgReqServerListLM;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgEnterPermissionReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgEnterPermissionReq)
+void MsgReqServerListLM::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgReqServerListLM)
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  session_key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-bool MsgEnterPermissionReq::MergePartialFromCodedStream(
+bool MsgReqServerListLM::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgReqServerListLM)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -2034,24 +2030,7 @@ bool MsgEnterPermissionReq::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->account_name().data(), this->account_name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "packet_ss.MsgEnterPermissionReq.account_name"));
-        } else {
-          goto handle_unusual;
-        }
-        if (input->ExpectTag(18)) goto parse_session_key;
-        break;
-      }
-
-      // optional string session_key = 2;
-      case 2: {
-        if (tag == 18) {
-         parse_session_key:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_session_key()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->session_key().data(), this->session_key().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "packet_ss.MsgEnterPermissionReq.session_key"));
+            "packet_ss.MsgReqServerListLM.account_name"));
         } else {
           goto handle_unusual;
         }
@@ -2072,71 +2051,50 @@ bool MsgEnterPermissionReq::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgReqServerListLM)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgReqServerListLM)
   return false;
 #undef DO_
 }
 
-void MsgEnterPermissionReq::SerializeWithCachedSizes(
+void MsgReqServerListLM::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgReqServerListLM)
   // optional string account_name = 1;
   if (this->account_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_name().data(), this->account_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgEnterPermissionReq.account_name");
+      "packet_ss.MsgReqServerListLM.account_name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->account_name(), output);
   }
 
-  // optional string session_key = 2;
-  if (this->session_key().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->session_key().data(), this->session_key().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgEnterPermissionReq.session_key");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->session_key(), output);
-  }
-
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqServerListLM)
 }
 
-::google::protobuf::uint8* MsgEnterPermissionReq::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgReqServerListLM::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgReqServerListLM)
   // optional string account_name = 1;
   if (this->account_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_name().data(), this->account_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgEnterPermissionReq.account_name");
+      "packet_ss.MsgReqServerListLM.account_name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->account_name(), target);
   }
 
-  // optional string session_key = 2;
-  if (this->session_key().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->session_key().data(), this->session_key().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgEnterPermissionReq.session_key");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->session_key(), target);
-  }
-
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqServerListLM)
   return target;
 }
 
-int MsgEnterPermissionReq::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgEnterPermissionReq)
+int MsgReqServerListLM::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgReqServerListLM)
   int total_size = 0;
 
   // optional string account_name = 1;
@@ -2146,38 +2104,31 @@ int MsgEnterPermissionReq::ByteSize() const {
         this->account_name());
   }
 
-  // optional string session_key = 2;
-  if (this->session_key().size() > 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->session_key());
-  }
-
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
-void MsgEnterPermissionReq::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgEnterPermissionReq)
+void MsgReqServerListLM::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgReqServerListLM)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgEnterPermissionReq* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgEnterPermissionReq>(
+  const MsgReqServerListLM* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgReqServerListLM>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgReqServerListLM)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgReqServerListLM)
     MergeFrom(*source);
   }
 }
 
-void MsgEnterPermissionReq::MergeFrom(const MsgEnterPermissionReq& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgEnterPermissionReq)
+void MsgReqServerListLM::MergeFrom(const MsgReqServerListLM& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgReqServerListLM)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
@@ -2185,252 +2136,219 @@ void MsgEnterPermissionReq::MergeFrom(const MsgEnterPermissionReq& from) {
 
     account_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.account_name_);
   }
-  if (from.session_key().size() > 0) {
-
-    session_key_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.session_key_);
-  }
 }
 
-void MsgEnterPermissionReq::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgEnterPermissionReq)
+void MsgReqServerListLM::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgReqServerListLM)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgEnterPermissionReq::CopyFrom(const MsgEnterPermissionReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgEnterPermissionReq)
+void MsgReqServerListLM::CopyFrom(const MsgReqServerListLM& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgReqServerListLM)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgEnterPermissionReq::IsInitialized() const {
+bool MsgReqServerListLM::IsInitialized() const {
 
   return true;
 }
 
-void MsgEnterPermissionReq::Swap(MsgEnterPermissionReq* other) {
+void MsgReqServerListLM::Swap(MsgReqServerListLM* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgEnterPermissionReq::InternalSwap(MsgEnterPermissionReq* other) {
+void MsgReqServerListLM::InternalSwap(MsgReqServerListLM* other) {
   account_name_.Swap(&other->account_name_);
-  session_key_.Swap(&other->session_key_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgEnterPermissionReq::GetMetadata() const {
+::google::protobuf::Metadata MsgReqServerListLM::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgEnterPermissionReq_descriptor_;
-  metadata.reflection = MsgEnterPermissionReq_reflection_;
+  metadata.descriptor = MsgReqServerListLM_descriptor_;
+  metadata.reflection = MsgReqServerListLM_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgEnterPermissionReq
+// MsgReqServerListLM
 
 // optional string account_name = 1;
-void MsgEnterPermissionReq::clear_account_name() {
+void MsgReqServerListLM::clear_account_name() {
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& MsgEnterPermissionReq::account_name() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionReq.account_name)
+ const ::std::string& MsgReqServerListLM::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqServerListLM.account_name)
   return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgEnterPermissionReq::set_account_name(const ::std::string& value) {
+ void MsgReqServerListLM::set_account_name(const ::std::string& value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqServerListLM.account_name)
 }
- void MsgEnterPermissionReq::set_account_name(const char* value) {
+ void MsgReqServerListLM::set_account_name(const char* value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqServerListLM.account_name)
 }
- void MsgEnterPermissionReq::set_account_name(const char* value, size_t size) {
+ void MsgReqServerListLM::set_account_name(const char* value, size_t size) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqServerListLM.account_name)
 }
- ::std::string* MsgEnterPermissionReq::mutable_account_name() {
+ ::std::string* MsgReqServerListLM::mutable_account_name() {
   
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqServerListLM.account_name)
   return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* MsgEnterPermissionReq::release_account_name() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgEnterPermissionReq.account_name)
+ ::std::string* MsgReqServerListLM::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqServerListLM.account_name)
   
   return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgEnterPermissionReq::set_allocated_account_name(::std::string* account_name) {
+ void MsgReqServerListLM::set_allocated_account_name(::std::string* account_name) {
   if (account_name != NULL) {
     
   } else {
     
   }
   account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgEnterPermissionReq.account_name)
-}
-
-// optional string session_key = 2;
-void MsgEnterPermissionReq::clear_session_key() {
-  session_key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- const ::std::string& MsgEnterPermissionReq::session_key() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionReq.session_key)
-  return session_key_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void MsgEnterPermissionReq::set_session_key(const ::std::string& value) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionReq.session_key)
-}
- void MsgEnterPermissionReq::set_session_key(const char* value) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgEnterPermissionReq.session_key)
-}
- void MsgEnterPermissionReq::set_session_key(const char* value, size_t size) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgEnterPermissionReq.session_key)
-}
- ::std::string* MsgEnterPermissionReq::mutable_session_key() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgEnterPermissionReq.session_key)
-  return session_key_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- ::std::string* MsgEnterPermissionReq::release_session_key() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgEnterPermissionReq.session_key)
-  
-  return session_key_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void MsgEnterPermissionReq::set_allocated_session_key(::std::string* session_key) {
-  if (session_key != NULL) {
-    
-  } else {
-    
-  }
-  session_key_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), session_key);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgEnterPermissionReq.session_key)
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqServerListLM.account_name)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 
-const ::google::protobuf::EnumDescriptor* MsgEnterPermissionAck_Result_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return MsgEnterPermissionAck_Result_descriptor_;
-}
-bool MsgEnterPermissionAck_Result_IsValid(int value) {
-  switch(value) {
-    case 0:
-    case 1:
-      return true;
-    default:
-      return false;
-  }
-}
-
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck::ok;
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck::key_invalid;
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck::Result_MIN;
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck::Result_MAX;
-const int MsgEnterPermissionAck::Result_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgEnterPermissionAck::kCheckResultFieldNumber;
+const int MsgServerListML::kResultFieldNumber;
+const int MsgServerListML::kServersFieldNumber;
+const int MsgServerListML::kPostBackFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgEnterPermissionAck::MsgEnterPermissionAck()
+MsgServerListML::MsgServerListML()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(constructor:packet_ss.MsgServerListML)
 }
 
-void MsgEnterPermissionAck::InitAsDefaultInstance() {
+void MsgServerListML::InitAsDefaultInstance() {
   _is_default_instance_ = true;
+  post_back_ = const_cast< ::packet_ss::MsgReqServerListLM*>(&::packet_ss::MsgReqServerListLM::default_instance());
 }
 
-MsgEnterPermissionAck::MsgEnterPermissionAck(const MsgEnterPermissionAck& from)
+MsgServerListML::MsgServerListML(const MsgServerListML& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgServerListML)
 }
 
-void MsgEnterPermissionAck::SharedCtor() {
+void MsgServerListML::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
-  check_result_ = 0;
+  result_ = 0;
+  post_back_ = NULL;
 }
 
-MsgEnterPermissionAck::~MsgEnterPermissionAck() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgEnterPermissionAck)
+MsgServerListML::~MsgServerListML() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgServerListML)
   SharedDtor();
 }
 
-void MsgEnterPermissionAck::SharedDtor() {
+void MsgServerListML::SharedDtor() {
   if (this != default_instance_) {
+    delete post_back_;
   }
 }
 
-void MsgEnterPermissionAck::SetCachedSize(int size) const {
+void MsgServerListML::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgEnterPermissionAck::descriptor() {
+const ::google::protobuf::Descriptor* MsgServerListML::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgEnterPermissionAck_descriptor_;
+  return MsgServerListML_descriptor_;
 }
 
-const MsgEnterPermissionAck& MsgEnterPermissionAck::default_instance() {
+const MsgServerListML& MsgServerListML::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgEnterPermissionAck* MsgEnterPermissionAck::default_instance_ = NULL;
+MsgServerListML* MsgServerListML::default_instance_ = NULL;
 
-MsgEnterPermissionAck* MsgEnterPermissionAck::New(::google::protobuf::Arena* arena) const {
-  MsgEnterPermissionAck* n = new MsgEnterPermissionAck;
+MsgServerListML* MsgServerListML::New(::google::protobuf::Arena* arena) const {
+  MsgServerListML* n = new MsgServerListML;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgEnterPermissionAck::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgEnterPermissionAck)
-  check_result_ = 0;
+void MsgServerListML::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgServerListML)
+  result_ = 0;
+  if (GetArenaNoVirtual() == NULL && post_back_ != NULL) delete post_back_;
+  post_back_ = NULL;
+  servers_.Clear();
 }
 
-bool MsgEnterPermissionAck::MergePartialFromCodedStream(
+bool MsgServerListML::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgServerListML)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
+      // optional int32 result = 1;
       case 1: {
         if (tag == 8) {
-          int value;
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_check_result(static_cast< ::packet_ss::MsgEnterPermissionAck_Result >(value));
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &result_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_servers;
+        break;
+      }
+
+      // repeated .pb_base.ServerProfile servers = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_servers:
+          DO_(input->IncrementRecursionDepth());
+         parse_loop_servers:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtualNoRecursionDepth(
+                input, add_servers()));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_loop_servers;
+        input->UnsafeDecrementRecursionDepth();
+        if (input->ExpectTag(26)) goto parse_post_back;
+        break;
+      }
+
+      // optional .packet_ss.MsgReqServerListLM post_back = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_post_back:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_post_back()));
         } else {
           goto handle_unusual;
         }
@@ -2451,47 +2369,87 @@ bool MsgEnterPermissionAck::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgServerListML)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgServerListML)
   return false;
 #undef DO_
 }
 
-void MsgEnterPermissionAck::SerializeWithCachedSizes(
+void MsgServerListML::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgEnterPermissionAck)
-  // optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-  if (this->check_result() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      1, this->check_result(), output);
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgServerListML)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgEnterPermissionAck)
+  // repeated .pb_base.ServerProfile servers = 2;
+  for (unsigned int i = 0, n = this->servers_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->servers(i), output);
+  }
+
+  // optional .packet_ss.MsgReqServerListLM post_back = 3;
+  if (this->has_post_back()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3, *this->post_back_, output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgServerListML)
 }
 
-::google::protobuf::uint8* MsgEnterPermissionAck::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgServerListML::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgEnterPermissionAck)
-  // optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-  if (this->check_result() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      1, this->check_result(), target);
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgServerListML)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgEnterPermissionAck)
+  // repeated .pb_base.ServerProfile servers = 2;
+  for (unsigned int i = 0, n = this->servers_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        2, this->servers(i), false, target);
+  }
+
+  // optional .packet_ss.MsgReqServerListLM post_back = 3;
+  if (this->has_post_back()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        3, *this->post_back_, false, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgServerListML)
   return target;
 }
 
-int MsgEnterPermissionAck::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgEnterPermissionAck)
+int MsgServerListML::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgServerListML)
   int total_size = 0;
 
-  // optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-  if (this->check_result() != 0) {
+  // optional int32 result = 1;
+  if (this->result() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->check_result());
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->result());
+  }
+
+  // optional .packet_ss.MsgReqServerListLM post_back = 3;
+  if (this->has_post_back()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->post_back_);
+  }
+
+  // repeated .pb_base.ServerProfile servers = 2;
+  total_size += 1 * this->servers_size();
+  for (int i = 0; i < this->servers_size(); i++) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        this->servers(i));
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -2500,85 +2458,159 @@ int MsgEnterPermissionAck::ByteSize() const {
   return total_size;
 }
 
-void MsgEnterPermissionAck::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgEnterPermissionAck)
+void MsgServerListML::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgServerListML)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgEnterPermissionAck* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgEnterPermissionAck>(
+  const MsgServerListML* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgServerListML>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgServerListML)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgEnterPermissionAck)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgServerListML)
     MergeFrom(*source);
   }
 }
 
-void MsgEnterPermissionAck::MergeFrom(const MsgEnterPermissionAck& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgEnterPermissionAck)
+void MsgServerListML::MergeFrom(const MsgServerListML& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgServerListML)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  if (from.check_result() != 0) {
-    set_check_result(from.check_result());
+  servers_.MergeFrom(from.servers_);
+  if (from.result() != 0) {
+    set_result(from.result());
+  }
+  if (from.has_post_back()) {
+    mutable_post_back()->::packet_ss::MsgReqServerListLM::MergeFrom(from.post_back());
   }
 }
 
-void MsgEnterPermissionAck::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgEnterPermissionAck)
+void MsgServerListML::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgServerListML)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgEnterPermissionAck::CopyFrom(const MsgEnterPermissionAck& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgEnterPermissionAck)
+void MsgServerListML::CopyFrom(const MsgServerListML& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgServerListML)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgEnterPermissionAck::IsInitialized() const {
+bool MsgServerListML::IsInitialized() const {
 
   return true;
 }
 
-void MsgEnterPermissionAck::Swap(MsgEnterPermissionAck* other) {
+void MsgServerListML::Swap(MsgServerListML* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgEnterPermissionAck::InternalSwap(MsgEnterPermissionAck* other) {
-  std::swap(check_result_, other->check_result_);
+void MsgServerListML::InternalSwap(MsgServerListML* other) {
+  std::swap(result_, other->result_);
+  servers_.UnsafeArenaSwap(&other->servers_);
+  std::swap(post_back_, other->post_back_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgEnterPermissionAck::GetMetadata() const {
+::google::protobuf::Metadata MsgServerListML::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgEnterPermissionAck_descriptor_;
-  metadata.reflection = MsgEnterPermissionAck_reflection_;
+  metadata.descriptor = MsgServerListML_descriptor_;
+  metadata.reflection = MsgServerListML_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgEnterPermissionAck
+// MsgServerListML
 
-// optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-void MsgEnterPermissionAck::clear_check_result() {
-  check_result_ = 0;
+// optional int32 result = 1;
+void MsgServerListML::clear_result() {
+  result_ = 0;
 }
- ::packet_ss::MsgEnterPermissionAck_Result MsgEnterPermissionAck::check_result() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionAck.check_result)
-  return static_cast< ::packet_ss::MsgEnterPermissionAck_Result >(check_result_);
+ ::google::protobuf::int32 MsgServerListML::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.result)
+  return result_;
 }
- void MsgEnterPermissionAck::set_check_result(::packet_ss::MsgEnterPermissionAck_Result value) {
+ void MsgServerListML::set_result(::google::protobuf::int32 value) {
   
-  check_result_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionAck.check_result)
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgServerListML.result)
+}
+
+// repeated .pb_base.ServerProfile servers = 2;
+int MsgServerListML::servers_size() const {
+  return servers_.size();
+}
+void MsgServerListML::clear_servers() {
+  servers_.Clear();
+}
+const ::pb_base::ServerProfile& MsgServerListML::servers(int index) const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.servers)
+  return servers_.Get(index);
+}
+::pb_base::ServerProfile* MsgServerListML::mutable_servers(int index) {
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgServerListML.servers)
+  return servers_.Mutable(index);
+}
+::pb_base::ServerProfile* MsgServerListML::add_servers() {
+  // @@protoc_insertion_point(field_add:packet_ss.MsgServerListML.servers)
+  return servers_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >*
+MsgServerListML::mutable_servers() {
+  // @@protoc_insertion_point(field_mutable_list:packet_ss.MsgServerListML.servers)
+  return &servers_;
+}
+const ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >&
+MsgServerListML::servers() const {
+  // @@protoc_insertion_point(field_list:packet_ss.MsgServerListML.servers)
+  return servers_;
+}
+
+// optional .packet_ss.MsgReqServerListLM post_back = 3;
+bool MsgServerListML::has_post_back() const {
+  return !_is_default_instance_ && post_back_ != NULL;
+}
+void MsgServerListML::clear_post_back() {
+  if (GetArenaNoVirtual() == NULL && post_back_ != NULL) delete post_back_;
+  post_back_ = NULL;
+}
+const ::packet_ss::MsgReqServerListLM& MsgServerListML::post_back() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.post_back)
+  return post_back_ != NULL ? *post_back_ : *default_instance_->post_back_;
+}
+::packet_ss::MsgReqServerListLM* MsgServerListML::mutable_post_back() {
+  
+  if (post_back_ == NULL) {
+    post_back_ = new ::packet_ss::MsgReqServerListLM;
+  }
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgServerListML.post_back)
+  return post_back_;
+}
+::packet_ss::MsgReqServerListLM* MsgServerListML::release_post_back() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgServerListML.post_back)
+  
+  ::packet_ss::MsgReqServerListLM* temp = post_back_;
+  post_back_ = NULL;
+  return temp;
+}
+void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerListLM* post_back) {
+  delete post_back_;
+  post_back_ = post_back;
+  if (post_back) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgServerListML.post_back)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

@@ -65,6 +65,13 @@ bool LoginNetModule::Tick()
 bool LoginNetModule::BeforeShut() { return true; }
 bool LoginNetModule::Shut() { return true; }
 
+void LoginNetModule::SendPacket2Master(google::protobuf::Message& msg)
+{
+	packet_processor_.SendPacket(0, msg);
+}
+
+
+
 void LoginNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {

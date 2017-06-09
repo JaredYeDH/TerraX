@@ -26,8 +26,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "base_type.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace packet_cs {
@@ -41,32 +41,7 @@ class MsgLoginResultLC;
 class MsgReqLoginCL;
 class PktGameLoginReq;
 class PktRoleListAck;
-class ServerInfo;
 
-enum ServerStatus {
-  MAINTAIN = 0,
-  FREE = 1,
-  BUSY = 2,
-  CROWD = 3,
-  FULL = 4,
-  ServerStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  ServerStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool ServerStatus_IsValid(int value);
-const ServerStatus ServerStatus_MIN = MAINTAIN;
-const ServerStatus ServerStatus_MAX = FULL;
-const int ServerStatus_ARRAYSIZE = ServerStatus_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* ServerStatus_descriptor();
-inline const ::std::string& ServerStatus_Name(ServerStatus value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    ServerStatus_descriptor(), value);
-}
-inline bool ServerStatus_Parse(
-    const ::std::string& name, ServerStatus* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<ServerStatus>(
-    ServerStatus_descriptor(), name, value);
-}
 // ===================================================================
 
 class MsgReqLoginCL : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgReqLoginCL) */ {
@@ -168,140 +143,6 @@ class MsgReqLoginCL : public ::google::protobuf::Message /* @@protoc_insertion_p
 };
 // -------------------------------------------------------------------
 
-class ServerInfo : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.ServerInfo) */ {
- public:
-  ServerInfo();
-  virtual ~ServerInfo();
-
-  ServerInfo(const ServerInfo& from);
-
-  inline ServerInfo& operator=(const ServerInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const ServerInfo& default_instance();
-
-  void Swap(ServerInfo* other);
-
-  // implements Message ----------------------------------------------
-
-  inline ServerInfo* New() const { return New(NULL); }
-
-  ServerInfo* New(::google::protobuf::Arena* arena) const;
-  void CopyFrom(const ::google::protobuf::Message& from);
-  void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const ServerInfo& from);
-  void MergeFrom(const ServerInfo& from);
-  void Clear();
-  bool IsInitialized() const;
-
-  int ByteSize() const;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input);
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
-    return InternalSerializeWithCachedSizesToArray(false, output);
-  }
-  int GetCachedSize() const { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const;
-  void InternalSwap(ServerInfo* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return _internal_metadata_.arena();
-  }
-  inline void* MaybeArenaPtr() const {
-    return _internal_metadata_.raw_arena_ptr();
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // optional int32 server_uid = 1;
-  void clear_server_uid();
-  static const int kServerUidFieldNumber = 1;
-  ::google::protobuf::int32 server_uid() const;
-  void set_server_uid(::google::protobuf::int32 value);
-
-  // optional int32 region_showindex = 2;
-  void clear_region_showindex();
-  static const int kRegionShowindexFieldNumber = 2;
-  ::google::protobuf::int32 region_showindex() const;
-  void set_region_showindex(::google::protobuf::int32 value);
-
-  // optional string region = 3;
-  void clear_region();
-  static const int kRegionFieldNumber = 3;
-  const ::std::string& region() const;
-  void set_region(const ::std::string& value);
-  void set_region(const char* value);
-  void set_region(const char* value, size_t size);
-  ::std::string* mutable_region();
-  ::std::string* release_region();
-  void set_allocated_region(::std::string* region);
-
-  // optional int32 server_showindex = 4;
-  void clear_server_showindex();
-  static const int kServerShowindexFieldNumber = 4;
-  ::google::protobuf::int32 server_showindex() const;
-  void set_server_showindex(::google::protobuf::int32 value);
-
-  // optional string server_name = 5;
-  void clear_server_name();
-  static const int kServerNameFieldNumber = 5;
-  const ::std::string& server_name() const;
-  void set_server_name(const ::std::string& value);
-  void set_server_name(const char* value);
-  void set_server_name(const char* value, size_t size);
-  ::std::string* mutable_server_name();
-  ::std::string* release_server_name();
-  void set_allocated_server_name(::std::string* server_name);
-
-  // optional .packet_cs.ServerStatus server_status = 6;
-  void clear_server_status();
-  static const int kServerStatusFieldNumber = 6;
-  ::packet_cs::ServerStatus server_status() const;
-  void set_server_status(::packet_cs::ServerStatus value);
-
-  // optional bool recommond = 7;
-  void clear_recommond();
-  static const int kRecommondFieldNumber = 7;
-  bool recommond() const;
-  void set_recommond(bool value);
-
-  // @@protoc_insertion_point(class_scope:packet_cs.ServerInfo)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  bool _is_default_instance_;
-  ::google::protobuf::int32 server_uid_;
-  ::google::protobuf::int32 region_showindex_;
-  ::google::protobuf::internal::ArenaStringPtr region_;
-  ::google::protobuf::internal::ArenaStringPtr server_name_;
-  ::google::protobuf::int32 server_showindex_;
-  int server_status_;
-  bool recommond_;
-  mutable int _cached_size_;
-  friend void  protobuf_AddDesc_client_5fserver_2eproto();
-  friend void protobuf_AssignDesc_client_5fserver_2eproto();
-  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
-
-  void InitAsDefaultInstance();
-  static ServerInfo* default_instance_;
-};
-// -------------------------------------------------------------------
-
 class MsgLoginResultLC : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgLoginResultLC) */ {
  public:
   MsgLoginResultLC();
@@ -379,16 +220,16 @@ class MsgLoginResultLC : public ::google::protobuf::Message /* @@protoc_insertio
   ::std::string* release_token();
   void set_allocated_token(::std::string* token);
 
-  // repeated .packet_cs.ServerInfo servers = 3;
+  // repeated .pb_base.ServerProfile servers = 3;
   int servers_size() const;
   void clear_servers();
   static const int kServersFieldNumber = 3;
-  const ::packet_cs::ServerInfo& servers(int index) const;
-  ::packet_cs::ServerInfo* mutable_servers(int index);
-  ::packet_cs::ServerInfo* add_servers();
-  ::google::protobuf::RepeatedPtrField< ::packet_cs::ServerInfo >*
+  const ::pb_base::ServerProfile& servers(int index) const;
+  ::pb_base::ServerProfile* mutable_servers(int index);
+  ::pb_base::ServerProfile* add_servers();
+  ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >*
       mutable_servers();
-  const ::google::protobuf::RepeatedPtrField< ::packet_cs::ServerInfo >&
+  const ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >&
       servers() const;
 
   // @@protoc_insertion_point(class_scope:packet_cs.MsgLoginResultLC)
@@ -397,7 +238,7 @@ class MsgLoginResultLC : public ::google::protobuf::Message /* @@protoc_insertio
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr token_;
-  ::google::protobuf::RepeatedPtrField< ::packet_cs::ServerInfo > servers_;
+  ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile > servers_;
   ::google::protobuf::int32 result_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_client_5fserver_2eproto();
@@ -708,168 +549,6 @@ inline void MsgReqLoginCL::set_allocated_password(::std::string* password) {
 
 // -------------------------------------------------------------------
 
-// ServerInfo
-
-// optional int32 server_uid = 1;
-inline void ServerInfo::clear_server_uid() {
-  server_uid_ = 0;
-}
-inline ::google::protobuf::int32 ServerInfo::server_uid() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.server_uid)
-  return server_uid_;
-}
-inline void ServerInfo::set_server_uid(::google::protobuf::int32 value) {
-  
-  server_uid_ = value;
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.server_uid)
-}
-
-// optional int32 region_showindex = 2;
-inline void ServerInfo::clear_region_showindex() {
-  region_showindex_ = 0;
-}
-inline ::google::protobuf::int32 ServerInfo::region_showindex() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.region_showindex)
-  return region_showindex_;
-}
-inline void ServerInfo::set_region_showindex(::google::protobuf::int32 value) {
-  
-  region_showindex_ = value;
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.region_showindex)
-}
-
-// optional string region = 3;
-inline void ServerInfo::clear_region() {
-  region_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& ServerInfo::region() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.region)
-  return region_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ServerInfo::set_region(const ::std::string& value) {
-  
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.region)
-}
-inline void ServerInfo::set_region(const char* value) {
-  
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.ServerInfo.region)
-}
-inline void ServerInfo::set_region(const char* value, size_t size) {
-  
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.ServerInfo.region)
-}
-inline ::std::string* ServerInfo::mutable_region() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_cs.ServerInfo.region)
-  return region_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* ServerInfo::release_region() {
-  // @@protoc_insertion_point(field_release:packet_cs.ServerInfo.region)
-  
-  return region_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ServerInfo::set_allocated_region(::std::string* region) {
-  if (region != NULL) {
-    
-  } else {
-    
-  }
-  region_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), region);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.ServerInfo.region)
-}
-
-// optional int32 server_showindex = 4;
-inline void ServerInfo::clear_server_showindex() {
-  server_showindex_ = 0;
-}
-inline ::google::protobuf::int32 ServerInfo::server_showindex() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.server_showindex)
-  return server_showindex_;
-}
-inline void ServerInfo::set_server_showindex(::google::protobuf::int32 value) {
-  
-  server_showindex_ = value;
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.server_showindex)
-}
-
-// optional string server_name = 5;
-inline void ServerInfo::clear_server_name() {
-  server_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& ServerInfo::server_name() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.server_name)
-  return server_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ServerInfo::set_server_name(const ::std::string& value) {
-  
-  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.server_name)
-}
-inline void ServerInfo::set_server_name(const char* value) {
-  
-  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.ServerInfo.server_name)
-}
-inline void ServerInfo::set_server_name(const char* value, size_t size) {
-  
-  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.ServerInfo.server_name)
-}
-inline ::std::string* ServerInfo::mutable_server_name() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_cs.ServerInfo.server_name)
-  return server_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* ServerInfo::release_server_name() {
-  // @@protoc_insertion_point(field_release:packet_cs.ServerInfo.server_name)
-  
-  return server_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void ServerInfo::set_allocated_server_name(::std::string* server_name) {
-  if (server_name != NULL) {
-    
-  } else {
-    
-  }
-  server_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), server_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.ServerInfo.server_name)
-}
-
-// optional .packet_cs.ServerStatus server_status = 6;
-inline void ServerInfo::clear_server_status() {
-  server_status_ = 0;
-}
-inline ::packet_cs::ServerStatus ServerInfo::server_status() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.server_status)
-  return static_cast< ::packet_cs::ServerStatus >(server_status_);
-}
-inline void ServerInfo::set_server_status(::packet_cs::ServerStatus value) {
-  
-  server_status_ = value;
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.server_status)
-}
-
-// optional bool recommond = 7;
-inline void ServerInfo::clear_recommond() {
-  recommond_ = false;
-}
-inline bool ServerInfo::recommond() const {
-  // @@protoc_insertion_point(field_get:packet_cs.ServerInfo.recommond)
-  return recommond_;
-}
-inline void ServerInfo::set_recommond(bool value) {
-  
-  recommond_ = value;
-  // @@protoc_insertion_point(field_set:packet_cs.ServerInfo.recommond)
-}
-
-// -------------------------------------------------------------------
-
 // MsgLoginResultLC
 
 // optional int32 result = 1;
@@ -930,31 +609,31 @@ inline void MsgLoginResultLC::set_allocated_token(::std::string* token) {
   // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgLoginResultLC.token)
 }
 
-// repeated .packet_cs.ServerInfo servers = 3;
+// repeated .pb_base.ServerProfile servers = 3;
 inline int MsgLoginResultLC::servers_size() const {
   return servers_.size();
 }
 inline void MsgLoginResultLC::clear_servers() {
   servers_.Clear();
 }
-inline const ::packet_cs::ServerInfo& MsgLoginResultLC::servers(int index) const {
+inline const ::pb_base::ServerProfile& MsgLoginResultLC::servers(int index) const {
   // @@protoc_insertion_point(field_get:packet_cs.MsgLoginResultLC.servers)
   return servers_.Get(index);
 }
-inline ::packet_cs::ServerInfo* MsgLoginResultLC::mutable_servers(int index) {
+inline ::pb_base::ServerProfile* MsgLoginResultLC::mutable_servers(int index) {
   // @@protoc_insertion_point(field_mutable:packet_cs.MsgLoginResultLC.servers)
   return servers_.Mutable(index);
 }
-inline ::packet_cs::ServerInfo* MsgLoginResultLC::add_servers() {
+inline ::pb_base::ServerProfile* MsgLoginResultLC::add_servers() {
   // @@protoc_insertion_point(field_add:packet_cs.MsgLoginResultLC.servers)
   return servers_.Add();
 }
-inline ::google::protobuf::RepeatedPtrField< ::packet_cs::ServerInfo >*
+inline ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >*
 MsgLoginResultLC::mutable_servers() {
   // @@protoc_insertion_point(field_mutable_list:packet_cs.MsgLoginResultLC.servers)
   return &servers_;
 }
-inline const ::google::protobuf::RepeatedPtrField< ::packet_cs::ServerInfo >&
+inline const ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >&
 MsgLoginResultLC::servers() const {
   // @@protoc_insertion_point(field_list:packet_cs.MsgLoginResultLC.servers)
   return servers_;
@@ -1162,26 +841,10 @@ PktRoleListAck::mutable_role_name_list() {
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace packet_cs
-
-#ifndef SWIG
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::packet_cs::ServerStatus> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::packet_cs::ServerStatus>() {
-  return ::packet_cs::ServerStatus_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
-#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

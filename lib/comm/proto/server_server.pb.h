@@ -26,8 +26,8 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "base_type.pb.h"
 // @@protoc_insertion_point(includes)
 
 namespace packet_ss {
@@ -37,35 +37,14 @@ void protobuf_AddDesc_server_5fserver_2eproto();
 void protobuf_AssignDesc_server_5fserver_2eproto();
 void protobuf_ShutdownFile_server_5fserver_2eproto();
 
-class MsgEnterPermissionAck;
-class MsgEnterPermissionReq;
 class MsgLogin2NodeGN;
 class MsgRegisterSW;
 class MsgRegisterWS;
+class MsgReqServerListLM;
 class MsgServerInfoWS;
 class MsgServerInfoWS_ServerInfo;
+class MsgServerListML;
 
-enum MsgEnterPermissionAck_Result {
-  MsgEnterPermissionAck_Result_ok = 0,
-  MsgEnterPermissionAck_Result_key_invalid = 1,
-  MsgEnterPermissionAck_Result_MsgEnterPermissionAck_Result_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  MsgEnterPermissionAck_Result_MsgEnterPermissionAck_Result_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool MsgEnterPermissionAck_Result_IsValid(int value);
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck_Result_Result_MIN = MsgEnterPermissionAck_Result_ok;
-const MsgEnterPermissionAck_Result MsgEnterPermissionAck_Result_Result_MAX = MsgEnterPermissionAck_Result_key_invalid;
-const int MsgEnterPermissionAck_Result_Result_ARRAYSIZE = MsgEnterPermissionAck_Result_Result_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* MsgEnterPermissionAck_Result_descriptor();
-inline const ::std::string& MsgEnterPermissionAck_Result_Name(MsgEnterPermissionAck_Result value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    MsgEnterPermissionAck_Result_descriptor(), value);
-}
-inline bool MsgEnterPermissionAck_Result_Parse(
-    const ::std::string& name, MsgEnterPermissionAck_Result* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<MsgEnterPermissionAck_Result>(
-    MsgEnterPermissionAck_Result_descriptor(), name, value);
-}
 // ===================================================================
 
 class MsgRegisterSW : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgRegisterSW) */ {
@@ -538,32 +517,32 @@ class MsgLogin2NodeGN : public ::google::protobuf::Message /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
-class MsgEnterPermissionReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgEnterPermissionReq) */ {
+class MsgReqServerListLM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgReqServerListLM) */ {
  public:
-  MsgEnterPermissionReq();
-  virtual ~MsgEnterPermissionReq();
+  MsgReqServerListLM();
+  virtual ~MsgReqServerListLM();
 
-  MsgEnterPermissionReq(const MsgEnterPermissionReq& from);
+  MsgReqServerListLM(const MsgReqServerListLM& from);
 
-  inline MsgEnterPermissionReq& operator=(const MsgEnterPermissionReq& from) {
+  inline MsgReqServerListLM& operator=(const MsgReqServerListLM& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgEnterPermissionReq& default_instance();
+  static const MsgReqServerListLM& default_instance();
 
-  void Swap(MsgEnterPermissionReq* other);
+  void Swap(MsgReqServerListLM* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgEnterPermissionReq* New() const { return New(NULL); }
+  inline MsgReqServerListLM* New() const { return New(NULL); }
 
-  MsgEnterPermissionReq* New(::google::protobuf::Arena* arena) const;
+  MsgReqServerListLM* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgEnterPermissionReq& from);
-  void MergeFrom(const MsgEnterPermissionReq& from);
+  void CopyFrom(const MsgReqServerListLM& from);
+  void MergeFrom(const MsgReqServerListLM& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -582,7 +561,7 @@ class MsgEnterPermissionReq : public ::google::protobuf::Message /* @@protoc_ins
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgEnterPermissionReq* other);
+  void InternalSwap(MsgReqServerListLM* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -609,60 +588,48 @@ class MsgEnterPermissionReq : public ::google::protobuf::Message /* @@protoc_ins
   ::std::string* release_account_name();
   void set_allocated_account_name(::std::string* account_name);
 
-  // optional string session_key = 2;
-  void clear_session_key();
-  static const int kSessionKeyFieldNumber = 2;
-  const ::std::string& session_key() const;
-  void set_session_key(const ::std::string& value);
-  void set_session_key(const char* value);
-  void set_session_key(const char* value, size_t size);
-  ::std::string* mutable_session_key();
-  ::std::string* release_session_key();
-  void set_allocated_session_key(::std::string* session_key);
-
-  // @@protoc_insertion_point(class_scope:packet_ss.MsgEnterPermissionReq)
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgReqServerListLM)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr account_name_;
-  ::google::protobuf::internal::ArenaStringPtr session_key_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
   friend void protobuf_ShutdownFile_server_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgEnterPermissionReq* default_instance_;
+  static MsgReqServerListLM* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class MsgEnterPermissionAck : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgEnterPermissionAck) */ {
+class MsgServerListML : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgServerListML) */ {
  public:
-  MsgEnterPermissionAck();
-  virtual ~MsgEnterPermissionAck();
+  MsgServerListML();
+  virtual ~MsgServerListML();
 
-  MsgEnterPermissionAck(const MsgEnterPermissionAck& from);
+  MsgServerListML(const MsgServerListML& from);
 
-  inline MsgEnterPermissionAck& operator=(const MsgEnterPermissionAck& from) {
+  inline MsgServerListML& operator=(const MsgServerListML& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgEnterPermissionAck& default_instance();
+  static const MsgServerListML& default_instance();
 
-  void Swap(MsgEnterPermissionAck* other);
+  void Swap(MsgServerListML* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgEnterPermissionAck* New() const { return New(NULL); }
+  inline MsgServerListML* New() const { return New(NULL); }
 
-  MsgEnterPermissionAck* New(::google::protobuf::Arena* arena) const;
+  MsgServerListML* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgEnterPermissionAck& from);
-  void MergeFrom(const MsgEnterPermissionAck& from);
+  void CopyFrom(const MsgServerListML& from);
+  void MergeFrom(const MsgServerListML& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -681,7 +648,7 @@ class MsgEnterPermissionAck : public ::google::protobuf::Message /* @@protoc_ins
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgEnterPermissionAck* other);
+  void InternalSwap(MsgServerListML* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -695,53 +662,50 @@ class MsgEnterPermissionAck : public ::google::protobuf::Message /* @@protoc_ins
 
   // nested types ----------------------------------------------------
 
-  typedef MsgEnterPermissionAck_Result Result;
-  static const Result ok =
-    MsgEnterPermissionAck_Result_ok;
-  static const Result key_invalid =
-    MsgEnterPermissionAck_Result_key_invalid;
-  static inline bool Result_IsValid(int value) {
-    return MsgEnterPermissionAck_Result_IsValid(value);
-  }
-  static const Result Result_MIN =
-    MsgEnterPermissionAck_Result_Result_MIN;
-  static const Result Result_MAX =
-    MsgEnterPermissionAck_Result_Result_MAX;
-  static const int Result_ARRAYSIZE =
-    MsgEnterPermissionAck_Result_Result_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor*
-  Result_descriptor() {
-    return MsgEnterPermissionAck_Result_descriptor();
-  }
-  static inline const ::std::string& Result_Name(Result value) {
-    return MsgEnterPermissionAck_Result_Name(value);
-  }
-  static inline bool Result_Parse(const ::std::string& name,
-      Result* value) {
-    return MsgEnterPermissionAck_Result_Parse(name, value);
-  }
-
   // accessors -------------------------------------------------------
 
-  // optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-  void clear_check_result();
-  static const int kCheckResultFieldNumber = 1;
-  ::packet_ss::MsgEnterPermissionAck_Result check_result() const;
-  void set_check_result(::packet_ss::MsgEnterPermissionAck_Result value);
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:packet_ss.MsgEnterPermissionAck)
+  // repeated .pb_base.ServerProfile servers = 2;
+  int servers_size() const;
+  void clear_servers();
+  static const int kServersFieldNumber = 2;
+  const ::pb_base::ServerProfile& servers(int index) const;
+  ::pb_base::ServerProfile* mutable_servers(int index);
+  ::pb_base::ServerProfile* add_servers();
+  ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >*
+      mutable_servers();
+  const ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >&
+      servers() const;
+
+  // optional .packet_ss.MsgReqServerListLM post_back = 3;
+  bool has_post_back() const;
+  void clear_post_back();
+  static const int kPostBackFieldNumber = 3;
+  const ::packet_ss::MsgReqServerListLM& post_back() const;
+  ::packet_ss::MsgReqServerListLM* mutable_post_back();
+  ::packet_ss::MsgReqServerListLM* release_post_back();
+  void set_allocated_post_back(::packet_ss::MsgReqServerListLM* post_back);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgServerListML)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
-  int check_result_;
+  ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile > servers_;
+  ::packet_ss::MsgReqServerListLM* post_back_;
+  ::google::protobuf::int32 result_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
   friend void protobuf_ShutdownFile_server_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgEnterPermissionAck* default_instance_;
+  static MsgServerListML* default_instance_;
 };
 // ===================================================================
 
@@ -999,112 +963,136 @@ inline void MsgLogin2NodeGN::set_server_id(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
-// MsgEnterPermissionReq
+// MsgReqServerListLM
 
 // optional string account_name = 1;
-inline void MsgEnterPermissionReq::clear_account_name() {
+inline void MsgReqServerListLM::clear_account_name() {
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& MsgEnterPermissionReq::account_name() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionReq.account_name)
+inline const ::std::string& MsgReqServerListLM::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqServerListLM.account_name)
   return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgEnterPermissionReq::set_account_name(const ::std::string& value) {
+inline void MsgReqServerListLM::set_account_name(const ::std::string& value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqServerListLM.account_name)
 }
-inline void MsgEnterPermissionReq::set_account_name(const char* value) {
+inline void MsgReqServerListLM::set_account_name(const char* value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqServerListLM.account_name)
 }
-inline void MsgEnterPermissionReq::set_account_name(const char* value, size_t size) {
+inline void MsgReqServerListLM::set_account_name(const char* value, size_t size) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqServerListLM.account_name)
 }
-inline ::std::string* MsgEnterPermissionReq::mutable_account_name() {
+inline ::std::string* MsgReqServerListLM::mutable_account_name() {
   
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgEnterPermissionReq.account_name)
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqServerListLM.account_name)
   return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* MsgEnterPermissionReq::release_account_name() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgEnterPermissionReq.account_name)
+inline ::std::string* MsgReqServerListLM::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqServerListLM.account_name)
   
   return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgEnterPermissionReq::set_allocated_account_name(::std::string* account_name) {
+inline void MsgReqServerListLM::set_allocated_account_name(::std::string* account_name) {
   if (account_name != NULL) {
     
   } else {
     
   }
   account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgEnterPermissionReq.account_name)
-}
-
-// optional string session_key = 2;
-inline void MsgEnterPermissionReq::clear_session_key() {
-  session_key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline const ::std::string& MsgEnterPermissionReq::session_key() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionReq.session_key)
-  return session_key_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void MsgEnterPermissionReq::set_session_key(const ::std::string& value) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionReq.session_key)
-}
-inline void MsgEnterPermissionReq::set_session_key(const char* value) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgEnterPermissionReq.session_key)
-}
-inline void MsgEnterPermissionReq::set_session_key(const char* value, size_t size) {
-  
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgEnterPermissionReq.session_key)
-}
-inline ::std::string* MsgEnterPermissionReq::mutable_session_key() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgEnterPermissionReq.session_key)
-  return session_key_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* MsgEnterPermissionReq::release_session_key() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgEnterPermissionReq.session_key)
-  
-  return session_key_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void MsgEnterPermissionReq::set_allocated_session_key(::std::string* session_key) {
-  if (session_key != NULL) {
-    
-  } else {
-    
-  }
-  session_key_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), session_key);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgEnterPermissionReq.session_key)
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqServerListLM.account_name)
 }
 
 // -------------------------------------------------------------------
 
-// MsgEnterPermissionAck
+// MsgServerListML
 
-// optional .packet_ss.MsgEnterPermissionAck.Result check_result = 1;
-inline void MsgEnterPermissionAck::clear_check_result() {
-  check_result_ = 0;
+// optional int32 result = 1;
+inline void MsgServerListML::clear_result() {
+  result_ = 0;
 }
-inline ::packet_ss::MsgEnterPermissionAck_Result MsgEnterPermissionAck::check_result() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgEnterPermissionAck.check_result)
-  return static_cast< ::packet_ss::MsgEnterPermissionAck_Result >(check_result_);
+inline ::google::protobuf::int32 MsgServerListML::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.result)
+  return result_;
 }
-inline void MsgEnterPermissionAck::set_check_result(::packet_ss::MsgEnterPermissionAck_Result value) {
+inline void MsgServerListML::set_result(::google::protobuf::int32 value) {
   
-  check_result_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgEnterPermissionAck.check_result)
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgServerListML.result)
+}
+
+// repeated .pb_base.ServerProfile servers = 2;
+inline int MsgServerListML::servers_size() const {
+  return servers_.size();
+}
+inline void MsgServerListML::clear_servers() {
+  servers_.Clear();
+}
+inline const ::pb_base::ServerProfile& MsgServerListML::servers(int index) const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.servers)
+  return servers_.Get(index);
+}
+inline ::pb_base::ServerProfile* MsgServerListML::mutable_servers(int index) {
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgServerListML.servers)
+  return servers_.Mutable(index);
+}
+inline ::pb_base::ServerProfile* MsgServerListML::add_servers() {
+  // @@protoc_insertion_point(field_add:packet_ss.MsgServerListML.servers)
+  return servers_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >*
+MsgServerListML::mutable_servers() {
+  // @@protoc_insertion_point(field_mutable_list:packet_ss.MsgServerListML.servers)
+  return &servers_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::pb_base::ServerProfile >&
+MsgServerListML::servers() const {
+  // @@protoc_insertion_point(field_list:packet_ss.MsgServerListML.servers)
+  return servers_;
+}
+
+// optional .packet_ss.MsgReqServerListLM post_back = 3;
+inline bool MsgServerListML::has_post_back() const {
+  return !_is_default_instance_ && post_back_ != NULL;
+}
+inline void MsgServerListML::clear_post_back() {
+  if (GetArenaNoVirtual() == NULL && post_back_ != NULL) delete post_back_;
+  post_back_ = NULL;
+}
+inline const ::packet_ss::MsgReqServerListLM& MsgServerListML::post_back() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgServerListML.post_back)
+  return post_back_ != NULL ? *post_back_ : *default_instance_->post_back_;
+}
+inline ::packet_ss::MsgReqServerListLM* MsgServerListML::mutable_post_back() {
+  
+  if (post_back_ == NULL) {
+    post_back_ = new ::packet_ss::MsgReqServerListLM;
+  }
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgServerListML.post_back)
+  return post_back_;
+}
+inline ::packet_ss::MsgReqServerListLM* MsgServerListML::release_post_back() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgServerListML.post_back)
+  
+  ::packet_ss::MsgReqServerListLM* temp = post_back_;
+  post_back_ = NULL;
+  return temp;
+}
+inline void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerListLM* post_back) {
+  delete post_back_;
+  post_back_ = post_back;
+  if (post_back) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgServerListML.post_back)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -1124,20 +1112,6 @@ inline void MsgEnterPermissionAck::set_check_result(::packet_ss::MsgEnterPermiss
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace packet_ss
-
-#ifndef SWIG
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::packet_ss::MsgEnterPermissionAck_Result> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::packet_ss::MsgEnterPermissionAck_Result>() {
-  return ::packet_ss::MsgEnterPermissionAck_Result_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
-#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

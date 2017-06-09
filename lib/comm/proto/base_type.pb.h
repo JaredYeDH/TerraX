@@ -23,32 +23,365 @@
 #include <google/protobuf/arenastring.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>
 #include <google/protobuf/extension_set.h>
+#include <google/protobuf/generated_enum_reflection.h>
+#include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace base_proto {
+namespace pb_base {
 
 // Internal implementation detail -- do not call these.
 void protobuf_AddDesc_base_5ftype_2eproto();
 void protobuf_AssignDesc_base_5ftype_2eproto();
 void protobuf_ShutdownFile_base_5ftype_2eproto();
 
+class ServerProfile;
 
+enum ServerStatus {
+  MAINTAIN = 0,
+  FREE = 1,
+  BUSY = 2,
+  CROWD = 3,
+  FULL = 4,
+  ServerStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  ServerStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool ServerStatus_IsValid(int value);
+const ServerStatus ServerStatus_MIN = MAINTAIN;
+const ServerStatus ServerStatus_MAX = FULL;
+const int ServerStatus_ARRAYSIZE = ServerStatus_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* ServerStatus_descriptor();
+inline const ::std::string& ServerStatus_Name(ServerStatus value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    ServerStatus_descriptor(), value);
+}
+inline bool ServerStatus_Parse(
+    const ::std::string& name, ServerStatus* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ServerStatus>(
+    ServerStatus_descriptor(), name, value);
+}
 // ===================================================================
 
+class ServerProfile : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:pb_base.ServerProfile) */ {
+ public:
+  ServerProfile();
+  virtual ~ServerProfile();
 
+  ServerProfile(const ServerProfile& from);
+
+  inline ServerProfile& operator=(const ServerProfile& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ServerProfile& default_instance();
+
+  void Swap(ServerProfile* other);
+
+  // implements Message ----------------------------------------------
+
+  inline ServerProfile* New() const { return New(NULL); }
+
+  ServerProfile* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ServerProfile& from);
+  void MergeFrom(const ServerProfile& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(ServerProfile* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 server_uid = 1;
+  void clear_server_uid();
+  static const int kServerUidFieldNumber = 1;
+  ::google::protobuf::int32 server_uid() const;
+  void set_server_uid(::google::protobuf::int32 value);
+
+  // optional int32 region_showindex = 2;
+  void clear_region_showindex();
+  static const int kRegionShowindexFieldNumber = 2;
+  ::google::protobuf::int32 region_showindex() const;
+  void set_region_showindex(::google::protobuf::int32 value);
+
+  // optional string region = 3;
+  void clear_region();
+  static const int kRegionFieldNumber = 3;
+  const ::std::string& region() const;
+  void set_region(const ::std::string& value);
+  void set_region(const char* value);
+  void set_region(const char* value, size_t size);
+  ::std::string* mutable_region();
+  ::std::string* release_region();
+  void set_allocated_region(::std::string* region);
+
+  // optional int32 server_showindex = 4;
+  void clear_server_showindex();
+  static const int kServerShowindexFieldNumber = 4;
+  ::google::protobuf::int32 server_showindex() const;
+  void set_server_showindex(::google::protobuf::int32 value);
+
+  // optional string server_name = 5;
+  void clear_server_name();
+  static const int kServerNameFieldNumber = 5;
+  const ::std::string& server_name() const;
+  void set_server_name(const ::std::string& value);
+  void set_server_name(const char* value);
+  void set_server_name(const char* value, size_t size);
+  ::std::string* mutable_server_name();
+  ::std::string* release_server_name();
+  void set_allocated_server_name(::std::string* server_name);
+
+  // optional .pb_base.ServerStatus server_status = 6;
+  void clear_server_status();
+  static const int kServerStatusFieldNumber = 6;
+  ::pb_base::ServerStatus server_status() const;
+  void set_server_status(::pb_base::ServerStatus value);
+
+  // optional bool recommond = 7;
+  void clear_recommond();
+  static const int kRecommondFieldNumber = 7;
+  bool recommond() const;
+  void set_recommond(bool value);
+
+  // @@protoc_insertion_point(class_scope:pb_base.ServerProfile)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 server_uid_;
+  ::google::protobuf::int32 region_showindex_;
+  ::google::protobuf::internal::ArenaStringPtr region_;
+  ::google::protobuf::internal::ArenaStringPtr server_name_;
+  ::google::protobuf::int32 server_showindex_;
+  int server_status_;
+  bool recommond_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_base_5ftype_2eproto();
+  friend void protobuf_AssignDesc_base_5ftype_2eproto();
+  friend void protobuf_ShutdownFile_base_5ftype_2eproto();
+
+  void InitAsDefaultInstance();
+  static ServerProfile* default_instance_;
+};
 // ===================================================================
 
 
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
+// ServerProfile
+
+// optional int32 server_uid = 1;
+inline void ServerProfile::clear_server_uid() {
+  server_uid_ = 0;
+}
+inline ::google::protobuf::int32 ServerProfile::server_uid() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.server_uid)
+  return server_uid_;
+}
+inline void ServerProfile::set_server_uid(::google::protobuf::int32 value) {
+  
+  server_uid_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.server_uid)
+}
+
+// optional int32 region_showindex = 2;
+inline void ServerProfile::clear_region_showindex() {
+  region_showindex_ = 0;
+}
+inline ::google::protobuf::int32 ServerProfile::region_showindex() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.region_showindex)
+  return region_showindex_;
+}
+inline void ServerProfile::set_region_showindex(::google::protobuf::int32 value) {
+  
+  region_showindex_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.region_showindex)
+}
+
+// optional string region = 3;
+inline void ServerProfile::clear_region() {
+  region_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ServerProfile::region() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.region)
+  return region_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ServerProfile::set_region(const ::std::string& value) {
+  
+  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.region)
+}
+inline void ServerProfile::set_region(const char* value) {
+  
+  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb_base.ServerProfile.region)
+}
+inline void ServerProfile::set_region(const char* value, size_t size) {
+  
+  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb_base.ServerProfile.region)
+}
+inline ::std::string* ServerProfile::mutable_region() {
+  
+  // @@protoc_insertion_point(field_mutable:pb_base.ServerProfile.region)
+  return region_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ServerProfile::release_region() {
+  // @@protoc_insertion_point(field_release:pb_base.ServerProfile.region)
+  
+  return region_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ServerProfile::set_allocated_region(::std::string* region) {
+  if (region != NULL) {
+    
+  } else {
+    
+  }
+  region_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), region);
+  // @@protoc_insertion_point(field_set_allocated:pb_base.ServerProfile.region)
+}
+
+// optional int32 server_showindex = 4;
+inline void ServerProfile::clear_server_showindex() {
+  server_showindex_ = 0;
+}
+inline ::google::protobuf::int32 ServerProfile::server_showindex() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.server_showindex)
+  return server_showindex_;
+}
+inline void ServerProfile::set_server_showindex(::google::protobuf::int32 value) {
+  
+  server_showindex_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.server_showindex)
+}
+
+// optional string server_name = 5;
+inline void ServerProfile::clear_server_name() {
+  server_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& ServerProfile::server_name() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.server_name)
+  return server_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ServerProfile::set_server_name(const ::std::string& value) {
+  
+  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.server_name)
+}
+inline void ServerProfile::set_server_name(const char* value) {
+  
+  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb_base.ServerProfile.server_name)
+}
+inline void ServerProfile::set_server_name(const char* value, size_t size) {
+  
+  server_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:pb_base.ServerProfile.server_name)
+}
+inline ::std::string* ServerProfile::mutable_server_name() {
+  
+  // @@protoc_insertion_point(field_mutable:pb_base.ServerProfile.server_name)
+  return server_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* ServerProfile::release_server_name() {
+  // @@protoc_insertion_point(field_release:pb_base.ServerProfile.server_name)
+  
+  return server_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void ServerProfile::set_allocated_server_name(::std::string* server_name) {
+  if (server_name != NULL) {
+    
+  } else {
+    
+  }
+  server_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), server_name);
+  // @@protoc_insertion_point(field_set_allocated:pb_base.ServerProfile.server_name)
+}
+
+// optional .pb_base.ServerStatus server_status = 6;
+inline void ServerProfile::clear_server_status() {
+  server_status_ = 0;
+}
+inline ::pb_base::ServerStatus ServerProfile::server_status() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.server_status)
+  return static_cast< ::pb_base::ServerStatus >(server_status_);
+}
+inline void ServerProfile::set_server_status(::pb_base::ServerStatus value) {
+  
+  server_status_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.server_status)
+}
+
+// optional bool recommond = 7;
+inline void ServerProfile::clear_recommond() {
+  recommond_ = false;
+}
+inline bool ServerProfile::recommond() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.recommond)
+  return recommond_;
+}
+inline void ServerProfile::set_recommond(bool value) {
+  
+  recommond_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.recommond)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace base_proto
+}  // namespace pb_base
+
+#ifndef SWIG
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::pb_base::ServerStatus> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::pb_base::ServerStatus>() {
+  return ::pb_base::ServerStatus_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
+#endif  // SWIG
 
 // @@protoc_insertion_point(global_scope)
 

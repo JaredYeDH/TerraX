@@ -1,5 +1,6 @@
 syntax = "proto3";
 package packet_ss;
+import "base_type.proto";
 
 message MsgRegisterSW
 {
@@ -31,18 +32,15 @@ message MsgLogin2NodeGN
     int32 server_id = 2;
 }
 
-message MsgEnterPermissionReq
+
+message MsgReqServerListLM
 {
     string account_name = 1;
-    string session_key = 2;
 }
 
-message MsgEnterPermissionAck
+message MsgServerListML
 {
-    enum Result
-    {
-        ok = 0;
-        key_invalid = 1;
-    }
-    Result check_result = 1;
+    int32 result = 1;
+    repeated pb_base.ServerProfile servers = 2;
+    MsgReqServerListLM post_back = 3;
 }

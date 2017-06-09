@@ -25,6 +25,8 @@ namespace terra
 		bool Tick();
 		bool BeforeShut();
 		bool Shut();
+
+		void SendPacket2Master(google::protobuf::Message& msg);
 	private:
 		void InitLoginNetInfo();
 		void StartConnectMasterServer();
