@@ -35,6 +35,15 @@ void AccountState_WaitingBillingAuth::Leave(LoginAccount& account) {}
 void AccountState_WaitingServerList::Enter(LoginAccount& account) {}
 void AccountState_WaitingServerList::Tick(LoginAccount& account) {}
 void AccountState_WaitingServerList::Leave(LoginAccount& account) {}
+
+void AccountState_WaitingServerList::HandleMessage(LoginAccount& account, MsgServerListML* msg)
+{
+	MsgLoginResultLC res;
+	res.set_result(0);
+	res.set_token(account.get_token());
+	res.mutable_servers()->Swap(msg->mutable_servers());
+	LoginNetModule::GetInstance().SendPacket2Client(account.get_conn(), res);
+}
 //////////////////////////////////////////////////////////////////////////
 void AccountState_WaitingReqEnterGame::Enter(LoginAccount& account) {}
 void AccountState_WaitingReqEnterGame::Tick(LoginAccount& account) {}

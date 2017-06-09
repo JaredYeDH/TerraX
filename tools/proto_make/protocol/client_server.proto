@@ -15,6 +15,18 @@ message MsgLoginResultLC
     repeated pb_base.ServerProfile servers = 3;
 }
 
+message MsgSelectServerCL
+{
+    int32 server_id = 1;
+}
+
+message MsgSeclectServerResultLC
+{
+    int32 result = 1;
+    string gate_ip = 2;
+    int32 gate_port = 3;
+}
+
 message PktGameLoginReq
 {
     string account_name = 1;

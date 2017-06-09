@@ -1,5 +1,6 @@
 #pragma once
 #include "comm/proto/client_server.pb.h"
+#include "comm/proto/server_server.pb.h"
 
 namespace terra
 {
@@ -23,7 +24,8 @@ namespace terra
 		virtual void Tick(LoginAccount& account){}
 		virtual void Leave(LoginAccount& account){}
 
-		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgReqLoginCL* msg){}
+		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgReqLoginCL* msg) {}
+		virtual void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) {}
 	};
 
 
@@ -51,6 +53,7 @@ namespace terra
 		void Enter(LoginAccount& account) override;
 		void Tick(LoginAccount& account)  override;
 		void Leave(LoginAccount& account)  override;
+		void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) override;
 	};
 
 	class AccountState_WaitingReqEnterGame : public AccountState_Base

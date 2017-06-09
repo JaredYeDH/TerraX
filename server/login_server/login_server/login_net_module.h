@@ -25,8 +25,14 @@ namespace terra
 		bool Tick();
 		bool BeforeShut();
 		bool Shut();
-
+		//TODO: packet_processor不要有server_table，只能通过conn发送消息
+		//		server_table通过外部包装
+		//		把connect_service和accept_service变成instance()
+		//		GateAccount, GateAvatar
+		//		断线逻辑 world->gate->node
 		void SendPacket2Master(google::protobuf::Message& msg);
+		void SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg);
+		void SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg);
 	private:
 		void InitLoginNetInfo();
 		void StartConnectMasterServer();

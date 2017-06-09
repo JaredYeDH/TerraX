@@ -1,7 +1,9 @@
 #pragma once
 #include "base/types.h"
 #include "comm/proto/client_server.pb.h"
+#include "comm/proto/server_server.pb.h"
 #include "srv/net/server_accept_service.h"
+#include "login_account_state.h"
 #include <unordered_map>
 #include <memory>
 #include <array>
@@ -25,13 +27,15 @@ namespace terra
 		LoginAccountManager();
 		~LoginAccountManager() = default;
 
-		void CreateAccount(TcpConnection*);
+		void CreateAccount(TcpConnection* conn);
+		void RemoveAccount(TcpConnection* conn);
 		AccountState_Base* GetAccountState(Account_State_t account_state) { return states_[static_cast<int>(account_state)].get(); }
+		LoginAccount* GetAccountByAccountName(const std::string& account_name);
 	private:
 		void InitAccountState();
 
 		void OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginCL* msg);
-
-		void OnMessage_MsgLoginResultLC(packet_cs::MsgLoginResultLC* msg);
+		
+		void OnMessage_MsgServerListML(packet_ss::MsgServerListML* msg);
 	};
 }

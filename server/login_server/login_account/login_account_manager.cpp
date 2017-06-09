@@ -4,6 +4,7 @@
 
 using namespace terra;
 using namespace packet_cs;
+using namespace packet_ss;
 
 LoginAccountManager::LoginAccountManager()
 {
@@ -29,18 +30,54 @@ void LoginAccountManager::CreateAccount(TcpConnection* conn)
 	account_map_.insert(std::make_pair(conn->get_fd(), std::move(account)));
 }
 
+
+void LoginAccountManager::RemoveAccount(TcpConnection* conn)
+{
+	auto iter = account_map_.find(conn->get_fd());
+	if (iter == account_map_.end())
+	{
+		assert(0);
+		return;
+	}
+	account2fd_map_.erase(iter->second->get_account_name());
+	account_map_.erase(conn->get_fd()); //res = 1;
+}
+
+LoginAccount* LoginAccountManager::GetAccountByAccountName(const std::string& account_name)
+{
+	auto iter_fd = account2fd_map_.find(account_name);
+	if (iter_fd == account2fd_map_.end())
+	{
+		return nullptr;
+	}
+	int fd = iter_fd->second;
+	auto iter = account_map_.find(fd);
+	if (iter == account_map_.end())
+	{
+		return nullptr;
+	}
+	return (iter->second).get();
+}
+
 void LoginAccountManager::OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, MsgReqLoginCL* msg)
 {
 	auto iter = account_map_.find(conn->get_fd());
-	if (iter != account_map_.end())
+	if (iter == account_map_.end())
 	{
-		assert(iter->second != nullptr);
-		AccountState_Base* state = iter->second->get_current_state();
-		state->HandleMessage(*(iter->second), msg);
+		assert(0);
+		return;
 	}
+	AccountState_Base* state = iter->second->get_current_state();
+	state->HandleMessage(*(iter->second), msg);
 }
 
-void LoginAccountManager::OnMessage_MsgLoginResultLC(MsgLoginResultLC* msg)
+void LoginAccountManager::OnMessage_MsgServerListML(MsgServerListML* msg)
 {
-
+	LoginAccount* account = GetAccountByAccountName(msg->post_back().account_name());
+	if (!account)
+	{
+		return;
+	}
+	AccountState_Base* state = account->get_current_state();
+	state->HandleMessage(*account, msg);
 }

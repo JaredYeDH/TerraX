@@ -3,6 +3,7 @@
 #include "comm/config/server_config.h"
 #include "comm/net/packet_dispatcher.h"
 #include "login_account/login_account_manager.h"
+#include "login_account/Login_account.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -70,6 +71,20 @@ void LoginNetModule::SendPacket2Master(google::protobuf::Message& msg)
 	packet_processor_.SendPacket(0, msg);
 }
 
+void LoginNetModule::SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg)
+{
+	packet_processor_.SendPacket(conn, msg);
+}
+
+void LoginNetModule::SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg)
+{
+	LoginAccount* account = LoginAccountManager::GetInstance().GetAccountByAccountName(account_name);
+	if (!account)
+	{
+		return;
+	}
+	SendPacket2Client(account->get_conn(), msg);
+}
 
 
 void LoginNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
@@ -109,4 +124,5 @@ void LoginNetModule::OnClientConnected(TcpConnection* conn)
 }
 void LoginNetModule::OnClientDisconnected(TcpConnection* conn)
 {
+	LoginAccountManager::GetInstance().RemoveAccount(conn);
 }

@@ -27,9 +27,9 @@ namespace terra
 		{
 			login_token_ = token;
 		}
-		std::string& get_account_name() { return account_name_; }
-		std::string& get_password() { return pass_word_; }
-		std::string& get_token() { return login_token_; }
+		const std::string& get_account_name() { return account_name_; }
+		const std::string& get_password() { return pass_word_; }
+		const std::string& get_token() { return login_token_; }
 	private:
 		void EncryptPassword(std::string& password) {};
 	};

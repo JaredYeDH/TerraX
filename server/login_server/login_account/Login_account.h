@@ -23,5 +23,8 @@ namespace terra
 
 		AccountState_Base* get_current_state() { return account_state_; }
 		void set_account_name(const std::string& account_name) { account_name_ = account_name; }
+		const std::string& get_account_name() { return account_name_; }
+		const std::string& get_token() { return token_; }
+		TcpConnection* get_conn() { return conn_; }
 	};
 }
