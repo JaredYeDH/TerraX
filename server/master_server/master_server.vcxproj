@@ -124,8 +124,21 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="master_accept_service.cpp" />
+    <ClCompile Include="master_net_module.cpp" />
+    <ClCompile Include="master_server.cpp" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemGroup>
+    <ClInclude Include="master_accept_service.h" />
+    <ClInclude Include="master_net_module.h" />
+    <ClInclude Include="master_server.h" />
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='lib|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\lib;..\..\thirdparty\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
