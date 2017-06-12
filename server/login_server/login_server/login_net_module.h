@@ -25,8 +25,7 @@ namespace terra
 		bool Tick();
 		bool BeforeShut();
 		bool Shut();
-		//TODO: packet_processor不要有server_table，只能通过conn发送消息
-		//		server_table通过外部包装
+		//TODO:
 		//		通过继承实现acceptservice instance
 		//		GateAccount, GateAvatar
 		//		断线逻辑 world->gate->node

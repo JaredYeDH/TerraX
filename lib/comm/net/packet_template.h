@@ -34,7 +34,6 @@ namespace terra
 		uint16_t get_total_len() { return total_len_; }
 
 		void set_avatar_id(int avatar_id) { msg_data_.set_avatar_id(avatar_id); }
-		void set_server_id(int server_id) { msg_tag_.set_server_id(server_id); }
 
 		Tag& get_msg_tag() { return msg_tag_; }
 		Data& get_msg_data() { return msg_data_; }

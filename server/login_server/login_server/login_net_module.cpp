@@ -69,7 +69,11 @@ bool LoginNetModule::Shut() { return true; }
 
 void LoginNetModule::SendPacket2Master(google::protobuf::Message& msg)
 {
-	packet_processor_.SendPacket(0, msg);
+	NetObject* net_object = server_table_.GetNetObjectByServerID(0);
+	if (!net_object) {
+		return;
+	}
+	packet_processor_.SendPacket(net_object->conn_, msg);
 }
 
 void LoginNetModule::SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg)

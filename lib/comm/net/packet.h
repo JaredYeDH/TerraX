@@ -18,8 +18,6 @@ namespace terra
         bool InitialWithMsg(char* buffer) { return true; }
         bool InitialFromBuffer(char* buffer) { return true; }
 
-        void set_server_id(int server_id) {}
-        int get_server_id() { return 0; }
         int get_tag_size() { return TAG_SIZE; }
     };
 

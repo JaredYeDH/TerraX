@@ -9,21 +9,6 @@ MasterLoginAcceptService::MasterLoginAcceptService()
 	REG_PACKET_HANDLER_ARG3(MsgRegisterSW, this, OnMessage_RegisterSW);
 }
 
-void MasterLoginAcceptService::InitAvaliableIDCount(uint32_t server_ids)
-{
-	for (std::size_t i = 1; i < server_ids; i++) {
-		server_ids_.push(i);
-	}
-}
-
-void MasterLoginAcceptService::OnLogout(TcpConnection* conn)
-{
-	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-	assert(net_object);
-	server_ids_.push(net_object->server_id_);
-	server_table_.RemoveByConn(conn);
-}
-
 void MasterLoginAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avatar_id, MsgRegisterSW* msg)
 {
 	assert(server_ids_.size() > 0);
