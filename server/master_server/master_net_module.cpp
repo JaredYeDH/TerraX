@@ -6,9 +6,9 @@ using namespace terra;
 using namespace packet_ss;
 
 MasterNetModule::MasterNetModule()
-    : NetBaseModule(PeerType_t::MASTERSERVER), master_accept_service_(MasterAcceptService::GetInstance())
+    : NetBaseModule(PeerType_t::MASTERSERVER), master_world_accept_service_(MasterWorldAcceptService::GetInstance())
 {
-    master_accept_service_.InitNetModule(this);
+    master_world_accept_service_.InitNetModule(this);
     server_table_.SetAddNetObjectEventCB(
         [this](const std::vector<NetObject>& objs, const NetObject& net_obj) {
             this->OnAddNetObjectEvent(objs, net_obj);
@@ -27,8 +27,8 @@ void MasterNetModule::InitmasterNetInfo()
 
 void MasterNetModule::StartAccept()
 {
-    master_accept_service_.InitAvaliableIDCount(64);
-    master_accept_service_.AcceptConnection(
+    master_world_accept_service_.InitAvaliableIDCount(64);
+    master_world_accept_service_.AcceptConnection(
         get_listen_port(), 64,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
@@ -57,7 +57,7 @@ void MasterNetModule::OnSocketEvent(TcpConnection* conn, SocketEvent_t ev)
         } break;
 		case SocketEvent_t::CONNECT_ERROR:
         case SocketEvent_t::DISCONNECTED: {
-            master_accept_service_.OnLogout(conn);
+            master_world_accept_service_.OnLogout(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:

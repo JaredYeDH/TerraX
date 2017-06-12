@@ -39,6 +39,8 @@ void protobuf_ShutdownFile_client_5fserver_2eproto();
 
 class MsgLoginResultLC;
 class MsgReqLoginCL;
+class MsgSeclectServerResultLC;
+class MsgSelectServerCL;
 class PktGameLoginReq;
 class PktRoleListAck;
 
@@ -247,6 +249,189 @@ class MsgLoginResultLC : public ::google::protobuf::Message /* @@protoc_insertio
 
   void InitAsDefaultInstance();
   static MsgLoginResultLC* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgSelectServerCL : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgSelectServerCL) */ {
+ public:
+  MsgSelectServerCL();
+  virtual ~MsgSelectServerCL();
+
+  MsgSelectServerCL(const MsgSelectServerCL& from);
+
+  inline MsgSelectServerCL& operator=(const MsgSelectServerCL& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgSelectServerCL& default_instance();
+
+  void Swap(MsgSelectServerCL* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgSelectServerCL* New() const { return New(NULL); }
+
+  MsgSelectServerCL* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgSelectServerCL& from);
+  void MergeFrom(const MsgSelectServerCL& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgSelectServerCL* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 server_id = 1;
+  void clear_server_id();
+  static const int kServerIdFieldNumber = 1;
+  ::google::protobuf::int32 server_id() const;
+  void set_server_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgSelectServerCL)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 server_id_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_client_5fserver_2eproto();
+  friend void protobuf_AssignDesc_client_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgSelectServerCL* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgSeclectServerResultLC : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgSeclectServerResultLC) */ {
+ public:
+  MsgSeclectServerResultLC();
+  virtual ~MsgSeclectServerResultLC();
+
+  MsgSeclectServerResultLC(const MsgSeclectServerResultLC& from);
+
+  inline MsgSeclectServerResultLC& operator=(const MsgSeclectServerResultLC& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgSeclectServerResultLC& default_instance();
+
+  void Swap(MsgSeclectServerResultLC* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgSeclectServerResultLC* New() const { return New(NULL); }
+
+  MsgSeclectServerResultLC* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgSeclectServerResultLC& from);
+  void MergeFrom(const MsgSeclectServerResultLC& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgSeclectServerResultLC* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // optional string gate_ip = 2;
+  void clear_gate_ip();
+  static const int kGateIpFieldNumber = 2;
+  const ::std::string& gate_ip() const;
+  void set_gate_ip(const ::std::string& value);
+  void set_gate_ip(const char* value);
+  void set_gate_ip(const char* value, size_t size);
+  ::std::string* mutable_gate_ip();
+  ::std::string* release_gate_ip();
+  void set_allocated_gate_ip(::std::string* gate_ip);
+
+  // optional int32 gate_port = 3;
+  void clear_gate_port();
+  static const int kGatePortFieldNumber = 3;
+  ::google::protobuf::int32 gate_port() const;
+  void set_gate_port(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgSeclectServerResultLC)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::internal::ArenaStringPtr gate_ip_;
+  ::google::protobuf::int32 result_;
+  ::google::protobuf::int32 gate_port_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_client_5fserver_2eproto();
+  friend void protobuf_AssignDesc_client_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgSeclectServerResultLC* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -641,6 +826,100 @@ MsgLoginResultLC::servers() const {
 
 // -------------------------------------------------------------------
 
+// MsgSelectServerCL
+
+// optional int32 server_id = 1;
+inline void MsgSelectServerCL::clear_server_id() {
+  server_id_ = 0;
+}
+inline ::google::protobuf::int32 MsgSelectServerCL::server_id() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgSelectServerCL.server_id)
+  return server_id_;
+}
+inline void MsgSelectServerCL::set_server_id(::google::protobuf::int32 value) {
+  
+  server_id_ = value;
+  // @@protoc_insertion_point(field_set:packet_cs.MsgSelectServerCL.server_id)
+}
+
+// -------------------------------------------------------------------
+
+// MsgSeclectServerResultLC
+
+// optional int32 result = 1;
+inline void MsgSeclectServerResultLC::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 MsgSeclectServerResultLC::result() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgSeclectServerResultLC.result)
+  return result_;
+}
+inline void MsgSeclectServerResultLC::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_cs.MsgSeclectServerResultLC.result)
+}
+
+// optional string gate_ip = 2;
+inline void MsgSeclectServerResultLC::clear_gate_ip() {
+  gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& MsgSeclectServerResultLC::gate_ip() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgSeclectServerResultLC.gate_ip)
+  return gate_ip_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgSeclectServerResultLC::set_gate_ip(const ::std::string& value) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_cs.MsgSeclectServerResultLC.gate_ip)
+}
+inline void MsgSeclectServerResultLC::set_gate_ip(const char* value) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgSeclectServerResultLC.gate_ip)
+}
+inline void MsgSeclectServerResultLC::set_gate_ip(const char* value, size_t size) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgSeclectServerResultLC.gate_ip)
+}
+inline ::std::string* MsgSeclectServerResultLC::mutable_gate_ip() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgSeclectServerResultLC.gate_ip)
+  return gate_ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* MsgSeclectServerResultLC::release_gate_ip() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgSeclectServerResultLC.gate_ip)
+  
+  return gate_ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void MsgSeclectServerResultLC::set_allocated_gate_ip(::std::string* gate_ip) {
+  if (gate_ip != NULL) {
+    
+  } else {
+    
+  }
+  gate_ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), gate_ip);
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgSeclectServerResultLC.gate_ip)
+}
+
+// optional int32 gate_port = 3;
+inline void MsgSeclectServerResultLC::clear_gate_port() {
+  gate_port_ = 0;
+}
+inline ::google::protobuf::int32 MsgSeclectServerResultLC::gate_port() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgSeclectServerResultLC.gate_port)
+  return gate_port_;
+}
+inline void MsgSeclectServerResultLC::set_gate_port(::google::protobuf::int32 value) {
+  
+  gate_port_ = value;
+  // @@protoc_insertion_point(field_set:packet_cs.MsgSeclectServerResultLC.gate_port)
+}
+
+// -------------------------------------------------------------------
+
 // PktGameLoginReq
 
 // optional string account_name = 1;
@@ -835,6 +1114,10 @@ PktRoleListAck::mutable_role_name_list() {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

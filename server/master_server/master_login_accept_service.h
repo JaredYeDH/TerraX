@@ -7,15 +7,15 @@
 
 namespace terra
 {
-	class MasterAcceptService : public ServerAcceptService
+	class MasterLoginAcceptService : public ServerAcceptService
 	{
-		MAKE_INSTANCE(MasterAcceptService);
-		DISABLE_COPY(MasterAcceptService);
+		MAKE_INSTANCE(MasterLoginAcceptService);
+		DISABLE_COPY(MasterLoginAcceptService);
 	protected:
 		std::queue<int> server_ids_;
 	public:
-		MasterAcceptService();
-		~MasterAcceptService() = default;
+		MasterLoginAcceptService();
+		~MasterLoginAcceptService() = default;
 		void InitAvaliableIDCount(uint32_t server_ids);
 		void OnLogout(TcpConnection* conn);
 	private:

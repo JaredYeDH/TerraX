@@ -44,3 +44,22 @@ message MsgServerListML
     repeated pb_base.ServerProfile servers = 2;
     MsgReqServerListLM post_back = 3;
 }
+
+message MsgLogin2MasterWM
+{
+    int32 server_uid = 1;
+}
+
+message MsgLogin2MasterAckMW
+{
+    int32 result = 1;
+}
+
+message MsgWorldAccountCountReqMW
+{
+}
+
+message MsgWorldAccountCountAckWM
+{
+    int32 nAccountCount = 1;
+}

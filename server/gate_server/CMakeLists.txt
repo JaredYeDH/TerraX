@@ -1,4 +1,4 @@
-aux_source_directory(./gate_server GATE_SERVER_DIR)
+aux_source_directory(./gate_server DIR_GATE_SERVER)
 
 include_directories(${LIB_DIR})
 include_directories(${THIRDPARTY_DIR})
@@ -22,7 +22,7 @@ set (LINK_LIB
 
 add_executable(gate_server 
     main.cpp
-    ${GATE_SERVER_DIR}
+    ${DIR_GATE_SERVER}
     )
 target_link_libraries(gate_server 
     ${LINK_LIB}

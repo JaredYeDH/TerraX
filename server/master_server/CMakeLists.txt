@@ -1,4 +1,4 @@
-aux_source_directory(./node_server DIR_NODE_SERVER)
+aux_source_directory(. MASTER_SERVER_DIR)
 
 include_directories(${LIB_DIR})
 include_directories(${THIRDPARTY_DIR})
@@ -20,12 +20,11 @@ set (LINK_LIB
     libprotoc.a
 )
 
-add_executable(node_server 
-    main.cpp
-    ${DIR_NODE_SERVER}
+add_executable(master_server 
+    ${MASTER_SERVER_DIR}
     )
-target_link_libraries(node_server 
+target_link_libraries(master_server 
     ${LINK_LIB}
     )
 
-set(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin/node_server")
+set(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin/master_server")

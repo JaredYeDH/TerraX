@@ -1,22 +1,22 @@
-#include "master_accept_service.h"
+#include "master_world_accept_service.h"
 #include "comm/net/packet_dispatcher.h"
 
 using namespace terra;
 using namespace packet_ss;
 
-MasterAcceptService::MasterAcceptService()
+MasterWorldAcceptService::MasterWorldAcceptService()
 {
 	REG_PACKET_HANDLER_ARG3(MsgRegisterSW, this, OnMessage_RegisterSW);
 }
 
-void MasterAcceptService::InitAvaliableIDCount(uint32_t server_ids)
+void MasterWorldAcceptService::InitAvaliableIDCount(uint32_t server_ids)
 {
 	for (std::size_t i = 1; i < server_ids; i++) {
 		server_ids_.push(i);
 	}
 }
 
-void MasterAcceptService::OnLogout(TcpConnection* conn)
+void MasterWorldAcceptService::OnLogout(TcpConnection* conn)
 {
 	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
 	assert(net_object);
@@ -24,7 +24,7 @@ void MasterAcceptService::OnLogout(TcpConnection* conn)
 	server_table_.RemoveByConn(conn);
 } 
 
-void MasterAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avatar_id, MsgRegisterSW* msg)
+void MasterWorldAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avatar_id, MsgRegisterSW* msg)
 {
 	assert(server_ids_.size() > 0);
 

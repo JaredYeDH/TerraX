@@ -125,18 +125,24 @@
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="master_accept_service.cpp" />
+    <ClCompile Include="master_login_accept_service.cpp" />
+    <ClCompile Include="master_world_accept_service.cpp" />
     <ClCompile Include="master_net_module.cpp" />
     <ClCompile Include="master_server.cpp" />
+    <ClCompile Include="world_server_manager\world_server_manager.cpp" />
+    <ClCompile Include="world_server_manager\world_server_object.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="master_accept_service.h" />
+    <ClInclude Include="master_login_accept_service.h" />
+    <ClInclude Include="master_world_accept_service.h" />
     <ClInclude Include="master_net_module.h" />
     <ClInclude Include="master_server.h" />
+    <ClInclude Include="world_server_manager\world_server_manager.h" />
+    <ClInclude Include="world_server_manager\world_server_object.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='lib|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\lib;..\..\thirdparty\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\lib;..\..\thirdparty\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

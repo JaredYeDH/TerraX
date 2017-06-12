@@ -37,6 +37,8 @@ void protobuf_AddDesc_server_5fserver_2eproto();
 void protobuf_AssignDesc_server_5fserver_2eproto();
 void protobuf_ShutdownFile_server_5fserver_2eproto();
 
+class MsgLogin2MasterAckMW;
+class MsgLogin2MasterWM;
 class MsgLogin2NodeGN;
 class MsgRegisterSW;
 class MsgRegisterWS;
@@ -44,6 +46,8 @@ class MsgReqServerListLM;
 class MsgServerInfoWS;
 class MsgServerInfoWS_ServerInfo;
 class MsgServerListML;
+class MsgWorldAccountCountAckWM;
+class MsgWorldAccountCountReqMW;
 
 // ===================================================================
 
@@ -707,6 +711,327 @@ class MsgServerListML : public ::google::protobuf::Message /* @@protoc_insertion
   void InitAsDefaultInstance();
   static MsgServerListML* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class MsgLogin2MasterWM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgLogin2MasterWM) */ {
+ public:
+  MsgLogin2MasterWM();
+  virtual ~MsgLogin2MasterWM();
+
+  MsgLogin2MasterWM(const MsgLogin2MasterWM& from);
+
+  inline MsgLogin2MasterWM& operator=(const MsgLogin2MasterWM& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgLogin2MasterWM& default_instance();
+
+  void Swap(MsgLogin2MasterWM* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgLogin2MasterWM* New() const { return New(NULL); }
+
+  MsgLogin2MasterWM* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgLogin2MasterWM& from);
+  void MergeFrom(const MsgLogin2MasterWM& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgLogin2MasterWM* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 server_uid = 1;
+  void clear_server_uid();
+  static const int kServerUidFieldNumber = 1;
+  ::google::protobuf::int32 server_uid() const;
+  void set_server_uid(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgLogin2MasterWM)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 server_uid_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgLogin2MasterWM* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgLogin2MasterAckMW : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgLogin2MasterAckMW) */ {
+ public:
+  MsgLogin2MasterAckMW();
+  virtual ~MsgLogin2MasterAckMW();
+
+  MsgLogin2MasterAckMW(const MsgLogin2MasterAckMW& from);
+
+  inline MsgLogin2MasterAckMW& operator=(const MsgLogin2MasterAckMW& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgLogin2MasterAckMW& default_instance();
+
+  void Swap(MsgLogin2MasterAckMW* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgLogin2MasterAckMW* New() const { return New(NULL); }
+
+  MsgLogin2MasterAckMW* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgLogin2MasterAckMW& from);
+  void MergeFrom(const MsgLogin2MasterAckMW& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgLogin2MasterAckMW* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgLogin2MasterAckMW)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgLogin2MasterAckMW* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgWorldAccountCountReqMW : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgWorldAccountCountReqMW) */ {
+ public:
+  MsgWorldAccountCountReqMW();
+  virtual ~MsgWorldAccountCountReqMW();
+
+  MsgWorldAccountCountReqMW(const MsgWorldAccountCountReqMW& from);
+
+  inline MsgWorldAccountCountReqMW& operator=(const MsgWorldAccountCountReqMW& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgWorldAccountCountReqMW& default_instance();
+
+  void Swap(MsgWorldAccountCountReqMW* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgWorldAccountCountReqMW* New() const { return New(NULL); }
+
+  MsgWorldAccountCountReqMW* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgWorldAccountCountReqMW& from);
+  void MergeFrom(const MsgWorldAccountCountReqMW& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgWorldAccountCountReqMW* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgWorldAccountCountReqMW)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgWorldAccountCountReqMW* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgWorldAccountCountAckWM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgWorldAccountCountAckWM) */ {
+ public:
+  MsgWorldAccountCountAckWM();
+  virtual ~MsgWorldAccountCountAckWM();
+
+  MsgWorldAccountCountAckWM(const MsgWorldAccountCountAckWM& from);
+
+  inline MsgWorldAccountCountAckWM& operator=(const MsgWorldAccountCountAckWM& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgWorldAccountCountAckWM& default_instance();
+
+  void Swap(MsgWorldAccountCountAckWM* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgWorldAccountCountAckWM* New() const { return New(NULL); }
+
+  MsgWorldAccountCountAckWM* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgWorldAccountCountAckWM& from);
+  void MergeFrom(const MsgWorldAccountCountAckWM& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgWorldAccountCountAckWM* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 nAccountCount = 1;
+  void clear_naccountcount();
+  static const int kNAccountCountFieldNumber = 1;
+  ::google::protobuf::int32 naccountcount() const;
+  void set_naccountcount(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgWorldAccountCountAckWM)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 naccountcount_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgWorldAccountCountAckWM* default_instance_;
+};
 // ===================================================================
 
 
@@ -1095,7 +1420,73 @@ inline void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerLi
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgServerListML.post_back)
 }
 
+// -------------------------------------------------------------------
+
+// MsgLogin2MasterWM
+
+// optional int32 server_uid = 1;
+inline void MsgLogin2MasterWM::clear_server_uid() {
+  server_uid_ = 0;
+}
+inline ::google::protobuf::int32 MsgLogin2MasterWM::server_uid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterWM.server_uid)
+  return server_uid_;
+}
+inline void MsgLogin2MasterWM::set_server_uid(::google::protobuf::int32 value) {
+  
+  server_uid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterWM.server_uid)
+}
+
+// -------------------------------------------------------------------
+
+// MsgLogin2MasterAckMW
+
+// optional int32 result = 1;
+inline void MsgLogin2MasterAckMW::clear_result() {
+  result_ = 0;
+}
+inline ::google::protobuf::int32 MsgLogin2MasterAckMW::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterAckMW.result)
+  return result_;
+}
+inline void MsgLogin2MasterAckMW::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterAckMW.result)
+}
+
+// -------------------------------------------------------------------
+
+// MsgWorldAccountCountReqMW
+
+// -------------------------------------------------------------------
+
+// MsgWorldAccountCountAckWM
+
+// optional int32 nAccountCount = 1;
+inline void MsgWorldAccountCountAckWM::clear_naccountcount() {
+  naccountcount_ = 0;
+}
+inline ::google::protobuf::int32 MsgWorldAccountCountAckWM::naccountcount() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldAccountCountAckWM.nAccountCount)
+  return naccountcount_;
+}
+inline void MsgWorldAccountCountAckWM::set_naccountcount(::google::protobuf::int32 value) {
+  
+  naccountcount_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldAccountCountAckWM.nAccountCount)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -1,4 +1,4 @@
-aux_source_directory(./world_server WORLD_SERVER_DIR)
+aux_source_directory(./world_server DIR_WORLD_SERVER)
 
 include_directories(${LIB_DIR})
 include_directories(${THIRDPARTY_DIR})
@@ -22,7 +22,7 @@ set (LINK_LIB
 
 add_executable(world_server 
     main.cpp
-    ${WORLD_SERVER_DIR}
+    ${DIR_WORLD_SERVER}
     )
 target_link_libraries(world_server 
     ${LINK_LIB}

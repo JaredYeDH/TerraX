@@ -39,7 +39,7 @@ void JsonStream::GetObjectValue(const char* obj_name, const char* key_name, std:
 
 //std::transform(val_name.begin(), val_name.end(), val_name.begin(), ::tolower);
 
-void JsonStream::LoadFile(const std::string& path)
+Document& JsonStream::LoadFile(const std::string& path)
 {
 	FILE* fp = fopen(path.c_str(), "r"); // "rb", 非 Windows 平台使用 "r"
 	assert(fp);
@@ -56,4 +56,5 @@ void JsonStream::LoadFile(const std::string& path)
 	fclose(fp);
 	doc_.Parse(buffer);
 	delete[] buffer;
+	return doc_;
 }

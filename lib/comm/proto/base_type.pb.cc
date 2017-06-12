@@ -37,14 +37,15 @@ void protobuf_AssignDesc_base_5ftype_2eproto() {
       "base_type.proto");
   GOOGLE_CHECK(file != NULL);
   ServerProfile_descriptor_ = file->message_type(0);
-  static const int ServerProfile_offsets_[7] = {
+  static const int ServerProfile_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, server_uid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, region_showindex_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, region_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, region_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, server_showindex_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, server_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, server_status_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, recommond_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, recommond_new_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(ServerProfile, recommond_hot_),
   };
   ServerProfile_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -90,14 +91,15 @@ void protobuf_AddDesc_base_5ftype_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\017base_type.proto\022\007pb_base\"\275\001\n\rServerPro"
+    "\n\017base_type.proto\022\007pb_base\"\335\001\n\rServerPro"
     "file\022\022\n\nserver_uid\030\001 \001(\005\022\030\n\020region_showi"
-    "ndex\030\002 \001(\005\022\016\n\006region\030\003 \001(\t\022\030\n\020server_sho"
-    "windex\030\004 \001(\005\022\023\n\013server_name\030\005 \001(\t\022,\n\rser"
-    "ver_status\030\006 \001(\0162\025.pb_base.ServerStatus\022"
-    "\021\n\trecommond\030\007 \001(\010*E\n\014ServerStatus\022\014\n\010MA"
-    "INTAIN\020\000\022\010\n\004FREE\020\001\022\010\n\004BUSY\020\002\022\t\n\005CROWD\020\003\022"
-    "\010\n\004FULL\020\004b\006proto3", 297);
+    "ndex\030\002 \001(\005\022\023\n\013region_name\030\003 \001(\t\022\030\n\020serve"
+    "r_showindex\030\004 \001(\005\022\023\n\013server_name\030\005 \001(\t\022,"
+    "\n\rserver_status\030\006 \001(\0162\025.pb_base.ServerSt"
+    "atus\022\025\n\rrecommond_new\030\007 \001(\010\022\025\n\rrecommond"
+    "_hot\030\010 \001(\010*E\n\014ServerStatus\022\014\n\010MAINTAIN\020\000"
+    "\022\010\n\004FREE\020\001\022\010\n\004BUSY\020\002\022\t\n\005CROWD\020\003\022\010\n\004FULL\020"
+    "\004b\006proto3", 329);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "base_type.proto", &protobuf_RegisterTypes);
   ServerProfile::default_instance_ = new ServerProfile();
@@ -134,11 +136,12 @@ bool ServerStatus_IsValid(int value) {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int ServerProfile::kServerUidFieldNumber;
 const int ServerProfile::kRegionShowindexFieldNumber;
-const int ServerProfile::kRegionFieldNumber;
+const int ServerProfile::kRegionNameFieldNumber;
 const int ServerProfile::kServerShowindexFieldNumber;
 const int ServerProfile::kServerNameFieldNumber;
 const int ServerProfile::kServerStatusFieldNumber;
-const int ServerProfile::kRecommondFieldNumber;
+const int ServerProfile::kRecommondNewFieldNumber;
+const int ServerProfile::kRecommondHotFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ServerProfile::ServerProfile()
@@ -165,11 +168,12 @@ void ServerProfile::SharedCtor() {
   _cached_size_ = 0;
   server_uid_ = 0;
   region_showindex_ = 0;
-  region_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  region_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_showindex_ = 0;
   server_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_status_ = 0;
-  recommond_ = false;
+  recommond_new_ = false;
+  recommond_hot_ = false;
 }
 
 ServerProfile::~ServerProfile() {
@@ -178,7 +182,7 @@ ServerProfile::~ServerProfile() {
 }
 
 void ServerProfile::SharedDtor() {
-  region_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  region_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
@@ -228,8 +232,8 @@ void ServerProfile::Clear() {
 } while (0)
 
   ZR_(server_uid_, region_showindex_);
-  ZR_(server_showindex_, recommond_);
-  region_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ZR_(server_showindex_, recommond_hot_);
+  region_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 
 #undef ZR_HELPER_
@@ -272,20 +276,20 @@ bool ServerProfile::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_region;
+        if (input->ExpectTag(26)) goto parse_region_name;
         break;
       }
 
-      // optional string region = 3;
+      // optional string region_name = 3;
       case 3: {
         if (tag == 26) {
-         parse_region:
+         parse_region_name:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_region()));
+                input, this->mutable_region_name()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->region().data(), this->region().length(),
+            this->region_name().data(), this->region_name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "pb_base.ServerProfile.region"));
+            "pb_base.ServerProfile.region_name"));
         } else {
           goto handle_unusual;
         }
@@ -337,17 +341,32 @@ bool ServerProfile::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(56)) goto parse_recommond;
+        if (input->ExpectTag(56)) goto parse_recommond_new;
         break;
       }
 
-      // optional bool recommond = 7;
+      // optional bool recommond_new = 7;
       case 7: {
         if (tag == 56) {
-         parse_recommond:
+         parse_recommond_new:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &recommond_)));
+                 input, &recommond_new_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(64)) goto parse_recommond_hot;
+        break;
+      }
+
+      // optional bool recommond_hot = 8;
+      case 8: {
+        if (tag == 64) {
+         parse_recommond_hot:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                 input, &recommond_hot_)));
 
         } else {
           goto handle_unusual;
@@ -390,14 +409,14 @@ void ServerProfile::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->region_showindex(), output);
   }
 
-  // optional string region = 3;
-  if (this->region().size() > 0) {
+  // optional string region_name = 3;
+  if (this->region_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->region().data(), this->region().length(),
+      this->region_name().data(), this->region_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "pb_base.ServerProfile.region");
+      "pb_base.ServerProfile.region_name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->region(), output);
+      3, this->region_name(), output);
   }
 
   // optional int32 server_showindex = 4;
@@ -421,9 +440,14 @@ void ServerProfile::SerializeWithCachedSizes(
       6, this->server_status(), output);
   }
 
-  // optional bool recommond = 7;
-  if (this->recommond() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->recommond(), output);
+  // optional bool recommond_new = 7;
+  if (this->recommond_new() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(7, this->recommond_new(), output);
+  }
+
+  // optional bool recommond_hot = 8;
+  if (this->recommond_hot() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteBool(8, this->recommond_hot(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:pb_base.ServerProfile)
@@ -442,15 +466,15 @@ void ServerProfile::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->region_showindex(), target);
   }
 
-  // optional string region = 3;
-  if (this->region().size() > 0) {
+  // optional string region_name = 3;
+  if (this->region_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->region().data(), this->region().length(),
+      this->region_name().data(), this->region_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "pb_base.ServerProfile.region");
+      "pb_base.ServerProfile.region_name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->region(), target);
+        3, this->region_name(), target);
   }
 
   // optional int32 server_showindex = 4;
@@ -475,9 +499,14 @@ void ServerProfile::SerializeWithCachedSizes(
       6, this->server_status(), target);
   }
 
-  // optional bool recommond = 7;
-  if (this->recommond() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(7, this->recommond(), target);
+  // optional bool recommond_new = 7;
+  if (this->recommond_new() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(7, this->recommond_new(), target);
+  }
+
+  // optional bool recommond_hot = 8;
+  if (this->recommond_hot() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(8, this->recommond_hot(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:pb_base.ServerProfile)
@@ -502,11 +531,11 @@ int ServerProfile::ByteSize() const {
         this->region_showindex());
   }
 
-  // optional string region = 3;
-  if (this->region().size() > 0) {
+  // optional string region_name = 3;
+  if (this->region_name().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->region());
+        this->region_name());
   }
 
   // optional int32 server_showindex = 4;
@@ -529,8 +558,13 @@ int ServerProfile::ByteSize() const {
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->server_status());
   }
 
-  // optional bool recommond = 7;
-  if (this->recommond() != 0) {
+  // optional bool recommond_new = 7;
+  if (this->recommond_new() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // optional bool recommond_hot = 8;
+  if (this->recommond_hot() != 0) {
     total_size += 1 + 1;
   }
 
@@ -568,9 +602,9 @@ void ServerProfile::MergeFrom(const ServerProfile& from) {
   if (from.region_showindex() != 0) {
     set_region_showindex(from.region_showindex());
   }
-  if (from.region().size() > 0) {
+  if (from.region_name().size() > 0) {
 
-    region_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.region_);
+    region_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.region_name_);
   }
   if (from.server_showindex() != 0) {
     set_server_showindex(from.server_showindex());
@@ -582,8 +616,11 @@ void ServerProfile::MergeFrom(const ServerProfile& from) {
   if (from.server_status() != 0) {
     set_server_status(from.server_status());
   }
-  if (from.recommond() != 0) {
-    set_recommond(from.recommond());
+  if (from.recommond_new() != 0) {
+    set_recommond_new(from.recommond_new());
+  }
+  if (from.recommond_hot() != 0) {
+    set_recommond_hot(from.recommond_hot());
   }
 }
 
@@ -613,11 +650,12 @@ void ServerProfile::Swap(ServerProfile* other) {
 void ServerProfile::InternalSwap(ServerProfile* other) {
   std::swap(server_uid_, other->server_uid_);
   std::swap(region_showindex_, other->region_showindex_);
-  region_.Swap(&other->region_);
+  region_name_.Swap(&other->region_name_);
   std::swap(server_showindex_, other->server_showindex_);
   server_name_.Swap(&other->server_name_);
   std::swap(server_status_, other->server_status_);
-  std::swap(recommond_, other->recommond_);
+  std::swap(recommond_new_, other->recommond_new_);
+  std::swap(recommond_hot_, other->recommond_hot_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -661,48 +699,48 @@ void ServerProfile::clear_region_showindex() {
   // @@protoc_insertion_point(field_set:pb_base.ServerProfile.region_showindex)
 }
 
-// optional string region = 3;
-void ServerProfile::clear_region() {
-  region_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional string region_name = 3;
+void ServerProfile::clear_region_name() {
+  region_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& ServerProfile::region() const {
-  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.region)
-  return region_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+ const ::std::string& ServerProfile::region_name() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.region_name)
+  return region_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ServerProfile::set_region(const ::std::string& value) {
+ void ServerProfile::set_region_name(const ::std::string& value) {
   
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.region)
+  region_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.region_name)
 }
- void ServerProfile::set_region(const char* value) {
+ void ServerProfile::set_region_name(const char* value) {
   
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:pb_base.ServerProfile.region)
+  region_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:pb_base.ServerProfile.region_name)
 }
- void ServerProfile::set_region(const char* value, size_t size) {
+ void ServerProfile::set_region_name(const char* value, size_t size) {
   
-  region_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  region_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:pb_base.ServerProfile.region)
+  // @@protoc_insertion_point(field_set_pointer:pb_base.ServerProfile.region_name)
 }
- ::std::string* ServerProfile::mutable_region() {
+ ::std::string* ServerProfile::mutable_region_name() {
   
-  // @@protoc_insertion_point(field_mutable:pb_base.ServerProfile.region)
-  return region_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:pb_base.ServerProfile.region_name)
+  return region_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* ServerProfile::release_region() {
-  // @@protoc_insertion_point(field_release:pb_base.ServerProfile.region)
+ ::std::string* ServerProfile::release_region_name() {
+  // @@protoc_insertion_point(field_release:pb_base.ServerProfile.region_name)
   
-  return region_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return region_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void ServerProfile::set_allocated_region(::std::string* region) {
-  if (region != NULL) {
+ void ServerProfile::set_allocated_region_name(::std::string* region_name) {
+  if (region_name != NULL) {
     
   } else {
     
   }
-  region_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), region);
-  // @@protoc_insertion_point(field_set_allocated:pb_base.ServerProfile.region)
+  region_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), region_name);
+  // @@protoc_insertion_point(field_set_allocated:pb_base.ServerProfile.region_name)
 }
 
 // optional int32 server_showindex = 4;
@@ -777,18 +815,32 @@ void ServerProfile::clear_server_status() {
   // @@protoc_insertion_point(field_set:pb_base.ServerProfile.server_status)
 }
 
-// optional bool recommond = 7;
-void ServerProfile::clear_recommond() {
-  recommond_ = false;
+// optional bool recommond_new = 7;
+void ServerProfile::clear_recommond_new() {
+  recommond_new_ = false;
 }
- bool ServerProfile::recommond() const {
-  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.recommond)
-  return recommond_;
+ bool ServerProfile::recommond_new() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.recommond_new)
+  return recommond_new_;
 }
- void ServerProfile::set_recommond(bool value) {
+ void ServerProfile::set_recommond_new(bool value) {
   
-  recommond_ = value;
-  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.recommond)
+  recommond_new_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.recommond_new)
+}
+
+// optional bool recommond_hot = 8;
+void ServerProfile::clear_recommond_hot() {
+  recommond_hot_ = false;
+}
+ bool ServerProfile::recommond_hot() const {
+  // @@protoc_insertion_point(field_get:pb_base.ServerProfile.recommond_hot)
+  return recommond_hot_;
+}
+ void ServerProfile::set_recommond_hot(bool value) {
+  
+  recommond_hot_ = value;
+  // @@protoc_insertion_point(field_set:pb_base.ServerProfile.recommond_hot)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

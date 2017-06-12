@@ -9,8 +9,9 @@ using namespace terra;
 using namespace packet_ss;
 
 //TODO 数据包处理必须为Instance()
-LoginNetModule::LoginNetModule() : NetBaseModule(PeerType_t::GATESERVER),
-conn_service_(ServerConnService::GetInstance())
+LoginNetModule::LoginNetModule() : NetBaseModule(PeerType_t::LOGINSERVER),
+conn_service_(ServerConnService::GetInstance()),
+accpet_service_(ServerAcceptService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
 }
@@ -46,7 +47,7 @@ void LoginNetModule::StartAcceptClient()
 {
 	accpet_service_.AcceptConnection(get_listen_port(), 1024, 
 		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnClientSocketEvent(conn, ev); },
-		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnClientMessageEvent(conn, evbuf); }););
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnClientMessageEvent(conn, evbuf); });
 }
 
 bool LoginNetModule::Init()

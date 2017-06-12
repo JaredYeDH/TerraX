@@ -2,7 +2,7 @@
 
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
-#include "master_accept_service.h"
+#include "master_world_accept_service.h"
 
 namespace terra
 {
@@ -11,7 +11,7 @@ namespace terra
 		DISABLE_COPY(MasterNetModule);
 		MAKE_INSTANCE(MasterNetModule);
 	private:
-		MasterAcceptService& master_accept_service_;
+		MasterWorldAcceptService& master_world_accept_service_;
 	public:
 		MasterNetModule();
 		~MasterNetModule() = default;

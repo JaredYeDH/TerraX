@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="master_login_accept_service.cpp" />
+    <ClCompile Include="master_world_accept_service.cpp" />
+    <ClCompile Include="master_net_module.cpp" />
+    <ClCompile Include="master_server.cpp" />
+    <ClCompile Include="world_server_manager\world_server_manager.cpp">
+      <Filter>world_server_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="world_server_manager\world_server_object.cpp">
+      <Filter>world_server_manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="master_login_accept_service.h" />
+    <ClInclude Include="master_world_accept_service.h" />
+    <ClInclude Include="master_net_module.h" />
+    <ClInclude Include="master_server.h" />
+    <ClInclude Include="world_server_manager\world_server_manager.h">
+      <Filter>world_server_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="world_server_manager\world_server_object.h">
+      <Filter>world_server_manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="world_server_manager">
+      <UniqueIdentifier>{0e05f857-9896-473b-acd5-d96d4de3e88a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="login_server_manager">
+      <UniqueIdentifier>{636c91fe-b273-4bfd-81e6-7015c034b111}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

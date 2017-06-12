@@ -14,7 +14,7 @@ namespace terra
 		JsonStream() = default;
 		~JsonStream() = default;
 
-		void LoadFile(const std::string& path);
+		Document& LoadFile(const std::string& path);
 
 		void GetValue(const char* key_name, int32_t& val);
 		void GetValue(const char* key_name, std::string& val);
