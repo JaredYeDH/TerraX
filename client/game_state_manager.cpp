@@ -53,7 +53,7 @@ void GameStateManager::OnMessage_LoginResultLC(MsgLoginResultLC* msg)
 			//save server info
 			auto& val = msg->servers(i);
 			CONSOLE_DEBUG_LOG(LEVEL_BLUE, "[%d][%s][%s][%s]",
-				val.server_uid(), val.region().c_str(), val.server_name().c_str(),
+				val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
 				kServerStatus[val.server_status()]);
 		}
 	}

@@ -23,7 +23,6 @@ void PacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Message&
     }
     PacketT<NullTag_t, MsgData> pkt;
     pkt.InitialWithMsg(msg);
-    assert(net_object->conn_);
 	conn->SendMsg(pkt.get_buffer(), pkt.get_total_len());
 }
 

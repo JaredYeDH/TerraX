@@ -3,6 +3,7 @@
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
 #include "master_world_accept_service.h"
+#include "master_login_accept_service.h"
 
 namespace terra
 {
@@ -12,6 +13,10 @@ namespace terra
 		MAKE_INSTANCE(MasterNetModule);
 	private:
 		MasterWorldAcceptService& master_world_accept_service_;
+		MasterLoginAcceptService& master_login_accept_service_;
+
+		std::string login_listen_ip_;
+		int login_listen_port_{ 0 };
 	public:
 		MasterNetModule();
 		~MasterNetModule() = default;
@@ -22,12 +27,16 @@ namespace terra
 		bool BeforeShut();
 		bool Shut();
 	private:
-		void InitmasterNetInfo();
-		void StartAccept();
+		void InitMasterNetInfo();
+		void InitLoginListenIpAndPort(const std::string& ip, int port);
+		void StartAcceptWorldServer();
+		void StartAcceptLoginServer();
 
-		void OnSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+		void OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnWorldMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);
+		void OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+
 	};
 }

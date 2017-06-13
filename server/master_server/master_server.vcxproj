@@ -129,16 +129,18 @@
     <ClCompile Include="master_world_accept_service.cpp" />
     <ClCompile Include="master_net_module.cpp" />
     <ClCompile Include="master_server.cpp" />
-    <ClCompile Include="world_server_manager\world_server_manager.cpp" />
-    <ClCompile Include="world_server_manager\world_server_object.cpp" />
+    <ClCompile Include="server_manager\login_server_object.cpp" />
+    <ClCompile Include="server_manager\server_manager.cpp" />
+    <ClCompile Include="server_manager\world_server_object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="master_login_accept_service.h" />
     <ClInclude Include="master_world_accept_service.h" />
     <ClInclude Include="master_net_module.h" />
     <ClInclude Include="master_server.h" />
-    <ClInclude Include="world_server_manager\world_server_manager.h" />
-    <ClInclude Include="world_server_manager\world_server_object.h" />
+    <ClInclude Include="server_manager\login_server_object.h" />
+    <ClInclude Include="server_manager\server_manager.h" />
+    <ClInclude Include="server_manager\world_server_object.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='lib|x64'">
     <ClCompile>

@@ -1,0 +1,24 @@
+{
+"server_profile": [
+    { 
+        "server_uid": 1 , 
+        "region_showindex": 1, 
+        "region_name": "电信一区", 
+        "server_showindex": 1, 
+        "server_name": "长生剑", 
+        "server_status": 0, 
+        "recommond_new": false, 
+        "recommond_hot": true
+        },
+    { 
+        "server_uid": 2 , 
+        "region_showindex": 2, 
+        "region_name": "网通一区", 
+        "server_showindex": 1, 
+        "server_name": "凤凰集", 
+        "server_status": 0, 
+        "recommond_new": false, 
+        "recommond_hot": true
+    }
+]
+}
