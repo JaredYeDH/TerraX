@@ -65,11 +65,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="world_server\world_accept_service.cpp" />
+    <ClCompile Include="world_server\world_conn_service.cpp" />
     <ClCompile Include="world_server\world_net_module.cpp" />
     <ClCompile Include="world_server\world_server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_server\world_accept_service.h" />
+    <ClInclude Include="world_server\world_conn_service.h" />
     <ClInclude Include="world_server\world_net_module.h" />
     <ClInclude Include="world_server\world_server.h" />
   </ItemGroup>

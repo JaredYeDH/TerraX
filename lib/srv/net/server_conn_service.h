@@ -6,6 +6,7 @@
 
 namespace terra
 {
+	//用继承实现子类instance
     class ServerConnService
     {
         MAKE_INSTANCE(ServerConnService);
