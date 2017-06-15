@@ -23,7 +23,7 @@ namespace terra
 
 		void CreateLoginServerObj(TcpConnection* conn);
 		void RemoveLoginServerObj(TcpConnection* conn);
-	private:
-		void OnMessage_Login2MasterWM(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgLogin2MasterWM* msg);
+
+		WorldServerObject* FindWorldObjectByUID(int server_uid);
 	};
 }

@@ -8,7 +8,6 @@ using namespace packet_ss;
 
 ServerManager::ServerManager()
 {
-    REG_PACKET_HANDLER_ARG3(MsgLogin2MasterWM, this, OnMessage_Login2MasterWM);
 }
 
 void ServerManager::LoadWorldConfig(const std::string& path)
@@ -43,23 +42,13 @@ void ServerManager::RemoveLoginServerObj(TcpConnection* conn)
 	login_server_map_.erase(conn->get_fd());
 }
 
-void ServerManager::OnMessage_Login2MasterWM(TcpConnection* conn, int32_t avatar_id,
-                                                  MsgLogin2MasterWM* msg)
+WorldServerObject* ServerManager::FindWorldObjectByUID(int server_uid)
 {
-    int server_uid = msg->server_uid();
-    auto iter = world_server_map_.find(server_uid);
-    assert(iter != world_server_map_.end());
-	if (iter == world_server_map_.end())
+	auto iter = world_server_map_.find(server_uid);
+	assert(iter != world_server_map_.end());
+	if (iter != world_server_map_.end())
 	{
-		MsgLogin2MasterAckMW ack;
-		ack.set_result(1);
-		PacketProcessor::GetInstance().SendPacket(conn, ack);
-		return;
+		return &(iter->second);
 	}
-    iter->second.InitTcpConnection(conn);
-	iter->second.RefreshWorldServerInfo(FREE);
-
-	MsgLogin2MasterAckMW ack;
-	ack.set_result(0);
-	PacketProcessor::GetInstance().SendPacket(conn, ack);
+	return nullptr;
 }

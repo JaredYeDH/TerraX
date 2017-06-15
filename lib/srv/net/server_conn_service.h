@@ -12,7 +12,7 @@ namespace terra
         MAKE_INSTANCE(ServerConnService);
         DISABLE_COPY(ServerConnService);
 
-    private:
+	protected:
         NetBaseModule* net_;
         ServerTable& server_table_;
         PacketProcessor& packet_processor_;

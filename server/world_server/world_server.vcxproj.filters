@@ -16,7 +16,9 @@
     <ClCompile Include="world_server\world_accept_service.cpp">
       <Filter>world_server</Filter>
     </ClCompile>
-    <ClCompile Include="world_server\world_conn_service.cpp" />
+    <ClCompile Include="world_server\world_conn_service.cpp">
+      <Filter>world_server</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_server\world_server.h">

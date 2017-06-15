@@ -36,6 +36,9 @@ namespace terra
 
 		ServerTable& get_server_table() { return server_table_; }
 		PacketProcessor& get_packet_processor() { return packet_processor_; }
+
+		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
+
 		virtual void ProcessServerMessage(TcpConnection* conn, evbuffer* evbuf);
 	protected:
 		void InitConnectInfo(const std::string& ip, int port);

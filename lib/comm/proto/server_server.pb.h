@@ -37,8 +37,6 @@ void protobuf_AddDesc_server_5fserver_2eproto();
 void protobuf_AssignDesc_server_5fserver_2eproto();
 void protobuf_ShutdownFile_server_5fserver_2eproto();
 
-class MsgLogin2MasterAckMW;
-class MsgLogin2MasterWM;
 class MsgLogin2NodeGN;
 class MsgRegisterSW;
 class MsgRegisterWS;
@@ -48,6 +46,8 @@ class MsgServerInfoWS_ServerInfo;
 class MsgServerListML;
 class MsgWorldAccountCountAckWM;
 class MsgWorldAccountCountReqMW;
+class MsgWorldRegAtMasterAckMW;
+class MsgWorldRegAtMasterWM;
 
 // ===================================================================
 
@@ -713,32 +713,32 @@ class MsgServerListML : public ::google::protobuf::Message /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
-class MsgLogin2MasterWM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgLogin2MasterWM) */ {
+class MsgWorldRegAtMasterWM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgWorldRegAtMasterWM) */ {
  public:
-  MsgLogin2MasterWM();
-  virtual ~MsgLogin2MasterWM();
+  MsgWorldRegAtMasterWM();
+  virtual ~MsgWorldRegAtMasterWM();
 
-  MsgLogin2MasterWM(const MsgLogin2MasterWM& from);
+  MsgWorldRegAtMasterWM(const MsgWorldRegAtMasterWM& from);
 
-  inline MsgLogin2MasterWM& operator=(const MsgLogin2MasterWM& from) {
+  inline MsgWorldRegAtMasterWM& operator=(const MsgWorldRegAtMasterWM& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgLogin2MasterWM& default_instance();
+  static const MsgWorldRegAtMasterWM& default_instance();
 
-  void Swap(MsgLogin2MasterWM* other);
+  void Swap(MsgWorldRegAtMasterWM* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgLogin2MasterWM* New() const { return New(NULL); }
+  inline MsgWorldRegAtMasterWM* New() const { return New(NULL); }
 
-  MsgLogin2MasterWM* New(::google::protobuf::Arena* arena) const;
+  MsgWorldRegAtMasterWM* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgLogin2MasterWM& from);
-  void MergeFrom(const MsgLogin2MasterWM& from);
+  void CopyFrom(const MsgWorldRegAtMasterWM& from);
+  void MergeFrom(const MsgWorldRegAtMasterWM& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -757,7 +757,7 @@ class MsgLogin2MasterWM : public ::google::protobuf::Message /* @@protoc_inserti
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgLogin2MasterWM* other);
+  void InternalSwap(MsgWorldRegAtMasterWM* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -779,7 +779,7 @@ class MsgLogin2MasterWM : public ::google::protobuf::Message /* @@protoc_inserti
   ::google::protobuf::int32 server_uid() const;
   void set_server_uid(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgWorldRegAtMasterWM)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -791,36 +791,36 @@ class MsgLogin2MasterWM : public ::google::protobuf::Message /* @@protoc_inserti
   friend void protobuf_ShutdownFile_server_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgLogin2MasterWM* default_instance_;
+  static MsgWorldRegAtMasterWM* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class MsgLogin2MasterAckMW : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgLogin2MasterAckMW) */ {
+class MsgWorldRegAtMasterAckMW : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgWorldRegAtMasterAckMW) */ {
  public:
-  MsgLogin2MasterAckMW();
-  virtual ~MsgLogin2MasterAckMW();
+  MsgWorldRegAtMasterAckMW();
+  virtual ~MsgWorldRegAtMasterAckMW();
 
-  MsgLogin2MasterAckMW(const MsgLogin2MasterAckMW& from);
+  MsgWorldRegAtMasterAckMW(const MsgWorldRegAtMasterAckMW& from);
 
-  inline MsgLogin2MasterAckMW& operator=(const MsgLogin2MasterAckMW& from) {
+  inline MsgWorldRegAtMasterAckMW& operator=(const MsgWorldRegAtMasterAckMW& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgLogin2MasterAckMW& default_instance();
+  static const MsgWorldRegAtMasterAckMW& default_instance();
 
-  void Swap(MsgLogin2MasterAckMW* other);
+  void Swap(MsgWorldRegAtMasterAckMW* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgLogin2MasterAckMW* New() const { return New(NULL); }
+  inline MsgWorldRegAtMasterAckMW* New() const { return New(NULL); }
 
-  MsgLogin2MasterAckMW* New(::google::protobuf::Arena* arena) const;
+  MsgWorldRegAtMasterAckMW* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgLogin2MasterAckMW& from);
-  void MergeFrom(const MsgLogin2MasterAckMW& from);
+  void CopyFrom(const MsgWorldRegAtMasterAckMW& from);
+  void MergeFrom(const MsgWorldRegAtMasterAckMW& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -839,7 +839,7 @@ class MsgLogin2MasterAckMW : public ::google::protobuf::Message /* @@protoc_inse
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgLogin2MasterAckMW* other);
+  void InternalSwap(MsgWorldRegAtMasterAckMW* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -861,7 +861,7 @@ class MsgLogin2MasterAckMW : public ::google::protobuf::Message /* @@protoc_inse
   ::google::protobuf::int32 result() const;
   void set_result(::google::protobuf::int32 value);
 
-  // @@protoc_insertion_point(class_scope:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgWorldRegAtMasterAckMW)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -873,7 +873,7 @@ class MsgLogin2MasterAckMW : public ::google::protobuf::Message /* @@protoc_inse
   friend void protobuf_ShutdownFile_server_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgLogin2MasterAckMW* default_instance_;
+  static MsgWorldRegAtMasterAckMW* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1422,38 +1422,38 @@ inline void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerLi
 
 // -------------------------------------------------------------------
 
-// MsgLogin2MasterWM
+// MsgWorldRegAtMasterWM
 
 // optional int32 server_uid = 1;
-inline void MsgLogin2MasterWM::clear_server_uid() {
+inline void MsgWorldRegAtMasterWM::clear_server_uid() {
   server_uid_ = 0;
 }
-inline ::google::protobuf::int32 MsgLogin2MasterWM::server_uid() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterWM.server_uid)
+inline ::google::protobuf::int32 MsgWorldRegAtMasterWM::server_uid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldRegAtMasterWM.server_uid)
   return server_uid_;
 }
-inline void MsgLogin2MasterWM::set_server_uid(::google::protobuf::int32 value) {
+inline void MsgWorldRegAtMasterWM::set_server_uid(::google::protobuf::int32 value) {
   
   server_uid_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterWM.server_uid)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldRegAtMasterWM.server_uid)
 }
 
 // -------------------------------------------------------------------
 
-// MsgLogin2MasterAckMW
+// MsgWorldRegAtMasterAckMW
 
 // optional int32 result = 1;
-inline void MsgLogin2MasterAckMW::clear_result() {
+inline void MsgWorldRegAtMasterAckMW::clear_result() {
   result_ = 0;
 }
-inline ::google::protobuf::int32 MsgLogin2MasterAckMW::result() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterAckMW.result)
+inline ::google::protobuf::int32 MsgWorldRegAtMasterAckMW::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldRegAtMasterAckMW.result)
   return result_;
 }
-inline void MsgLogin2MasterAckMW::set_result(::google::protobuf::int32 value) {
+inline void MsgWorldRegAtMasterAckMW::set_result(::google::protobuf::int32 value) {
   
   result_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterAckMW.result)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldRegAtMasterAckMW.result)
 }
 
 // -------------------------------------------------------------------

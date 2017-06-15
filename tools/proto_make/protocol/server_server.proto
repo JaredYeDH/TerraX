@@ -45,12 +45,12 @@ message MsgServerListML
     MsgReqServerListLM post_back = 3;
 }
 
-message MsgLogin2MasterWM
+message MsgWorldRegAtMasterWM
 {
     int32 server_uid = 1;
 }
 
-message MsgLogin2MasterAckMW
+message MsgWorldRegAtMasterAckMW
 {
     int32 result = 1;
 }

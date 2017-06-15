@@ -3,6 +3,7 @@
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
 #include "world_accept_service.h"
+#include "world_conn_service.h"
 
 namespace terra
 {
@@ -11,6 +12,7 @@ namespace terra
 		DISABLE_COPY(WorldNetModule);
 		MAKE_INSTANCE(WorldNetModule);
 	private:
+		WorldConnService& world_conn_service_;
 		WorldAcceptService& world_accept_service_;
 	public:
 		WorldNetModule();
@@ -23,10 +25,14 @@ namespace terra
 		bool Shut();
 	private:
 		void InitWorldNetInfo();
+		void StartConnectMaster();
 		void StartAccept();
 
-		void OnSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-		void OnMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+		void OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+
+		void OnMasterSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnMasterMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);
 	};

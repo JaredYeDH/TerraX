@@ -27,3 +27,8 @@ void NetBaseModule::InitListenInfo(const std::string& ip, int port)
 	listen_ip_ = ip;
 	listen_port_ = port;
 }
+
+void NetBaseModule::SendPacket(TcpConnection* conn, google::protobuf::Message& msg)
+{
+	packet_processor_.SendPacket(conn, msg);
+}

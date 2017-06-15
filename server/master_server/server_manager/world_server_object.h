@@ -27,6 +27,7 @@ namespace terra
 		void RefreshWorldServerInfo(ServerStatus status) 
 		{ 
 			status_ = status;
+			CONSOLE_DEBUG_LOG(LEVEL_INFO, "server status: %d", status);
 		}
 
         int get_server_uid() { return server_uid_; }

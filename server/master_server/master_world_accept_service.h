@@ -16,5 +16,6 @@ namespace terra
 		MasterWorldAcceptService();
 		~MasterWorldAcceptService() = default;
 	private:
+		void OnMessage_WorldRegAtMasterWM(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgWorldRegAtMasterWM* msg);
 	};
 }

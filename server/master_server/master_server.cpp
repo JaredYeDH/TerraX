@@ -2,10 +2,12 @@
 #include <chrono>
 #include <thread>
 #include "master_net_module.h"
+#include "server_manager/server_manager.h"
 using namespace terra;
 
 bool MasterServer::Init()
 {
+	ServerManager::GetInstance().LoadWorldConfig("game_server_profile.json");
 	MasterNetModule::GetInstance().Init();
 	return true;
 }

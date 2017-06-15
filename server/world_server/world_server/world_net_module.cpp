@@ -6,8 +6,11 @@ using namespace terra;
 using namespace packet_ss;
 
 WorldNetModule::WorldNetModule()
-    : NetBaseModule(PeerType_t::WORLDSERVER), world_accept_service_(WorldAcceptService::GetInstance())
+    : NetBaseModule(PeerType_t::WORLDSERVER), 
+	world_conn_service_(WorldConnService::GetInstance()),
+	world_accept_service_(WorldAcceptService::GetInstance())
 {
+	world_conn_service_.InitNetModule(this);
     world_accept_service_.InitNetModule(this);
     server_table_.SetAddNetObjectEventCB(
         [this](const std::vector<NetObject>& objs, const NetObject& net_obj) {
@@ -17,7 +20,16 @@ WorldNetModule::WorldNetModule()
 
 void WorldNetModule::InitWorldNetInfo()
 {
-    ServerConfig::GetInstance().LoadConfigFromJson("world_server.json");
+	ServerConfig::GetInstance().LoadConfigFromJson("world_server.json");
+
+	int server_uid;
+	std::string conn_ip;
+	int conn_port;
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "server_uid", server_uid);
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", conn_ip);
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "port", conn_port);
+	InitConnectInfo(conn_ip, conn_port);
+
     std::string ip;
     int port;
     ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", ip);
@@ -25,19 +37,29 @@ void WorldNetModule::InitWorldNetInfo()
     InitListenInfo(ip, port);
 }
 
+void WorldNetModule::StartConnectMaster()
+{
+	TcpConnection* conn = world_conn_service_.NewConnect(
+		conn_ip_.c_str(), conn_port_,
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnMasterSocketEvent(conn, ev); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMasterMessageEvent(conn, evbuf); });
+	//server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(), conn_port_, conn);
+}
+
 void WorldNetModule::StartAccept()
 {
     world_accept_service_.InitAvaliableIDCount(64);
     world_accept_service_.AcceptConnection(
         get_listen_port(), 64,
-        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnSocketEvent(conn, ev); },
-        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnMessageEvent(conn, evbuf); });
+        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
+        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 }
 
 bool WorldNetModule::Init()
 {
     CONSOLE_DEBUG_LOG(LEVEL_INFO, "World Server Start...");
     InitWorldNetInfo();
+	StartConnectMaster();
     StartAccept();
     return true;
 }
@@ -50,7 +72,7 @@ bool WorldNetModule::Tick()
 bool WorldNetModule::BeforeShut() { return true; }
 bool WorldNetModule::Shut() { return true; }
 
-void WorldNetModule::OnSocketEvent(TcpConnection* conn, SocketEvent_t ev)
+void WorldNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {
         case SocketEvent_t::CONNECTED: {
@@ -64,9 +86,30 @@ void WorldNetModule::OnSocketEvent(TcpConnection* conn, SocketEvent_t ev)
             break;
     }
 }
-void WorldNetModule::OnMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+void WorldNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
+}
+
+void WorldNetModule::OnMasterSocketEvent(TcpConnection* conn, SocketEvent_t ev)
+{
+	switch (ev) {
+	case SocketEvent_t::CONNECTED: {
+		world_conn_service_.Login2Master(conn, 1); //temp
+	} break;
+	case SocketEvent_t::CONNECT_ERROR:
+	case SocketEvent_t::DISCONNECTED: {
+		world_conn_service_.DestroyConnection(conn);
+		//server_table_.PrintServerTable();
+	} break;
+	default:
+		break;
+	}
+}
+
+void WorldNetModule::OnMasterMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+{
+	ProcessServerMessage(conn, evbuf);
 }
 
 void WorldNetModule::OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj)

@@ -42,12 +42,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgServerListML_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgServerListML_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgLogin2MasterWM_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* MsgWorldRegAtMasterWM_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgLogin2MasterWM_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgLogin2MasterAckMW_descriptor_ = NULL;
+  MsgWorldRegAtMasterWM_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgWorldRegAtMasterAckMW_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgLogin2MasterAckMW_reflection_ = NULL;
+  MsgWorldRegAtMasterAckMW_reflection_ = NULL;
 const ::google::protobuf::Descriptor* MsgWorldAccountCountReqMW_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgWorldAccountCountReqMW_reflection_ = NULL;
@@ -178,36 +178,36 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgServerListML),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _is_default_instance_));
-  MsgLogin2MasterWM_descriptor_ = file->message_type(6);
-  static const int MsgLogin2MasterWM_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterWM, server_uid_),
+  MsgWorldRegAtMasterWM_descriptor_ = file->message_type(6);
+  static const int MsgWorldRegAtMasterWM_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, server_uid_),
   };
-  MsgLogin2MasterWM_reflection_ =
+  MsgWorldRegAtMasterWM_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgLogin2MasterWM_descriptor_,
-      MsgLogin2MasterWM::default_instance_,
-      MsgLogin2MasterWM_offsets_,
+      MsgWorldRegAtMasterWM_descriptor_,
+      MsgWorldRegAtMasterWM::default_instance_,
+      MsgWorldRegAtMasterWM_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgLogin2MasterWM),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterWM, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterWM, _is_default_instance_));
-  MsgLogin2MasterAckMW_descriptor_ = file->message_type(7);
-  static const int MsgLogin2MasterAckMW_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterAckMW, result_),
+      sizeof(MsgWorldRegAtMasterWM),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, _is_default_instance_));
+  MsgWorldRegAtMasterAckMW_descriptor_ = file->message_type(7);
+  static const int MsgWorldRegAtMasterAckMW_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, result_),
   };
-  MsgLogin2MasterAckMW_reflection_ =
+  MsgWorldRegAtMasterAckMW_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgLogin2MasterAckMW_descriptor_,
-      MsgLogin2MasterAckMW::default_instance_,
-      MsgLogin2MasterAckMW_offsets_,
+      MsgWorldRegAtMasterAckMW_descriptor_,
+      MsgWorldRegAtMasterAckMW::default_instance_,
+      MsgWorldRegAtMasterAckMW_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgLogin2MasterAckMW),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterAckMW, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLogin2MasterAckMW, _is_default_instance_));
+      sizeof(MsgWorldRegAtMasterAckMW),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _is_default_instance_));
   MsgWorldAccountCountReqMW_descriptor_ = file->message_type(8);
   static const int MsgWorldAccountCountReqMW_offsets_[1] = {
   };
@@ -265,9 +265,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgServerListML_descriptor_, &MsgServerListML::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgLogin2MasterWM_descriptor_, &MsgLogin2MasterWM::default_instance());
+      MsgWorldRegAtMasterWM_descriptor_, &MsgWorldRegAtMasterWM::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgLogin2MasterAckMW_descriptor_, &MsgLogin2MasterAckMW::default_instance());
+      MsgWorldRegAtMasterAckMW_descriptor_, &MsgWorldRegAtMasterAckMW::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgWorldAccountCountReqMW_descriptor_, &MsgWorldAccountCountReqMW::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -291,10 +291,10 @@ void protobuf_ShutdownFile_server_5fserver_2eproto() {
   delete MsgReqServerListLM_reflection_;
   delete MsgServerListML::default_instance_;
   delete MsgServerListML_reflection_;
-  delete MsgLogin2MasterWM::default_instance_;
-  delete MsgLogin2MasterWM_reflection_;
-  delete MsgLogin2MasterAckMW::default_instance_;
-  delete MsgLogin2MasterAckMW_reflection_;
+  delete MsgWorldRegAtMasterWM::default_instance_;
+  delete MsgWorldRegAtMasterWM_reflection_;
+  delete MsgWorldRegAtMasterAckMW::default_instance_;
+  delete MsgWorldRegAtMasterAckMW_reflection_;
   delete MsgWorldAccountCountReqMW::default_instance_;
   delete MsgWorldAccountCountReqMW_reflection_;
   delete MsgWorldAccountCountAckWM::default_instance_;
@@ -324,11 +324,11 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "gServerListML\022\016\n\006result\030\001 \001(\005\022\'\n\007servers"
     "\030\002 \003(\0132\026.pb_base.ServerProfile\0220\n\tpost_b"
     "ack\030\003 \001(\0132\035.packet_ss.MsgReqServerListLM"
-    "\"\'\n\021MsgLogin2MasterWM\022\022\n\nserver_uid\030\001 \001("
-    "\005\"&\n\024MsgLogin2MasterAckMW\022\016\n\006result\030\001 \001("
-    "\005\"\033\n\031MsgWorldAccountCountReqMW\"2\n\031MsgWor"
-    "ldAccountCountAckWM\022\025\n\rnAccountCount\030\001 \001"
-    "(\005b\006proto3", 730);
+    "\"+\n\025MsgWorldRegAtMasterWM\022\022\n\nserver_uid\030"
+    "\001 \001(\005\"*\n\030MsgWorldRegAtMasterAckMW\022\016\n\006res"
+    "ult\030\001 \001(\005\"\033\n\031MsgWorldAccountCountReqMW\"2"
+    "\n\031MsgWorldAccountCountAckWM\022\025\n\rnAccountC"
+    "ount\030\001 \001(\005b\006proto3", 738);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -338,8 +338,8 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgLogin2NodeGN::default_instance_ = new MsgLogin2NodeGN();
   MsgReqServerListLM::default_instance_ = new MsgReqServerListLM();
   MsgServerListML::default_instance_ = new MsgServerListML();
-  MsgLogin2MasterWM::default_instance_ = new MsgLogin2MasterWM();
-  MsgLogin2MasterAckMW::default_instance_ = new MsgLogin2MasterAckMW();
+  MsgWorldRegAtMasterWM::default_instance_ = new MsgWorldRegAtMasterWM();
+  MsgWorldRegAtMasterAckMW::default_instance_ = new MsgWorldRegAtMasterAckMW();
   MsgWorldAccountCountReqMW::default_instance_ = new MsgWorldAccountCountReqMW();
   MsgWorldAccountCountAckWM::default_instance_ = new MsgWorldAccountCountAckWM();
   MsgRegisterSW::default_instance_->InitAsDefaultInstance();
@@ -349,8 +349,8 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgLogin2NodeGN::default_instance_->InitAsDefaultInstance();
   MsgReqServerListLM::default_instance_->InitAsDefaultInstance();
   MsgServerListML::default_instance_->InitAsDefaultInstance();
-  MsgLogin2MasterWM::default_instance_->InitAsDefaultInstance();
-  MsgLogin2MasterAckMW::default_instance_->InitAsDefaultInstance();
+  MsgWorldRegAtMasterWM::default_instance_->InitAsDefaultInstance();
+  MsgWorldRegAtMasterAckMW::default_instance_->InitAsDefaultInstance();
   MsgWorldAccountCountReqMW::default_instance_->InitAsDefaultInstance();
   MsgWorldAccountCountAckWM::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_server_5fserver_2eproto);
@@ -2717,78 +2717,78 @@ void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerListLM* p
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgLogin2MasterWM::kServerUidFieldNumber;
+const int MsgWorldRegAtMasterWM::kServerUidFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgLogin2MasterWM::MsgLogin2MasterWM()
+MsgWorldRegAtMasterWM::MsgWorldRegAtMasterWM()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(constructor:packet_ss.MsgWorldRegAtMasterWM)
 }
 
-void MsgLogin2MasterWM::InitAsDefaultInstance() {
+void MsgWorldRegAtMasterWM::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-MsgLogin2MasterWM::MsgLogin2MasterWM(const MsgLogin2MasterWM& from)
+MsgWorldRegAtMasterWM::MsgWorldRegAtMasterWM(const MsgWorldRegAtMasterWM& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgWorldRegAtMasterWM)
 }
 
-void MsgLogin2MasterWM::SharedCtor() {
+void MsgWorldRegAtMasterWM::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
   server_uid_ = 0;
 }
 
-MsgLogin2MasterWM::~MsgLogin2MasterWM() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgLogin2MasterWM)
+MsgWorldRegAtMasterWM::~MsgWorldRegAtMasterWM() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgWorldRegAtMasterWM)
   SharedDtor();
 }
 
-void MsgLogin2MasterWM::SharedDtor() {
+void MsgWorldRegAtMasterWM::SharedDtor() {
   if (this != default_instance_) {
   }
 }
 
-void MsgLogin2MasterWM::SetCachedSize(int size) const {
+void MsgWorldRegAtMasterWM::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgLogin2MasterWM::descriptor() {
+const ::google::protobuf::Descriptor* MsgWorldRegAtMasterWM::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgLogin2MasterWM_descriptor_;
+  return MsgWorldRegAtMasterWM_descriptor_;
 }
 
-const MsgLogin2MasterWM& MsgLogin2MasterWM::default_instance() {
+const MsgWorldRegAtMasterWM& MsgWorldRegAtMasterWM::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgLogin2MasterWM* MsgLogin2MasterWM::default_instance_ = NULL;
+MsgWorldRegAtMasterWM* MsgWorldRegAtMasterWM::default_instance_ = NULL;
 
-MsgLogin2MasterWM* MsgLogin2MasterWM::New(::google::protobuf::Arena* arena) const {
-  MsgLogin2MasterWM* n = new MsgLogin2MasterWM;
+MsgWorldRegAtMasterWM* MsgWorldRegAtMasterWM::New(::google::protobuf::Arena* arena) const {
+  MsgWorldRegAtMasterWM* n = new MsgWorldRegAtMasterWM;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgLogin2MasterWM::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgLogin2MasterWM)
+void MsgWorldRegAtMasterWM::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgWorldRegAtMasterWM)
   server_uid_ = 0;
 }
 
-bool MsgLogin2MasterWM::MergePartialFromCodedStream(
+bool MsgWorldRegAtMasterWM::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgWorldRegAtMasterWM)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -2821,39 +2821,39 @@ bool MsgLogin2MasterWM::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgWorldRegAtMasterWM)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgWorldRegAtMasterWM)
   return false;
 #undef DO_
 }
 
-void MsgLogin2MasterWM::SerializeWithCachedSizes(
+void MsgWorldRegAtMasterWM::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgWorldRegAtMasterWM)
   // optional int32 server_uid = 1;
   if (this->server_uid() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->server_uid(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgWorldRegAtMasterWM)
 }
 
-::google::protobuf::uint8* MsgLogin2MasterWM::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgWorldRegAtMasterWM::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgWorldRegAtMasterWM)
   // optional int32 server_uid = 1;
   if (this->server_uid() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->server_uid(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgWorldRegAtMasterWM)
   return target;
 }
 
-int MsgLogin2MasterWM::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgLogin2MasterWM)
+int MsgWorldRegAtMasterWM::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgWorldRegAtMasterWM)
   int total_size = 0;
 
   // optional int32 server_uid = 1;
@@ -2869,25 +2869,25 @@ int MsgLogin2MasterWM::ByteSize() const {
   return total_size;
 }
 
-void MsgLogin2MasterWM::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgLogin2MasterWM)
+void MsgWorldRegAtMasterWM::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgWorldRegAtMasterWM)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgLogin2MasterWM* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgLogin2MasterWM>(
+  const MsgWorldRegAtMasterWM* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgWorldRegAtMasterWM>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgWorldRegAtMasterWM)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgLogin2MasterWM)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgWorldRegAtMasterWM)
     MergeFrom(*source);
   }
 }
 
-void MsgLogin2MasterWM::MergeFrom(const MsgLogin2MasterWM& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgLogin2MasterWM)
+void MsgWorldRegAtMasterWM::MergeFrom(const MsgWorldRegAtMasterWM& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgWorldRegAtMasterWM)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
@@ -2896,58 +2896,58 @@ void MsgLogin2MasterWM::MergeFrom(const MsgLogin2MasterWM& from) {
   }
 }
 
-void MsgLogin2MasterWM::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgLogin2MasterWM)
+void MsgWorldRegAtMasterWM::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgWorldRegAtMasterWM)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgLogin2MasterWM::CopyFrom(const MsgLogin2MasterWM& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgLogin2MasterWM)
+void MsgWorldRegAtMasterWM::CopyFrom(const MsgWorldRegAtMasterWM& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgWorldRegAtMasterWM)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgLogin2MasterWM::IsInitialized() const {
+bool MsgWorldRegAtMasterWM::IsInitialized() const {
 
   return true;
 }
 
-void MsgLogin2MasterWM::Swap(MsgLogin2MasterWM* other) {
+void MsgWorldRegAtMasterWM::Swap(MsgWorldRegAtMasterWM* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgLogin2MasterWM::InternalSwap(MsgLogin2MasterWM* other) {
+void MsgWorldRegAtMasterWM::InternalSwap(MsgWorldRegAtMasterWM* other) {
   std::swap(server_uid_, other->server_uid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgLogin2MasterWM::GetMetadata() const {
+::google::protobuf::Metadata MsgWorldRegAtMasterWM::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgLogin2MasterWM_descriptor_;
-  metadata.reflection = MsgLogin2MasterWM_reflection_;
+  metadata.descriptor = MsgWorldRegAtMasterWM_descriptor_;
+  metadata.reflection = MsgWorldRegAtMasterWM_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgLogin2MasterWM
+// MsgWorldRegAtMasterWM
 
 // optional int32 server_uid = 1;
-void MsgLogin2MasterWM::clear_server_uid() {
+void MsgWorldRegAtMasterWM::clear_server_uid() {
   server_uid_ = 0;
 }
- ::google::protobuf::int32 MsgLogin2MasterWM::server_uid() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterWM.server_uid)
+ ::google::protobuf::int32 MsgWorldRegAtMasterWM::server_uid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldRegAtMasterWM.server_uid)
   return server_uid_;
 }
- void MsgLogin2MasterWM::set_server_uid(::google::protobuf::int32 value) {
+ void MsgWorldRegAtMasterWM::set_server_uid(::google::protobuf::int32 value) {
   
   server_uid_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterWM.server_uid)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldRegAtMasterWM.server_uid)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
@@ -2955,78 +2955,78 @@ void MsgLogin2MasterWM::clear_server_uid() {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgLogin2MasterAckMW::kResultFieldNumber;
+const int MsgWorldRegAtMasterAckMW::kResultFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgLogin2MasterAckMW::MsgLogin2MasterAckMW()
+MsgWorldRegAtMasterAckMW::MsgWorldRegAtMasterAckMW()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(constructor:packet_ss.MsgWorldRegAtMasterAckMW)
 }
 
-void MsgLogin2MasterAckMW::InitAsDefaultInstance() {
+void MsgWorldRegAtMasterAckMW::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-MsgLogin2MasterAckMW::MsgLogin2MasterAckMW(const MsgLogin2MasterAckMW& from)
+MsgWorldRegAtMasterAckMW::MsgWorldRegAtMasterAckMW(const MsgWorldRegAtMasterAckMW& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgWorldRegAtMasterAckMW)
 }
 
-void MsgLogin2MasterAckMW::SharedCtor() {
+void MsgWorldRegAtMasterAckMW::SharedCtor() {
     _is_default_instance_ = false;
   _cached_size_ = 0;
   result_ = 0;
 }
 
-MsgLogin2MasterAckMW::~MsgLogin2MasterAckMW() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgLogin2MasterAckMW)
+MsgWorldRegAtMasterAckMW::~MsgWorldRegAtMasterAckMW() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgWorldRegAtMasterAckMW)
   SharedDtor();
 }
 
-void MsgLogin2MasterAckMW::SharedDtor() {
+void MsgWorldRegAtMasterAckMW::SharedDtor() {
   if (this != default_instance_) {
   }
 }
 
-void MsgLogin2MasterAckMW::SetCachedSize(int size) const {
+void MsgWorldRegAtMasterAckMW::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgLogin2MasterAckMW::descriptor() {
+const ::google::protobuf::Descriptor* MsgWorldRegAtMasterAckMW::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgLogin2MasterAckMW_descriptor_;
+  return MsgWorldRegAtMasterAckMW_descriptor_;
 }
 
-const MsgLogin2MasterAckMW& MsgLogin2MasterAckMW::default_instance() {
+const MsgWorldRegAtMasterAckMW& MsgWorldRegAtMasterAckMW::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgLogin2MasterAckMW* MsgLogin2MasterAckMW::default_instance_ = NULL;
+MsgWorldRegAtMasterAckMW* MsgWorldRegAtMasterAckMW::default_instance_ = NULL;
 
-MsgLogin2MasterAckMW* MsgLogin2MasterAckMW::New(::google::protobuf::Arena* arena) const {
-  MsgLogin2MasterAckMW* n = new MsgLogin2MasterAckMW;
+MsgWorldRegAtMasterAckMW* MsgWorldRegAtMasterAckMW::New(::google::protobuf::Arena* arena) const {
+  MsgWorldRegAtMasterAckMW* n = new MsgWorldRegAtMasterAckMW;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgLogin2MasterAckMW::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgLogin2MasterAckMW)
+void MsgWorldRegAtMasterAckMW::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgWorldRegAtMasterAckMW)
   result_ = 0;
 }
 
-bool MsgLogin2MasterAckMW::MergePartialFromCodedStream(
+bool MsgWorldRegAtMasterAckMW::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgWorldRegAtMasterAckMW)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -3059,39 +3059,39 @@ bool MsgLogin2MasterAckMW::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgWorldRegAtMasterAckMW)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgWorldRegAtMasterAckMW)
   return false;
 #undef DO_
 }
 
-void MsgLogin2MasterAckMW::SerializeWithCachedSizes(
+void MsgWorldRegAtMasterAckMW::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgWorldRegAtMasterAckMW)
   // optional int32 result = 1;
   if (this->result() != 0) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgWorldRegAtMasterAckMW)
 }
 
-::google::protobuf::uint8* MsgLogin2MasterAckMW::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgWorldRegAtMasterAckMW::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgWorldRegAtMasterAckMW)
   // optional int32 result = 1;
   if (this->result() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgWorldRegAtMasterAckMW)
   return target;
 }
 
-int MsgLogin2MasterAckMW::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgLogin2MasterAckMW)
+int MsgWorldRegAtMasterAckMW::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgWorldRegAtMasterAckMW)
   int total_size = 0;
 
   // optional int32 result = 1;
@@ -3107,25 +3107,25 @@ int MsgLogin2MasterAckMW::ByteSize() const {
   return total_size;
 }
 
-void MsgLogin2MasterAckMW::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgLogin2MasterAckMW)
+void MsgWorldRegAtMasterAckMW::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgWorldRegAtMasterAckMW)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgLogin2MasterAckMW* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgLogin2MasterAckMW>(
+  const MsgWorldRegAtMasterAckMW* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgWorldRegAtMasterAckMW>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgWorldRegAtMasterAckMW)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgLogin2MasterAckMW)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgWorldRegAtMasterAckMW)
     MergeFrom(*source);
   }
 }
 
-void MsgLogin2MasterAckMW::MergeFrom(const MsgLogin2MasterAckMW& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgLogin2MasterAckMW)
+void MsgWorldRegAtMasterAckMW::MergeFrom(const MsgWorldRegAtMasterAckMW& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgWorldRegAtMasterAckMW)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
@@ -3134,58 +3134,58 @@ void MsgLogin2MasterAckMW::MergeFrom(const MsgLogin2MasterAckMW& from) {
   }
 }
 
-void MsgLogin2MasterAckMW::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgLogin2MasterAckMW)
+void MsgWorldRegAtMasterAckMW::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgWorldRegAtMasterAckMW)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgLogin2MasterAckMW::CopyFrom(const MsgLogin2MasterAckMW& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgLogin2MasterAckMW)
+void MsgWorldRegAtMasterAckMW::CopyFrom(const MsgWorldRegAtMasterAckMW& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgWorldRegAtMasterAckMW)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgLogin2MasterAckMW::IsInitialized() const {
+bool MsgWorldRegAtMasterAckMW::IsInitialized() const {
 
   return true;
 }
 
-void MsgLogin2MasterAckMW::Swap(MsgLogin2MasterAckMW* other) {
+void MsgWorldRegAtMasterAckMW::Swap(MsgWorldRegAtMasterAckMW* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgLogin2MasterAckMW::InternalSwap(MsgLogin2MasterAckMW* other) {
+void MsgWorldRegAtMasterAckMW::InternalSwap(MsgWorldRegAtMasterAckMW* other) {
   std::swap(result_, other->result_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgLogin2MasterAckMW::GetMetadata() const {
+::google::protobuf::Metadata MsgWorldRegAtMasterAckMW::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgLogin2MasterAckMW_descriptor_;
-  metadata.reflection = MsgLogin2MasterAckMW_reflection_;
+  metadata.descriptor = MsgWorldRegAtMasterAckMW_descriptor_;
+  metadata.reflection = MsgWorldRegAtMasterAckMW_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgLogin2MasterAckMW
+// MsgWorldRegAtMasterAckMW
 
 // optional int32 result = 1;
-void MsgLogin2MasterAckMW::clear_result() {
+void MsgWorldRegAtMasterAckMW::clear_result() {
   result_ = 0;
 }
- ::google::protobuf::int32 MsgLogin2MasterAckMW::result() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgLogin2MasterAckMW.result)
+ ::google::protobuf::int32 MsgWorldRegAtMasterAckMW::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldRegAtMasterAckMW.result)
   return result_;
 }
- void MsgLogin2MasterAckMW::set_result(::google::protobuf::int32 value) {
+ void MsgWorldRegAtMasterAckMW::set_result(::google::protobuf::int32 value) {
   
   result_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgLogin2MasterAckMW.result)
+  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldRegAtMasterAckMW.result)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
