@@ -15,9 +15,18 @@ namespace terra
 	private:
 		NodeConnService& conn_service_;
 		NodeAcceptService& accept_service_;
+		std::string world_conn_ip_;
+		int world_conn_port_{ 0 };
+		std::string gate_listen_ip_;
+		int gate_listen_port_{ 0 };
 	public:
 		NodeNetModule();
 		~NodeNetModule() = default;
+
+		const char* get_world_conn_ip() const { return world_conn_ip_.c_str(); }
+		int get_world_conn_port()  const { return world_conn_port_; }
+		const char* get_gate_listen_ip() const { return gate_listen_ip_.c_str(); }
+		int get_gate_listen_port()  const { return gate_listen_port_; }
 
 		bool Init();
 		bool AfterInit();

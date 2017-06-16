@@ -16,6 +16,11 @@ namespace terra
 	private:
 		LoginConnService& conn_service_;
 		LoginAcceptService& accpet_service_;
+
+		std::string master_conn_ip_;
+		int master_conn_port_{ 0 };
+		std::string client_listen_ip_;
+		int client_listen_port_{ 0 };
 	public:
 		LoginNetModule();
 		~LoginNetModule() = default;

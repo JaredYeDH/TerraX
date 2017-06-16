@@ -19,29 +19,23 @@ void LoginNetModule::InitLoginNetInfo()
 {
 	ServerConfig::GetInstance().LoadConfigFromJson("login_server.json");
 
-    std::string conn_ip;
-    int conn_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", conn_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("master", "port", conn_port);
-    InitConnectInfo(conn_ip, conn_port);
+    ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", master_conn_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("master", "port", master_conn_port_);
 
-    std::string listen_ip;
-    int listen_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_ip", listen_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_port", listen_port);
-    InitListenInfo(listen_ip, listen_port);
+    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_ip", client_listen_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_port", client_listen_port_);
 }
 
 void LoginNetModule::StartConnectMasterServer()
 {
-	conn_service_.Connect2Master(conn_ip_.c_str(), conn_port_,
+	conn_service_.Connect2Master(master_conn_ip_.c_str(), master_conn_port_,
 		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnMasterSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMasterMessageEvent(conn, evbuf); });
 }
 
 void LoginNetModule::StartAcceptClient()
 {
-	accpet_service_.AcceptConnection(get_listen_port(), 1024, 
+	accpet_service_.AcceptConnection(client_listen_port_, 1024,
 		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnClientSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnClientMessageEvent(conn, evbuf); });
 }

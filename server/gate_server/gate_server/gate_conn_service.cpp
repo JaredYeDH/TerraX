@@ -20,10 +20,11 @@ void GateConnService::Connect2World(const char* ip, int port, SocketEventCB sock
 
 void GateConnService::Login2World(TcpConnection* conn)
 {
+	GateNetModule* gate_net = static_cast<GateNetModule*>(net_);
 	MsgRegisterSW msg;
 	msg.set_peer_type(static_cast<int>(net_->get_peer_type()));
-	msg.set_listen_ip(net_->get_listen_ip());
-	msg.set_listen_port(net_->get_listen_port());
+	msg.set_listen_ip(gate_net->get_client_listen_ip());
+	msg.set_listen_port(gate_net->get_client_listen_port());
 	packet_processor_.SendPacket(conn, msg);
 }
 

@@ -1,5 +1,6 @@
 #include "world_conn_service.h"
 #include "comm/net/packet_dispatcher.h"
+#include "world_net_module.h"
 
 
 using namespace terra;
@@ -30,7 +31,8 @@ void WorldConnService::SendPacket2Master(google::protobuf::Message& msg)
 
 void WorldConnService::OnMasterConnected(TcpConnection* conn)
 {
-	Login2Master(conn, 1); //temp
+	WorldNetModule* world_net = static_cast<WorldNetModule*>(net_);
+	Login2Master(conn, world_net->get_server_uid()); //temp
 };
 void WorldConnService::OnMasterDisconnected(TcpConnection* conn)
 {

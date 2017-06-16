@@ -17,23 +17,16 @@ void NodeNetModule::InitNodeNetInfo()
 {
     ServerConfig::GetInstance().LoadConfigFromJson("node_server.json");
 
-    std::string conn_ip;
-    int conn_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_ip", conn_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_port", conn_port);
-    InitConnectInfo(conn_ip, conn_port);
-
-    std::string listen_ip;
-    int listen_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", listen_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", listen_port);
-    InitListenInfo(listen_ip, listen_port);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_ip", world_conn_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "world_server_port", world_conn_port_);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", gate_listen_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", gate_listen_port_);
 }
 
 void NodeNetModule::StartConnectWorldServer()
 {
     conn_service_.Connect2World(
-        conn_ip_.c_str(), conn_port_,
+		world_conn_ip_.c_str(), world_conn_port_,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnWorldSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnWorldMessageEvent(conn, evbuf); });
 }
@@ -41,7 +34,7 @@ void NodeNetModule::StartConnectWorldServer()
 void NodeNetModule::StartAccept()
 {
     accept_service_.AcceptConnection(
-        get_listen_port(), 64,
+		gate_listen_port_, 64,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnGateSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnGateMessageEvent(conn, evbuf); });
 }

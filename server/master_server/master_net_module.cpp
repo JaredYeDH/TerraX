@@ -16,29 +16,18 @@ MasterNetModule::MasterNetModule()
 void MasterNetModule::InitMasterNetInfo()
 {
     ServerConfig::GetInstance().LoadConfigFromJson("master_server.json");
-    std::string ip;
-    int port;
-    ServerConfig::GetInstance().GetJsonObjectValue("world", "listen_ip", ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("world", "listen_port", port);
-    InitListenInfo(ip, port);
 
-	std::string login_listen_ip;
-	int login_listen_port;
-	ServerConfig::GetInstance().GetJsonObjectValue("login", "listen_ip", login_listen_ip);
-	ServerConfig::GetInstance().GetJsonObjectValue("login", "listen_port", login_listen_port);
-	InitLoginListenIpAndPort(login_listen_ip, login_listen_port);
-}
+    ServerConfig::GetInstance().GetJsonObjectValue("world", "listen_ip", world_listen_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("world", "listen_port", world_listen_port_);
 
-void MasterNetModule::InitLoginListenIpAndPort(const std::string& ip, int port)
-{
-	login_listen_ip_ = ip;
-	login_listen_port_ = port;
+	ServerConfig::GetInstance().GetJsonObjectValue("login", "listen_ip", login_listen_ip_);
+	ServerConfig::GetInstance().GetJsonObjectValue("login", "listen_port", login_listen_port_);
 }
 
 void MasterNetModule::StartAcceptWorldServer()
 {
     master_world_accept_service_.AcceptConnection(
-        get_listen_port(), 64,
+		world_listen_port_, 64,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnWorldSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnWorldMessageEvent(conn, evbuf); });
 }

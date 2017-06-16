@@ -14,9 +14,21 @@ namespace terra
 	private:
 		WorldConnService& world_conn_service_;
 		WorldAcceptService& world_accept_service_;
+
+		int server_uid_{ 0 };
+		std::string master_conn_ip_;
+		int master_conn_port_{ 0 };
+		std::string server_listen_ip_;
+		int server_listen_port_{ 0 };
 	public:
 		WorldNetModule();
 		~WorldNetModule() = default;
+
+		int get_server_uid() const { return server_uid_; }
+		const char* get_master_conn_ip() const { return master_conn_ip_.c_str(); }
+		int get_master_conn_port()  const { return master_conn_port_; }
+		const char* get_server_listen_ip() const { return server_listen_ip_.c_str(); }
+		int get_server_listen_port()  const { return server_listen_port_; }
 
 		bool Init();
 		bool AfterInit();

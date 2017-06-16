@@ -15,6 +15,8 @@ namespace terra
 		MasterWorldAcceptService& master_world_accept_service_;
 		MasterLoginAcceptService& master_login_accept_service_;
 
+		std::string world_listen_ip_;
+		int world_listen_port_{ 0 };
 		std::string login_listen_ip_;
 		int login_listen_port_{ 0 };
 	public:
@@ -28,7 +30,6 @@ namespace terra
 		bool Shut();
 	private:
 		void InitMasterNetInfo();
-		void InitLoginListenIpAndPort(const std::string& ip, int port);
 		void StartAcceptWorldServer();
 		void StartAcceptLoginServer();
 

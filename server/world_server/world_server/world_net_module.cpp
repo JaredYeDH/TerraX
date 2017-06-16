@@ -17,25 +17,18 @@ void WorldNetModule::InitWorldNetInfo()
 {
 	ServerConfig::GetInstance().LoadConfigFromJson("world_server.json");
 
-	int server_uid;
-	std::string conn_ip;
-	int conn_port;
-	ServerConfig::GetInstance().GetJsonObjectValue("master", "server_uid", server_uid);
-	ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", conn_ip);
-	ServerConfig::GetInstance().GetJsonObjectValue("master", "port", conn_port);
-	InitConnectInfo(conn_ip, conn_port);
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "server_uid", server_uid_);
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", master_conn_ip_);
+	ServerConfig::GetInstance().GetJsonObjectValue("master", "port", master_conn_port_);
 
-    std::string ip;
-    int port;
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", port);
-    InitListenInfo(ip, port);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", server_listen_ip_);
+    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", server_listen_port_);
 }
 
 void WorldNetModule::StartConnectMaster()
 {
 	world_conn_service_.Connect2Master(
-		conn_ip_.c_str(), conn_port_,
+		master_conn_ip_.c_str(), master_conn_port_,
 		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnMasterSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMasterMessageEvent(conn, evbuf); });
 }
@@ -44,7 +37,7 @@ void WorldNetModule::StartAccept()
 {
     world_accept_service_.InitAvaliableIDCount(64);
     world_accept_service_.AcceptConnection(
-        get_listen_port(), 64,
+		server_listen_port_, 64,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 }

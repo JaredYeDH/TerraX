@@ -14,13 +14,7 @@ namespace terra
 	{
 	protected:
 		const PeerType_t kSelfPeer;
-
 		EventLoop loop_;
-		std::string listen_ip_;
-		int listen_port_{ 0 };
-		std::string conn_ip_;
-		int conn_port_{ 0 };
-
 		PacketProcessor& packet_processor_;
 	public:
 		NetBaseModule(PeerType_t peer);
@@ -28,17 +22,10 @@ namespace terra
 
 		PeerType_t get_peer_type() const { return kSelfPeer; }
 		EventLoop* get_event_loop() { return &loop_; }
-		const char* get_conn_ip() const { return conn_ip_.c_str(); }
-		int get_conn_port()  const { return conn_port_; }
-		const char* get_listen_ip() const { return listen_ip_.c_str(); }
-		int get_listen_port()  const { return listen_port_;  }
 
 		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
 
 		virtual void ProcessServerMessage(TcpConnection* conn, evbuffer* evbuf);
-	protected:
-		void InitConnectInfo(const std::string& ip, int port);
-		void InitListenInfo(const std::string& ip, int port);
 	};
 
 }
