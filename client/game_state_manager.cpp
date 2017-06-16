@@ -1,5 +1,6 @@
 #include "game_state_manager.h"
 #include "comm/net/packet_dispatcher.h"
+#include "comm/proto/base_type.pb.h"
 #include "guest.h"
 
 using namespace terra;
@@ -52,9 +53,30 @@ void GameStateManager::OnMessage_LoginResultLC(MsgLoginResultLC* msg)
 		{
 			//save server info
 			auto& val = msg->servers(i);
-			CONSOLE_DEBUG_LOG(LEVEL_BLUE, "[%d][%s][%s][%s]",
-				val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
-				kServerStatus[val.server_status()]);
+			if (val.server_status() == pb_base::MAINTAIN)
+			{
+				CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "[%d][%s][%s][%s]",
+					val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
+					kServerStatus[val.server_status()]);
+			}
+			else if (val.server_status() == pb_base::FREE)
+			{
+				CONSOLE_DEBUG_LOG(LEVEL_INFO, "[%d][%s][%s][%s]",
+					val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
+					kServerStatus[val.server_status()]);
+			}
+			else if (val.server_status() == pb_base::BUSY || val.server_status() == pb_base::CROWD)
+			{
+				CONSOLE_DEBUG_LOG(LEVEL_WARNING, "[%d][%s][%s][%s]",
+					val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
+					kServerStatus[val.server_status()]);
+			}
+			else
+			{
+				CONSOLE_DEBUG_LOG(LEVEL_ERROR, "[%d][%s][%s][%s]",
+					val.server_uid(), val.region_name().c_str(), val.server_name().c_str(),
+					kServerStatus[val.server_status()]);
+			}
 		}
 	}
 	else

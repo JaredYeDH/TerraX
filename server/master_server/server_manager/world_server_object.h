@@ -13,7 +13,7 @@ namespace terra
         std::string region_name_;
 		int server_showindex_{ 0 };
 		std::string server_name_;
-        ServerStatus status_{MAINTAIN};
+        ServerStatus status_{ pb_base::MAINTAIN};
         bool recommond_new_{false};
         bool recommond_hot_{false};
 		TcpConnection* conn_{ nullptr };

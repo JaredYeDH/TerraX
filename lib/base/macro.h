@@ -27,8 +27,8 @@ public:                                              \
 #define LEVEL_INFO "\033[32m"
 #define LEVEL_WARNING "\033[33m"
 #define LEVEL_ERROR "\033[31m"
-#define LEVEL_BLUE "\033[33m"
-#define LEVEL_PURPLE "\033[33m"
+#define LEVEL_BLUE "\033[34m"
+#define LEVEL_PURPLE "\033[35m"
 
 #ifndef NDEBUG
 #define CONSOLE_DEBUG_LOG(level, ...)                                       \
