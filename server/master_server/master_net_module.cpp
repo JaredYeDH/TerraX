@@ -1,7 +1,5 @@
 #include "master_net_module.h"
-
 #include "comm/config/server_config.h"
-#include "server_manager/server_manager.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -11,6 +9,7 @@ MasterNetModule::MasterNetModule()
 	master_world_accept_service_(MasterWorldAcceptService::GetInstance()),
 	master_login_accept_service_(MasterLoginAcceptService::GetInstance())
 {
+	master_login_accept_service_.InitNetModule(this);
     master_world_accept_service_.InitNetModule(this);
 }
 
@@ -72,9 +71,11 @@ void MasterNetModule::OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {
         case SocketEvent_t::CONNECTED: {
+			master_world_accept_service_.OnWorldConnected(conn);
         } break;
 		case SocketEvent_t::CONNECT_ERROR:
-        case SocketEvent_t::DISCONNECTED: {
+		case SocketEvent_t::DISCONNECTED: {
+			master_world_accept_service_.OnWorldDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:
@@ -91,11 +92,11 @@ void MasterNetModule::OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
 	switch (ev) {
 	case SocketEvent_t::CONNECTED: {
-		ServerManager::GetInstance().CreateLoginServerObj(conn);
+		master_login_accept_service_.OnLoginConnected(conn);
 	} break;
 	case SocketEvent_t::CONNECT_ERROR:
 	case SocketEvent_t::DISCONNECTED: {
-		ServerManager::GetInstance().RemoveLoginServerObj(conn);
+		master_login_accept_service_.OnLoginDisconnected(conn);
 		//master_login_accept_service_.OnLogout(conn);
 		//server_table_.PrintServerTable();
 	} break;

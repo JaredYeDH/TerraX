@@ -16,6 +16,9 @@ namespace terra
 	public:
 		MasterLoginAcceptService();
 		~MasterLoginAcceptService() = default;
+
+		void OnLoginConnected(TcpConnection* conn);
+		void OnLoginDisconnected(TcpConnection* conn);
 	private:
 	};
 }

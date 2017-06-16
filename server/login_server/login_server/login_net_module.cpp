@@ -2,18 +2,17 @@
 
 #include "comm/config/server_config.h"
 #include "comm/net/packet_dispatcher.h"
-#include "login_account/login_account_manager.h"
-#include "login_account/Login_account.h"
 
 using namespace terra;
 using namespace packet_ss;
 
 //TODO 数据包处理必须为Instance()
 LoginNetModule::LoginNetModule() : NetBaseModule(PeerType_t::LOGINSERVER),
-conn_service_(ServerConnService::GetInstance()),
-accpet_service_(ServerAcceptService::GetInstance())
+conn_service_(LoginConnService::GetInstance()),
+accpet_service_(LoginAcceptService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
+	accpet_service_.InitNetModule(this);
 }
 
 void LoginNetModule::InitLoginNetInfo()
@@ -35,12 +34,9 @@ void LoginNetModule::InitLoginNetInfo()
 
 void LoginNetModule::StartConnectMasterServer()
 {
-    TcpConnection* conn = conn_service_.NewConnect(
-        conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
-        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
-	server_table_.AddServerInfo(PeerType_t::MASTERSERVER, 0, conn_ip_.c_str(),
-                                             conn_port_, conn);
+	conn_service_.Connect2Master(conn_ip_.c_str(), conn_port_,
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
 }
 
 void LoginNetModule::StartAcceptClient()
@@ -69,26 +65,17 @@ bool LoginNetModule::Shut() { return true; }
 
 void LoginNetModule::SendPacket2Master(google::protobuf::Message& msg)
 {
-	NetObject* net_object = server_table_.GetNetObjectByServerID(0);
-	if (!net_object) {
-		return;
-	}
-	packet_processor_.SendPacket(net_object->conn_, msg);
+	conn_service_.SendPacket2Master(msg);
 }
 
 void LoginNetModule::SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg)
 {
-	packet_processor_.SendPacket(conn, msg);
+	accpet_service_.SendPacket(conn, msg);
 }
 
 void LoginNetModule::SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg)
 {
-	LoginAccount* account = LoginAccountManager::GetInstance().GetAccountByAccountName(account_name);
-	if (!account)
-	{
-		return;
-	}
-	SendPacket2Client(account->get_conn(), msg);
+	accpet_service_.SendPacketByAccountName(account_name, msg);
 }
 
 
@@ -114,20 +101,18 @@ void LoginNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 
 void LoginNetModule::OnMasterConnected(TcpConnection* conn)
 {
-    
+	conn_service_.OnMasterConnected(conn);
 };
 void LoginNetModule::OnMasterDisconnected(TcpConnection* conn)
 {
-	server_table_.RemoveByConn(conn);
-	conn_service_.DestroyConnection(conn);
-    // ReConnect();
+	conn_service_.OnMasterDisconnected(conn);
 }
 
 void LoginNetModule::OnClientConnected(TcpConnection* conn) 
 {
-	LoginAccountManager::GetInstance().CreateAccount(conn);
+	accpet_service_.OnClientConnected(conn);
 }
 void LoginNetModule::OnClientDisconnected(TcpConnection* conn)
 {
-	LoginAccountManager::GetInstance().RemoveAccount(conn);
+	accpet_service_.OnClientDisconnected(conn);
 }

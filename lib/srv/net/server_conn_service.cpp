@@ -16,31 +16,13 @@ ServerConnService::~ServerConnService()
 {
 }
 
-void ServerConnService::Login2World(TcpConnection* conn)
-{
-	MsgRegisterSW msg;
-	msg.set_peer_type(static_cast<int>(net_->get_peer_type()));
-	msg.set_listen_ip(net_->get_listen_ip());
-	msg.set_listen_port(net_->get_listen_port());
-	packet_processor_.SendPacket(conn, msg);
-}
 
-void ServerConnService::Login2Node(TcpConnection* conn)
-{
-	MsgLogin2NodeGN msg;
-	msg.set_peer_type(static_cast<int>(net_->get_peer_type()));
-	msg.set_server_id(server_table_.get_self_server_id());
-	packet_processor_.SendPacket(conn, msg);
-}
-
-
-TcpConnection* ServerConnService::NewConnect(const char* ip, int port,
-                                SocketEventCB sock_cb, MessageEventCB msg_cb)
+TcpConnection* ServerConnService::Connect(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb)
 {
 	std::unique_ptr<TcpConnection>  conn(new TcpConnection(net_->get_event_loop(), ip, port, sock_cb, msg_cb));
-	TcpConnection* ret_conn = conn.get();
+	TcpConnection* ret = conn.get();
 	conns_.push_back(std::move(conn));
-	return ret_conn;
+	return ret;
 }
 
 void ServerConnService::OnMessage_RegisterWS(MsgRegisterWS* msg)

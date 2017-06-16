@@ -7,8 +7,6 @@
 
 namespace terra
 {
-
-	const int WORD_SERVER_ID = 0;
 	class TcpConnection;
 	enum class SocketEvent_t;
 

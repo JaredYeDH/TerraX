@@ -14,8 +14,11 @@ namespace terra
 	public:
 		NodeAcceptService();
 		~NodeAcceptService() = default;
-		void OnLogout(TcpConnection* conn);
+
+		void OnGateConnected(TcpConnection* conn);
+		void OnGateDisconnected(TcpConnection* conn);
 	private:
+		void OnLogout(TcpConnection* conn);
 		void OnMessage_Login2NodeGN(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgLogin2NodeGN* msg);
 	};
 }

@@ -10,6 +10,16 @@ MasterWorldAcceptService::MasterWorldAcceptService()
 	REG_PACKET_HANDLER_ARG3(MsgWorldRegAtMasterWM, this, OnMessage_WorldRegAtMasterWM);
 }
 
+void MasterWorldAcceptService::OnWorldConnected(TcpConnection* conn)
+{
+
+}
+
+void MasterWorldAcceptService::OnWorldDisconnected(TcpConnection* conn)
+{
+
+}
+
 void MasterWorldAcceptService::OnMessage_WorldRegAtMasterWM(TcpConnection* conn, int32_t avatar_id, MsgWorldRegAtMasterWM* msg)
 {
 	int server_uid = msg->server_uid();

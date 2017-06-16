@@ -34,6 +34,5 @@ namespace terra
 		void OnMasterSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnMasterMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);
 	};
 }

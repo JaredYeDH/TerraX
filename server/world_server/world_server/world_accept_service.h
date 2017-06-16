@@ -17,8 +17,11 @@ namespace terra
 		WorldAcceptService();
 		~WorldAcceptService() = default;
 		void InitAvaliableIDCount(uint32_t server_ids);
-		void OnLogout(TcpConnection* conn);
+
+		void OnServerConnected(TcpConnection* conn);
+		void OnServerDisconnected(TcpConnection* conn);
 	private:
+		void OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj);
 		void OnMessage_RegisterSW(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgRegisterSW* msg);
 	};
 }

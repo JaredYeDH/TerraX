@@ -2,8 +2,8 @@
 
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
-#include "srv/net/server_conn_service.h"
-#include "srv/net/server_accept_service.h"
+#include "login_conn_service.h"
+#include "login_accept_service.h"
 #include "comm/proto/server_server.pb.h"
 
 namespace terra
@@ -14,8 +14,8 @@ namespace terra
 		DISABLE_COPY(LoginNetModule);
 		MAKE_INSTANCE(LoginNetModule);
 	private:
-		ServerConnService& conn_service_;
-		ServerAcceptService& accpet_service_;
+		LoginConnService& conn_service_;
+		LoginAcceptService& accpet_service_;
 	public:
 		LoginNetModule();
 		~LoginNetModule() = default;
@@ -26,7 +26,6 @@ namespace terra
 		bool BeforeShut();
 		bool Shut();
 		//TODO:
-		//		通过继承实现acceptservice instance
 		//		GateAccount, GateAvatar
 		//		断线逻辑 world->gate->node
 		void SendPacket2Master(google::protobuf::Message& msg);

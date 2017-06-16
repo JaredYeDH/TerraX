@@ -4,14 +4,12 @@
 #include "comm/net/packet_dispatcher.h"
 
 using namespace terra;
-using namespace packet_ss;
 
 //TODO 数据包处理必须为Instance()
 GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER),
-conn_service_(ServerConnService::GetInstance())
+conn_service_(GateConnService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
-	REG_PACKET_HANDLER_ARG1(MsgServerInfoWS, this, OnMessage_ServerInfoWS);
 }
 
 void GateNetModule::InitGateNetInfo()
@@ -33,12 +31,10 @@ void GateNetModule::InitGateNetInfo()
 
 void GateNetModule::StartConnectWorldServer()
 {
-    TcpConnection* conn = conn_service_.NewConnect(
-        conn_ip_.c_str(), conn_port_,
-        [this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
-        [this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
-	server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(),
-                                             conn_port_, conn);
+	conn_service_.Connect2World(conn_ip_.c_str(), conn_port_,
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
+
 }
 
 bool GateNetModule::Init()
@@ -59,28 +55,14 @@ bool GateNetModule::Shut() { return true; }
 
 void GateNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-    NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-    assert(net_object);
-    if (!net_object) {
-        return;
-    }
+    
     switch (ev) {
         case SocketEvent_t::CONNECTED: {
-            if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
-                OnWorldConnected(conn);
-            }
-            if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeConnected(conn);
-            }
+			conn_service_.OnServerConnected(conn);
         } break;
 		case SocketEvent_t::CONNECT_ERROR:
         case SocketEvent_t::DISCONNECTED: {
-            if (net_object->peer_type_ == PeerType_t::WORLDSERVER) {
-                OnWorldDisconnected(conn);
-            }
-            if (net_object->peer_type_ == PeerType_t::NODESERVER) {
-                OnNodeDisconnected(conn);
-			}
+			conn_service_.OnServerDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:
@@ -90,47 +72,4 @@ void GateNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 void GateNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
-}
-
-void GateNetModule::OnWorldConnected(TcpConnection* conn)
-{
-    conn_service_.Login2World(conn);
-};
-void GateNetModule::OnWorldDisconnected(TcpConnection* conn)
-{
-	server_table_.RemoveByConn(conn);
-	conn_service_.DestroyConnection(conn);
-    // ReConnect();
-}
-
-void GateNetModule::OnNodeConnected(TcpConnection* conn) 
-{
-	NetObject* net_object = server_table_.GetNetObjectByConn(conn);
-	assert(net_object);
-	if (net_object)
-	{
-		conn_service_.Login2Node(conn);
-	}
-}
-void GateNetModule::OnNodeDisconnected(TcpConnection* conn) 
-{
-	server_table_.RemoveByConn(conn);
-	conn_service_.DestroyConnection(conn);
-}
-
-
-void GateNetModule::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
-{
-	for (int i = 0; i < msg->server_info_size(); ++i) {
-		const auto& si = msg->server_info(i);
-		if (si.peer_type() == static_cast<int>(PeerType_t::NODESERVER))
-		{
-			TcpConnection* conn = conn_service_.NewConnect(si.listen_ip().c_str(), si.listen_port(),
-				[this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
-				[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
-			server_table_.AddServerInfo(static_cast<PeerType_t>(si.peer_type()), si.server_id(),
-				si.listen_ip().c_str(), si.listen_port(), conn);
-		}
-
-	}
 }

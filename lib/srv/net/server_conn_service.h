@@ -9,9 +9,6 @@ namespace terra
 	//用继承实现子类instance
     class ServerConnService
     {
-        MAKE_INSTANCE(ServerConnService);
-        DISABLE_COPY(ServerConnService);
-
 	protected:
         NetBaseModule* net_;
         ServerTable& server_table_;
@@ -23,11 +20,9 @@ namespace terra
 
         void InitNetModule(NetBaseModule* net) { net_ = net; }
 
-        void Login2World(TcpConnection* conn);
-        void Login2Node(TcpConnection* conn);
-
-        TcpConnection* NewConnect(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
 		void DestroyConnection(TcpConnection* conn);
+
+		TcpConnection* Connect(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
     private:
         void OnMessage_RegisterWS(packet_ss::MsgRegisterWS* msg);
     };

@@ -5,7 +5,6 @@ using namespace terra;
 
 NetBaseModule::NetBaseModule(PeerType_t peer) 
 	: kSelfPeer(peer),
-	server_table_(ServerTable::GetInstance()),
 	packet_processor_(PacketProcessor::GetInstance())
 {
 

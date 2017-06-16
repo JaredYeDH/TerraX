@@ -9,6 +9,16 @@ NodeAcceptService::NodeAcceptService()
 	REG_PACKET_HANDLER_ARG3(MsgLogin2NodeGN, this, OnMessage_Login2NodeGN);
 }
 
+void NodeAcceptService::OnGateConnected(TcpConnection* conn)
+{
+}
+
+void NodeAcceptService::OnGateDisconnected(TcpConnection* conn)
+{
+	OnLogout(conn);
+}
+
+
 void NodeAcceptService::OnLogout(TcpConnection* conn)
 {
 	NetObject* net_object = server_table_.GetNetObjectByConn(conn);

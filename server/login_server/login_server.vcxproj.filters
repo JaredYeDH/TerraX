@@ -25,6 +25,12 @@
     <ClCompile Include="login_account\login_account_state.cpp">
       <Filter>login_account</Filter>
     </ClCompile>
+    <ClCompile Include="login_server\login_accept_service.cpp">
+      <Filter>login_server</Filter>
+    </ClCompile>
+    <ClCompile Include="login_server\login_conn_service.cpp">
+      <Filter>login_server</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="login_server\login_server.h">
@@ -41,6 +47,12 @@
     </ClInclude>
     <ClInclude Include="login_account\login_account_state.h">
       <Filter>login_account</Filter>
+    </ClInclude>
+    <ClInclude Include="login_server\login_accept_service.h">
+      <Filter>login_server</Filter>
+    </ClInclude>
+    <ClInclude Include="login_server\login_conn_service.h">
+      <Filter>login_server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

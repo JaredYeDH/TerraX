@@ -2,7 +2,7 @@
 
 #include "base/types.h"
 #include "srv/net/net_base_module.h"
-#include "srv/net/server_conn_service.h"
+#include "node_conn_service.h"
 #include "node_accept_service.h"
 
 namespace terra
@@ -13,8 +13,8 @@ namespace terra
 		DISABLE_COPY(NodeNetModule);
 		MAKE_INSTANCE(NodeNetModule);
 	private:
-		ServerConnService& conn_service_;
-		NodeAcceptService& node_accept_service;
+		NodeConnService& conn_service_;
+		NodeAcceptService& accept_service_;
 	public:
 		NodeNetModule();
 		~NodeNetModule() = default;
@@ -35,15 +35,7 @@ namespace terra
 		void OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnWorldMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnWorldConnected(TcpConnection* conn);
-		void OnWorldDisconnected(TcpConnection* conn);
-
 		void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
-
-		void OnGateConnected(TcpConnection* conn);
-		void OnGateDisconnected(TcpConnection* conn);
-
-
 	};
 }

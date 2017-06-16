@@ -26,5 +26,6 @@ namespace terra
 
         void AcceptConnection(int port, uint32_t max_conns, SocketEventCB sock_cb, MessageEventCB msg_cb);
 
+		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
     };
 }

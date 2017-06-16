@@ -6,11 +6,11 @@ using namespace terra;
 
 NodeNetModule::NodeNetModule()
     : NetBaseModule(PeerType_t::NODESERVER),
-      conn_service_(ServerConnService::GetInstance()),
-      node_accept_service(NodeAcceptService::GetInstance())
+      conn_service_(NodeConnService::GetInstance()),
+      accept_service_(NodeAcceptService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
-	node_accept_service.InitNetModule(this);
+	accept_service_.InitNetModule(this);
 }
 
 void NodeNetModule::InitNodeNetInfo()
@@ -32,16 +32,15 @@ void NodeNetModule::InitNodeNetInfo()
 
 void NodeNetModule::StartConnectWorldServer()
 {
-    TcpConnection* conn = conn_service_.NewConnect(
+    conn_service_.Connect2World(
         conn_ip_.c_str(), conn_port_,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnWorldSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnWorldMessageEvent(conn, evbuf); });
-    server_table_.AddServerInfo(PeerType_t::WORLDSERVER, WORD_SERVER_ID, conn_ip_.c_str(), conn_port_, conn);
 }
 
 void NodeNetModule::StartAccept()
 {
-    node_accept_service.AcceptConnection(
+    accept_service_.AcceptConnection(
         get_listen_port(), 64,
         [this](TcpConnection* conn, SocketEvent_t ev) { this->OnGateSocketEvent(conn, ev); },
         [this](TcpConnection* conn, evbuffer* evbuf) { this->OnGateMessageEvent(conn, evbuf); });
@@ -68,11 +67,11 @@ void NodeNetModule::OnWorldSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {
         case SocketEvent_t::CONNECTED: {
-            OnWorldConnected(conn);
+            conn_service_.OnWorldConnected(conn);
         } break;
 		case SocketEvent_t::CONNECT_ERROR:
         case SocketEvent_t::DISCONNECTED: {
-			OnWorldDisconnected(conn);
+			conn_service_.OnWorldDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:
@@ -88,11 +87,11 @@ void NodeNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {
         case SocketEvent_t::CONNECTED: {
-            OnGateConnected(conn);
+			accept_service_.OnGateConnected(conn);
 		} break;
 		case SocketEvent_t::CONNECT_ERROR:
         case SocketEvent_t::DISCONNECTED: {
-			OnGateDisconnected(conn);
+			accept_service_.OnGateDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:
@@ -103,21 +102,4 @@ void NodeNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 void NodeNetModule::OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
-}
-
-void NodeNetModule::OnWorldConnected(TcpConnection* conn)
-{
-    conn_service_.Login2World(conn);
-};
-void NodeNetModule::OnWorldDisconnected(TcpConnection* conn)
-{
-    // ReConnect();
-    server_table_.RemoveByConn(conn);
-	conn_service_.DestroyConnection(conn);
-}
-
-void NodeNetModule::OnGateConnected(TcpConnection* conn) {}
-void NodeNetModule::OnGateDisconnected(TcpConnection* conn) 
-{ 
-	node_accept_service.OnLogout(conn);
 }

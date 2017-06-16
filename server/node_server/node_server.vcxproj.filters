@@ -16,6 +16,9 @@
     <ClCompile Include="node_server\node_accept_service.cpp">
       <Filter>net</Filter>
     </ClCompile>
+    <ClCompile Include="node_server\node_conn_service.cpp">
+      <Filter>net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="node_server\node_net_module.h">
@@ -25,6 +28,9 @@
       <Filter>net</Filter>
     </ClInclude>
     <ClInclude Include="node_server\node_accept_service.h">
+      <Filter>net</Filter>
+    </ClInclude>
+    <ClInclude Include="node_server\node_conn_service.h">
       <Filter>net</Filter>
     </ClInclude>
   </ItemGroup>

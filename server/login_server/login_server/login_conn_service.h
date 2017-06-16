@@ -4,25 +4,22 @@
 
 namespace terra
 {
-	class WorldConnService : public ServerConnService
+	//用继承实现子类instance
+	class LoginConnService : public ServerConnService
 	{
-		MAKE_INSTANCE(WorldConnService);
-		DISABLE_COPY(WorldConnService);
+		MAKE_INSTANCE(LoginConnService);
+		DISABLE_COPY(LoginConnService);
 
 	private:
 		TcpConnection* conn_master_{ nullptr };
 	public:
-		WorldConnService();
-		~WorldConnService() {}
+		LoginConnService();
+		~LoginConnService() {}
+
 		void Connect2Master(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb);
 		void SendPacket2Master(google::protobuf::Message& msg);
 
 		void OnMasterConnected(TcpConnection* conn);
 		void OnMasterDisconnected(TcpConnection* conn);
-	private:
-		void Login2Master(TcpConnection* conn, int server_uid);
-
-
-		void OnMessage_WorldRegAtMasterAckMW(packet_ss::MsgWorldRegAtMasterAckMW* msg);
 	};
 }

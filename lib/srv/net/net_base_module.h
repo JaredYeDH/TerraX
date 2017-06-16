@@ -21,7 +21,6 @@ namespace terra
 		std::string conn_ip_;
 		int conn_port_{ 0 };
 
-		ServerTable& server_table_;
 		PacketProcessor& packet_processor_;
 	public:
 		NetBaseModule(PeerType_t peer);
@@ -33,9 +32,6 @@ namespace terra
 		int get_conn_port() { return conn_port_; }
 		const char* get_listen_ip() { return listen_ip_.c_str(); }
 		int get_listen_port() { return listen_port_;  }
-
-		ServerTable& get_server_table() { return server_table_; }
-		PacketProcessor& get_packet_processor() { return packet_processor_; }
 
 		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
 
