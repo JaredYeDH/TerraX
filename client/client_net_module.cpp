@@ -1,14 +1,12 @@
 #include "client_net_module.h"
 #include "comm/net/packet_dispatcher.h"
 #include "client_conn_service.h"
-#include "game_state_manager.h"
 using namespace terra;
 using namespace packet_cs;
 
 //TODO 数据包处理必须为Instance()
 ClientNetModule::ClientNetModule()
 	: kSelfPeer(PeerType_t::CLIENT),
-	packet_processor_(ClientPacketProcessor::GetInstance()),
 	conn_service_(ClientConnService::GetInstance())
 {
 	conn_service_.InitNetModule(this);
@@ -17,24 +15,17 @@ ClientNetModule::ClientNetModule()
 void ClientNetModule::InitLoginNetInfo()
 {
 	//ServerConfig::GetInstance().LoadConfigFromJson("loginserver.json");
-
-	std::string conn_ip = "127.0.0.1";
-	int conn_port = 10080;
-	login_info_.emplace_back(IPInfo(std::move(conn_ip), conn_port));
+	conn_service_.LoadLoginServerInfo("client.json");
 }
 
 void ClientNetModule::StartConnectLoginServer()
 {
-	assert(login_conn_ == nullptr);
-	login_conn_ = conn_service_.NewConnect(
-		login_info_[0].ip_.c_str(), login_info_[0].port_,
-		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnLoginSocketEvent(conn, ev); },
-		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnLoginMessageEvent(conn, evbuf); });
+	conn_service_.Connect2Login();
 }
 
 bool ClientNetModule::Init()
 {
-	CONSOLE_DEBUG_LOG(LEVEL_INFO, "Gate Server Start...");
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "Client Start...");
 	InitLoginNetInfo();
 	return true;
 }
@@ -53,23 +44,23 @@ bool ClientNetModule::Shut() { return true; }
 
 void ClientNetModule::SendPacket2LoginServer(google::protobuf::Message& msg)
 {
-	packet_processor_.SendPacket(login_conn_, msg);
+	conn_service_.SendPacket2LoginServer(msg);
 }
 
 void ClientNetModule::SendPacket2GateServer(google::protobuf::Message& msg)
 {
-	packet_processor_.SendPacket(gate_conn_, msg);
+	conn_service_.SendPacket2GateServer(msg);
 }
 
 void ClientNetModule::OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
 	switch (ev) {
 	case SocketEvent_t::CONNECTED: {
-		OnLoginConnected(conn);
+		conn_service_.OnLoginConnected(conn);
 	} break;
 	case SocketEvent_t::CONNECT_ERROR:
 	case SocketEvent_t::DISCONNECTED: {
-		OnLoginDisconnected(conn);
+		conn_service_.OnLoginDisconnected(conn);
 	} break;
 	default:
 		break;
@@ -77,30 +68,18 @@ void ClientNetModule::OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 }
 void ClientNetModule::OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
-	//ProcessLoginMessage(conn, evbuf);
-}
-
-void ClientNetModule::OnLoginConnected(TcpConnection* conn)
-{
-	GameStateManager::GetInstance().NextState(GameState_t::ACCOUNT_LOGGINGIN);
-};
-void ClientNetModule::OnLoginDisconnected(TcpConnection* conn)
-{
-	//
-	conn_service_.DestroyConnection(conn);
-	login_conn_ = nullptr;
-	// ReConnect();
+	conn_service_.ProcessLoginMessage(conn, evbuf);
 }
 
 void ClientNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
 	switch (ev) {
 	case SocketEvent_t::CONNECTED: {
-		OnGateConnected(conn);
+		conn_service_.OnGateConnected(conn);
 	} break;
 	case SocketEvent_t::CONNECT_ERROR:
 	case SocketEvent_t::DISCONNECTED: {
-		OnGateDisconnected(conn);
+		conn_service_.OnGateDisconnected(conn);
 	} break;
 	default:
 		break;
@@ -108,13 +87,6 @@ void ClientNetModule::OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 }
 void ClientNetModule::OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
-	//ProcessGateMessage(conn, evbuf);
+	conn_service_.ProcessGateMessage(conn, evbuf);
 }
 
-void ClientNetModule::OnGateConnected(TcpConnection* conn)
-{
-}
-void ClientNetModule::OnGateDisconnected(TcpConnection* conn)
-{
-	conn_service_.DestroyConnection(conn);
-}

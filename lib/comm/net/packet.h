@@ -18,7 +18,7 @@ namespace terra
         bool InitialWithMsg(char* buffer) { return true; }
         bool InitialFromBuffer(char* buffer) { return true; }
 
-        int get_tag_size() { return TAG_SIZE; }
+        int get_tag_size()  const { return TAG_SIZE; }
     };
 
     class NullData_t
@@ -30,14 +30,14 @@ namespace terra
         bool InitialFromBuffer(char* buffer) { return true; }
 
         void set_avatar_id(int avatar_id) {}
-        int get_avatar_id() const { return 0; }
+        int get_avatar_id()  const { return 0; }
 
-        const char* get_msg_data() { return ""; }
-        int get_msg_data_size() { return 0; }
+        const char* get_msg_data() const { return ""; }
+        int get_msg_data_size()  const { return 0; }
 
-        const char* get_msg_name() { return ""; }
-        const char* get_msg() { return ""; }
-        int get_msg_size() { return 0; }
+        const char* get_msg_name() const { return ""; }
+        const char* get_msg() const { return ""; }
+        int get_msg_size()  const { return 0; }
     };
 
     class SrvInfoTag
@@ -62,8 +62,8 @@ namespace terra
             int be32 = htonl(server_id);
             memcpy(msg_tag_, &be32, sizeof be32);
         }
-        int get_server_id() { return server_id_; };
-        int get_tag_size() { return TAG_SIZE; }
+        int get_server_id()  const { return server_id_; };
+        int get_tag_size()  const { return TAG_SIZE; }
     };
 
     class MsgData
@@ -97,11 +97,11 @@ namespace terra
         }
         int get_avatar_id() const { return avatar_id_; }
 
-        const char* get_msg_data() { return msg_data_; }
-        int get_msg_data_size() { return msg_data_size_; }
+        const char* get_msg_data() const { return msg_data_; }
+        int get_msg_data_size() const { return msg_data_size_; }
 
-        const char* get_msg_name() { return msg_name_; }
+        const char* get_msg_name() const { return msg_name_; }
         const char* get_msg() { return msg_; }
-        int get_msg_size() { return msg_size_; }
+        int get_msg_size() const { return msg_size_; }
     };
 }

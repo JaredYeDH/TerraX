@@ -38,17 +38,11 @@ namespace terra
 		//void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev) {};
 		//void OnClientMessage(TcpConnection* conn, evbuffer* evbuf) {};
 
-		void OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-		void OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+		void OnMasterSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnMasterMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev) {};
-		void OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf) {};
-
-		void OnMasterConnected(TcpConnection* conn);
-		void OnMasterDisconnected(TcpConnection* conn);
-
-		void OnClientConnected(TcpConnection* conn);
-		void OnClientDisconnected(TcpConnection* conn);
+		void OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
 	};
 }

@@ -30,6 +30,13 @@ namespace terra
 			CONSOLE_DEBUG_LOG(LEVEL_INFO, "server status: %d", status);
 		}
 
-        int get_server_uid() { return server_uid_; }
+        int get_server_uid() const { return server_uid_; }
+		int get_region_showindex() const { return region_showindex_; }
+		const std::string& get_region_name() const { return region_name_; }
+		int get_server_showindex() const { return server_showindex_; }
+		const std::string& get_server_name() const { return server_name_; }
+		ServerStatus get_server_status() const { return status_; }
+		bool get_recommond_new() const { return recommond_new_; }
+		bool get_recommond_hot() const { return recommond_hot_; }
     };
 }

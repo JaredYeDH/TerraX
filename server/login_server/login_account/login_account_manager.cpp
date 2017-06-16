@@ -10,6 +10,7 @@ LoginAccountManager::LoginAccountManager()
 {
 	InitAccountState();
 	REG_PACKET_HANDLER_ARG3(MsgReqLoginCL, this, OnMessage_ReqLoginCL);
+	REG_PACKET_HANDLER_ARG1(MsgServerListML, this, OnMessage_MsgServerListML);
 }
 
 void LoginAccountManager::InitAccountState()
@@ -76,6 +77,7 @@ void LoginAccountManager::OnMessage_MsgServerListML(MsgServerListML* msg)
 	LoginAccount* account = GetAccountByAccountName(msg->post_back().account_name());
 	if (!account)
 	{
+		assert(0);
 		return;
 	}
 	AccountState_Base* state = account->get_current_state();

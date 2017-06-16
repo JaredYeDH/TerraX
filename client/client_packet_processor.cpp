@@ -30,7 +30,7 @@ void ClientPacketProcessor::SendPacket(TcpConnection* conn, google::protobuf::Me
 void ClientPacketProcessor::ProcessServerPacket(TcpConnection* conn, evbuffer* evbuf)
 {
 	std::size_t readable = evbuffer_get_length(evbuf);
-	int32_t min_msg_length = PacketT<SrvInfoTag, MsgData>::MIN_PACKET_SIZE;  // checksum
+	int32_t min_msg_length = PacketT<NullTag_t, MsgData>::MIN_PACKET_SIZE;  // checksum
 																			 // MessageError_t err = MessageError_t::eNoError;
 	while (readable >= static_cast<std::size_t>(min_msg_length)) {
 		uint16_t be16 = 0;
@@ -41,7 +41,7 @@ void ClientPacketProcessor::ProcessServerPacket(TcpConnection* conn, evbuffer* e
 			break;
 		}
 		else if (readable >= static_cast<std::size_t>(total_len)) {
-			PacketT<SrvInfoTag, MsgData> pkt;
+			PacketT<NullTag_t, MsgData> pkt;
 			evbuffer_remove(evbuf, pkt.get_buffer(), total_len);
 			pkt.InitialFromBuffer(total_len);
 			MsgData& msg_data = pkt.get_msg_data();

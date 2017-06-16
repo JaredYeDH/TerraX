@@ -55,7 +55,7 @@ namespace terra
             self_server_id_ = server_id;
         }
 
-        int get_self_server_id() { return self_server_id_; }
+        int get_self_server_id()  const { return self_server_id_; }
         void SetAddNetObjectEventCB(AddNetObjectCB cb) { addcb_ = cb; }
 
         NetObject* GetNetObjectByServerID(int server_id);

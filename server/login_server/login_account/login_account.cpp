@@ -7,6 +7,15 @@ LoginAccount::LoginAccount(TcpConnection* conn) : conn_(conn), fd_(conn->get_fd(
 {
 
 }
+void LoginAccount::InitAccountName(const std::string& account_name)
+{ 
+	if (account_name_.size() != 0)
+	{
+		LoginAccountManager::GetInstance().RemoveAccount2FdInfo(account_name_);
+	}
+	account_name_ = account_name;
+	LoginAccountManager::GetInstance().AddAccount2FdInfo(account_name_, fd_);
+}
 
 void LoginAccount::EnterDefaultState()
 {

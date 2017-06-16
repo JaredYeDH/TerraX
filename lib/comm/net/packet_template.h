@@ -31,7 +31,7 @@ namespace terra
 		void InitialFromBuffer(uint16_t total_len);
 
 		char* get_buffer() { return buffer_; }
-		uint16_t get_total_len() { return total_len_; }
+		uint16_t get_total_len() const { return total_len_; }
 
 		void set_avatar_id(int avatar_id) { msg_data_.set_avatar_id(avatar_id); }
 

@@ -26,12 +26,12 @@ namespace terra
 		NetBaseModule(PeerType_t peer);
 		virtual ~NetBaseModule(){}
 
-		PeerType_t get_peer_type() { return kSelfPeer; }
+		PeerType_t get_peer_type() const { return kSelfPeer; }
 		EventLoop* get_event_loop() { return &loop_; }
-		const char* get_conn_ip() { return conn_ip_.c_str(); }
-		int get_conn_port() { return conn_port_; }
-		const char* get_listen_ip() { return listen_ip_.c_str(); }
-		int get_listen_port() { return listen_port_;  }
+		const char* get_conn_ip() const { return conn_ip_.c_str(); }
+		int get_conn_port()  const { return conn_port_; }
+		const char* get_listen_ip() const { return listen_ip_.c_str(); }
+		int get_listen_port()  const { return listen_port_;  }
 
 		void SendPacket(TcpConnection* conn, google::protobuf::Message& msg);
 

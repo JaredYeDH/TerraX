@@ -13,7 +13,7 @@ void AccountState_WaitingLogin::Tick(LoginAccount& account) {}
 void AccountState_WaitingLogin::Leave(LoginAccount& account) {}
 void AccountState_WaitingLogin::HandleMessage(LoginAccount& account, MsgReqLoginCL* msg)
 {
-	account.set_account_name(msg->account_name());
+	account.InitAccountName(msg->account_name());
 
 #ifdef NEED_BILLING_AUTH
 	//account, password
@@ -21,6 +21,7 @@ void AccountState_WaitingLogin::HandleMessage(LoginAccount& account, MsgReqLogin
 	account.EnterState(Account_State_t::ACCOUNT_WAITING_BILLINGAUTH);
 #else
 	MsgReqServerListLM req;
+	req.set_account_name(msg->account_name());
 	LoginNetModule::GetInstance().SendPacket2Master(req);
 	account.EnterState(Account_State_t::ACCOUNT_WAITING_SERVERLIST);
 #endif

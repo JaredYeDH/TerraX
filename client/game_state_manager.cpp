@@ -34,11 +34,11 @@ void GameStateManager::NextState(GameState_t eGameState)
 void GameStateManager::EnterDefaultState() { m_GameStates[int(GameState_t::PRESS2START)]->Enter(); }
 
 const char kServerStatus[][16] = {
-	"Î¬»¤",
-	"³©Í¨",
-	"·±Ã¦",
-	"Óµ¼·",
-	"±¬Âú"
+	"ç»´æŠ¤",
+	"ç•…é€š",
+	"ç¹å¿™",
+	"æ‹¥æŒ¤",
+	"çˆ†æ»¡"
 };
 
 void GameStateManager::OnMessage_LoginResultLC(MsgLoginResultLC* msg)

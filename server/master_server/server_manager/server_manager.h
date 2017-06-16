@@ -25,5 +25,7 @@ namespace terra
 		void RemoveLoginServerObj(TcpConnection* conn);
 
 		WorldServerObject* FindWorldObjectByUID(int server_uid);
+
+		const std::map<int, WorldServerObject>& GetWorldServers() { return world_server_map_; }
 	};
 }

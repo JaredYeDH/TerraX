@@ -45,7 +45,7 @@ void MasterNetModule::StartAcceptWorldServer()
 
 void MasterNetModule::StartAcceptLoginServer()
 {
-	master_world_accept_service_.AcceptConnection(
+	master_login_accept_service_.AcceptConnection(
 		login_listen_port_, 64,
 		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnLoginSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnLoginMessageEvent(conn, evbuf); });
@@ -53,9 +53,10 @@ void MasterNetModule::StartAcceptLoginServer()
 
 bool MasterNetModule::Init()
 {
-    CONSOLE_DEBUG_LOG(LEVEL_INFO, "master Server Start...");
+    CONSOLE_DEBUG_LOG(LEVEL_INFO, "Master Server Start...");
     InitMasterNetInfo();
     StartAcceptWorldServer();
+	StartAcceptLoginServer();
     return true;
 }
 bool MasterNetModule::AfterInit() { return true; }

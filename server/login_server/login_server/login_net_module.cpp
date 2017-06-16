@@ -21,22 +21,22 @@ void LoginNetModule::InitLoginNetInfo()
 
     std::string conn_ip;
     int conn_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "master_server_ip", conn_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "master_server_port", conn_port);
+    ServerConfig::GetInstance().GetJsonObjectValue("master", "ip", conn_ip);
+    ServerConfig::GetInstance().GetJsonObjectValue("master", "port", conn_port);
     InitConnectInfo(conn_ip, conn_port);
 
     std::string listen_ip;
     int listen_port;
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_ip", listen_ip);
-    ServerConfig::GetInstance().GetJsonObjectValue("net", "listen_port", listen_port);
+    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_ip", listen_ip);
+    ServerConfig::GetInstance().GetJsonObjectValue("client", "listen_port", listen_port);
     InitListenInfo(listen_ip, listen_port);
 }
 
 void LoginNetModule::StartConnectMasterServer()
 {
 	conn_service_.Connect2Master(conn_ip_.c_str(), conn_port_,
-		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnServerSocketEvent(conn, ev); },
-		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnServerMessageEvent(conn, evbuf); });
+		[this](TcpConnection* conn, SocketEvent_t ev) { this->OnMasterSocketEvent(conn, ev); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { this->OnMasterMessageEvent(conn, evbuf); });
 }
 
 void LoginNetModule::StartAcceptClient()
@@ -48,7 +48,7 @@ void LoginNetModule::StartAcceptClient()
 
 bool LoginNetModule::Init()
 {
-    CONSOLE_DEBUG_LOG(LEVEL_INFO, "Gate Server Start...");
+    CONSOLE_DEBUG_LOG(LEVEL_INFO, "Login Server Start...");
     InitLoginNetInfo();
     StartConnectMasterServer();
 	StartAcceptClient();
@@ -79,40 +79,44 @@ void LoginNetModule::SendPacket2Client(const std::string& account_name, google::
 }
 
 
-void LoginNetModule::OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev)
+void LoginNetModule::OnMasterSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
     switch (ev) {
-        case SocketEvent_t::CONNECTED: {
-			OnMasterConnected(conn);
+	case SocketEvent_t::CONNECTED: {
+			conn_service_.OnMasterConnected(conn);
         } break;
 		case SocketEvent_t::CONNECT_ERROR:
-        case SocketEvent_t::DISCONNECTED: {
-			OnMasterDisconnected(conn);
+		case SocketEvent_t::DISCONNECTED: {
+			conn_service_.OnMasterDisconnected(conn);
 			//server_table_.PrintServerTable();
         } break;
         default:
             break;
     }
 }
-void LoginNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
+void LoginNetModule::OnMasterMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
 }
 
-void LoginNetModule::OnMasterConnected(TcpConnection* conn)
+void LoginNetModule::OnClientSocketEvent(TcpConnection* conn, SocketEvent_t ev)
 {
-	conn_service_.OnMasterConnected(conn);
-};
-void LoginNetModule::OnMasterDisconnected(TcpConnection* conn)
-{
-	conn_service_.OnMasterDisconnected(conn);
+	switch (ev) {
+	case SocketEvent_t::CONNECTED: {
+		accpet_service_.OnClientConnected(conn);
+	} break;
+	case SocketEvent_t::CONNECT_ERROR:
+	case SocketEvent_t::DISCONNECTED: {
+		accpet_service_.OnClientDisconnected(conn);
+		//server_table_.PrintServerTable();
+	} break;
+	default:
+		break;
+	}
 }
 
-void LoginNetModule::OnClientConnected(TcpConnection* conn) 
+void LoginNetModule::OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
-	accpet_service_.OnClientConnected(conn);
+	ProcessServerMessage(conn, evbuf);
 }
-void LoginNetModule::OnClientDisconnected(TcpConnection* conn)
-{
-	accpet_service_.OnClientDisconnected(conn);
-}
+
