@@ -20,6 +20,7 @@ void AccountState_WaitingLogin::HandleMessage(LoginAccount& account, MsgReqLogin
 	//send packet 2 billing
 	account.EnterState(Account_State_t::ACCOUNT_WAITING_BILLINGAUTH);
 #else
+	account.set_token("token_key");
 	MsgReqServerListLM req;
 	req.set_account_name(msg->account_name());
 	LoginNetModule::GetInstance().SendPacket2Master(req);

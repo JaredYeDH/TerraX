@@ -19,6 +19,7 @@ namespace terra
 		~LoginAccount() = default;
 
 		void InitAccountName(const std::string& account_name);
+		void set_token(const std::string& token) { token_ = token; }
 
 		void EnterDefaultState();
 		void EnterState(Account_State_t state);
