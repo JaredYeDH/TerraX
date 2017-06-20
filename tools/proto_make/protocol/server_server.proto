@@ -73,5 +73,5 @@ message MsgReqEnterServerResultSL
     int32 result = 1;
     string account_name = 2;
     string gate_ip = 3;
-    string gate_port = 4;
+    int32 gate_port = 4;
 }

@@ -40,6 +40,7 @@ namespace terra
 		void SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg);
 		void SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg);
 
+		void CloseClientConnection(int fd);
 	private:
 		void InitLoginNetInfo();
 		void StartConnectMasterServer();

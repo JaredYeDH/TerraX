@@ -23,6 +23,7 @@ namespace terra
 		void NextState(GameState_t eGameState);
 
 		void OnMessage_LoginResultLC(packet_cs::MsgLoginResultLC* msg);
+		void OnMessage_SeclectServerResultLC(packet_cs::MsgSeclectServerResultLC* msg);
 		//void OnMessage_PktRoleListAck(C2SPacket::PktRoleListAck* msg);
 	};
 }

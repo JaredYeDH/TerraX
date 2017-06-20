@@ -90,10 +90,10 @@ void ClientConnService::OnLoginDisconnected(TcpConnection* conn)
 	// ReConnect();
 }
 
-
 void ClientConnService::OnGateConnected(TcpConnection* conn)
 {
 }
+
 void ClientConnService::OnGateDisconnected(TcpConnection* conn)
 {
 	DestroyConnection(conn);

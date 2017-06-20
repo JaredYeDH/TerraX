@@ -29,6 +29,7 @@ namespace terra
 		ClientPacketProcessor& packet_processor_;
 		std::vector<std::unique_ptr<TcpConnection>> conns_;
 		std::vector<IPInfo> login_info_;
+		IPInfo gate_info_;
 		TcpConnection* login_conn_{ nullptr };
 		TcpConnection* gate_conn_{ nullptr };
 	public:
@@ -36,6 +37,11 @@ namespace terra
 		~ClientConnService();
 
 		void InitNetModule(ClientNetModule* net) { net_ = net; }
+		void SetGateIpPort(const std::string& ip, int port) 
+		{ 
+			gate_info_.ip_ = ip;
+			gate_info_.port_ = port;
+		}
 		void LoadLoginServerInfo(const std::string& path);
 
 		void Connect2Login();
@@ -53,6 +59,7 @@ namespace terra
 
 		void OnGateConnected(TcpConnection* conn);
 		void OnGateDisconnected(TcpConnection* conn);
+
 	private:
 		void DestroyConnection(TcpConnection* conn);
 	};

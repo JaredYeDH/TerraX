@@ -10,7 +10,7 @@ namespace terra
 		ACCOUNT_WAITING_BILLINGAUTH,
 		ACCOUNT_WAITING_SERVERLIST,
 		ACCOUNT_WAITING_REQ_ENTERSERVER,
-		ACCOUNT_WAITING_WORLDCHECKTOKEN,
+		ACCOUNT_WAITING_GETGATEINFO,
 		ACCOUNT_WAITING_CLIENTSWITCH2GATE,
 		ACCOUNT_DESTROY,
 
@@ -27,6 +27,8 @@ namespace terra
 		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgReqLoginCL* msg) {}
 		virtual void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) {}
 		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg) {}
+		virtual void HandleMessage(LoginAccount& account, packet_ss::MsgReqEnterServerResultSL* msg) {}
+		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg) {}
 	};
 
 
@@ -66,12 +68,13 @@ namespace terra
 		void HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg) override;
 	};
 
-	class AccountState_WaitingWorldCheckToken : public AccountState_Base
+	class AccountState_WaitingGetGateInfo : public AccountState_Base
 	{
 	public:
 		void Enter(LoginAccount& account) override;
 		void Tick(LoginAccount& account)  override;
 		void Leave(LoginAccount& account)  override;
+		void HandleMessage(LoginAccount& account, packet_ss::MsgReqEnterServerResultSL* msg) override;
 	};
 
 	class AccountState_WaitingClientSwitch2Gate : public AccountState_Base
@@ -80,6 +83,7 @@ namespace terra
 		void Enter(LoginAccount& account) override;
 		void Tick(LoginAccount& account)  override;
 		void Leave(LoginAccount& account)  override;
+		void HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg) override;
 	};
 
 	class AccountState_Destory : public AccountState_Base

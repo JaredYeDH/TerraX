@@ -1,49 +1,49 @@
 #pragma once
 
+#include <string>
 #include "base/types.h"
+#include "client_packet_processor.h"
 #include "comm/net/eventloop.h"
 #include "comm/net/tcp_connection.h"
-#include "client_packet_processor.h"
 #include "comm/proto/client_server.pb.h"
-#include <string>
 namespace terra
 {
-	class ClientConnService;
-	class ClientNetModule final
-	{
-		DISABLE_COPY(ClientNetModule);
-		MAKE_INSTANCE(ClientNetModule);
-	private:
-		const PeerType_t kSelfPeer;
-		EventLoop loop_;
-		ClientConnService& conn_service_;
+    class ClientConnService;
+    class ClientNetModule final
+    {
+        DISABLE_COPY(ClientNetModule);
+        MAKE_INSTANCE(ClientNetModule);
 
-	public:
-		ClientNetModule();
-		~ClientNetModule() = default;
+    private:
+        const PeerType_t kSelfPeer;
+        EventLoop loop_;
+        ClientConnService& conn_service_;
 
-		bool Init();
-		bool AfterInit();
-		bool Tick();
-		bool BeforeShut();
-		bool Shut();
+    public:
+        ClientNetModule();
+        ~ClientNetModule() = default;
 
-		EventLoop* get_event_loop() { return &loop_; }
+        bool Init();
+        bool AfterInit();
+        bool Tick();
+        bool BeforeShut();
+        bool Shut();
 
-		void StartConnectLoginServer();
+        EventLoop* get_event_loop() { return &loop_; }
 
-		void SendPacket2LoginServer(google::protobuf::Message& msg);
-		void SendPacket2GateServer(google::protobuf::Message& msg);
+        void StartConnectLoginServer();
+		void SetGateIpPort(const std::string& ip, int port); 
 
-		void OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-		void OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf);
-	private:
-		void InitLoginNetInfo();
+        void SendPacket2LoginServer(google::protobuf::Message& msg);
+        void SendPacket2GateServer(google::protobuf::Message& msg);
 
+        void OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+        void OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
-		void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+    private:
+        void InitLoginNetInfo();
 
-
-	};
+        void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+        void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
+    };
 }

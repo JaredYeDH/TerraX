@@ -27,3 +27,9 @@ void LoginAcceptService::OnClientDisconnected(TcpConnection* conn)
 {
 	LoginAccountManager::GetInstance().RemoveAccount(conn);
 }
+
+void LoginAcceptService::CloseConnection(int fd)
+{
+	server_->Close(fd);
+}
+

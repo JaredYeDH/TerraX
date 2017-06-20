@@ -1161,16 +1161,11 @@ class MsgReqEnterServerResultSL : public ::google::protobuf::Message /* @@protoc
   ::std::string* release_gate_ip();
   void set_allocated_gate_ip(::std::string* gate_ip);
 
-  // optional string gate_port = 4;
+  // optional int32 gate_port = 4;
   void clear_gate_port();
   static const int kGatePortFieldNumber = 4;
-  const ::std::string& gate_port() const;
-  void set_gate_port(const ::std::string& value);
-  void set_gate_port(const char* value);
-  void set_gate_port(const char* value, size_t size);
-  ::std::string* mutable_gate_port();
-  ::std::string* release_gate_port();
-  void set_allocated_gate_port(::std::string* gate_port);
+  ::google::protobuf::int32 gate_port() const;
+  void set_gate_port(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:packet_ss.MsgReqEnterServerResultSL)
  private:
@@ -1178,9 +1173,9 @@ class MsgReqEnterServerResultSL : public ::google::protobuf::Message /* @@protoc
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr account_name_;
-  ::google::protobuf::internal::ArenaStringPtr gate_ip_;
-  ::google::protobuf::internal::ArenaStringPtr gate_port_;
   ::google::protobuf::int32 result_;
+  ::google::protobuf::int32 gate_port_;
+  ::google::protobuf::internal::ArenaStringPtr gate_ip_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
@@ -1857,48 +1852,18 @@ inline void MsgReqEnterServerResultSL::set_allocated_gate_ip(::std::string* gate
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_ip)
 }
 
-// optional string gate_port = 4;
+// optional int32 gate_port = 4;
 inline void MsgReqEnterServerResultSL::clear_gate_port() {
-  gate_port_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_ = 0;
 }
-inline const ::std::string& MsgReqEnterServerResultSL::gate_port() const {
+inline ::google::protobuf::int32 MsgReqEnterServerResultSL::gate_port() const {
   // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  return gate_port_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return gate_port_;
 }
-inline void MsgReqEnterServerResultSL::set_gate_port(const ::std::string& value) {
+inline void MsgReqEnterServerResultSL::set_gate_port(::google::protobuf::int32 value) {
   
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  gate_port_ = value;
   // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
-inline void MsgReqEnterServerResultSL::set_gate_port(const char* value) {
-  
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
-inline void MsgReqEnterServerResultSL::set_gate_port(const char* value, size_t size) {
-  
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
-inline ::std::string* MsgReqEnterServerResultSL::mutable_gate_port() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  return gate_port_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* MsgReqEnterServerResultSL::release_gate_port() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  
-  return gate_port_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void MsgReqEnterServerResultSL::set_allocated_gate_port(::std::string* gate_port) {
-  if (gate_port != NULL) {
-    
-  } else {
-    
-  }
-  gate_port_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), gate_port);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_port)
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS

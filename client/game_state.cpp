@@ -52,7 +52,10 @@ void GameState_ChosingServer::Enter()
 
 void GameState_Connecting2Gate::Enter()
 {
-	//NetManagerClient::GetInstance().Connect("127.0.0.1", 9991);
+	MsgQuitLoginCL req;
+	ClientNetModule::GetInstance().SendPacket2LoginServer(req);
+
+	//TODO: login2gate
 }
 
 void GameState_CheckingPermission::Enter()

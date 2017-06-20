@@ -361,7 +361,7 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "(\t\022\022\n\nserver_uid\030\003 \001(\005\022\026\n\016login_serverid"
     "\030\004 \001(\005\"e\n\031MsgReqEnterServerResultSL\022\016\n\006r"
     "esult\030\001 \001(\005\022\024\n\014account_name\030\002 \001(\t\022\017\n\007gat"
-    "e_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\tb\006proto3", 917);
+    "e_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\005b\006proto3", 917);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -4004,7 +4004,7 @@ void MsgReqEnterServerResultSL::SharedCtor() {
   result_ = 0;
   account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   gate_ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  gate_port_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_ = 0;
 }
 
 MsgReqEnterServerResultSL::~MsgReqEnterServerResultSL() {
@@ -4015,7 +4015,6 @@ MsgReqEnterServerResultSL::~MsgReqEnterServerResultSL() {
 void MsgReqEnterServerResultSL::SharedDtor() {
   account_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   gate_ip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  gate_port_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
@@ -4047,10 +4046,29 @@ MsgReqEnterServerResultSL* MsgReqEnterServerResultSL::New(::google::protobuf::Ar
 
 void MsgReqEnterServerResultSL::Clear() {
 // @@protoc_insertion_point(message_clear_start:packet_ss.MsgReqEnterServerResultSL)
-  result_ = 0;
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(MsgReqEnterServerResultSL, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<MsgReqEnterServerResultSL*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(result_, gate_port_);
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  gate_port_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+
+#undef ZR_HELPER_
+#undef ZR_
+
 }
 
 bool MsgReqEnterServerResultSL::MergePartialFromCodedStream(
@@ -4107,20 +4125,18 @@ bool MsgReqEnterServerResultSL::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(34)) goto parse_gate_port;
+        if (input->ExpectTag(32)) goto parse_gate_port;
         break;
       }
 
-      // optional string gate_port = 4;
+      // optional int32 gate_port = 4;
       case 4: {
-        if (tag == 34) {
+        if (tag == 32) {
          parse_gate_port:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_gate_port()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->gate_port().data(), this->gate_port().length(),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "packet_ss.MsgReqEnterServerResultSL.gate_port"));
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &gate_port_)));
+
         } else {
           goto handle_unusual;
         }
@@ -4177,14 +4193,9 @@ void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
       3, this->gate_ip(), output);
   }
 
-  // optional string gate_port = 4;
-  if (this->gate_port().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->gate_port().data(), this->gate_port().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgReqEnterServerResultSL.gate_port");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->gate_port(), output);
+  // optional int32 gate_port = 4;
+  if (this->gate_port() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->gate_port(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqEnterServerResultSL)
@@ -4220,15 +4231,9 @@ void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
         3, this->gate_ip(), target);
   }
 
-  // optional string gate_port = 4;
-  if (this->gate_port().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->gate_port().data(), this->gate_port().length(),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_ss.MsgReqEnterServerResultSL.gate_port");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->gate_port(), target);
+  // optional int32 gate_port = 4;
+  if (this->gate_port() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->gate_port(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqEnterServerResultSL)
@@ -4260,10 +4265,10 @@ int MsgReqEnterServerResultSL::ByteSize() const {
         this->gate_ip());
   }
 
-  // optional string gate_port = 4;
-  if (this->gate_port().size() > 0) {
+  // optional int32 gate_port = 4;
+  if (this->gate_port() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->gate_port());
   }
 
@@ -4306,9 +4311,8 @@ void MsgReqEnterServerResultSL::MergeFrom(const MsgReqEnterServerResultSL& from)
 
     gate_ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.gate_ip_);
   }
-  if (from.gate_port().size() > 0) {
-
-    gate_port_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.gate_port_);
+  if (from.gate_port() != 0) {
+    set_gate_port(from.gate_port());
   }
 }
 
@@ -4339,7 +4343,7 @@ void MsgReqEnterServerResultSL::InternalSwap(MsgReqEnterServerResultSL* other) {
   std::swap(result_, other->result_);
   account_name_.Swap(&other->account_name_);
   gate_ip_.Swap(&other->gate_ip_);
-  gate_port_.Swap(&other->gate_port_);
+  std::swap(gate_port_, other->gate_port_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -4457,48 +4461,18 @@ void MsgReqEnterServerResultSL::clear_gate_ip() {
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_ip)
 }
 
-// optional string gate_port = 4;
+// optional int32 gate_port = 4;
 void MsgReqEnterServerResultSL::clear_gate_port() {
-  gate_port_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_ = 0;
 }
- const ::std::string& MsgReqEnterServerResultSL::gate_port() const {
+ ::google::protobuf::int32 MsgReqEnterServerResultSL::gate_port() const {
   // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  return gate_port_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return gate_port_;
 }
- void MsgReqEnterServerResultSL::set_gate_port(const ::std::string& value) {
+ void MsgReqEnterServerResultSL::set_gate_port(::google::protobuf::int32 value) {
   
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  gate_port_ = value;
   // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
- void MsgReqEnterServerResultSL::set_gate_port(const char* value) {
-  
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
- void MsgReqEnterServerResultSL::set_gate_port(const char* value, size_t size) {
-  
-  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerResultSL.gate_port)
-}
- ::std::string* MsgReqEnterServerResultSL::mutable_gate_port() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  return gate_port_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- ::std::string* MsgReqEnterServerResultSL::release_gate_port() {
-  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerResultSL.gate_port)
-  
-  return gate_port_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
- void MsgReqEnterServerResultSL::set_allocated_gate_port(::std::string* gate_port) {
-  if (gate_port != NULL) {
-    
-  } else {
-    
-  }
-  gate_port_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), gate_port);
-  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_port)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

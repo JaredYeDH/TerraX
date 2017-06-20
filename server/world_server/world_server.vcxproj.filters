@@ -4,6 +4,9 @@
     <Filter Include="world_server">
       <UniqueIdentifier>{194729b5-9a24-4c99-a516-efccc21dd1a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="world_server_manager">
+      <UniqueIdentifier>{5146ed33-14fc-4852-8aba-9f348d9f2488}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="world_server\world_server.cpp">
@@ -19,6 +22,12 @@
     <ClCompile Include="world_server\world_conn_service.cpp">
       <Filter>world_server</Filter>
     </ClCompile>
+    <ClCompile Include="world_server_manager\world_server_manager.cpp">
+      <Filter>world_server_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="world_server_manager\world_account.cpp">
+      <Filter>world_server_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_server\world_server.h">
@@ -32,6 +41,12 @@
     </ClInclude>
     <ClInclude Include="world_server\world_conn_service.h">
       <Filter>world_server</Filter>
+    </ClInclude>
+    <ClInclude Include="world_server_manager\world_server_manager.h">
+      <Filter>world_server_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="world_server_manager\world_account.h">
+      <Filter>world_server_manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

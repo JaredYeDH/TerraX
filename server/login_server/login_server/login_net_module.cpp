@@ -113,3 +113,8 @@ void LoginNetModule::OnClientMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 	ProcessServerMessage(conn, evbuf);
 }
 
+void LoginNetModule::CloseClientConnection(int fd)
+{
+	accpet_service_.CloseConnection(fd);
+}
+

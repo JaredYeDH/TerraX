@@ -2,6 +2,7 @@
 #include "comm/net/packet_dispatcher.h"
 #include "comm/proto/base_type.pb.h"
 #include "guest.h"
+#include "client_net_module.h"
 
 using namespace terra;
 using namespace packet_cs;
@@ -12,6 +13,7 @@ GameStateManager::GameStateManager() : m_CurGameState(GameState_t::PRESS2START)
 	m_GameStates[int(GameState_t::LOGIN_FORM)].reset(new GameState_eLoginForm);
 	m_GameStates[int(GameState_t::CONNECTING2LOGIN)].reset(new GameState_Connecting2Login);
 	m_GameStates[int(GameState_t::ACCOUNT_LOGGINGIN)].reset(new GameState_AccountLoggingin);
+	m_GameStates[int(GameState_t::ACCOUNT_CHOSINGSERVER)].reset(new GameState_ChosingServer);
 	m_GameStates[int(GameState_t::CONNECTING_GATE)].reset(new GameState_Connecting2Gate);
 	m_GameStates[int(GameState_t::ACCOUNT_CHECKINGTOKEN)].reset(new GameState_CheckingPermission);
 	m_GameStates[int(GameState_t::SELECTING_AVATAR)].reset(new GameState_AccountSelectingAvatar);
@@ -20,6 +22,7 @@ GameStateManager::GameStateManager() : m_CurGameState(GameState_t::PRESS2START)
 	m_GameStates[int(GameState_t::GAMING)].reset(new GameState_Gaming);
 
 	REG_PACKET_HANDLER_ARG1(MsgLoginResultLC, this, OnMessage_LoginResultLC);
+	REG_PACKET_HANDLER_ARG1(MsgSeclectServerResultLC, this, OnMessage_SeclectServerResultLC);
 	//REG_PACKET_HANDLER_ARG1(PktRoleListAck, this, OnMessage_PktRoleListAck);
 }
 
@@ -85,6 +88,20 @@ void GameStateManager::OnMessage_LoginResultLC(MsgLoginResultLC* msg)
 		CONSOLE_DEBUG_LOG(LEVEL_INFO, "login failed! error code: %d", login_result);
 	}
 
+}
+
+void GameStateManager::OnMessage_SeclectServerResultLC(MsgSeclectServerResultLC* msg)
+{
+	if (msg->result() == 0) // success
+	{
+		ClientNetModule::GetInstance().SetGateIpPort(msg->gate_ip(), msg->gate_port());
+		GameStateManager::GetInstance().NextState(GameState_t::CONNECTING_GATE);
+	}
+	else
+	{
+		GameStateManager::GetInstance().NextState(GameState_t::LOGIN_FORM);
+		CONSOLE_DEBUG_LOG(LEVEL_INFO, "enter server failed! error code: %d", msg->result());
+	}
 }
 /*void GameStateManager::OnMessage_PktRoleListAck(PktRoleListAck* msg)
 {

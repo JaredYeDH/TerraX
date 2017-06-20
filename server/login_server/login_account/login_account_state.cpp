@@ -40,11 +40,12 @@ void AccountState_WaitingServerList::Leave(LoginAccount& account) {}
 
 void AccountState_WaitingServerList::HandleMessage(LoginAccount& account, MsgServerListML* msg)
 {
-	MsgLoginResultLC res;
-	res.set_result(0);
-	res.set_token(account.get_token());
-	res.mutable_servers()->Swap(msg->mutable_servers());
-	LoginNetModule::GetInstance().SendPacket2Client(account.get_conn(), res);
+	MsgLoginResultLC ack;
+	ack.set_result(0);
+	ack.set_token(account.get_token());
+	ack.mutable_servers()->Swap(msg->mutable_servers());
+	LoginNetModule::GetInstance().SendPacket2Client(account.get_conn(), ack);
+	account.EnterState(Account_State_t::ACCOUNT_WAITING_REQ_ENTERSERVER);
 }
 //////////////////////////////////////////////////////////////////////////
 void AccountState_WaitingReqEnterServer::Enter(LoginAccount& account) {}
@@ -58,16 +59,38 @@ void AccountState_WaitingReqEnterServer::HandleMessage(LoginAccount& account, pa
 	req.set_server_uid(msg->server_id());
 	req.set_login_serverid(LoginNetModule::GetInstance().GetLoginServerId());
 	LoginNetModule::GetInstance().SendPacket2Master(req);
+	account.EnterState(Account_State_t::ACCOUNT_WAITING_GETGATEINFO);
 }
 //////////////////////////////////////////////////////////////////////////
-void AccountState_WaitingWorldCheckToken::Enter(LoginAccount& account) {}
-void AccountState_WaitingWorldCheckToken::Tick(LoginAccount& account) {}
-void AccountState_WaitingWorldCheckToken::Leave(LoginAccount& account) {}
+void AccountState_WaitingGetGateInfo::Enter(LoginAccount& account) {}
+void AccountState_WaitingGetGateInfo::Tick(LoginAccount& account) {}
+void AccountState_WaitingGetGateInfo::Leave(LoginAccount& account) {}
+
+void AccountState_WaitingGetGateInfo::HandleMessage(LoginAccount& account, packet_ss::MsgReqEnterServerResultSL* msg)
+{
+	MsgSeclectServerResultLC ack;
+	ack.set_result(msg->result());
+	ack.set_gate_ip(msg->gate_ip());
+	ack.set_gate_port(msg->gate_port());
+	LoginNetModule::GetInstance().SendPacket2Client(account.get_conn(), ack);
+	account.EnterState(Account_State_t::ACCOUNT_WAITING_CLIENTSWITCH2GATE);
+}
 //////////////////////////////////////////////////////////////////////////
 void AccountState_WaitingClientSwitch2Gate::Enter(LoginAccount& account) {}
 void AccountState_WaitingClientSwitch2Gate::Tick(LoginAccount& account) {}
 void AccountState_WaitingClientSwitch2Gate::Leave(LoginAccount& account) {}
+void AccountState_WaitingClientSwitch2Gate::HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg)
+{
+	account.EnterState(Account_State_t::ACCOUNT_DESTROY);
+}
 //////////////////////////////////////////////////////////////////////////
-void AccountState_Destory::Enter(LoginAccount& account) {}
+void AccountState_Destory::Enter(LoginAccount& account) 
+{
+	TcpConnection* conn = account.get_conn();
+	if (conn)
+	{
+		LoginNetModule::GetInstance().CloseClientConnection(conn->get_fd());
+	}
+}
 void AccountState_Destory::Tick(LoginAccount& account) {}
 void AccountState_Destory::Leave(LoginAccount& account) {}

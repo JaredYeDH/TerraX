@@ -22,7 +22,7 @@ namespace terra
 		~TcpServer();
 
 		//void CloseAll();
-		//void Close(int fd);
+		void Close(int fd);
 		TcpConnection* GetTcpConnection(int fd);
 
 		void OnDisconnected(int fd);

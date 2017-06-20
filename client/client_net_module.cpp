@@ -17,6 +17,11 @@ void ClientNetModule::InitLoginNetInfo()
 	conn_service_.LoadLoginServerInfo("client.json");
 }
 
+void ClientNetModule::SetGateIpPort(const std::string& ip, int port)
+{
+	conn_service_.SetGateIpPort(ip, port);
+}
+
 void ClientNetModule::StartConnectLoginServer()
 {
 	conn_service_.Connect2Login();

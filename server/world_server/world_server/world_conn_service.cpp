@@ -1,7 +1,7 @@
 #include "world_conn_service.h"
 #include "comm/net/packet_dispatcher.h"
 #include "world_net_module.h"
-
+#include "world_server_manager/world_server_manager.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -10,7 +10,7 @@ using namespace packet_ss;
 WorldConnService::WorldConnService()
 {
 	REG_PACKET_HANDLER_ARG1(MsgWorldRegAtMasterAckMW, this, OnMessage_WorldRegAtMasterAckMW);
-	REG_PACKET_HANDLER_ARG3(MsgReqEnterServerLS, this, OnMessage_ReqEnterServerLS);
+	REG_PACKET_HANDLER_ARG1(MsgReqEnterServerLS, this, OnMessage_ReqEnterServerLS);
 }
 
 void WorldConnService::Connect2Master(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb)
@@ -48,7 +48,30 @@ void WorldConnService::OnMessage_WorldRegAtMasterAckMW(MsgWorldRegAtMasterAckMW*
 	CONSOLE_DEBUG_LOG(LEVEL_INFO, "Register Result: %d", result);
 }
 
-void WorldConnService::OnMessage_ReqEnterServerLS(TcpConnection* conn, int32_t avatar_id, MsgReqEnterServerLS* msg)
+void WorldConnService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
 {
-	//server_table_.GetNetObjectByServerID()
+	WorldAccount* account = WorldServerManager::GetInstance().FindAccountByAccountName(msg->account_name());
+	if (account)
+	{
+		//kick out this account;
+		return;
+	}
+	int server_id = WorldServerManager::GetInstance().GetLowestLoadGateServerId();
+	NetObject* net_object = server_table_.GetNetObjectByServerID(server_id);
+	if (!net_object)
+	{
+		//gate server not found
+		MsgReqEnterServerResultSL ack;
+		ack.set_result(1);
+		ack.set_account_name(msg->account_name());
+		SendPacket2Master(ack);
+		return;
+	}
+	assert(net_object->peer_type_ == PeerType_t::GATESERVER);
+	MsgReqEnterServerResultSL ack;
+	ack.set_result(0);
+	ack.set_account_name(msg->account_name());
+	ack.set_gate_ip(net_object->listen_ip_);
+	ack.set_gate_port(net_object->listen_port_);
+	SendPacket2Master(ack);
 }

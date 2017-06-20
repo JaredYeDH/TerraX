@@ -33,6 +33,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgSeclectServerResultLC_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgSeclectServerResultLC_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgQuitLoginCL_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MsgQuitLoginCL_reflection_ = NULL;
 const ::google::protobuf::Descriptor* PktGameLoginReq_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   PktGameLoginReq_reflection_ = NULL;
@@ -115,7 +118,21 @@ void protobuf_AssignDesc_client_5fserver_2eproto() {
       sizeof(MsgSeclectServerResultLC),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgSeclectServerResultLC, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgSeclectServerResultLC, _is_default_instance_));
-  PktGameLoginReq_descriptor_ = file->message_type(4);
+  MsgQuitLoginCL_descriptor_ = file->message_type(4);
+  static const int MsgQuitLoginCL_offsets_[1] = {
+  };
+  MsgQuitLoginCL_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      MsgQuitLoginCL_descriptor_,
+      MsgQuitLoginCL::default_instance_,
+      MsgQuitLoginCL_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(MsgQuitLoginCL),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgQuitLoginCL, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgQuitLoginCL, _is_default_instance_));
+  PktGameLoginReq_descriptor_ = file->message_type(5);
   static const int PktGameLoginReq_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PktGameLoginReq, account_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PktGameLoginReq, session_key_),
@@ -132,7 +149,7 @@ void protobuf_AssignDesc_client_5fserver_2eproto() {
       sizeof(PktGameLoginReq),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PktGameLoginReq, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PktGameLoginReq, _is_default_instance_));
-  PktRoleListAck_descriptor_ = file->message_type(5);
+  PktRoleListAck_descriptor_ = file->message_type(6);
   static const int PktRoleListAck_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(PktRoleListAck, role_name_list_),
   };
@@ -169,6 +186,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgSeclectServerResultLC_descriptor_, &MsgSeclectServerResultLC::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      MsgQuitLoginCL_descriptor_, &MsgQuitLoginCL::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       PktGameLoginReq_descriptor_, &PktGameLoginReq::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       PktRoleListAck_descriptor_, &PktRoleListAck::default_instance());
@@ -185,6 +204,8 @@ void protobuf_ShutdownFile_client_5fserver_2eproto() {
   delete MsgSelectServerCL_reflection_;
   delete MsgSeclectServerResultLC::default_instance_;
   delete MsgSeclectServerResultLC_reflection_;
+  delete MsgQuitLoginCL::default_instance_;
+  delete MsgQuitLoginCL_reflection_;
   delete PktGameLoginReq::default_instance_;
   delete PktGameLoginReq_reflection_;
   delete PktRoleListAck::default_instance_;
@@ -207,23 +228,25 @@ void protobuf_AddDesc_client_5fserver_2eproto() {
     "\007servers\030\003 \003(\0132\026.pb_base.ServerProfile\"&"
     "\n\021MsgSelectServerCL\022\021\n\tserver_id\030\001 \001(\005\"N"
     "\n\030MsgSeclectServerResultLC\022\016\n\006result\030\001 \001"
-    "(\005\022\017\n\007gate_ip\030\002 \001(\t\022\021\n\tgate_port\030\003 \001(\005\"P"
-    "\n\017PktGameLoginReq\022\024\n\014account_name\030\001 \001(\t\022"
-    "\023\n\013session_key\030\002 \001(\t\022\022\n\nip_address\030\003 \001(\t"
-    "\"(\n\016PktRoleListAck\022\026\n\016role_name_list\030\001 \003"
-    "(\tb\006proto3", 450);
+    "(\005\022\017\n\007gate_ip\030\002 \001(\t\022\021\n\tgate_port\030\003 \001(\005\"\020"
+    "\n\016MsgQuitLoginCL\"P\n\017PktGameLoginReq\022\024\n\014a"
+    "ccount_name\030\001 \001(\t\022\023\n\013session_key\030\002 \001(\t\022\022"
+    "\n\nip_address\030\003 \001(\t\"(\n\016PktRoleListAck\022\026\n\016"
+    "role_name_list\030\001 \003(\tb\006proto3", 468);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "client_server.proto", &protobuf_RegisterTypes);
   MsgReqLoginCL::default_instance_ = new MsgReqLoginCL();
   MsgLoginResultLC::default_instance_ = new MsgLoginResultLC();
   MsgSelectServerCL::default_instance_ = new MsgSelectServerCL();
   MsgSeclectServerResultLC::default_instance_ = new MsgSeclectServerResultLC();
+  MsgQuitLoginCL::default_instance_ = new MsgQuitLoginCL();
   PktGameLoginReq::default_instance_ = new PktGameLoginReq();
   PktRoleListAck::default_instance_ = new PktRoleListAck();
   MsgReqLoginCL::default_instance_->InitAsDefaultInstance();
   MsgLoginResultLC::default_instance_->InitAsDefaultInstance();
   MsgSelectServerCL::default_instance_->InitAsDefaultInstance();
   MsgSeclectServerResultLC::default_instance_->InitAsDefaultInstance();
+  MsgQuitLoginCL::default_instance_->InitAsDefaultInstance();
   PktGameLoginReq::default_instance_->InitAsDefaultInstance();
   PktRoleListAck::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_client_5fserver_2eproto);
@@ -1671,6 +1694,187 @@ void MsgSeclectServerResultLC::clear_gate_port() {
   gate_port_ = value;
   // @@protoc_insertion_point(field_set:packet_cs.MsgSeclectServerResultLC.gate_port)
 }
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MsgQuitLoginCL::MsgQuitLoginCL()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:packet_cs.MsgQuitLoginCL)
+}
+
+void MsgQuitLoginCL::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+MsgQuitLoginCL::MsgQuitLoginCL(const MsgQuitLoginCL& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:packet_cs.MsgQuitLoginCL)
+}
+
+void MsgQuitLoginCL::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+}
+
+MsgQuitLoginCL::~MsgQuitLoginCL() {
+  // @@protoc_insertion_point(destructor:packet_cs.MsgQuitLoginCL)
+  SharedDtor();
+}
+
+void MsgQuitLoginCL::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void MsgQuitLoginCL::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MsgQuitLoginCL::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgQuitLoginCL_descriptor_;
+}
+
+const MsgQuitLoginCL& MsgQuitLoginCL::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_client_5fserver_2eproto();
+  return *default_instance_;
+}
+
+MsgQuitLoginCL* MsgQuitLoginCL::default_instance_ = NULL;
+
+MsgQuitLoginCL* MsgQuitLoginCL::New(::google::protobuf::Arena* arena) const {
+  MsgQuitLoginCL* n = new MsgQuitLoginCL;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MsgQuitLoginCL::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_cs.MsgQuitLoginCL)
+}
+
+bool MsgQuitLoginCL::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:packet_cs.MsgQuitLoginCL)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+  handle_unusual:
+    if (tag == 0 ||
+        ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+      goto success;
+    }
+    DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+  }
+success:
+  // @@protoc_insertion_point(parse_success:packet_cs.MsgQuitLoginCL)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:packet_cs.MsgQuitLoginCL)
+  return false;
+#undef DO_
+}
+
+void MsgQuitLoginCL::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:packet_cs.MsgQuitLoginCL)
+  // @@protoc_insertion_point(serialize_end:packet_cs.MsgQuitLoginCL)
+}
+
+::google::protobuf::uint8* MsgQuitLoginCL::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:packet_cs.MsgQuitLoginCL)
+  // @@protoc_insertion_point(serialize_to_array_end:packet_cs.MsgQuitLoginCL)
+  return target;
+}
+
+int MsgQuitLoginCL::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_cs.MsgQuitLoginCL)
+  int total_size = 0;
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MsgQuitLoginCL::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_cs.MsgQuitLoginCL)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const MsgQuitLoginCL* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgQuitLoginCL>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_cs.MsgQuitLoginCL)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_cs.MsgQuitLoginCL)
+    MergeFrom(*source);
+  }
+}
+
+void MsgQuitLoginCL::MergeFrom(const MsgQuitLoginCL& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_cs.MsgQuitLoginCL)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+}
+
+void MsgQuitLoginCL::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_cs.MsgQuitLoginCL)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgQuitLoginCL::CopyFrom(const MsgQuitLoginCL& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_cs.MsgQuitLoginCL)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgQuitLoginCL::IsInitialized() const {
+
+  return true;
+}
+
+void MsgQuitLoginCL::Swap(MsgQuitLoginCL* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MsgQuitLoginCL::InternalSwap(MsgQuitLoginCL* other) {
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MsgQuitLoginCL::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgQuitLoginCL_descriptor_;
+  metadata.reflection = MsgQuitLoginCL_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MsgQuitLoginCL
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 

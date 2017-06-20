@@ -50,6 +50,15 @@ void TcpServer::NewConnectionCallback(struct evconnlistener* listener, evutil_so
     self->OnConnect(fd);
 }
 
+void TcpServer::Close(int fd)
+{
+	TcpConnection* conn = GetTcpConnection(fd);
+	if (conn)
+	{
+		conn->ForceClose();
+	}
+}
+
 void TcpServer::OnDisconnected(int fd) { tcp_conns_.erase(fd); }
 
 void TcpServer::OnConnect(evutil_socket_t fd)

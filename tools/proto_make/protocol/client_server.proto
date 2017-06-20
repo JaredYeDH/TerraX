@@ -27,6 +27,10 @@ message MsgSeclectServerResultLC
     int32 gate_port = 3;
 }
 
+message MsgQuitLoginCL
+{
+}
+
 message PktGameLoginReq
 {
     string account_name = 1;
