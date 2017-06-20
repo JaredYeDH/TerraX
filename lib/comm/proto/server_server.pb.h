@@ -1150,9 +1150,15 @@ class MsgReqEnterServerResultSL : public ::google::protobuf::Message /* @@protoc
   ::std::string* release_account_name();
   void set_allocated_account_name(::std::string* account_name);
 
-  // optional string gate_ip = 3;
+  // optional int32 login_serverid = 3;
+  void clear_login_serverid();
+  static const int kLoginServeridFieldNumber = 3;
+  ::google::protobuf::int32 login_serverid() const;
+  void set_login_serverid(::google::protobuf::int32 value);
+
+  // optional string gate_ip = 4;
   void clear_gate_ip();
-  static const int kGateIpFieldNumber = 3;
+  static const int kGateIpFieldNumber = 4;
   const ::std::string& gate_ip() const;
   void set_gate_ip(const ::std::string& value);
   void set_gate_ip(const char* value);
@@ -1161,9 +1167,9 @@ class MsgReqEnterServerResultSL : public ::google::protobuf::Message /* @@protoc
   ::std::string* release_gate_ip();
   void set_allocated_gate_ip(::std::string* gate_ip);
 
-  // optional int32 gate_port = 4;
+  // optional int32 gate_port = 5;
   void clear_gate_port();
-  static const int kGatePortFieldNumber = 4;
+  static const int kGatePortFieldNumber = 5;
   ::google::protobuf::int32 gate_port() const;
   void set_gate_port(::google::protobuf::int32 value);
 
@@ -1174,8 +1180,9 @@ class MsgReqEnterServerResultSL : public ::google::protobuf::Message /* @@protoc
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr account_name_;
   ::google::protobuf::int32 result_;
-  ::google::protobuf::int32 gate_port_;
+  ::google::protobuf::int32 login_serverid_;
   ::google::protobuf::internal::ArenaStringPtr gate_ip_;
+  ::google::protobuf::int32 gate_port_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
@@ -1808,7 +1815,21 @@ inline void MsgReqEnterServerResultSL::set_allocated_account_name(::std::string*
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.account_name)
 }
 
-// optional string gate_ip = 3;
+// optional int32 login_serverid = 3;
+inline void MsgReqEnterServerResultSL::clear_login_serverid() {
+  login_serverid_ = 0;
+}
+inline ::google::protobuf::int32 MsgReqEnterServerResultSL::login_serverid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.login_serverid)
+  return login_serverid_;
+}
+inline void MsgReqEnterServerResultSL::set_login_serverid(::google::protobuf::int32 value) {
+  
+  login_serverid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.login_serverid)
+}
+
+// optional string gate_ip = 4;
 inline void MsgReqEnterServerResultSL::clear_gate_ip() {
   gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -1852,7 +1873,7 @@ inline void MsgReqEnterServerResultSL::set_allocated_gate_ip(::std::string* gate
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_ip)
 }
 
-// optional int32 gate_port = 4;
+// optional int32 gate_port = 5;
 inline void MsgReqEnterServerResultSL::clear_gate_port() {
   gate_port_ = 0;
 }

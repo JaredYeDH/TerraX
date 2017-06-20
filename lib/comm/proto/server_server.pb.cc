@@ -245,9 +245,10 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _is_default_instance_));
   MsgReqEnterServerResultSL_descriptor_ = file->message_type(10);
-  static const int MsgReqEnterServerResultSL_offsets_[4] = {
+  static const int MsgReqEnterServerResultSL_offsets_[5] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, result_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, account_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, login_serverid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, gate_ip_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, gate_port_),
   };
@@ -359,9 +360,10 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "\n\006result\030\001 \001(\005\"n\n\023MsgReqEnterServerLS\022\024\n"
     "\014account_name\030\001 \001(\t\022\025\n\raccount_token\030\002 \001"
     "(\t\022\022\n\nserver_uid\030\003 \001(\005\022\026\n\016login_serverid"
-    "\030\004 \001(\005\"e\n\031MsgReqEnterServerResultSL\022\016\n\006r"
-    "esult\030\001 \001(\005\022\024\n\014account_name\030\002 \001(\t\022\017\n\007gat"
-    "e_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\005b\006proto3", 917);
+    "\030\004 \001(\005\"}\n\031MsgReqEnterServerResultSL\022\016\n\006r"
+    "esult\030\001 \001(\005\022\024\n\014account_name\030\002 \001(\t\022\026\n\016log"
+    "in_serverid\030\003 \001(\005\022\017\n\007gate_ip\030\004 \001(\t\022\021\n\tga"
+    "te_port\030\005 \001(\005b\006proto3", 941);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -3975,6 +3977,7 @@ void MsgReqEnterServerLS::clear_login_serverid() {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int MsgReqEnterServerResultSL::kResultFieldNumber;
 const int MsgReqEnterServerResultSL::kAccountNameFieldNumber;
+const int MsgReqEnterServerResultSL::kLoginServeridFieldNumber;
 const int MsgReqEnterServerResultSL::kGateIpFieldNumber;
 const int MsgReqEnterServerResultSL::kGatePortFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -4003,6 +4006,7 @@ void MsgReqEnterServerResultSL::SharedCtor() {
   _cached_size_ = 0;
   result_ = 0;
   account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  login_serverid_ = 0;
   gate_ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   gate_port_ = 0;
 }
@@ -4062,9 +4066,10 @@ void MsgReqEnterServerResultSL::Clear() {
            ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
 } while (0)
 
-  ZR_(result_, gate_port_);
+  ZR_(result_, login_serverid_);
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_ = 0;
 
 #undef ZR_HELPER_
 #undef ZR_
@@ -4108,13 +4113,28 @@ bool MsgReqEnterServerResultSL::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(26)) goto parse_gate_ip;
+        if (input->ExpectTag(24)) goto parse_login_serverid;
         break;
       }
 
-      // optional string gate_ip = 3;
+      // optional int32 login_serverid = 3;
       case 3: {
-        if (tag == 26) {
+        if (tag == 24) {
+         parse_login_serverid:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &login_serverid_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(34)) goto parse_gate_ip;
+        break;
+      }
+
+      // optional string gate_ip = 4;
+      case 4: {
+        if (tag == 34) {
          parse_gate_ip:
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_gate_ip()));
@@ -4125,13 +4145,13 @@ bool MsgReqEnterServerResultSL::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(32)) goto parse_gate_port;
+        if (input->ExpectTag(40)) goto parse_gate_port;
         break;
       }
 
-      // optional int32 gate_port = 4;
-      case 4: {
-        if (tag == 32) {
+      // optional int32 gate_port = 5;
+      case 5: {
+        if (tag == 40) {
          parse_gate_port:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -4183,19 +4203,24 @@ void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
       2, this->account_name(), output);
   }
 
-  // optional string gate_ip = 3;
+  // optional int32 login_serverid = 3;
+  if (this->login_serverid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->login_serverid(), output);
+  }
+
+  // optional string gate_ip = 4;
   if (this->gate_ip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->gate_ip().data(), this->gate_ip().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "packet_ss.MsgReqEnterServerResultSL.gate_ip");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->gate_ip(), output);
+      4, this->gate_ip(), output);
   }
 
-  // optional int32 gate_port = 4;
+  // optional int32 gate_port = 5;
   if (this->gate_port() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->gate_port(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->gate_port(), output);
   }
 
   // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqEnterServerResultSL)
@@ -4220,7 +4245,12 @@ void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
         2, this->account_name(), target);
   }
 
-  // optional string gate_ip = 3;
+  // optional int32 login_serverid = 3;
+  if (this->login_serverid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->login_serverid(), target);
+  }
+
+  // optional string gate_ip = 4;
   if (this->gate_ip().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->gate_ip().data(), this->gate_ip().length(),
@@ -4228,12 +4258,12 @@ void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
       "packet_ss.MsgReqEnterServerResultSL.gate_ip");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->gate_ip(), target);
+        4, this->gate_ip(), target);
   }
 
-  // optional int32 gate_port = 4;
+  // optional int32 gate_port = 5;
   if (this->gate_port() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->gate_port(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->gate_port(), target);
   }
 
   // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqEnterServerResultSL)
@@ -4258,14 +4288,21 @@ int MsgReqEnterServerResultSL::ByteSize() const {
         this->account_name());
   }
 
-  // optional string gate_ip = 3;
+  // optional int32 login_serverid = 3;
+  if (this->login_serverid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->login_serverid());
+  }
+
+  // optional string gate_ip = 4;
   if (this->gate_ip().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->gate_ip());
   }
 
-  // optional int32 gate_port = 4;
+  // optional int32 gate_port = 5;
   if (this->gate_port() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
@@ -4307,6 +4344,9 @@ void MsgReqEnterServerResultSL::MergeFrom(const MsgReqEnterServerResultSL& from)
 
     account_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.account_name_);
   }
+  if (from.login_serverid() != 0) {
+    set_login_serverid(from.login_serverid());
+  }
   if (from.gate_ip().size() > 0) {
 
     gate_ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.gate_ip_);
@@ -4342,6 +4382,7 @@ void MsgReqEnterServerResultSL::Swap(MsgReqEnterServerResultSL* other) {
 void MsgReqEnterServerResultSL::InternalSwap(MsgReqEnterServerResultSL* other) {
   std::swap(result_, other->result_);
   account_name_.Swap(&other->account_name_);
+  std::swap(login_serverid_, other->login_serverid_);
   gate_ip_.Swap(&other->gate_ip_);
   std::swap(gate_port_, other->gate_port_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
@@ -4417,7 +4458,21 @@ void MsgReqEnterServerResultSL::clear_account_name() {
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.account_name)
 }
 
-// optional string gate_ip = 3;
+// optional int32 login_serverid = 3;
+void MsgReqEnterServerResultSL::clear_login_serverid() {
+  login_serverid_ = 0;
+}
+ ::google::protobuf::int32 MsgReqEnterServerResultSL::login_serverid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.login_serverid)
+  return login_serverid_;
+}
+ void MsgReqEnterServerResultSL::set_login_serverid(::google::protobuf::int32 value) {
+  
+  login_serverid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.login_serverid)
+}
+
+// optional string gate_ip = 4;
 void MsgReqEnterServerResultSL::clear_gate_ip() {
   gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -4461,7 +4516,7 @@ void MsgReqEnterServerResultSL::clear_gate_ip() {
   // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_ip)
 }
 
-// optional int32 gate_port = 4;
+// optional int32 gate_port = 5;
 void MsgReqEnterServerResultSL::clear_gate_port() {
   gate_port_ = 0;
 }

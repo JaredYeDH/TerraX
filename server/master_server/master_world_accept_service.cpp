@@ -8,6 +8,7 @@ using namespace packet_ss;
 MasterWorldAcceptService::MasterWorldAcceptService()
 {
 	REG_PACKET_HANDLER_ARG3(MsgWorldRegAtMasterWM, this, OnMessage_WorldRegAtMasterWM);
+	REG_PACKET_HANDLER_ARG1(MsgReqEnterServerResultSL, this, OnMessage_ReqEnterServerResultSL);
 }
 
 void MasterWorldAcceptService::OnWorldConnected(TcpConnection* conn)
@@ -37,4 +38,13 @@ void MasterWorldAcceptService::OnMessage_WorldRegAtMasterWM(TcpConnection* conn,
 	MsgWorldRegAtMasterAckMW ack;
 	ack.set_result(0);
 	net_->SendPacket(conn, ack);
+}
+
+void MasterWorldAcceptService::OnMessage_ReqEnterServerResultSL(MsgReqEnterServerResultSL* msg)
+{
+	LoginServerObject* login_obj = ServerManager::GetInstance().FindLoginServerById(msg->login_serverid());
+	if (login_obj)
+	{
+		SendPacket(login_obj->get_conn(), *msg);
+	}
 }

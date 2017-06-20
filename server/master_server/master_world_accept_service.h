@@ -20,5 +20,6 @@ namespace terra
 		void OnWorldDisconnected(TcpConnection* conn);
 	private:
 		void OnMessage_WorldRegAtMasterWM(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgWorldRegAtMasterWM* msg);
+		void OnMessage_ReqEnterServerResultSL(packet_ss::MsgReqEnterServerResultSL* msg);
 	};
 }

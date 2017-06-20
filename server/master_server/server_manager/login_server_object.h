@@ -10,7 +10,7 @@ namespace terra
 	private:
 		TcpConnection* conn_{ nullptr };
 	public:
-		LoginServerObject() = default;
+		LoginServerObject(TcpConnection* conn);
 		~LoginServerObject() = default;
 
 		TcpConnection* get_conn() { return conn_; }

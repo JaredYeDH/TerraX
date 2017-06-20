@@ -34,7 +34,7 @@ void ServerManager::LoadWorldConfig(const std::string& path)
 
 void ServerManager::CreateLoginServerObj(TcpConnection* conn)
 {
-	login_server_map_.emplace(std::make_pair(conn->get_fd(), LoginServerObject()));
+	login_server_map_.emplace(std::make_pair(conn->get_fd(), LoginServerObject(conn)));
 }
 
 void ServerManager::RemoveLoginServerObj(TcpConnection* conn)

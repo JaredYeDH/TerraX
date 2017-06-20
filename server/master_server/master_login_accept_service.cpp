@@ -57,6 +57,7 @@ void MasterLoginAcceptService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* m
 		MsgReqEnterServerResultSL ack;
 		ack.set_result(error_code);
 		ack.set_account_name(account_name);
+		ack.set_login_serverid(login_server_id);
 		LoginServerObject* login_obj = ServerManager::GetInstance().FindLoginServerById(login_server_id);
 		if (login_obj)
 		{

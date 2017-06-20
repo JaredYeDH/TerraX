@@ -64,6 +64,7 @@ void WorldConnService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
 		MsgReqEnterServerResultSL ack;
 		ack.set_result(1);
 		ack.set_account_name(msg->account_name());
+		ack.set_login_serverid(msg->login_serverid());
 		SendPacket2Master(ack);
 		return;
 	}
@@ -71,6 +72,7 @@ void WorldConnService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
 	MsgReqEnterServerResultSL ack;
 	ack.set_result(0);
 	ack.set_account_name(msg->account_name());
+	ack.set_login_serverid(msg->login_serverid());
 	ack.set_gate_ip(net_object->listen_ip_);
 	ack.set_gate_port(net_object->listen_port_);
 	SendPacket2Master(ack);
