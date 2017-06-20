@@ -9,7 +9,7 @@ namespace terra
 		ACCOUNT_WAITING_LOGIN,
 		ACCOUNT_WAITING_BILLINGAUTH,
 		ACCOUNT_WAITING_SERVERLIST,
-		ACCOUNT_WAITING_REQ_ENTERGAME,
+		ACCOUNT_WAITING_REQ_ENTERSERVER,
 		ACCOUNT_WAITING_WORLDCHECKTOKEN,
 		ACCOUNT_WAITING_CLIENTSWITCH2GATE,
 		ACCOUNT_DESTROY,
@@ -26,6 +26,7 @@ namespace terra
 
 		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgReqLoginCL* msg) {}
 		virtual void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) {}
+		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg) {}
 	};
 
 
@@ -56,12 +57,13 @@ namespace terra
 		void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) override;
 	};
 
-	class AccountState_WaitingReqEnterGame : public AccountState_Base
+	class AccountState_WaitingReqEnterServer : public AccountState_Base
 	{
 	public:
 		void Enter(LoginAccount& account) override;
 		void Tick(LoginAccount& account)  override;
 		void Leave(LoginAccount& account)  override;
+		void HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg) override;
 	};
 
 	class AccountState_WaitingWorldCheckToken : public AccountState_Base

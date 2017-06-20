@@ -45,7 +45,7 @@ namespace terra
 		void InitAccountState();
 
 		void OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginCL* msg);
-		
-		void OnMessage_MsgServerListML(packet_ss::MsgServerListML* msg);
+		void OnMessage_ServerListML(packet_ss::MsgServerListML* msg);
+		void OnMessage_SelectServerCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgSelectServerCL* msg);
 	};
 }

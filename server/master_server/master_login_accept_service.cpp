@@ -8,6 +8,7 @@ using namespace packet_ss;
 MasterLoginAcceptService::MasterLoginAcceptService()
 {
 	REG_PACKET_HANDLER_ARG3(MsgReqServerListLM, this, OnMessage_ReqServerListLM);
+	REG_PACKET_HANDLER_ARG1(MsgReqEnterServerLS, this, OnMessage_ReqEnterServerLS);
 }
 
 
@@ -43,4 +44,21 @@ void MasterLoginAcceptService::OnMessage_ReqServerListLM(TcpConnection* conn, in
 	MsgReqServerListLM* post_back = ack.mutable_post_back();
 	post_back->set_account_name(msg->account_name());
 	SendPacket(conn, ack);
+}
+
+void MasterLoginAcceptService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
+{
+	//TODO: add_login_serverid
+	const std::string& account_name = msg->account_name();
+	auto ret = [&account_name](int error_code) {
+		MsgReqEnterServerResultSL ack;
+		ack.set_result(error_code);
+		ack.set_account_name(account_name);
+	};
+	WorldServerObject* obj = ServerManager::GetInstance().FindWorldServerByUID(msg->server_uid());
+	if (!obj)
+	{
+		ret(1);
+		return;
+	}
 }

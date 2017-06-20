@@ -23,7 +23,7 @@ void MasterWorldAcceptService::OnWorldDisconnected(TcpConnection* conn)
 void MasterWorldAcceptService::OnMessage_WorldRegAtMasterWM(TcpConnection* conn, int32_t avatar_id, MsgWorldRegAtMasterWM* msg)
 {
 	int server_uid = msg->server_uid();
-	WorldServerObject* obj = ServerManager::GetInstance().FindWorldObjectByUID(server_uid);
+	WorldServerObject* obj = ServerManager::GetInstance().FindWorldServerByUID(server_uid);
 	if (!obj)
 	{
 		MsgWorldRegAtMasterAckMW ack;

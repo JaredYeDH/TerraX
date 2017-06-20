@@ -47,9 +47,17 @@ void AccountState_WaitingServerList::HandleMessage(LoginAccount& account, MsgSer
 	LoginNetModule::GetInstance().SendPacket2Client(account.get_conn(), res);
 }
 //////////////////////////////////////////////////////////////////////////
-void AccountState_WaitingReqEnterGame::Enter(LoginAccount& account) {}
-void AccountState_WaitingReqEnterGame::Tick(LoginAccount& account) {}
-void AccountState_WaitingReqEnterGame::Leave(LoginAccount& account) {}
+void AccountState_WaitingReqEnterServer::Enter(LoginAccount& account) {}
+void AccountState_WaitingReqEnterServer::Tick(LoginAccount& account) {}
+void AccountState_WaitingReqEnterServer::Leave(LoginAccount& account) {}
+void AccountState_WaitingReqEnterServer::HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg)
+{
+	MsgReqEnterServerLS req;
+	req.set_account_name(account.get_account_name());
+	req.set_account_token(account.get_token());
+	req.set_server_uid(msg->server_id());
+	LoginNetModule::GetInstance().SendPacket2Master(req);
+}
 //////////////////////////////////////////////////////////////////////////
 void AccountState_WaitingWorldCheckToken::Enter(LoginAccount& account) {}
 void AccountState_WaitingWorldCheckToken::Tick(LoginAccount& account) {}

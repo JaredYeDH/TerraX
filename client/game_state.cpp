@@ -40,6 +40,16 @@ void GameState_AccountLoggingin::Enter()
 	ClientNetModule::GetInstance().SendPacket2LoginServer(msg);
 }
 
+void GameState_ChosingServer::Enter()
+{
+	std::cout << "Please input server id:\t " << std::endl;
+	int server_id = 0;
+	std::cin >> server_id;
+	MsgSelectServerCL msg;
+	msg.set_server_id(server_id);
+	ClientNetModule::GetInstance().SendPacket2LoginServer(msg);
+}
+
 void GameState_Connecting2Gate::Enter()
 {
 	//NetManagerClient::GetInstance().Connect("127.0.0.1", 9991);

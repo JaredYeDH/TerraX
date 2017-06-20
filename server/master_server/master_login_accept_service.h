@@ -21,5 +21,6 @@ namespace terra
 		void OnLoginDisconnected(TcpConnection* conn);
 	private:
 		void OnMessage_ReqServerListLM(TcpConnection* conn, int32_t avatar_id, packet_ss::MsgReqServerListLM* msg);
+		void OnMessage_ReqEnterServerLS(packet_ss::MsgReqEnterServerLS* msg);
 	};
 }

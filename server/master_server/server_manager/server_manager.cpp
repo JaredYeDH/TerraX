@@ -42,7 +42,7 @@ void ServerManager::RemoveLoginServerObj(TcpConnection* conn)
 	login_server_map_.erase(conn->get_fd());
 }
 
-WorldServerObject* ServerManager::FindWorldObjectByUID(int server_uid)
+WorldServerObject* ServerManager::FindWorldServerByUID(int server_uid)
 {
 	auto iter = world_server_map_.find(server_uid);
 	assert(iter != world_server_map_.end());

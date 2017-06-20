@@ -78,6 +78,7 @@ void GameStateManager::OnMessage_LoginResultLC(MsgLoginResultLC* msg)
 					kServerStatus[val.server_status()]);
 			}
 		}
+		GameStateManager::GetInstance().NextState(GameState_t::ACCOUNT_CHOSINGSERVER);
 	}
 	else
 	{

@@ -48,12 +48,12 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgWorldRegAtMasterAckMW_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgWorldRegAtMasterAckMW_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgWorldAccountCountReqMW_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* MsgReqEnterServerLS_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgWorldAccountCountReqMW_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgWorldAccountCountAckWM_descriptor_ = NULL;
+  MsgReqEnterServerLS_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgReqEnterServerResultSL_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgWorldAccountCountAckWM_reflection_ = NULL;
+  MsgReqEnterServerResultSL_reflection_ = NULL;
 
 }  // namespace
 
@@ -208,35 +208,41 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgWorldRegAtMasterAckMW),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _is_default_instance_));
-  MsgWorldAccountCountReqMW_descriptor_ = file->message_type(8);
-  static const int MsgWorldAccountCountReqMW_offsets_[1] = {
+  MsgReqEnterServerLS_descriptor_ = file->message_type(8);
+  static const int MsgReqEnterServerLS_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, account_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, account_token_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, server_uid_),
   };
-  MsgWorldAccountCountReqMW_reflection_ =
+  MsgReqEnterServerLS_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgWorldAccountCountReqMW_descriptor_,
-      MsgWorldAccountCountReqMW::default_instance_,
-      MsgWorldAccountCountReqMW_offsets_,
+      MsgReqEnterServerLS_descriptor_,
+      MsgReqEnterServerLS::default_instance_,
+      MsgReqEnterServerLS_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgWorldAccountCountReqMW),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldAccountCountReqMW, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldAccountCountReqMW, _is_default_instance_));
-  MsgWorldAccountCountAckWM_descriptor_ = file->message_type(9);
-  static const int MsgWorldAccountCountAckWM_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldAccountCountAckWM, naccountcount_),
+      sizeof(MsgReqEnterServerLS),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _is_default_instance_));
+  MsgReqEnterServerResultSL_descriptor_ = file->message_type(9);
+  static const int MsgReqEnterServerResultSL_offsets_[4] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, result_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, account_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, gate_ip_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, gate_port_),
   };
-  MsgWorldAccountCountAckWM_reflection_ =
+  MsgReqEnterServerResultSL_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgWorldAccountCountAckWM_descriptor_,
-      MsgWorldAccountCountAckWM::default_instance_,
-      MsgWorldAccountCountAckWM_offsets_,
+      MsgReqEnterServerResultSL_descriptor_,
+      MsgReqEnterServerResultSL::default_instance_,
+      MsgReqEnterServerResultSL_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgWorldAccountCountAckWM),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldAccountCountAckWM, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldAccountCountAckWM, _is_default_instance_));
+      sizeof(MsgReqEnterServerResultSL),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, _is_default_instance_));
 }
 
 namespace {
@@ -269,9 +275,9 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgWorldRegAtMasterAckMW_descriptor_, &MsgWorldRegAtMasterAckMW::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgWorldAccountCountReqMW_descriptor_, &MsgWorldAccountCountReqMW::default_instance());
+      MsgReqEnterServerLS_descriptor_, &MsgReqEnterServerLS::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgWorldAccountCountAckWM_descriptor_, &MsgWorldAccountCountAckWM::default_instance());
+      MsgReqEnterServerResultSL_descriptor_, &MsgReqEnterServerResultSL::default_instance());
 }
 
 }  // namespace
@@ -295,10 +301,10 @@ void protobuf_ShutdownFile_server_5fserver_2eproto() {
   delete MsgWorldRegAtMasterWM_reflection_;
   delete MsgWorldRegAtMasterAckMW::default_instance_;
   delete MsgWorldRegAtMasterAckMW_reflection_;
-  delete MsgWorldAccountCountReqMW::default_instance_;
-  delete MsgWorldAccountCountReqMW_reflection_;
-  delete MsgWorldAccountCountAckWM::default_instance_;
-  delete MsgWorldAccountCountAckWM_reflection_;
+  delete MsgReqEnterServerLS::default_instance_;
+  delete MsgReqEnterServerLS_reflection_;
+  delete MsgReqEnterServerResultSL::default_instance_;
+  delete MsgReqEnterServerResultSL_reflection_;
 }
 
 void protobuf_AddDesc_server_5fserver_2eproto() GOOGLE_ATTRIBUTE_COLD;
@@ -326,9 +332,12 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "ack\030\003 \001(\0132\035.packet_ss.MsgReqServerListLM"
     "\"+\n\025MsgWorldRegAtMasterWM\022\022\n\nserver_uid\030"
     "\001 \001(\005\"*\n\030MsgWorldRegAtMasterAckMW\022\016\n\006res"
-    "ult\030\001 \001(\005\"\033\n\031MsgWorldAccountCountReqMW\"2"
-    "\n\031MsgWorldAccountCountAckWM\022\025\n\rnAccountC"
-    "ount\030\001 \001(\005b\006proto3", 738);
+    "ult\030\001 \001(\005\"V\n\023MsgReqEnterServerLS\022\024\n\014acco"
+    "unt_name\030\001 \001(\t\022\025\n\raccount_token\030\002 \001(\t\022\022\n"
+    "\nserver_uid\030\003 \001(\005\"e\n\031MsgReqEnterServerRe"
+    "sultSL\022\016\n\006result\030\001 \001(\005\022\024\n\014account_name\030\002"
+    " \001(\t\022\017\n\007gate_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\t"
+    "b\006proto3", 848);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -340,8 +349,8 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgServerListML::default_instance_ = new MsgServerListML();
   MsgWorldRegAtMasterWM::default_instance_ = new MsgWorldRegAtMasterWM();
   MsgWorldRegAtMasterAckMW::default_instance_ = new MsgWorldRegAtMasterAckMW();
-  MsgWorldAccountCountReqMW::default_instance_ = new MsgWorldAccountCountReqMW();
-  MsgWorldAccountCountAckWM::default_instance_ = new MsgWorldAccountCountAckWM();
+  MsgReqEnterServerLS::default_instance_ = new MsgReqEnterServerLS();
+  MsgReqEnterServerResultSL::default_instance_ = new MsgReqEnterServerResultSL();
   MsgRegisterSW::default_instance_->InitAsDefaultInstance();
   MsgRegisterWS::default_instance_->InitAsDefaultInstance();
   MsgServerInfoWS::default_instance_->InitAsDefaultInstance();
@@ -351,8 +360,8 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgServerListML::default_instance_->InitAsDefaultInstance();
   MsgWorldRegAtMasterWM::default_instance_->InitAsDefaultInstance();
   MsgWorldRegAtMasterAckMW::default_instance_->InitAsDefaultInstance();
-  MsgWorldAccountCountReqMW::default_instance_->InitAsDefaultInstance();
-  MsgWorldAccountCountAckWM::default_instance_->InitAsDefaultInstance();
+  MsgReqEnterServerLS::default_instance_->InitAsDefaultInstance();
+  MsgReqEnterServerResultSL::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_server_5fserver_2eproto);
 }
 
@@ -3193,270 +3202,132 @@ void MsgWorldRegAtMasterAckMW::clear_result() {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MsgReqEnterServerLS::kAccountNameFieldNumber;
+const int MsgReqEnterServerLS::kAccountTokenFieldNumber;
+const int MsgReqEnterServerLS::kServerUidFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgWorldAccountCountReqMW::MsgWorldAccountCountReqMW()
+MsgReqEnterServerLS::MsgReqEnterServerLS()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgWorldAccountCountReqMW)
+  // @@protoc_insertion_point(constructor:packet_ss.MsgReqEnterServerLS)
 }
 
-void MsgWorldAccountCountReqMW::InitAsDefaultInstance() {
+void MsgReqEnterServerLS::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-MsgWorldAccountCountReqMW::MsgWorldAccountCountReqMW(const MsgWorldAccountCountReqMW& from)
+MsgReqEnterServerLS::MsgReqEnterServerLS(const MsgReqEnterServerLS& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgWorldAccountCountReqMW)
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgReqEnterServerLS)
 }
 
-void MsgWorldAccountCountReqMW::SharedCtor() {
+void MsgReqEnterServerLS::SharedCtor() {
     _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
+  account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  account_token_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  server_uid_ = 0;
 }
 
-MsgWorldAccountCountReqMW::~MsgWorldAccountCountReqMW() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgWorldAccountCountReqMW)
+MsgReqEnterServerLS::~MsgReqEnterServerLS() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgReqEnterServerLS)
   SharedDtor();
 }
 
-void MsgWorldAccountCountReqMW::SharedDtor() {
+void MsgReqEnterServerLS::SharedDtor() {
+  account_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  account_token_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
 
-void MsgWorldAccountCountReqMW::SetCachedSize(int size) const {
+void MsgReqEnterServerLS::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgWorldAccountCountReqMW::descriptor() {
+const ::google::protobuf::Descriptor* MsgReqEnterServerLS::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgWorldAccountCountReqMW_descriptor_;
+  return MsgReqEnterServerLS_descriptor_;
 }
 
-const MsgWorldAccountCountReqMW& MsgWorldAccountCountReqMW::default_instance() {
+const MsgReqEnterServerLS& MsgReqEnterServerLS::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgWorldAccountCountReqMW* MsgWorldAccountCountReqMW::default_instance_ = NULL;
+MsgReqEnterServerLS* MsgReqEnterServerLS::default_instance_ = NULL;
 
-MsgWorldAccountCountReqMW* MsgWorldAccountCountReqMW::New(::google::protobuf::Arena* arena) const {
-  MsgWorldAccountCountReqMW* n = new MsgWorldAccountCountReqMW;
+MsgReqEnterServerLS* MsgReqEnterServerLS::New(::google::protobuf::Arena* arena) const {
+  MsgReqEnterServerLS* n = new MsgReqEnterServerLS;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgWorldAccountCountReqMW::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgWorldAccountCountReqMW)
+void MsgReqEnterServerLS::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgReqEnterServerLS)
+  account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  server_uid_ = 0;
 }
 
-bool MsgWorldAccountCountReqMW::MergePartialFromCodedStream(
+bool MsgReqEnterServerLS::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgWorldAccountCountReqMW)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-  handle_unusual:
-    if (tag == 0 ||
-        ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-        ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-      goto success;
-    }
-    DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
-  }
-success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgWorldAccountCountReqMW)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgWorldAccountCountReqMW)
-  return false;
-#undef DO_
-}
-
-void MsgWorldAccountCountReqMW::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgWorldAccountCountReqMW)
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgWorldAccountCountReqMW)
-}
-
-::google::protobuf::uint8* MsgWorldAccountCountReqMW::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgWorldAccountCountReqMW)
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgWorldAccountCountReqMW)
-  return target;
-}
-
-int MsgWorldAccountCountReqMW::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgWorldAccountCountReqMW)
-  int total_size = 0;
-
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void MsgWorldAccountCountReqMW::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgWorldAccountCountReqMW)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
-  const MsgWorldAccountCountReqMW* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgWorldAccountCountReqMW>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgWorldAccountCountReqMW)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgWorldAccountCountReqMW)
-    MergeFrom(*source);
-  }
-}
-
-void MsgWorldAccountCountReqMW::MergeFrom(const MsgWorldAccountCountReqMW& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgWorldAccountCountReqMW)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) {
-    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
-  }
-}
-
-void MsgWorldAccountCountReqMW::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgWorldAccountCountReqMW)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void MsgWorldAccountCountReqMW::CopyFrom(const MsgWorldAccountCountReqMW& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgWorldAccountCountReqMW)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool MsgWorldAccountCountReqMW::IsInitialized() const {
-
-  return true;
-}
-
-void MsgWorldAccountCountReqMW::Swap(MsgWorldAccountCountReqMW* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void MsgWorldAccountCountReqMW::InternalSwap(MsgWorldAccountCountReqMW* other) {
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  std::swap(_cached_size_, other->_cached_size_);
-}
-
-::google::protobuf::Metadata MsgWorldAccountCountReqMW::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgWorldAccountCountReqMW_descriptor_;
-  metadata.reflection = MsgWorldAccountCountReqMW_reflection_;
-  return metadata;
-}
-
-#if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgWorldAccountCountReqMW
-
-#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
-
-// ===================================================================
-
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgWorldAccountCountAckWM::kNAccountCountFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-MsgWorldAccountCountAckWM::MsgWorldAccountCountAckWM()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_ss.MsgWorldAccountCountAckWM)
-}
-
-void MsgWorldAccountCountAckWM::InitAsDefaultInstance() {
-  _is_default_instance_ = true;
-}
-
-MsgWorldAccountCountAckWM::MsgWorldAccountCountAckWM(const MsgWorldAccountCountAckWM& from)
-  : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
-  SharedCtor();
-  MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgWorldAccountCountAckWM)
-}
-
-void MsgWorldAccountCountAckWM::SharedCtor() {
-    _is_default_instance_ = false;
-  _cached_size_ = 0;
-  naccountcount_ = 0;
-}
-
-MsgWorldAccountCountAckWM::~MsgWorldAccountCountAckWM() {
-  // @@protoc_insertion_point(destructor:packet_ss.MsgWorldAccountCountAckWM)
-  SharedDtor();
-}
-
-void MsgWorldAccountCountAckWM::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void MsgWorldAccountCountAckWM::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* MsgWorldAccountCountAckWM::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return MsgWorldAccountCountAckWM_descriptor_;
-}
-
-const MsgWorldAccountCountAckWM& MsgWorldAccountCountAckWM::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
-  return *default_instance_;
-}
-
-MsgWorldAccountCountAckWM* MsgWorldAccountCountAckWM::default_instance_ = NULL;
-
-MsgWorldAccountCountAckWM* MsgWorldAccountCountAckWM::New(::google::protobuf::Arena* arena) const {
-  MsgWorldAccountCountAckWM* n = new MsgWorldAccountCountAckWM;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
-
-void MsgWorldAccountCountAckWM::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_ss.MsgWorldAccountCountAckWM)
-  naccountcount_ = 0;
-}
-
-bool MsgWorldAccountCountAckWM::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_ss.MsgWorldAccountCountAckWM)
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgReqEnterServerLS)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional int32 nAccountCount = 1;
+      // optional string account_name = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_account_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->account_name().data(), this->account_name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "packet_ss.MsgReqEnterServerLS.account_name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_account_token;
+        break;
+      }
+
+      // optional string account_token = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_account_token:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_account_token()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->account_token().data(), this->account_token().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "packet_ss.MsgReqEnterServerLS.account_token"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(24)) goto parse_server_uid;
+        break;
+      }
+
+      // optional int32 server_uid = 3;
+      case 3: {
+        if (tag == 24) {
+         parse_server_uid:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &naccountcount_)));
+                 input, &server_uid_)));
 
         } else {
           goto handle_unusual;
@@ -3478,46 +3349,102 @@ bool MsgWorldAccountCountAckWM::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_ss.MsgWorldAccountCountAckWM)
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgReqEnterServerLS)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_ss.MsgWorldAccountCountAckWM)
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgReqEnterServerLS)
   return false;
 #undef DO_
 }
 
-void MsgWorldAccountCountAckWM::SerializeWithCachedSizes(
+void MsgReqEnterServerLS::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_ss.MsgWorldAccountCountAckWM)
-  // optional int32 nAccountCount = 1;
-  if (this->naccountcount() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->naccountcount(), output);
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgReqEnterServerLS)
+  // optional string account_name = 1;
+  if (this->account_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_name().data(), this->account_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerLS.account_name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->account_name(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:packet_ss.MsgWorldAccountCountAckWM)
+  // optional string account_token = 2;
+  if (this->account_token().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_token().data(), this->account_token().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerLS.account_token");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->account_token(), output);
+  }
+
+  // optional int32 server_uid = 3;
+  if (this->server_uid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->server_uid(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqEnterServerLS)
 }
 
-::google::protobuf::uint8* MsgWorldAccountCountAckWM::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgReqEnterServerLS::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgWorldAccountCountAckWM)
-  // optional int32 nAccountCount = 1;
-  if (this->naccountcount() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->naccountcount(), target);
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgReqEnterServerLS)
+  // optional string account_name = 1;
+  if (this->account_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_name().data(), this->account_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerLS.account_name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->account_name(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgWorldAccountCountAckWM)
+  // optional string account_token = 2;
+  if (this->account_token().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_token().data(), this->account_token().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerLS.account_token");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->account_token(), target);
+  }
+
+  // optional int32 server_uid = 3;
+  if (this->server_uid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->server_uid(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqEnterServerLS)
   return target;
 }
 
-int MsgWorldAccountCountAckWM::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgWorldAccountCountAckWM)
+int MsgReqEnterServerLS::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgReqEnterServerLS)
   int total_size = 0;
 
-  // optional int32 nAccountCount = 1;
-  if (this->naccountcount() != 0) {
+  // optional string account_name = 1;
+  if (this->account_name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->account_name());
+  }
+
+  // optional string account_token = 2;
+  if (this->account_token().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->account_token());
+  }
+
+  // optional int32 server_uid = 3;
+  if (this->server_uid() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->naccountcount());
+        this->server_uid());
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -3526,85 +3453,716 @@ int MsgWorldAccountCountAckWM::ByteSize() const {
   return total_size;
 }
 
-void MsgWorldAccountCountAckWM::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgWorldAccountCountAckWM)
+void MsgReqEnterServerLS::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgReqEnterServerLS)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgWorldAccountCountAckWM* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgWorldAccountCountAckWM>(
+  const MsgReqEnterServerLS* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgReqEnterServerLS>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgWorldAccountCountAckWM)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgReqEnterServerLS)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgWorldAccountCountAckWM)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgReqEnterServerLS)
     MergeFrom(*source);
   }
 }
 
-void MsgWorldAccountCountAckWM::MergeFrom(const MsgWorldAccountCountAckWM& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgWorldAccountCountAckWM)
+void MsgReqEnterServerLS::MergeFrom(const MsgReqEnterServerLS& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgReqEnterServerLS)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  if (from.naccountcount() != 0) {
-    set_naccountcount(from.naccountcount());
+  if (from.account_name().size() > 0) {
+
+    account_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.account_name_);
+  }
+  if (from.account_token().size() > 0) {
+
+    account_token_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.account_token_);
+  }
+  if (from.server_uid() != 0) {
+    set_server_uid(from.server_uid());
   }
 }
 
-void MsgWorldAccountCountAckWM::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgWorldAccountCountAckWM)
+void MsgReqEnterServerLS::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgReqEnterServerLS)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgWorldAccountCountAckWM::CopyFrom(const MsgWorldAccountCountAckWM& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgWorldAccountCountAckWM)
+void MsgReqEnterServerLS::CopyFrom(const MsgReqEnterServerLS& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgReqEnterServerLS)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgWorldAccountCountAckWM::IsInitialized() const {
+bool MsgReqEnterServerLS::IsInitialized() const {
 
   return true;
 }
 
-void MsgWorldAccountCountAckWM::Swap(MsgWorldAccountCountAckWM* other) {
+void MsgReqEnterServerLS::Swap(MsgReqEnterServerLS* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgWorldAccountCountAckWM::InternalSwap(MsgWorldAccountCountAckWM* other) {
-  std::swap(naccountcount_, other->naccountcount_);
+void MsgReqEnterServerLS::InternalSwap(MsgReqEnterServerLS* other) {
+  account_name_.Swap(&other->account_name_);
+  account_token_.Swap(&other->account_token_);
+  std::swap(server_uid_, other->server_uid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgWorldAccountCountAckWM::GetMetadata() const {
+::google::protobuf::Metadata MsgReqEnterServerLS::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgWorldAccountCountAckWM_descriptor_;
-  metadata.reflection = MsgWorldAccountCountAckWM_reflection_;
+  metadata.descriptor = MsgReqEnterServerLS_descriptor_;
+  metadata.reflection = MsgReqEnterServerLS_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgWorldAccountCountAckWM
+// MsgReqEnterServerLS
 
-// optional int32 nAccountCount = 1;
-void MsgWorldAccountCountAckWM::clear_naccountcount() {
-  naccountcount_ = 0;
+// optional string account_name = 1;
+void MsgReqEnterServerLS::clear_account_name() {
+  account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::google::protobuf::int32 MsgWorldAccountCountAckWM::naccountcount() const {
-  // @@protoc_insertion_point(field_get:packet_ss.MsgWorldAccountCountAckWM.nAccountCount)
-  return naccountcount_;
+ const ::std::string& MsgReqEnterServerLS::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerLS.account_name)
+  return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgWorldAccountCountAckWM::set_naccountcount(::google::protobuf::int32 value) {
+ void MsgReqEnterServerLS::set_account_name(const ::std::string& value) {
   
-  naccountcount_ = value;
-  // @@protoc_insertion_point(field_set:packet_ss.MsgWorldAccountCountAckWM.nAccountCount)
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.account_name)
+}
+ void MsgReqEnterServerLS::set_account_name(const char* value) {
+  
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerLS.account_name)
+}
+ void MsgReqEnterServerLS::set_account_name(const char* value, size_t size) {
+  
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerLS.account_name)
+}
+ ::std::string* MsgReqEnterServerLS::mutable_account_name() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerLS.account_name)
+  return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgReqEnterServerLS::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerLS.account_name)
+  
+  return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerLS::set_allocated_account_name(::std::string* account_name) {
+  if (account_name != NULL) {
+    
+  } else {
+    
+  }
+  account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerLS.account_name)
+}
+
+// optional string account_token = 2;
+void MsgReqEnterServerLS::clear_account_token() {
+  account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& MsgReqEnterServerLS::account_token() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerLS.account_token)
+  return account_token_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerLS::set_account_token(const ::std::string& value) {
+  
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.account_token)
+}
+ void MsgReqEnterServerLS::set_account_token(const char* value) {
+  
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerLS.account_token)
+}
+ void MsgReqEnterServerLS::set_account_token(const char* value, size_t size) {
+  
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerLS.account_token)
+}
+ ::std::string* MsgReqEnterServerLS::mutable_account_token() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerLS.account_token)
+  return account_token_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgReqEnterServerLS::release_account_token() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerLS.account_token)
+  
+  return account_token_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerLS::set_allocated_account_token(::std::string* account_token) {
+  if (account_token != NULL) {
+    
+  } else {
+    
+  }
+  account_token_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_token);
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerLS.account_token)
+}
+
+// optional int32 server_uid = 3;
+void MsgReqEnterServerLS::clear_server_uid() {
+  server_uid_ = 0;
+}
+ ::google::protobuf::int32 MsgReqEnterServerLS::server_uid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerLS.server_uid)
+  return server_uid_;
+}
+ void MsgReqEnterServerLS::set_server_uid(::google::protobuf::int32 value) {
+  
+  server_uid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.server_uid)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MsgReqEnterServerResultSL::kResultFieldNumber;
+const int MsgReqEnterServerResultSL::kAccountNameFieldNumber;
+const int MsgReqEnterServerResultSL::kGateIpFieldNumber;
+const int MsgReqEnterServerResultSL::kGatePortFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MsgReqEnterServerResultSL::MsgReqEnterServerResultSL()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:packet_ss.MsgReqEnterServerResultSL)
+}
+
+void MsgReqEnterServerResultSL::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+MsgReqEnterServerResultSL::MsgReqEnterServerResultSL(const MsgReqEnterServerResultSL& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgReqEnterServerResultSL)
+}
+
+void MsgReqEnterServerResultSL::SharedCtor() {
+    _is_default_instance_ = false;
+  ::google::protobuf::internal::GetEmptyString();
+  _cached_size_ = 0;
+  result_ = 0;
+  account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+MsgReqEnterServerResultSL::~MsgReqEnterServerResultSL() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgReqEnterServerResultSL)
+  SharedDtor();
+}
+
+void MsgReqEnterServerResultSL::SharedDtor() {
+  account_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_ip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (this != default_instance_) {
+  }
+}
+
+void MsgReqEnterServerResultSL::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MsgReqEnterServerResultSL::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgReqEnterServerResultSL_descriptor_;
+}
+
+const MsgReqEnterServerResultSL& MsgReqEnterServerResultSL::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
+  return *default_instance_;
+}
+
+MsgReqEnterServerResultSL* MsgReqEnterServerResultSL::default_instance_ = NULL;
+
+MsgReqEnterServerResultSL* MsgReqEnterServerResultSL::New(::google::protobuf::Arena* arena) const {
+  MsgReqEnterServerResultSL* n = new MsgReqEnterServerResultSL;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MsgReqEnterServerResultSL::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgReqEnterServerResultSL)
+  result_ = 0;
+  account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  gate_port_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+bool MsgReqEnterServerResultSL::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgReqEnterServerResultSL)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 result = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &result_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_account_name;
+        break;
+      }
+
+      // optional string account_name = 2;
+      case 2: {
+        if (tag == 18) {
+         parse_account_name:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_account_name()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->account_name().data(), this->account_name().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "packet_ss.MsgReqEnterServerResultSL.account_name"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(26)) goto parse_gate_ip;
+        break;
+      }
+
+      // optional string gate_ip = 3;
+      case 3: {
+        if (tag == 26) {
+         parse_gate_ip:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_gate_ip()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->gate_ip().data(), this->gate_ip().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "packet_ss.MsgReqEnterServerResultSL.gate_ip"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(34)) goto parse_gate_port;
+        break;
+      }
+
+      // optional string gate_port = 4;
+      case 4: {
+        if (tag == 34) {
+         parse_gate_port:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_gate_port()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->gate_port().data(), this->gate_port().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "packet_ss.MsgReqEnterServerResultSL.gate_port"));
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgReqEnterServerResultSL)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgReqEnterServerResultSL)
+  return false;
+#undef DO_
+}
+
+void MsgReqEnterServerResultSL::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgReqEnterServerResultSL)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->result(), output);
+  }
+
+  // optional string account_name = 2;
+  if (this->account_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_name().data(), this->account_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.account_name");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->account_name(), output);
+  }
+
+  // optional string gate_ip = 3;
+  if (this->gate_ip().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->gate_ip().data(), this->gate_ip().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.gate_ip");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      3, this->gate_ip(), output);
+  }
+
+  // optional string gate_port = 4;
+  if (this->gate_port().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->gate_port().data(), this->gate_port().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.gate_port");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      4, this->gate_port(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqEnterServerResultSL)
+}
+
+::google::protobuf::uint8* MsgReqEnterServerResultSL::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgReqEnterServerResultSL)
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->result(), target);
+  }
+
+  // optional string account_name = 2;
+  if (this->account_name().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->account_name().data(), this->account_name().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.account_name");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->account_name(), target);
+  }
+
+  // optional string gate_ip = 3;
+  if (this->gate_ip().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->gate_ip().data(), this->gate_ip().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.gate_ip");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->gate_ip(), target);
+  }
+
+  // optional string gate_port = 4;
+  if (this->gate_port().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->gate_port().data(), this->gate_port().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "packet_ss.MsgReqEnterServerResultSL.gate_port");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->gate_port(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqEnterServerResultSL)
+  return target;
+}
+
+int MsgReqEnterServerResultSL::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgReqEnterServerResultSL)
+  int total_size = 0;
+
+  // optional int32 result = 1;
+  if (this->result() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->result());
+  }
+
+  // optional string account_name = 2;
+  if (this->account_name().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->account_name());
+  }
+
+  // optional string gate_ip = 3;
+  if (this->gate_ip().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->gate_ip());
+  }
+
+  // optional string gate_port = 4;
+  if (this->gate_port().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->gate_port());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MsgReqEnterServerResultSL::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgReqEnterServerResultSL)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const MsgReqEnterServerResultSL* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgReqEnterServerResultSL>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgReqEnterServerResultSL)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgReqEnterServerResultSL)
+    MergeFrom(*source);
+  }
+}
+
+void MsgReqEnterServerResultSL::MergeFrom(const MsgReqEnterServerResultSL& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgReqEnterServerResultSL)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  if (from.result() != 0) {
+    set_result(from.result());
+  }
+  if (from.account_name().size() > 0) {
+
+    account_name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.account_name_);
+  }
+  if (from.gate_ip().size() > 0) {
+
+    gate_ip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.gate_ip_);
+  }
+  if (from.gate_port().size() > 0) {
+
+    gate_port_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.gate_port_);
+  }
+}
+
+void MsgReqEnterServerResultSL::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgReqEnterServerResultSL)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgReqEnterServerResultSL::CopyFrom(const MsgReqEnterServerResultSL& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgReqEnterServerResultSL)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgReqEnterServerResultSL::IsInitialized() const {
+
+  return true;
+}
+
+void MsgReqEnterServerResultSL::Swap(MsgReqEnterServerResultSL* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MsgReqEnterServerResultSL::InternalSwap(MsgReqEnterServerResultSL* other) {
+  std::swap(result_, other->result_);
+  account_name_.Swap(&other->account_name_);
+  gate_ip_.Swap(&other->gate_ip_);
+  gate_port_.Swap(&other->gate_port_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MsgReqEnterServerResultSL::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgReqEnterServerResultSL_descriptor_;
+  metadata.reflection = MsgReqEnterServerResultSL_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MsgReqEnterServerResultSL
+
+// optional int32 result = 1;
+void MsgReqEnterServerResultSL::clear_result() {
+  result_ = 0;
+}
+ ::google::protobuf::int32 MsgReqEnterServerResultSL::result() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.result)
+  return result_;
+}
+ void MsgReqEnterServerResultSL::set_result(::google::protobuf::int32 value) {
+  
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.result)
+}
+
+// optional string account_name = 2;
+void MsgReqEnterServerResultSL::clear_account_name() {
+  account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& MsgReqEnterServerResultSL::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.account_name)
+  return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_account_name(const ::std::string& value) {
+  
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.account_name)
+}
+ void MsgReqEnterServerResultSL::set_account_name(const char* value) {
+  
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerResultSL.account_name)
+}
+ void MsgReqEnterServerResultSL::set_account_name(const char* value, size_t size) {
+  
+  account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerResultSL.account_name)
+}
+ ::std::string* MsgReqEnterServerResultSL::mutable_account_name() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerResultSL.account_name)
+  return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgReqEnterServerResultSL::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerResultSL.account_name)
+  
+  return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_allocated_account_name(::std::string* account_name) {
+  if (account_name != NULL) {
+    
+  } else {
+    
+  }
+  account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.account_name)
+}
+
+// optional string gate_ip = 3;
+void MsgReqEnterServerResultSL::clear_gate_ip() {
+  gate_ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& MsgReqEnterServerResultSL::gate_ip() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+  return gate_ip_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_gate_ip(const ::std::string& value) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+}
+ void MsgReqEnterServerResultSL::set_gate_ip(const char* value) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+}
+ void MsgReqEnterServerResultSL::set_gate_ip(const char* value, size_t size) {
+  
+  gate_ip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+}
+ ::std::string* MsgReqEnterServerResultSL::mutable_gate_ip() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+  return gate_ip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgReqEnterServerResultSL::release_gate_ip() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+  
+  return gate_ip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_allocated_gate_ip(::std::string* gate_ip) {
+  if (gate_ip != NULL) {
+    
+  } else {
+    
+  }
+  gate_ip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), gate_ip);
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_ip)
+}
+
+// optional string gate_port = 4;
+void MsgReqEnterServerResultSL::clear_gate_port() {
+  gate_port_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ const ::std::string& MsgReqEnterServerResultSL::gate_port() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerResultSL.gate_port)
+  return gate_port_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_gate_port(const ::std::string& value) {
+  
+  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerResultSL.gate_port)
+}
+ void MsgReqEnterServerResultSL::set_gate_port(const char* value) {
+  
+  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_ss.MsgReqEnterServerResultSL.gate_port)
+}
+ void MsgReqEnterServerResultSL::set_gate_port(const char* value, size_t size) {
+  
+  gate_port_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:packet_ss.MsgReqEnterServerResultSL.gate_port)
+}
+ ::std::string* MsgReqEnterServerResultSL::mutable_gate_port() {
+  
+  // @@protoc_insertion_point(field_mutable:packet_ss.MsgReqEnterServerResultSL.gate_port)
+  return gate_port_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ ::std::string* MsgReqEnterServerResultSL::release_gate_port() {
+  // @@protoc_insertion_point(field_release:packet_ss.MsgReqEnterServerResultSL.gate_port)
+  
+  return gate_port_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+ void MsgReqEnterServerResultSL::set_allocated_gate_port(::std::string* gate_port) {
+  if (gate_port != NULL) {
+    
+  } else {
+    
+  }
+  gate_port_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), gate_port);
+  // @@protoc_insertion_point(field_set_allocated:packet_ss.MsgReqEnterServerResultSL.gate_port)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
