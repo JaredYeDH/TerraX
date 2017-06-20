@@ -6,7 +6,6 @@
 using namespace terra;
 using namespace packet_ss;
 
-//TODO 数据包处理必须为Instance()
 LoginNetModule::LoginNetModule() : NetBaseModule(PeerType_t::LOGINSERVER),
 conn_service_(LoginConnService::GetInstance()),
 accpet_service_(LoginAcceptService::GetInstance())

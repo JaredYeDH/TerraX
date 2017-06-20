@@ -56,6 +56,7 @@ void AccountState_WaitingReqEnterServer::HandleMessage(LoginAccount& account, pa
 	req.set_account_name(account.get_account_name());
 	req.set_account_token(account.get_token());
 	req.set_server_uid(msg->server_id());
+	req.set_login_serverid(LoginNetModule::GetInstance().GetLoginServerId());
 	LoginNetModule::GetInstance().SendPacket2Master(req);
 }
 //////////////////////////////////////////////////////////////////////////

@@ -52,3 +52,14 @@ WorldServerObject* ServerManager::FindWorldServerByUID(int server_uid)
 	}
 	return nullptr;
 }
+
+LoginServerObject* ServerManager::FindLoginServerById(int login_server_id)
+{
+	auto iter = login_server_map_.find(login_server_id);
+	assert(iter != login_server_map_.end());
+	if (iter != login_server_map_.end())
+	{
+		return &(iter->second);
+	}
+	return nullptr;
+}

@@ -5,7 +5,6 @@
 
 using namespace terra;
 
-//TODO 数据包处理必须为Instance()
 GateNetModule::GateNetModule() : NetBaseModule(PeerType_t::GATESERVER),
 conn_service_(GateConnService::GetInstance())
 {

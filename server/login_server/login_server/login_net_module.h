@@ -30,12 +30,16 @@ namespace terra
 		bool Tick();
 		bool BeforeShut();
 		bool Shut();
+
+		int GetLoginServerId() const { return conn_service_.get_login_server_id(); }
+
 		//TODO:
 		//		GateAccount, GateAvatar
 		//		¶ÏÏßÂß¼­ world->gate->node
 		void SendPacket2Master(google::protobuf::Message& msg);
 		void SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg);
 		void SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg);
+
 	private:
 		void InitLoginNetInfo();
 		void StartConnectMasterServer();

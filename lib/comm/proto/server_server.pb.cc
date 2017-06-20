@@ -42,6 +42,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgServerListML_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgServerListML_reflection_ = NULL;
+const ::google::protobuf::Descriptor* MsgSyncLoginServerIdML_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  MsgSyncLoginServerIdML_reflection_ = NULL;
 const ::google::protobuf::Descriptor* MsgWorldRegAtMasterWM_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgWorldRegAtMasterWM_reflection_ = NULL;
@@ -178,7 +181,22 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgServerListML),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgServerListML, _is_default_instance_));
-  MsgWorldRegAtMasterWM_descriptor_ = file->message_type(6);
+  MsgSyncLoginServerIdML_descriptor_ = file->message_type(6);
+  static const int MsgSyncLoginServerIdML_offsets_[1] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgSyncLoginServerIdML, server_id_),
+  };
+  MsgSyncLoginServerIdML_reflection_ =
+    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+      MsgSyncLoginServerIdML_descriptor_,
+      MsgSyncLoginServerIdML::default_instance_,
+      MsgSyncLoginServerIdML_offsets_,
+      -1,
+      -1,
+      -1,
+      sizeof(MsgSyncLoginServerIdML),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgSyncLoginServerIdML, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgSyncLoginServerIdML, _is_default_instance_));
+  MsgWorldRegAtMasterWM_descriptor_ = file->message_type(7);
   static const int MsgWorldRegAtMasterWM_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, server_uid_),
   };
@@ -193,7 +211,7 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgWorldRegAtMasterWM),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterWM, _is_default_instance_));
-  MsgWorldRegAtMasterAckMW_descriptor_ = file->message_type(7);
+  MsgWorldRegAtMasterAckMW_descriptor_ = file->message_type(8);
   static const int MsgWorldRegAtMasterAckMW_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, result_),
   };
@@ -208,11 +226,12 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgWorldRegAtMasterAckMW),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgWorldRegAtMasterAckMW, _is_default_instance_));
-  MsgReqEnterServerLS_descriptor_ = file->message_type(8);
-  static const int MsgReqEnterServerLS_offsets_[3] = {
+  MsgReqEnterServerLS_descriptor_ = file->message_type(9);
+  static const int MsgReqEnterServerLS_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, account_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, account_token_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, server_uid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, login_serverid_),
   };
   MsgReqEnterServerLS_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
@@ -225,7 +244,7 @@ void protobuf_AssignDesc_server_5fserver_2eproto() {
       sizeof(MsgReqEnterServerLS),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerLS, _is_default_instance_));
-  MsgReqEnterServerResultSL_descriptor_ = file->message_type(9);
+  MsgReqEnterServerResultSL_descriptor_ = file->message_type(10);
   static const int MsgReqEnterServerResultSL_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, result_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqEnterServerResultSL, account_name_),
@@ -271,6 +290,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgServerListML_descriptor_, &MsgServerListML::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+      MsgSyncLoginServerIdML_descriptor_, &MsgSyncLoginServerIdML::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgWorldRegAtMasterWM_descriptor_, &MsgWorldRegAtMasterWM::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgWorldRegAtMasterAckMW_descriptor_, &MsgWorldRegAtMasterAckMW::default_instance());
@@ -297,6 +318,8 @@ void protobuf_ShutdownFile_server_5fserver_2eproto() {
   delete MsgReqServerListLM_reflection_;
   delete MsgServerListML::default_instance_;
   delete MsgServerListML_reflection_;
+  delete MsgSyncLoginServerIdML::default_instance_;
+  delete MsgSyncLoginServerIdML_reflection_;
   delete MsgWorldRegAtMasterWM::default_instance_;
   delete MsgWorldRegAtMasterWM_reflection_;
   delete MsgWorldRegAtMasterAckMW::default_instance_;
@@ -330,14 +353,15 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
     "gServerListML\022\016\n\006result\030\001 \001(\005\022\'\n\007servers"
     "\030\002 \003(\0132\026.pb_base.ServerProfile\0220\n\tpost_b"
     "ack\030\003 \001(\0132\035.packet_ss.MsgReqServerListLM"
-    "\"+\n\025MsgWorldRegAtMasterWM\022\022\n\nserver_uid\030"
-    "\001 \001(\005\"*\n\030MsgWorldRegAtMasterAckMW\022\016\n\006res"
-    "ult\030\001 \001(\005\"V\n\023MsgReqEnterServerLS\022\024\n\014acco"
-    "unt_name\030\001 \001(\t\022\025\n\raccount_token\030\002 \001(\t\022\022\n"
-    "\nserver_uid\030\003 \001(\005\"e\n\031MsgReqEnterServerRe"
-    "sultSL\022\016\n\006result\030\001 \001(\005\022\024\n\014account_name\030\002"
-    " \001(\t\022\017\n\007gate_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\t"
-    "b\006proto3", 848);
+    "\"+\n\026MsgSyncLoginServerIdML\022\021\n\tserver_id\030"
+    "\001 \001(\005\"+\n\025MsgWorldRegAtMasterWM\022\022\n\nserver"
+    "_uid\030\001 \001(\005\"*\n\030MsgWorldRegAtMasterAckMW\022\016"
+    "\n\006result\030\001 \001(\005\"n\n\023MsgReqEnterServerLS\022\024\n"
+    "\014account_name\030\001 \001(\t\022\025\n\raccount_token\030\002 \001"
+    "(\t\022\022\n\nserver_uid\030\003 \001(\005\022\026\n\016login_serverid"
+    "\030\004 \001(\005\"e\n\031MsgReqEnterServerResultSL\022\016\n\006r"
+    "esult\030\001 \001(\005\022\024\n\014account_name\030\002 \001(\t\022\017\n\007gat"
+    "e_ip\030\003 \001(\t\022\021\n\tgate_port\030\004 \001(\tb\006proto3", 917);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "server_server.proto", &protobuf_RegisterTypes);
   MsgRegisterSW::default_instance_ = new MsgRegisterSW();
@@ -347,6 +371,7 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgLogin2NodeGN::default_instance_ = new MsgLogin2NodeGN();
   MsgReqServerListLM::default_instance_ = new MsgReqServerListLM();
   MsgServerListML::default_instance_ = new MsgServerListML();
+  MsgSyncLoginServerIdML::default_instance_ = new MsgSyncLoginServerIdML();
   MsgWorldRegAtMasterWM::default_instance_ = new MsgWorldRegAtMasterWM();
   MsgWorldRegAtMasterAckMW::default_instance_ = new MsgWorldRegAtMasterAckMW();
   MsgReqEnterServerLS::default_instance_ = new MsgReqEnterServerLS();
@@ -358,6 +383,7 @@ void protobuf_AddDesc_server_5fserver_2eproto() {
   MsgLogin2NodeGN::default_instance_->InitAsDefaultInstance();
   MsgReqServerListLM::default_instance_->InitAsDefaultInstance();
   MsgServerListML::default_instance_->InitAsDefaultInstance();
+  MsgSyncLoginServerIdML::default_instance_->InitAsDefaultInstance();
   MsgWorldRegAtMasterWM::default_instance_->InitAsDefaultInstance();
   MsgWorldRegAtMasterAckMW::default_instance_->InitAsDefaultInstance();
   MsgReqEnterServerLS::default_instance_->InitAsDefaultInstance();
@@ -2726,6 +2752,244 @@ void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerListLM* p
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int MsgSyncLoginServerIdML::kServerIdFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+MsgSyncLoginServerIdML::MsgSyncLoginServerIdML()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:packet_ss.MsgSyncLoginServerIdML)
+}
+
+void MsgSyncLoginServerIdML::InitAsDefaultInstance() {
+  _is_default_instance_ = true;
+}
+
+MsgSyncLoginServerIdML::MsgSyncLoginServerIdML(const MsgSyncLoginServerIdML& from)
+  : ::google::protobuf::Message(),
+    _internal_metadata_(NULL) {
+  SharedCtor();
+  MergeFrom(from);
+  // @@protoc_insertion_point(copy_constructor:packet_ss.MsgSyncLoginServerIdML)
+}
+
+void MsgSyncLoginServerIdML::SharedCtor() {
+    _is_default_instance_ = false;
+  _cached_size_ = 0;
+  server_id_ = 0;
+}
+
+MsgSyncLoginServerIdML::~MsgSyncLoginServerIdML() {
+  // @@protoc_insertion_point(destructor:packet_ss.MsgSyncLoginServerIdML)
+  SharedDtor();
+}
+
+void MsgSyncLoginServerIdML::SharedDtor() {
+  if (this != default_instance_) {
+  }
+}
+
+void MsgSyncLoginServerIdML::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* MsgSyncLoginServerIdML::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return MsgSyncLoginServerIdML_descriptor_;
+}
+
+const MsgSyncLoginServerIdML& MsgSyncLoginServerIdML::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_server_5fserver_2eproto();
+  return *default_instance_;
+}
+
+MsgSyncLoginServerIdML* MsgSyncLoginServerIdML::default_instance_ = NULL;
+
+MsgSyncLoginServerIdML* MsgSyncLoginServerIdML::New(::google::protobuf::Arena* arena) const {
+  MsgSyncLoginServerIdML* n = new MsgSyncLoginServerIdML;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void MsgSyncLoginServerIdML::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_ss.MsgSyncLoginServerIdML)
+  server_id_ = 0;
+}
+
+bool MsgSyncLoginServerIdML::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:packet_ss.MsgSyncLoginServerIdML)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // optional int32 server_id = 1;
+      case 1: {
+        if (tag == 8) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &server_id_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectAtEnd()) goto success;
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:packet_ss.MsgSyncLoginServerIdML)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:packet_ss.MsgSyncLoginServerIdML)
+  return false;
+#undef DO_
+}
+
+void MsgSyncLoginServerIdML::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:packet_ss.MsgSyncLoginServerIdML)
+  // optional int32 server_id = 1;
+  if (this->server_id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->server_id(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:packet_ss.MsgSyncLoginServerIdML)
+}
+
+::google::protobuf::uint8* MsgSyncLoginServerIdML::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:packet_ss.MsgSyncLoginServerIdML)
+  // optional int32 server_id = 1;
+  if (this->server_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->server_id(), target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgSyncLoginServerIdML)
+  return target;
+}
+
+int MsgSyncLoginServerIdML::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_ss.MsgSyncLoginServerIdML)
+  int total_size = 0;
+
+  // optional int32 server_id = 1;
+  if (this->server_id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->server_id());
+  }
+
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void MsgSyncLoginServerIdML::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_ss.MsgSyncLoginServerIdML)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  const MsgSyncLoginServerIdML* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgSyncLoginServerIdML>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_ss.MsgSyncLoginServerIdML)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_ss.MsgSyncLoginServerIdML)
+    MergeFrom(*source);
+  }
+}
+
+void MsgSyncLoginServerIdML::MergeFrom(const MsgSyncLoginServerIdML& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_ss.MsgSyncLoginServerIdML)
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
+  if (from.server_id() != 0) {
+    set_server_id(from.server_id());
+  }
+}
+
+void MsgSyncLoginServerIdML::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_ss.MsgSyncLoginServerIdML)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void MsgSyncLoginServerIdML::CopyFrom(const MsgSyncLoginServerIdML& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_ss.MsgSyncLoginServerIdML)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MsgSyncLoginServerIdML::IsInitialized() const {
+
+  return true;
+}
+
+void MsgSyncLoginServerIdML::Swap(MsgSyncLoginServerIdML* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void MsgSyncLoginServerIdML::InternalSwap(MsgSyncLoginServerIdML* other) {
+  std::swap(server_id_, other->server_id_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata MsgSyncLoginServerIdML::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = MsgSyncLoginServerIdML_descriptor_;
+  metadata.reflection = MsgSyncLoginServerIdML_reflection_;
+  return metadata;
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// MsgSyncLoginServerIdML
+
+// optional int32 server_id = 1;
+void MsgSyncLoginServerIdML::clear_server_id() {
+  server_id_ = 0;
+}
+ ::google::protobuf::int32 MsgSyncLoginServerIdML::server_id() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgSyncLoginServerIdML.server_id)
+  return server_id_;
+}
+ void MsgSyncLoginServerIdML::set_server_id(::google::protobuf::int32 value) {
+  
+  server_id_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgSyncLoginServerIdML.server_id)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int MsgWorldRegAtMasterWM::kServerUidFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
@@ -3205,6 +3469,7 @@ void MsgWorldRegAtMasterAckMW::clear_result() {
 const int MsgReqEnterServerLS::kAccountNameFieldNumber;
 const int MsgReqEnterServerLS::kAccountTokenFieldNumber;
 const int MsgReqEnterServerLS::kServerUidFieldNumber;
+const int MsgReqEnterServerLS::kLoginServeridFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 MsgReqEnterServerLS::MsgReqEnterServerLS()
@@ -3232,6 +3497,7 @@ void MsgReqEnterServerLS::SharedCtor() {
   account_name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   account_token_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   server_uid_ = 0;
+  login_serverid_ = 0;
 }
 
 MsgReqEnterServerLS::~MsgReqEnterServerLS() {
@@ -3273,9 +3539,29 @@ MsgReqEnterServerLS* MsgReqEnterServerLS::New(::google::protobuf::Arena* arena) 
 
 void MsgReqEnterServerLS::Clear() {
 // @@protoc_insertion_point(message_clear_start:packet_ss.MsgReqEnterServerLS)
+#if defined(__clang__)
+#define ZR_HELPER_(f) \
+  _Pragma("clang diagnostic push") \
+  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
+  __builtin_offsetof(MsgReqEnterServerLS, f) \
+  _Pragma("clang diagnostic pop")
+#else
+#define ZR_HELPER_(f) reinterpret_cast<char*>(\
+  &reinterpret_cast<MsgReqEnterServerLS*>(16)->f)
+#endif
+
+#define ZR_(first, last) do {\
+  ::memset(&first, 0,\
+           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
+} while (0)
+
+  ZR_(server_uid_, login_serverid_);
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  server_uid_ = 0;
+
+#undef ZR_HELPER_
+#undef ZR_
+
 }
 
 bool MsgReqEnterServerLS::MergePartialFromCodedStream(
@@ -3328,6 +3614,21 @@ bool MsgReqEnterServerLS::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &server_uid_)));
+
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(32)) goto parse_login_serverid;
+        break;
+      }
+
+      // optional int32 login_serverid = 4;
+      case 4: {
+        if (tag == 32) {
+         parse_login_serverid:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &login_serverid_)));
 
         } else {
           goto handle_unusual;
@@ -3385,6 +3686,11 @@ void MsgReqEnterServerLS::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->server_uid(), output);
   }
 
+  // optional int32 login_serverid = 4;
+  if (this->login_serverid() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->login_serverid(), output);
+  }
+
   // @@protoc_insertion_point(serialize_end:packet_ss.MsgReqEnterServerLS)
 }
 
@@ -3418,6 +3724,11 @@ void MsgReqEnterServerLS::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->server_uid(), target);
   }
 
+  // optional int32 login_serverid = 4;
+  if (this->login_serverid() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->login_serverid(), target);
+  }
+
   // @@protoc_insertion_point(serialize_to_array_end:packet_ss.MsgReqEnterServerLS)
   return target;
 }
@@ -3445,6 +3756,13 @@ int MsgReqEnterServerLS::ByteSize() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->server_uid());
+  }
+
+  // optional int32 login_serverid = 4;
+  if (this->login_serverid() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->login_serverid());
   }
 
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
@@ -3486,6 +3804,9 @@ void MsgReqEnterServerLS::MergeFrom(const MsgReqEnterServerLS& from) {
   if (from.server_uid() != 0) {
     set_server_uid(from.server_uid());
   }
+  if (from.login_serverid() != 0) {
+    set_login_serverid(from.login_serverid());
+  }
 }
 
 void MsgReqEnterServerLS::CopyFrom(const ::google::protobuf::Message& from) {
@@ -3515,6 +3836,7 @@ void MsgReqEnterServerLS::InternalSwap(MsgReqEnterServerLS* other) {
   account_name_.Swap(&other->account_name_);
   account_token_.Swap(&other->account_token_);
   std::swap(server_uid_, other->server_uid_);
+  std::swap(login_serverid_, other->login_serverid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
@@ -3630,6 +3952,20 @@ void MsgReqEnterServerLS::clear_server_uid() {
   
   server_uid_ = value;
   // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.server_uid)
+}
+
+// optional int32 login_serverid = 4;
+void MsgReqEnterServerLS::clear_login_serverid() {
+  login_serverid_ = 0;
+}
+ ::google::protobuf::int32 MsgReqEnterServerLS::login_serverid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerLS.login_serverid)
+  return login_serverid_;
+}
+ void MsgReqEnterServerLS::set_login_serverid(::google::protobuf::int32 value) {
+  
+  login_serverid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.login_serverid)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

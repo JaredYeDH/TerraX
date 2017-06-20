@@ -1,11 +1,13 @@
 #include "login_conn_service.h"
 #include "comm/net/packet_dispatcher.h"
+using namespace packet_ss;
 
 using namespace terra;
 
 
 LoginConnService::LoginConnService()
 {
+	REG_PACKET_HANDLER_ARG1(MsgSyncLoginServerIdML, this, OnMessage_SyncLoginServerIdML);
 }
 
 
@@ -29,4 +31,9 @@ void LoginConnService::OnMasterDisconnected(TcpConnection* conn)
 	DestroyConnection(conn);
 	conn_master_ = nullptr;
 	// ReConnect();
+}
+
+void LoginConnService::OnMessage_SyncLoginServerIdML(packet_ss::MsgSyncLoginServerIdML* msg)
+{
+	login_server_id_ = msg->server_id();
 }

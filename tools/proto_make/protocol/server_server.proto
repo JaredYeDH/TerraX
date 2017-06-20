@@ -45,6 +45,11 @@ message MsgServerListML
     MsgReqServerListLM post_back = 3;
 }
 
+message MsgSyncLoginServerIdML
+{
+    int32 server_id = 1;
+}
+
 message MsgWorldRegAtMasterWM
 {
     int32 server_uid = 1;

@@ -46,6 +46,7 @@ class MsgReqServerListLM;
 class MsgServerInfoWS;
 class MsgServerInfoWS_ServerInfo;
 class MsgServerListML;
+class MsgSyncLoginServerIdML;
 class MsgWorldRegAtMasterAckMW;
 class MsgWorldRegAtMasterWM;
 
@@ -713,6 +714,88 @@ class MsgServerListML : public ::google::protobuf::Message /* @@protoc_insertion
 };
 // -------------------------------------------------------------------
 
+class MsgSyncLoginServerIdML : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgSyncLoginServerIdML) */ {
+ public:
+  MsgSyncLoginServerIdML();
+  virtual ~MsgSyncLoginServerIdML();
+
+  MsgSyncLoginServerIdML(const MsgSyncLoginServerIdML& from);
+
+  inline MsgSyncLoginServerIdML& operator=(const MsgSyncLoginServerIdML& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgSyncLoginServerIdML& default_instance();
+
+  void Swap(MsgSyncLoginServerIdML* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgSyncLoginServerIdML* New() const { return New(NULL); }
+
+  MsgSyncLoginServerIdML* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgSyncLoginServerIdML& from);
+  void MergeFrom(const MsgSyncLoginServerIdML& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgSyncLoginServerIdML* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 server_id = 1;
+  void clear_server_id();
+  static const int kServerIdFieldNumber = 1;
+  ::google::protobuf::int32 server_id() const;
+  void set_server_id(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_ss.MsgSyncLoginServerIdML)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 server_id_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_server_5fserver_2eproto();
+  friend void protobuf_AssignDesc_server_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_server_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgSyncLoginServerIdML* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class MsgWorldRegAtMasterWM : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_ss.MsgWorldRegAtMasterWM) */ {
  public:
   MsgWorldRegAtMasterWM();
@@ -965,6 +1048,12 @@ class MsgReqEnterServerLS : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::int32 server_uid() const;
   void set_server_uid(::google::protobuf::int32 value);
 
+  // optional int32 login_serverid = 4;
+  void clear_login_serverid();
+  static const int kLoginServeridFieldNumber = 4;
+  ::google::protobuf::int32 login_serverid() const;
+  void set_login_serverid(::google::protobuf::int32 value);
+
   // @@protoc_insertion_point(class_scope:packet_ss.MsgReqEnterServerLS)
  private:
 
@@ -973,6 +1062,7 @@ class MsgReqEnterServerLS : public ::google::protobuf::Message /* @@protoc_inser
   ::google::protobuf::internal::ArenaStringPtr account_name_;
   ::google::protobuf::internal::ArenaStringPtr account_token_;
   ::google::protobuf::int32 server_uid_;
+  ::google::protobuf::int32 login_serverid_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_server_5fserver_2eproto();
   friend void protobuf_AssignDesc_server_5fserver_2eproto();
@@ -1489,6 +1579,24 @@ inline void MsgServerListML::set_allocated_post_back(::packet_ss::MsgReqServerLi
 
 // -------------------------------------------------------------------
 
+// MsgSyncLoginServerIdML
+
+// optional int32 server_id = 1;
+inline void MsgSyncLoginServerIdML::clear_server_id() {
+  server_id_ = 0;
+}
+inline ::google::protobuf::int32 MsgSyncLoginServerIdML::server_id() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgSyncLoginServerIdML.server_id)
+  return server_id_;
+}
+inline void MsgSyncLoginServerIdML::set_server_id(::google::protobuf::int32 value) {
+  
+  server_id_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgSyncLoginServerIdML.server_id)
+}
+
+// -------------------------------------------------------------------
+
 // MsgWorldRegAtMasterWM
 
 // optional int32 server_uid = 1;
@@ -1627,6 +1735,20 @@ inline void MsgReqEnterServerLS::set_server_uid(::google::protobuf::int32 value)
   
   server_uid_ = value;
   // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.server_uid)
+}
+
+// optional int32 login_serverid = 4;
+inline void MsgReqEnterServerLS::clear_login_serverid() {
+  login_serverid_ = 0;
+}
+inline ::google::protobuf::int32 MsgReqEnterServerLS::login_serverid() const {
+  // @@protoc_insertion_point(field_get:packet_ss.MsgReqEnterServerLS.login_serverid)
+  return login_serverid_;
+}
+inline void MsgReqEnterServerLS::set_login_serverid(::google::protobuf::int32 value) {
+  
+  login_serverid_ = value;
+  // @@protoc_insertion_point(field_set:packet_ss.MsgReqEnterServerLS.login_serverid)
 }
 
 // -------------------------------------------------------------------
@@ -1780,6 +1902,8 @@ inline void MsgReqEnterServerResultSL::set_allocated_gate_port(::std::string* ga
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

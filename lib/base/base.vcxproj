@@ -133,6 +133,7 @@
     <ClCompile Include="dynamic_bitset.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ringbuffer.cpp" />
+    <ClCompile Include="snowflake.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="observer.h" />
     <ClInclude Include="ringbuffer.h" />
     <ClInclude Include="schedule_task.h" />
+    <ClInclude Include="snowflake.h" />
     <ClInclude Include="table.h" />
     <ClInclude Include="timekeeper.h" />
     <ClInclude Include="timer.h" />

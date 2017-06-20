@@ -4,7 +4,6 @@
 using namespace terra;
 using namespace packet_cs;
 
-//TODO 数据包处理必须为Instance()
 ClientNetModule::ClientNetModule()
 	: kSelfPeer(PeerType_t::CLIENT),
 	conn_service_(ClientConnService::GetInstance())

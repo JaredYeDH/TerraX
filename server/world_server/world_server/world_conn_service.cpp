@@ -10,6 +10,7 @@ using namespace packet_ss;
 WorldConnService::WorldConnService()
 {
 	REG_PACKET_HANDLER_ARG1(MsgWorldRegAtMasterAckMW, this, OnMessage_WorldRegAtMasterAckMW);
+	REG_PACKET_HANDLER_ARG3(MsgReqEnterServerLS, this, OnMessage_ReqEnterServerLS);
 }
 
 void WorldConnService::Connect2Master(const char* ip, int port, SocketEventCB sock_cb, MessageEventCB msg_cb)
@@ -45,4 +46,9 @@ void WorldConnService::OnMessage_WorldRegAtMasterAckMW(MsgWorldRegAtMasterAckMW*
 {
 	int result = msg->result();
 	CONSOLE_DEBUG_LOG(LEVEL_INFO, "Register Result: %d", result);
+}
+
+void WorldConnService::OnMessage_ReqEnterServerLS(TcpConnection* conn, int32_t avatar_id, MsgReqEnterServerLS* msg)
+{
+	//server_table_.GetNetObjectByServerID()
 }

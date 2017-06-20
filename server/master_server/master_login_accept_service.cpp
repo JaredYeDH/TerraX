@@ -15,6 +15,9 @@ MasterLoginAcceptService::MasterLoginAcceptService()
 void MasterLoginAcceptService::OnLoginConnected(TcpConnection* conn)
 {
 	ServerManager::GetInstance().CreateLoginServerObj(conn);
+	MsgSyncLoginServerIdML ack;
+	ack.set_server_id(conn->get_fd());
+	SendPacket(conn, ack);
 }
 
 void MasterLoginAcceptService::OnLoginDisconnected(TcpConnection* conn)
@@ -48,17 +51,36 @@ void MasterLoginAcceptService::OnMessage_ReqServerListLM(TcpConnection* conn, in
 
 void MasterLoginAcceptService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
 {
-	//TODO: add_login_serverid
 	const std::string& account_name = msg->account_name();
-	auto ret = [&account_name](int error_code) {
+	int login_server_id = msg->login_serverid();
+	auto MsgRetFunction = [&login_server_id, &account_name, this](int error_code) {
 		MsgReqEnterServerResultSL ack;
 		ack.set_result(error_code);
 		ack.set_account_name(account_name);
+		LoginServerObject* login_obj = ServerManager::GetInstance().FindLoginServerById(login_server_id);
+		if (login_obj)
+		{
+			SendPacket(login_obj->get_conn(), ack);
+		}
 	};
 	WorldServerObject* obj = ServerManager::GetInstance().FindWorldServerByUID(msg->server_uid());
 	if (!obj)
 	{
-		ret(1);
+		//invalid world server uid
+		MsgRetFunction(1);
 		return;
 	}
+	if (obj->get_server_status() == pb_base::MAINTAIN)
+	{
+		//maintaining, access error
+		MsgRetFunction(2);
+		return;
+	}
+	if (obj->get_server_status() == pb_base::FULL)
+	{
+		//full
+		MsgRetFunction(3);
+		return;
+	}
+	SendPacket(obj->get_conn(), *msg);
 }

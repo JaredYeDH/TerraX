@@ -38,5 +38,6 @@ namespace terra
 		ServerStatus get_server_status() const { return status_; }
 		bool get_recommond_new() const { return recommond_new_; }
 		bool get_recommond_hot() const { return recommond_hot_; }
+		TcpConnection* get_conn() { return conn_; }
     };
 }

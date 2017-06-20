@@ -12,5 +12,7 @@ namespace terra
 	public:
 		LoginServerObject() = default;
 		~LoginServerObject() = default;
+
+		TcpConnection* get_conn() { return conn_; }
 	};
 }

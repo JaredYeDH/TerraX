@@ -3,7 +3,6 @@
 #include "base/types.h"
 #include <queue>
 #include "srv/net/server_accept_service.h"
-#include "comm/proto/server_server.pb.h"
 
 namespace terra
 {
