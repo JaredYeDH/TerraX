@@ -50,10 +50,15 @@ void GameState_ChosingServer::Enter()
 	ClientNetModule::GetInstance().SendPacket2LoginServer(msg);
 }
 
-void GameState_Connecting2Gate::Enter()
+void GameState_ChosingServer::Leave()
 {
+	CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s", __FUNCTION__);
 	MsgQuitLoginCL req;
 	ClientNetModule::GetInstance().SendPacket2LoginServer(req);
+}
+
+void GameState_Connecting2Gate::Enter()
+{
 
 	//TODO: login2gate
 }

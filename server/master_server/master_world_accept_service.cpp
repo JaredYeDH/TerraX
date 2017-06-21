@@ -18,7 +18,12 @@ void MasterWorldAcceptService::OnWorldConnected(TcpConnection* conn)
 
 void MasterWorldAcceptService::OnWorldDisconnected(TcpConnection* conn)
 {
-
+	WorldServerObject* obj = ServerManager::GetInstance().FindWorldServerByConn(conn);
+	if (obj)
+	{
+		obj->ClearConnection();
+		obj->RefreshWorldServerInfo(MAINTAIN);
+	}
 }
 
 void MasterWorldAcceptService::OnMessage_WorldRegAtMasterWM(TcpConnection* conn, int32_t avatar_id, MsgWorldRegAtMasterWM* msg)
@@ -32,7 +37,7 @@ void MasterWorldAcceptService::OnMessage_WorldRegAtMasterWM(TcpConnection* conn,
 		net_->SendPacket(conn, ack);
 		return;
 	}
-	obj->InitTcpConnection(conn);
+	obj->InitConnection(conn);
 	obj->RefreshWorldServerInfo(FREE);
 
 	MsgWorldRegAtMasterAckMW ack;

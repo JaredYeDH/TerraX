@@ -26,6 +26,8 @@ namespace terra
 
 		LoginServerObject* FindLoginServerById(int login_server_id);
 		WorldServerObject* FindWorldServerByUID(int server_uid);
+		WorldServerObject* FindWorldServerByConn(TcpConnection* conn);
+
 
 		const std::map<int, WorldServerObject>& GetWorldServers() { return world_server_map_; }
 	};

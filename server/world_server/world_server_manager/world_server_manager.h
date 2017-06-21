@@ -18,6 +18,7 @@ namespace terra
 		WorldServerManager() = default;
 		~WorldServerManager() = default;
 
+		void CreateAccountMapByGateId(int gate_server_id);
 		WorldAccount* FindAccountByAccountName(const std::string& account_name);
 		int GetLowestLoadGateServerId();
 	};

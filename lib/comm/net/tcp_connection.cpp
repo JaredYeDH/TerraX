@@ -49,7 +49,18 @@ void TcpConnection::SendMsg(const char* buf, int len)
 void TcpConnection::ForceClose()
 {
 	bufferevent_disable(evconn_, EV_READ);
-	SetConnState(ConnState_t::DISCONNECTING);
+	struct evbuffer* output = bufferevent_get_output(evconn_);
+	std::size_t readable = evbuffer_get_length(output);
+	if (readable > 0)
+	{
+		SetConnState(ConnState_t::DISCONNECTING);
+		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "ForceClose Disconnecting!");
+	}
+	else
+	{
+		Disconnected();
+		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "ForceClose Disconnected!");
+	}
 }
 
 void TcpConnection::OnRead()
@@ -64,9 +75,9 @@ void TcpConnection::OnRead()
 void TcpConnection::OnWrite()
 {
     if (conn_state_ == ConnState_t::DISCONNECTING) {
-        struct evbuffer* input = bufferevent_get_input(evconn_);
-        std::size_t readable = evbuffer_get_length(input);
-        // std::cout << "Writing: " << readable << std::endl;
+        struct evbuffer* output = bufferevent_get_output(evconn_);
+        std::size_t readable = evbuffer_get_length(output);
+		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "Writing: ");
         if (readable <= 0) {
             Disconnected();
         }

@@ -30,7 +30,7 @@ void GameStateManager::Tick() { m_GameStates[int(m_CurGameState)]->Tick(); }
 
 void GameStateManager::NextState(GameState_t eGameState)
 {
-	m_GameStates[int(eGameState)]->Leave();
+	m_GameStates[int(m_CurGameState)]->Leave();
 	m_CurGameState = eGameState;
 	m_GameStates[int(m_CurGameState)]->Enter();
 }
@@ -95,12 +95,18 @@ void GameStateManager::OnMessage_SeclectServerResultLC(MsgSeclectServerResultLC*
 	if (msg->result() == 0) // success
 	{
 		ClientNetModule::GetInstance().SetGateIpPort(msg->gate_ip(), msg->gate_port());
+		CONSOLE_DEBUG_LOG(LEVEL_INFO, "gate ip: %s    port: %d", msg->gate_ip().c_str(), msg->gate_port());
 		GameStateManager::GetInstance().NextState(GameState_t::CONNECTING_GATE);
 	}
 	else
 	{
-		GameStateManager::GetInstance().NextState(GameState_t::LOGIN_FORM);
-		CONSOLE_DEBUG_LOG(LEVEL_INFO, "enter server failed! error code: %d", msg->result());
+		CONSOLE_DEBUG_LOG(LEVEL_ERROR, "enter server failed! error code: %d", msg->result());
+		//error: io block, login server can not receive quit msg
+		//getchar();
+		//GameStateManager::GetInstance().NextState(GameState_t::LOGIN_FORM);
+
+		MsgQuitLoginCL req;
+		ClientNetModule::GetInstance().SendPacket2LoginServer(req);
 	}
 }
 /*void GameStateManager::OnMessage_PktRoleListAck(PktRoleListAck* msg)

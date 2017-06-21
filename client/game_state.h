@@ -67,7 +67,7 @@ namespace terra
 	public:
 		void Enter() override final;
 		void Tick() override final {}
-		void Leave() override final {}
+		void Leave() override final;
 	};
 
 	class GameState_Connecting2Gate : public IGameState

@@ -52,6 +52,17 @@ WorldServerObject* ServerManager::FindWorldServerByUID(int server_uid)
 	}
 	return nullptr;
 }
+WorldServerObject* ServerManager::FindWorldServerByConn(TcpConnection* conn)
+{
+	for (auto& val : world_server_map_)
+	{
+		if (val.second.get_conn() == conn)
+		{
+			return &(val.second);
+		}
+	}
+	return nullptr;
+}
 
 LoginServerObject* ServerManager::FindLoginServerById(int login_server_id)
 {

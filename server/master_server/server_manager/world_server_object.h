@@ -22,7 +22,8 @@ namespace terra
                           int server_showindex, const char* server_name, int status, bool recommond_new, bool recommond_hot);
         ~WorldServerObject() = default;
 
-		void InitTcpConnection(TcpConnection* conn) { conn_ = conn; }
+		void InitConnection(TcpConnection* conn) { conn_ = conn; }
+		void ClearConnection() { conn_ = nullptr; }
 
 		void RefreshWorldServerInfo(ServerStatus status) 
 		{ 

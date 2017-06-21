@@ -88,6 +88,7 @@ void ClientConnService::OnLoginDisconnected(TcpConnection* conn)
 	DestroyConnection(conn);
 	login_conn_ = nullptr;
 	// ReConnect();
+	CONSOLE_DEBUG_LOG(LEVEL_WARNING, "logout from login server!");
 }
 
 void ClientConnService::OnGateConnected(TcpConnection* conn)

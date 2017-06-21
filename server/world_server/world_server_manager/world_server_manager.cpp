@@ -32,3 +32,8 @@ int WorldServerManager::GetLowestLoadGateServerId()
 	}
 	return server_id;
 }
+
+void WorldServerManager::CreateAccountMapByGateId(int gate_server_id)
+{
+	accounts_sortby_gate_.emplace(std::make_pair(gate_server_id, WorldAccountMap()));
+}

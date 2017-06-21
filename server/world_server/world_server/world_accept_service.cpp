@@ -1,5 +1,6 @@
 #include "world_accept_service.h"
 #include "comm/net/packet_dispatcher.h"
+#include "world_server_manager/world_server_manager.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -46,6 +47,10 @@ void WorldAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avata
 	CONSOLE_DEBUG_LOG(LEVEL_INFO, "%s:\t %d", NetHelper::ServerName((PeerType_t)peer_type), server_id);
 
 	server_table_.AddServerInfo(static_cast<PeerType_t>(peer_type), server_id, msg->listen_ip().c_str(), msg->listen_port(), conn);
+	if (peer_type == static_cast<int>(PeerType_t::GATESERVER))
+	{
+		WorldServerManager::GetInstance().CreateAccountMapByGateId(server_id);
+	}
 }
 
 void WorldAcceptService::OnAddNetObjectEvent(const std::vector<NetObject>& objs, const NetObject& net_obj)
