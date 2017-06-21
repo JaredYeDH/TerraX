@@ -131,6 +131,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gate_account\gate_account.h" />
+    <ClInclude Include="gate_account\gate_account_manager.h" />
+    <ClInclude Include="gate_account\gate_account_state.h" />
     <ClInclude Include="gate_server\gate_accept_service.h" />
     <ClInclude Include="gate_server\gate_conn_service.h" />
     <ClInclude Include="gate_server\gate_net_module.h" />

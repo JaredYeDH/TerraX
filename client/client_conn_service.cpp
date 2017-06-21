@@ -33,6 +33,14 @@ void ClientConnService::Connect2Login()
 {
 	login_conn_ = Connect(
 		login_info_[0].ip_.c_str(), login_info_[0].port_,
+		[this](TcpConnection* conn, SocketEvent_t ev) { net_->OnGateSocketEvent(conn, ev); },
+		[this](TcpConnection* conn, evbuffer* evbuf) { net_->OnGateMessageEvent(conn, evbuf); });
+}
+
+void ClientConnService::Connect2Gate()
+{
+	gate_conn_ = Connect(
+		gate_info_.ip_.c_str(), gate_info_.port_,
 		[this](TcpConnection* conn, SocketEvent_t ev) { net_->OnLoginSocketEvent(conn, ev); },
 		[this](TcpConnection* conn, evbuffer* evbuf) { net_->OnLoginMessageEvent(conn, evbuf); });
 }
@@ -93,10 +101,12 @@ void ClientConnService::OnLoginDisconnected(TcpConnection* conn)
 
 void ClientConnService::OnGateConnected(TcpConnection* conn)
 {
+	GameStateManager::GetInstance().NextState(GameState_t::ACCOUNT_CHECKINGPERMISSION);
 }
 
 void ClientConnService::OnGateDisconnected(TcpConnection* conn)
 {
 	DestroyConnection(conn);
 	gate_conn_ = nullptr;
+	CONSOLE_DEBUG_LOG(LEVEL_WARNING, "logout from gate server!");
 }

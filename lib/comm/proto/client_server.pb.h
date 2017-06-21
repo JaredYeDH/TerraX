@@ -37,12 +37,15 @@ void protobuf_AddDesc_client_5fserver_2eproto();
 void protobuf_AssignDesc_client_5fserver_2eproto();
 void protobuf_ShutdownFile_client_5fserver_2eproto();
 
+class MsgLoginGameResultGC;
 class MsgLoginResultLC;
+class MsgQueryRoleListCG;
 class MsgQuitLoginCL;
 class MsgReqLoginCL;
+class MsgReqLoginGameCG;
 class MsgSeclectServerResultLC;
 class MsgSelectServerCL;
-class PktGameLoginReq;
+class MsgSyncRoleListGC;
 class PktRoleListAck;
 
 // ===================================================================
@@ -511,32 +514,32 @@ class MsgQuitLoginCL : public ::google::protobuf::Message /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
-class PktGameLoginReq : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.PktGameLoginReq) */ {
+class MsgReqLoginGameCG : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgReqLoginGameCG) */ {
  public:
-  PktGameLoginReq();
-  virtual ~PktGameLoginReq();
+  MsgReqLoginGameCG();
+  virtual ~MsgReqLoginGameCG();
 
-  PktGameLoginReq(const PktGameLoginReq& from);
+  MsgReqLoginGameCG(const MsgReqLoginGameCG& from);
 
-  inline PktGameLoginReq& operator=(const PktGameLoginReq& from) {
+  inline MsgReqLoginGameCG& operator=(const MsgReqLoginGameCG& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const PktGameLoginReq& default_instance();
+  static const MsgReqLoginGameCG& default_instance();
 
-  void Swap(PktGameLoginReq* other);
+  void Swap(MsgReqLoginGameCG* other);
 
   // implements Message ----------------------------------------------
 
-  inline PktGameLoginReq* New() const { return New(NULL); }
+  inline MsgReqLoginGameCG* New() const { return New(NULL); }
 
-  PktGameLoginReq* New(::google::protobuf::Arena* arena) const;
+  MsgReqLoginGameCG* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const PktGameLoginReq& from);
-  void MergeFrom(const PktGameLoginReq& from);
+  void CopyFrom(const MsgReqLoginGameCG& from);
+  void MergeFrom(const MsgReqLoginGameCG& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -555,7 +558,7 @@ class PktGameLoginReq : public ::google::protobuf::Message /* @@protoc_insertion
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(PktGameLoginReq* other);
+  void InternalSwap(MsgReqLoginGameCG* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -582,43 +585,263 @@ class PktGameLoginReq : public ::google::protobuf::Message /* @@protoc_insertion
   ::std::string* release_account_name();
   void set_allocated_account_name(::std::string* account_name);
 
-  // optional string session_key = 2;
-  void clear_session_key();
-  static const int kSessionKeyFieldNumber = 2;
-  const ::std::string& session_key() const;
-  void set_session_key(const ::std::string& value);
-  void set_session_key(const char* value);
-  void set_session_key(const char* value, size_t size);
-  ::std::string* mutable_session_key();
-  ::std::string* release_session_key();
-  void set_allocated_session_key(::std::string* session_key);
+  // optional string account_token = 2;
+  void clear_account_token();
+  static const int kAccountTokenFieldNumber = 2;
+  const ::std::string& account_token() const;
+  void set_account_token(const ::std::string& value);
+  void set_account_token(const char* value);
+  void set_account_token(const char* value, size_t size);
+  ::std::string* mutable_account_token();
+  ::std::string* release_account_token();
+  void set_allocated_account_token(::std::string* account_token);
 
-  // optional string ip_address = 3;
-  void clear_ip_address();
-  static const int kIpAddressFieldNumber = 3;
-  const ::std::string& ip_address() const;
-  void set_ip_address(const ::std::string& value);
-  void set_ip_address(const char* value);
-  void set_ip_address(const char* value, size_t size);
-  ::std::string* mutable_ip_address();
-  ::std::string* release_ip_address();
-  void set_allocated_ip_address(::std::string* ip_address);
-
-  // @@protoc_insertion_point(class_scope:packet_cs.PktGameLoginReq)
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgReqLoginGameCG)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   bool _is_default_instance_;
   ::google::protobuf::internal::ArenaStringPtr account_name_;
-  ::google::protobuf::internal::ArenaStringPtr session_key_;
-  ::google::protobuf::internal::ArenaStringPtr ip_address_;
+  ::google::protobuf::internal::ArenaStringPtr account_token_;
   mutable int _cached_size_;
   friend void  protobuf_AddDesc_client_5fserver_2eproto();
   friend void protobuf_AssignDesc_client_5fserver_2eproto();
   friend void protobuf_ShutdownFile_client_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static PktGameLoginReq* default_instance_;
+  static MsgReqLoginGameCG* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgLoginGameResultGC : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgLoginGameResultGC) */ {
+ public:
+  MsgLoginGameResultGC();
+  virtual ~MsgLoginGameResultGC();
+
+  MsgLoginGameResultGC(const MsgLoginGameResultGC& from);
+
+  inline MsgLoginGameResultGC& operator=(const MsgLoginGameResultGC& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgLoginGameResultGC& default_instance();
+
+  void Swap(MsgLoginGameResultGC* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgLoginGameResultGC* New() const { return New(NULL); }
+
+  MsgLoginGameResultGC* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgLoginGameResultGC& from);
+  void MergeFrom(const MsgLoginGameResultGC& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgLoginGameResultGC* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional int32 result = 1;
+  void clear_result();
+  static const int kResultFieldNumber = 1;
+  ::google::protobuf::int32 result() const;
+  void set_result(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgLoginGameResultGC)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  ::google::protobuf::int32 result_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_client_5fserver_2eproto();
+  friend void protobuf_AssignDesc_client_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgLoginGameResultGC* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgQueryRoleListCG : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgQueryRoleListCG) */ {
+ public:
+  MsgQueryRoleListCG();
+  virtual ~MsgQueryRoleListCG();
+
+  MsgQueryRoleListCG(const MsgQueryRoleListCG& from);
+
+  inline MsgQueryRoleListCG& operator=(const MsgQueryRoleListCG& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgQueryRoleListCG& default_instance();
+
+  void Swap(MsgQueryRoleListCG* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgQueryRoleListCG* New() const { return New(NULL); }
+
+  MsgQueryRoleListCG* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgQueryRoleListCG& from);
+  void MergeFrom(const MsgQueryRoleListCG& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgQueryRoleListCG* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgQueryRoleListCG)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_client_5fserver_2eproto();
+  friend void protobuf_AssignDesc_client_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgQueryRoleListCG* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class MsgSyncRoleListGC : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgSyncRoleListGC) */ {
+ public:
+  MsgSyncRoleListGC();
+  virtual ~MsgSyncRoleListGC();
+
+  MsgSyncRoleListGC(const MsgSyncRoleListGC& from);
+
+  inline MsgSyncRoleListGC& operator=(const MsgSyncRoleListGC& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const MsgSyncRoleListGC& default_instance();
+
+  void Swap(MsgSyncRoleListGC* other);
+
+  // implements Message ----------------------------------------------
+
+  inline MsgSyncRoleListGC* New() const { return New(NULL); }
+
+  MsgSyncRoleListGC* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const MsgSyncRoleListGC& from);
+  void MergeFrom(const MsgSyncRoleListGC& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(MsgSyncRoleListGC* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgSyncRoleListGC)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  bool _is_default_instance_;
+  mutable int _cached_size_;
+  friend void  protobuf_AddDesc_client_5fserver_2eproto();
+  friend void protobuf_AssignDesc_client_5fserver_2eproto();
+  friend void protobuf_ShutdownFile_client_5fserver_2eproto();
+
+  void InitAsDefaultInstance();
+  static MsgSyncRoleListGC* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1000,139 +1223,121 @@ inline void MsgSeclectServerResultLC::set_gate_port(::google::protobuf::int32 va
 
 // -------------------------------------------------------------------
 
-// PktGameLoginReq
+// MsgReqLoginGameCG
 
 // optional string account_name = 1;
-inline void PktGameLoginReq::clear_account_name() {
+inline void MsgReqLoginGameCG::clear_account_name() {
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& PktGameLoginReq::account_name() const {
-  // @@protoc_insertion_point(field_get:packet_cs.PktGameLoginReq.account_name)
+inline const ::std::string& MsgReqLoginGameCG::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_name)
   return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void PktGameLoginReq::set_account_name(const ::std::string& value) {
+inline void MsgReqLoginGameCG::set_account_name(const ::std::string& value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.PktGameLoginReq.account_name)
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_name)
 }
-inline void PktGameLoginReq::set_account_name(const char* value) {
+inline void MsgReqLoginGameCG::set_account_name(const char* value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.PktGameLoginReq.account_name)
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_name)
 }
-inline void PktGameLoginReq::set_account_name(const char* value, size_t size) {
+inline void MsgReqLoginGameCG::set_account_name(const char* value, size_t size) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.PktGameLoginReq.account_name)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_name)
 }
-inline ::std::string* PktGameLoginReq::mutable_account_name() {
+inline ::std::string* MsgReqLoginGameCG::mutable_account_name() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.PktGameLoginReq.account_name)
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_name)
   return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* PktGameLoginReq::release_account_name() {
-  // @@protoc_insertion_point(field_release:packet_cs.PktGameLoginReq.account_name)
+inline ::std::string* MsgReqLoginGameCG::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_name)
   
   return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void PktGameLoginReq::set_allocated_account_name(::std::string* account_name) {
+inline void MsgReqLoginGameCG::set_allocated_account_name(::std::string* account_name) {
   if (account_name != NULL) {
     
   } else {
     
   }
   account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.PktGameLoginReq.account_name)
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_name)
 }
 
-// optional string session_key = 2;
-inline void PktGameLoginReq::clear_session_key() {
-  session_key_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// optional string account_token = 2;
+inline void MsgReqLoginGameCG::clear_account_token() {
+  account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& PktGameLoginReq::session_key() const {
-  // @@protoc_insertion_point(field_get:packet_cs.PktGameLoginReq.session_key)
-  return session_key_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline const ::std::string& MsgReqLoginGameCG::account_token() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_token)
+  return account_token_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void PktGameLoginReq::set_session_key(const ::std::string& value) {
+inline void MsgReqLoginGameCG::set_account_token(const ::std::string& value) {
   
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.PktGameLoginReq.session_key)
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_token)
 }
-inline void PktGameLoginReq::set_session_key(const char* value) {
+inline void MsgReqLoginGameCG::set_account_token(const char* value) {
   
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.PktGameLoginReq.session_key)
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_token)
 }
-inline void PktGameLoginReq::set_session_key(const char* value, size_t size) {
+inline void MsgReqLoginGameCG::set_account_token(const char* value, size_t size) {
   
-  session_key_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.PktGameLoginReq.session_key)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_token)
 }
-inline ::std::string* PktGameLoginReq::mutable_session_key() {
+inline ::std::string* MsgReqLoginGameCG::mutable_account_token() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.PktGameLoginReq.session_key)
-  return session_key_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_token)
+  return account_token_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* PktGameLoginReq::release_session_key() {
-  // @@protoc_insertion_point(field_release:packet_cs.PktGameLoginReq.session_key)
+inline ::std::string* MsgReqLoginGameCG::release_account_token() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_token)
   
-  return session_key_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return account_token_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void PktGameLoginReq::set_allocated_session_key(::std::string* session_key) {
-  if (session_key != NULL) {
+inline void MsgReqLoginGameCG::set_allocated_account_token(::std::string* account_token) {
+  if (account_token != NULL) {
     
   } else {
     
   }
-  session_key_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), session_key);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.PktGameLoginReq.session_key)
+  account_token_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_token);
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_token)
 }
 
-// optional string ip_address = 3;
-inline void PktGameLoginReq::clear_ip_address() {
-  ip_address_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+// -------------------------------------------------------------------
+
+// MsgLoginGameResultGC
+
+// optional int32 result = 1;
+inline void MsgLoginGameResultGC::clear_result() {
+  result_ = 0;
 }
-inline const ::std::string& PktGameLoginReq::ip_address() const {
-  // @@protoc_insertion_point(field_get:packet_cs.PktGameLoginReq.ip_address)
-  return ip_address_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+inline ::google::protobuf::int32 MsgLoginGameResultGC::result() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgLoginGameResultGC.result)
+  return result_;
 }
-inline void PktGameLoginReq::set_ip_address(const ::std::string& value) {
+inline void MsgLoginGameResultGC::set_result(::google::protobuf::int32 value) {
   
-  ip_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.PktGameLoginReq.ip_address)
+  result_ = value;
+  // @@protoc_insertion_point(field_set:packet_cs.MsgLoginGameResultGC.result)
 }
-inline void PktGameLoginReq::set_ip_address(const char* value) {
-  
-  ip_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.PktGameLoginReq.ip_address)
-}
-inline void PktGameLoginReq::set_ip_address(const char* value, size_t size) {
-  
-  ip_address_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.PktGameLoginReq.ip_address)
-}
-inline ::std::string* PktGameLoginReq::mutable_ip_address() {
-  
-  // @@protoc_insertion_point(field_mutable:packet_cs.PktGameLoginReq.ip_address)
-  return ip_address_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline ::std::string* PktGameLoginReq::release_ip_address() {
-  // @@protoc_insertion_point(field_release:packet_cs.PktGameLoginReq.ip_address)
-  
-  return ip_address_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-}
-inline void PktGameLoginReq::set_allocated_ip_address(::std::string* ip_address) {
-  if (ip_address != NULL) {
-    
-  } else {
-    
-  }
-  ip_address_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ip_address);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.PktGameLoginReq.ip_address)
-}
+
+// -------------------------------------------------------------------
+
+// MsgQueryRoleListCG
+
+// -------------------------------------------------------------------
+
+// MsgSyncRoleListGC
 
 // -------------------------------------------------------------------
 
@@ -1194,6 +1399,12 @@ PktRoleListAck::mutable_role_name_list() {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

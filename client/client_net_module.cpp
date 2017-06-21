@@ -22,6 +22,10 @@ void ClientNetModule::SetGateIpPort(const std::string& ip, int port)
 	conn_service_.SetGateIpPort(ip, port);
 }
 
+void ClientNetModule::StartConnectGateServer()
+{
+	conn_service_.Connect2Gate();
+}
 void ClientNetModule::StartConnectLoginServer()
 {
 	conn_service_.Connect2Login();

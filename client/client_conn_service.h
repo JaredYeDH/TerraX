@@ -45,6 +45,7 @@ namespace terra
 		void LoadLoginServerInfo(const std::string& path);
 
 		void Connect2Login();
+		void Connect2Gate();
 
 		void SendPacket2LoginServer(google::protobuf::Message& msg);
 		void SendPacket2GateServer(google::protobuf::Message& msg);

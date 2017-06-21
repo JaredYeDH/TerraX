@@ -4,6 +4,9 @@
     <Filter Include="gate_server">
       <UniqueIdentifier>{431d7f30-7c05-46d8-adb0-5a74a2aeb0c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="gate_account">
+      <UniqueIdentifier>{47cec01b-fadc-4ed8-8c2d-7c7e5bda3b06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gate_server\gate_server.cpp">
@@ -32,6 +35,15 @@
     </ClInclude>
     <ClInclude Include="gate_server\gate_conn_service.h">
       <Filter>gate_server</Filter>
+    </ClInclude>
+    <ClInclude Include="gate_account\gate_account.h">
+      <Filter>gate_account</Filter>
+    </ClInclude>
+    <ClInclude Include="gate_account\gate_account_state.h">
+      <Filter>gate_account</Filter>
+    </ClInclude>
+    <ClInclude Include="gate_account\gate_account_manager.h">
+      <Filter>gate_account</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

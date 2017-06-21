@@ -15,7 +15,7 @@ GameStateManager::GameStateManager() : m_CurGameState(GameState_t::PRESS2START)
 	m_GameStates[int(GameState_t::ACCOUNT_LOGGINGIN)].reset(new GameState_AccountLoggingin);
 	m_GameStates[int(GameState_t::ACCOUNT_CHOSINGSERVER)].reset(new GameState_ChosingServer);
 	m_GameStates[int(GameState_t::CONNECTING_GATE)].reset(new GameState_Connecting2Gate);
-	m_GameStates[int(GameState_t::ACCOUNT_CHECKINGTOKEN)].reset(new GameState_CheckingPermission);
+	m_GameStates[int(GameState_t::ACCOUNT_CHECKINGPERMISSION)].reset(new GameState_CheckingPermission);
 	m_GameStates[int(GameState_t::SELECTING_AVATAR)].reset(new GameState_AccountSelectingAvatar);
 	m_GameStates[int(GameState_t::ENTERING_GAME)].reset(new GameState_AccountEnteringWorld);
 	m_GameStates[int(GameState_t::ENTERING_SCENE)].reset(new GameState_PlayerEnteringScene);

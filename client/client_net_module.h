@@ -33,6 +33,7 @@ namespace terra
 
         void StartConnectLoginServer();
 		void SetGateIpPort(const std::string& ip, int port); 
+		void StartConnectGateServer();
 
         void SendPacket2LoginServer(google::protobuf::Message& msg);
         void SendPacket2GateServer(google::protobuf::Message& msg);
@@ -40,10 +41,9 @@ namespace terra
         void OnLoginSocketEvent(TcpConnection* conn, SocketEvent_t ev);
         void OnLoginMessageEvent(TcpConnection* conn, evbuffer* evbuf);
 
+		void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
+		void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
     private:
         void InitLoginNetInfo();
-
-        void OnGateSocketEvent(TcpConnection* conn, SocketEvent_t ev);
-        void OnGateMessageEvent(TcpConnection* conn, evbuffer* evbuf);
     };
 }

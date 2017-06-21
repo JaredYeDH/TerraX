@@ -59,16 +59,15 @@ void GameState_ChosingServer::Leave()
 
 void GameState_Connecting2Gate::Enter()
 {
-
-	//TODO: login2gate
+	ClientNetModule::GetInstance().StartConnectGateServer();
 }
 
 void GameState_CheckingPermission::Enter()
 {
-	//PktGameLoginReq pkt;
-	//pkt.set_account_name(LocalGuest::GetInstance().GetAccountName());
-	//pkt.set_session_key(LocalGuest::GetInstance().GetSessionKey());
-	//NetManagerClient::GetInstance().SendPacket(PeerType_t::gateserver, pkt);
+	MsgReqLoginGameCG req;
+	req.set_account_name(Guest::GetInstance().get_account_name());
+	req.set_account_token(Guest::GetInstance().get_token());
+	ClientNetModule::GetInstance().SendPacket2GateServer(req);
 }
 
 void GameState_AccountEnteringWorld::Enter()
