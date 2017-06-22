@@ -79,10 +79,6 @@ void AccountState_WaitingGetGateInfo::HandleMessage(LoginAccount& account, packe
 void AccountState_WaitingClientSwitch2Gate::Enter(LoginAccount& account) {}
 void AccountState_WaitingClientSwitch2Gate::Tick(LoginAccount& account) {}
 void AccountState_WaitingClientSwitch2Gate::Leave(LoginAccount& account) {}
-void AccountState_WaitingClientSwitch2Gate::HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg)
-{
-	account.EnterState(Account_State_t::ACCOUNT_DESTROY);
-}
 //////////////////////////////////////////////////////////////////////////
 void AccountState_Destory::Enter(LoginAccount& account) 
 {

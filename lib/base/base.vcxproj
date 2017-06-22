@@ -142,6 +142,7 @@
     <ClInclude Include="event_dynamic2.h" />
     <ClInclude Include="event_static.h" />
     <ClInclude Include="guid.h" />
+    <ClInclude Include="intrusive_list.h" />
     <ClInclude Include="macro.h" />
     <ClInclude Include="module_interface.h" />
     <ClInclude Include="observer.h" />

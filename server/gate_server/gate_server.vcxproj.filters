@@ -22,6 +22,15 @@
     <ClCompile Include="gate_server\gate_conn_service.cpp">
       <Filter>gate_server</Filter>
     </ClCompile>
+    <ClCompile Include="gate_account\gate_account_manager.cpp">
+      <Filter>gate_account</Filter>
+    </ClCompile>
+    <ClCompile Include="gate_account\gate_account_state.cpp">
+      <Filter>gate_account</Filter>
+    </ClCompile>
+    <ClCompile Include="gate_account\gate_account.cpp">
+      <Filter>gate_account</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gate_server\gate_server.h">
