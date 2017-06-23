@@ -13,8 +13,8 @@ namespace terra
 		MAKE_INSTANCE(ServerManager);
 		DISABLE_COPY(ServerManager);
 	private:
-		std::map<int, WorldServerObject> world_server_map_;
-		std::map<int, LoginServerObject> login_server_map_;
+		std::map<int, std::unique_ptr<WorldServerObject>> world_server_map_;
+		std::map<int, std::unique_ptr<LoginServerObject>> login_server_map_;
 	public:
 		ServerManager();
 		~ServerManager() = default;
@@ -29,6 +29,6 @@ namespace terra
 		WorldServerObject* FindWorldServerByConn(TcpConnection* conn);
 
 
-		const std::map<int, WorldServerObject>& GetWorldServers() { return world_server_map_; }
+		const std::map<int, std::unique_ptr<WorldServerObject>>& GetWorldServers() { return world_server_map_; }
 	};
 }

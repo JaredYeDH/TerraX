@@ -26,15 +26,14 @@ void ServerManager::LoadWorldConfig(const std::string& path)
         int server_status = val["server_status"].GetInt();
         bool recommond_new = val["recommond_new"].GetBool();
         bool recommond_hot = val["recommond_hot"].GetBool();
-        world_server_map_.emplace(std::make_pair(
-            server_uid, WorldServerObject(server_uid, region_showindex, region_name, server_showindex,
-                                          server_name, server_status, recommond_new, recommond_hot)));
+		world_server_map_[server_uid] = std::move(std::unique_ptr<WorldServerObject>(new  WorldServerObject(server_uid, region_showindex, region_name, server_showindex,
+			server_name, server_status, recommond_new, recommond_hot)));
     }
 }
 
 void ServerManager::CreateLoginServerObj(TcpConnection* conn)
 {
-	login_server_map_.emplace(std::make_pair(conn->get_fd(), LoginServerObject(conn)));
+	login_server_map_[conn->get_fd()] = std::move(std::unique_ptr<LoginServerObject>(new  LoginServerObject(conn)));
 }
 
 void ServerManager::RemoveLoginServerObj(TcpConnection* conn)
@@ -48,7 +47,7 @@ WorldServerObject* ServerManager::FindWorldServerByUID(int server_uid)
 	assert(iter != world_server_map_.end());
 	if (iter != world_server_map_.end())
 	{
-		return &(iter->second);
+		return (iter->second).get();
 	}
 	return nullptr;
 }
@@ -56,9 +55,9 @@ WorldServerObject* ServerManager::FindWorldServerByConn(TcpConnection* conn)
 {
 	for (auto& val : world_server_map_)
 	{
-		if (val.second.get_conn() == conn)
+		if ((val.second)->get_conn() == conn)
 		{
-			return &(val.second);
+			return (val.second).get();
 		}
 	}
 	return nullptr;
@@ -70,7 +69,7 @@ LoginServerObject* ServerManager::FindLoginServerById(int login_server_id)
 	assert(iter != login_server_map_.end());
 	if (iter != login_server_map_.end())
 	{
-		return &(iter->second);
+		return (iter->second).get();
 	}
 	return nullptr;
 }

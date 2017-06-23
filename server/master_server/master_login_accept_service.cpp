@@ -34,14 +34,14 @@ void MasterLoginAcceptService::OnMessage_ReqServerListLM(TcpConnection* conn, in
 	{
 		const auto& obj = val.second;
 		ServerProfile* profile = ack.add_servers();
-		profile->set_server_uid(obj.get_server_uid());
-		profile->set_region_showindex(obj.get_region_showindex());
-		profile->set_region_name(obj.get_region_name());
-		profile->set_server_showindex(obj.get_server_showindex());
-		profile->set_server_name(obj.get_server_name());
-		profile->set_server_status(obj.get_server_status());
-		profile->set_recommond_new(obj.get_recommond_new());
-		profile->set_recommond_hot(obj.get_recommond_hot());
+		profile->set_server_uid(obj->get_server_uid());
+		profile->set_region_showindex(obj->get_region_showindex());
+		profile->set_region_name(obj->get_region_name());
+		profile->set_server_showindex(obj->get_server_showindex());
+		profile->set_server_name(obj->get_server_name());
+		profile->set_server_status(obj->get_server_status());
+		profile->set_recommond_new(obj->get_recommond_new());
+		profile->set_recommond_hot(obj->get_recommond_hot());
 	}
 
 	MsgReqServerListLM* post_back = ack.mutable_post_back();

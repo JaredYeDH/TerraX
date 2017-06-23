@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <memory>
 #include <array>
+#include "base/multi_index_map.h"
 
 namespace terra
 {
@@ -19,9 +20,7 @@ namespace terra
 		using Account2FdMap = std::unordered_map<std::string, int >;
 		using AccountStateArray = std::array<std::unique_ptr<AccountState_Base>, static_cast<int>(Account_State_t::ACCOUNT_COUNT)>;
 	private:
-		LoginAccountMap account_map_;
-		Account2FdMap account2fd_map_;
-
+		MultiKeyIndexMap1<int, std::string, std::unique_ptr<LoginAccount>, true> accounts_;
 		AccountStateArray states_;
 	public:
 		LoginAccountManager();
@@ -32,11 +31,11 @@ namespace terra
 
 		void AddAccount2FdInfo(const std::string& account_name, int fd)
 		{
-			account2fd_map_.insert(std::make_pair(account_name, fd));
+			accounts_.SetFKey2PKey(account_name, fd);
 		}
 		void RemoveAccount2FdInfo(const std::string& account_name)
 		{
-			account2fd_map_.erase(account_name);
+			accounts_.EraseForeignKeyOnly(account_name);
 		}
 
 		AccountState_Base* GetAccountState(Account_State_t account_state) { return states_[static_cast<int>(account_state)].get(); }
@@ -44,10 +43,42 @@ namespace terra
 	private:
 		void InitAccountState();
 
+		template<class T>
+		void ProcessMessageByfd(int fd, T* msg);
+		template<class T>
+		void ProcessMessageByAccountName(const std::string& account_name, T* msg);
+
 		void OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginCL* msg);
 		void OnMessage_ServerListML(packet_ss::MsgServerListML* msg);
 		void OnMessage_SelectServerCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgSelectServerCL* msg);
 		void OnMessage_ReqEnterServerResultSL(packet_ss::MsgReqEnterServerResultSL* msg);
 		void OnMessage_QuitLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgQuitLoginCL* msg);
 	};
+
+	template<class T>
+	void LoginAccountManager::ProcessMessageByfd(int fd, T* msg)
+	{
+		auto ptr = accounts_.GetValueByPrimaryKey(fd);
+		if (!ptr)
+		{
+			assert(0);
+			return;
+		}
+		LoginAccount* account = (*ptr).get();
+		AccountState_Base* state = account->get_current_state();
+		state->HandleMessage(*account, msg);
+	}
+
+	template<class T>
+	void LoginAccountManager::ProcessMessageByAccountName(const std::string& account_name, T* msg)
+	{
+		LoginAccount* account = GetAccountByAccountName(account_name);
+		if (!account)
+		{
+			assert(0);
+			return;
+		}
+		AccountState_Base* state = account->get_current_state();
+		state->HandleMessage(*account, msg);
+	}
 }

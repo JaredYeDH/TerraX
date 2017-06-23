@@ -145,6 +145,7 @@
     <ClInclude Include="intrusive_list.h" />
     <ClInclude Include="macro.h" />
     <ClInclude Include="module_interface.h" />
+    <ClInclude Include="multi_index_map.h" />
     <ClInclude Include="observer.h" />
     <ClInclude Include="ringbuffer.h" />
     <ClInclude Include="schedule_task.h" />

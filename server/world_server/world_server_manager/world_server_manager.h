@@ -11,7 +11,8 @@ namespace terra
 	{
 		MAKE_INSTANCE(WorldServerManager);
 		DISABLE_COPY(WorldServerManager);
-		using WorldAccountMap = std::unordered_map<std::string, WorldAccount>;
+		using WorldAccoutPtr = std::unique_ptr<WorldAccount>;
+		using WorldAccountMap = std::unordered_map<std::string, WorldAccoutPtr>;
 	private:
 		std::map<int, WorldAccountMap> accounts_sortby_gate_;
 	public:

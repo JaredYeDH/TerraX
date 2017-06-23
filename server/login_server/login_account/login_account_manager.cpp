@@ -31,95 +31,47 @@ void LoginAccountManager::CreateAccount(TcpConnection* conn)
 {
 	std::unique_ptr<LoginAccount> account(new LoginAccount(conn));
 	account->EnterDefaultState();
-	account_map_.insert(std::make_pair(conn->get_fd(), std::move(account)));
+	accounts_.InsertPKeyValue(conn->get_fd(), std::move(account));
 }
 
 
 void LoginAccountManager::RemoveAccount(TcpConnection* conn)
 {
-	auto iter = account_map_.find(conn->get_fd());
-	if (iter == account_map_.end())
-	{
-		assert(0);
-		return;
-	}
-	account2fd_map_.erase(iter->second->get_account_name());
-	account_map_.erase(conn->get_fd()); //res = 1;
+	accounts_.EraseValueByPrimaryKey(conn->get_fd());
 }
 
 LoginAccount* LoginAccountManager::GetAccountByAccountName(const std::string& account_name)
 {
-	auto iter_fd = account2fd_map_.find(account_name);
-	if (iter_fd == account2fd_map_.end())
+	auto ptr = accounts_.GetValueByForeignkey(account_name);
+	if (!ptr)
 	{
 		return nullptr;
 	}
-	int fd = iter_fd->second;
-	auto iter = account_map_.find(fd);
-	if (iter == account_map_.end())
-	{
-		return nullptr;
-	}
-	return (iter->second).get();
+	return (*ptr).get();
 }
 
 void LoginAccountManager::OnMessage_ReqLoginCL(TcpConnection* conn, int32_t avatar_id, MsgReqLoginCL* msg)
 {
-	auto iter = account_map_.find(conn->get_fd());
-	if (iter == account_map_.end())
-	{
-		assert(0);
-		return;
-	}
-	AccountState_Base* state = iter->second->get_current_state();
-	state->HandleMessage(*(iter->second), msg);
+	ProcessMessageByfd(conn->get_fd(), msg);
 }
 
 void LoginAccountManager::OnMessage_ServerListML(MsgServerListML* msg)
 {
-	LoginAccount* account = GetAccountByAccountName(msg->post_back().account_name());
-	if (!account)
-	{
-		assert(0);
-		return;
-	}
-	AccountState_Base* state = account->get_current_state();
-	state->HandleMessage(*account, msg);
+	ProcessMessageByAccountName(msg->post_back().account_name(), msg);
 }
 
 void LoginAccountManager::OnMessage_SelectServerCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgSelectServerCL* msg)
 {
-	auto iter = account_map_.find(conn->get_fd());
-	if (iter == account_map_.end())
-	{
-		assert(0);
-		return;
-	}
-	AccountState_Base* state = iter->second->get_current_state();
-	state->HandleMessage(*(iter->second), msg);
+	ProcessMessageByfd(conn->get_fd(), msg);
 }
 
 
 void LoginAccountManager::OnMessage_ReqEnterServerResultSL(MsgReqEnterServerResultSL* msg)
 {
-	LoginAccount* account = GetAccountByAccountName(msg->account_name());
-	if (!account)
-	{
-		assert(0);
-		return;
-	}
-	AccountState_Base* state = account->get_current_state();
-	state->HandleMessage(*account, msg);
+	ProcessMessageByAccountName(msg->account_name(), msg);
 }
 
 void LoginAccountManager::OnMessage_QuitLoginCL(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgQuitLoginCL* msg)
 {
-	auto iter = account_map_.find(conn->get_fd());
-	if (iter == account_map_.end())
-	{
-		assert(0);
-		return;
-	}
-	AccountState_Base* state = iter->second->get_current_state();
-	state->HandleMessage(*(iter->second), msg);
+	ProcessMessageByfd(conn->get_fd(), msg);
 }
