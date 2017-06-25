@@ -35,27 +35,27 @@ namespace terra
 		MapPF&  get_pk2fk_map() { return pk2fk_; }
 	};
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::InsertPKeyValue(const PrimaryKey& pkey, Value&& val)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::InsertPKeyValue(const PrimaryKey& pkey, Value&& val)
 	{
 		kv_[pkey] = std::move(val);
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::InsertPKeyValue(const PrimaryKey& pkey, const Value& val)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::InsertPKeyValue(const PrimaryKey& pkey, const Value& val)
 	{
 		kv_[pkey] = val;
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::SetFKey2PKey(const ForeignKey0& fkey, const PrimaryKey& pkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	void MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::SetFKey2PKey(const ForeignKey0& fkey, const PrimaryKey& pkey)
 	{
 		fk2pk_[fkey] = pkey;
 		pk2fk_[pkey] = fkey;
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	Value* MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::GetValueByPrimaryKey(const PrimaryKey& pkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	Value* MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::GetValueByPrimaryKey(const PrimaryKey& pkey)
 	{
 		auto iter = kv_.find(pkey);
 		if (iter == kv_.end()) {
@@ -64,8 +64,8 @@ namespace terra
 		return &(iter->second);
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	Value* MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::GetValueByForeignkey(const ForeignKey0& fkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	Value* MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::GetValueByForeignkey(const ForeignKey0& fkey)
 	{
 		auto iter1 = fk2pk_.find(fkey);
 		if (iter1 == fk2pk_.end()) {
@@ -79,8 +79,8 @@ namespace terra
 		return &(iter2->second);
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::EraseValueByPrimaryKey(const PrimaryKey& pkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::EraseValueByPrimaryKey(const PrimaryKey& pkey)
 	{
 		auto iter = pk2fk_.find(pkey);
 		if (iter != pk2fk_.end())
@@ -91,8 +91,8 @@ namespace terra
 		return kv_.erase(pkey);
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::EraseValueByForeignkey(const ForeignKey0& fkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::EraseValueByForeignkey(const ForeignKey0& fkey)
 	{
 		auto iter = fk2pk_.find(fkey);
 		assert(iter != fk2pk_.end());
@@ -105,8 +105,8 @@ namespace terra
 		return kv_.erase(iter->second);
 	}
 
-	template<typename PrimaryKey, typename ForeignKey0, typename Value>
-	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value>::EraseForeignKeyOnly(const ForeignKey0& fkey)
+	template<typename PrimaryKey, typename ForeignKey0, typename Value, bool hash>
+	std::size_t MultiKeyIndexMap1<PrimaryKey, ForeignKey0, Value, hash>::EraseForeignKeyOnly(const ForeignKey0& fkey)
 	{
 		auto iter = fk2pk_.find(fkey);
 		assert(iter != fk2pk_.end());
@@ -115,6 +115,7 @@ namespace terra
 			return 0;
 		}
 		pk2fk_.erase(iter->second);
-		return fk2pk_.erase(iter);
+		fk2pk_.erase(iter);
+		return 1;
 	}
 }

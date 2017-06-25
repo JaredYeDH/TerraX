@@ -39,9 +39,6 @@
     <ClInclude Include="login_server\login_net_module.h">
       <Filter>login_server</Filter>
     </ClInclude>
-    <ClInclude Include="login_account\Login_account.h">
-      <Filter>login_account</Filter>
-    </ClInclude>
     <ClInclude Include="login_account\login_account_manager.h">
       <Filter>login_account</Filter>
     </ClInclude>
@@ -53,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="login_server\login_conn_service.h">
       <Filter>login_server</Filter>
+    </ClInclude>
+    <ClInclude Include="login_account\login_account.h">
+      <Filter>login_account</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

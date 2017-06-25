@@ -27,10 +27,7 @@ namespace terra
         virtual void HandleMessage(LoginAccount& account, packet_ss::MsgServerListML* msg) {}
         virtual void HandleMessage(LoginAccount& account, packet_cs::MsgSelectServerCL* msg) {}
         virtual void HandleMessage(LoginAccount& account, packet_ss::MsgReqEnterServerResultSL* msg) {}
-        virtual void HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg)
-        {
-            account.EnterState(Account_State_t::ACCOUNT_DESTROY);
-        }
+		virtual void HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg);
     };
 
     class AccountState_WaitingLogin : public AccountState_Base

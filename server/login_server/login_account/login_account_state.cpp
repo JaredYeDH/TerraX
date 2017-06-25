@@ -1,5 +1,5 @@
 #include "login_account_state.h"
-#include "Login_account.h"
+#include "login_account.h"
 #include "comm/proto/server_server.pb.h"
 #include "login_server/login_net_module.h"
 
@@ -7,6 +7,11 @@ using namespace terra;
 using namespace packet_cs;
 using namespace packet_ss;
 
+
+void AccountState_Base::HandleMessage(LoginAccount& account, packet_cs::MsgQuitLoginCL* msg)
+{
+	account.EnterState(Account_State_t::ACCOUNT_DESTROY);
+}
 //////////////////////////////////////////////////////////////////////////
 void AccountState_WaitingLogin::Enter(LoginAccount& account) {}
 void AccountState_WaitingLogin::Tick(LoginAccount& account) {}

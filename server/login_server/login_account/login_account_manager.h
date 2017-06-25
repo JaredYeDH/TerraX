@@ -1,23 +1,20 @@
 #pragma once
 #include "base/types.h"
+#include "base/multi_index_map.h"
 #include "comm/proto/client_server.pb.h"
 #include "comm/proto/server_server.pb.h"
 #include "srv/net/server_accept_service.h"
 #include "login_account_state.h"
-#include <unordered_map>
 #include <memory>
 #include <array>
-#include "base/multi_index_map.h"
+#include "login_account.h"
 
 namespace terra
 {
-	class LoginAccount;
 	class LoginAccountManager
 	{
 		MAKE_INSTANCE(LoginAccountManager);
 		DISABLE_COPY(LoginAccountManager);
-		using LoginAccountMap = std::unordered_map<int, std::unique_ptr<LoginAccount> >;
-		using Account2FdMap = std::unordered_map<std::string, int >;
 		using AccountStateArray = std::array<std::unique_ptr<AccountState_Base>, static_cast<int>(Account_State_t::ACCOUNT_COUNT)>;
 	private:
 		MultiKeyIndexMap1<int, std::string, std::unique_ptr<LoginAccount>, true> accounts_;
