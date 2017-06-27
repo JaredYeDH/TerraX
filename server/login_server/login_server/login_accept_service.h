@@ -21,6 +21,5 @@ namespace terra
 		void OnClientConnected(TcpConnection* conn);
 		void OnClientDisconnected(TcpConnection* conn);
 
-		void CloseConnection(int fd);
 	};
 }

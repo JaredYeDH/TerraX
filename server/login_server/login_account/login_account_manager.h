@@ -26,14 +26,8 @@ namespace terra
 		void CreateAccount(TcpConnection* conn);
 		void RemoveAccount(TcpConnection* conn);
 
-		void AddAccount2FdInfo(const std::string& account_name, int fd)
-		{
-			accounts_.SetFKey2PKey(account_name, fd);
-		}
-		void RemoveAccount2FdInfo(const std::string& account_name)
-		{
-			accounts_.EraseForeignKeyOnly(account_name);
-		}
+		void AddAccount2FdInfo(const std::string& account_name, int fd);
+		void RemoveAccount2FdInfo(const std::string& account_name);
 
 		AccountState_Base* GetAccountState(Account_State_t account_state) { return states_[static_cast<int>(account_state)].get(); }
 		LoginAccount* GetAccountByAccountName(const std::string& account_name);

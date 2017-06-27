@@ -9,6 +9,7 @@ using namespace packet_ss;
 GateAccountManager::GateAccountManager()
 {
 	InitAccountState();
+	REG_PACKET_HANDLER_ARG3(MsgReqLoginGameCS, this, OnMessage_ReqLoginGameCS);
 }
 
 void GateAccountManager::InitAccountState()
@@ -19,34 +20,35 @@ void GateAccountManager::CreateAccount(TcpConnection* conn)
 {
 	std::unique_ptr<GateAccount> account(new GateAccount(conn));
 	account->EnterDefaultState();
-	account_map_.insert(std::make_pair(conn->get_fd(), std::move(account)));
+	accounts_.InsertPKeyValue(conn->get_fd(), std::move(account));
 }
 
 
 void GateAccountManager::RemoveAccount(TcpConnection* conn)
 {
-	auto iter = account_map_.find(conn->get_fd());
-	if (iter == account_map_.end())
-	{
-		assert(0);
-		return;
-	}
-	account2fd_map_.erase(iter->second->get_account_name());
-	account_map_.erase(conn->get_fd()); //res = 1;
+	accounts_.EraseValueByPrimaryKey(conn->get_fd());
+}
+
+void GateAccountManager::AddAccount2FdInfo(const std::string& account_name, int fd)
+{
+	accounts_.SetFKey2PKey(account_name, fd);
+}
+void GateAccountManager::RemoveAccount2FdInfo(const std::string& account_name)
+{
+	accounts_.EraseForeignKeyOnly(account_name);
 }
 
 GateAccount* GateAccountManager::GetAccountByAccountName(const std::string& account_name)
 {
-	auto iter_fd = account2fd_map_.find(account_name);
-	if (iter_fd == account2fd_map_.end())
+	auto ptr = accounts_.GetValueByForeignkey(account_name);
+	if (!ptr)
 	{
 		return nullptr;
 	}
-	int fd = iter_fd->second;
-	auto iter = account_map_.find(fd);
-	if (iter == account_map_.end())
-	{
-		return nullptr;
-	}
-	return (iter->second).get();
+	return (*ptr).get();
+}
+
+void GateAccountManager::OnMessage_ReqLoginGameCS(TcpConnection* conn, int32_t avatar_id, packet_cs::MsgReqLoginGameCS* msg)
+{
+	ProcessMessageByfd(conn->get_fd(), msg);
 }

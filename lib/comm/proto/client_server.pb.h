@@ -42,7 +42,7 @@ class MsgLoginResultLC;
 class MsgQueryRoleListCG;
 class MsgQuitLoginCL;
 class MsgReqLoginCL;
-class MsgReqLoginGameCG;
+class MsgReqLoginGameCS;
 class MsgSeclectServerResultLC;
 class MsgSelectServerCL;
 class MsgSyncRoleListGC;
@@ -514,32 +514,32 @@ class MsgQuitLoginCL : public ::google::protobuf::Message /* @@protoc_insertion_
 };
 // -------------------------------------------------------------------
 
-class MsgReqLoginGameCG : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgReqLoginGameCG) */ {
+class MsgReqLoginGameCS : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:packet_cs.MsgReqLoginGameCS) */ {
  public:
-  MsgReqLoginGameCG();
-  virtual ~MsgReqLoginGameCG();
+  MsgReqLoginGameCS();
+  virtual ~MsgReqLoginGameCS();
 
-  MsgReqLoginGameCG(const MsgReqLoginGameCG& from);
+  MsgReqLoginGameCS(const MsgReqLoginGameCS& from);
 
-  inline MsgReqLoginGameCG& operator=(const MsgReqLoginGameCG& from) {
+  inline MsgReqLoginGameCS& operator=(const MsgReqLoginGameCS& from) {
     CopyFrom(from);
     return *this;
   }
 
   static const ::google::protobuf::Descriptor* descriptor();
-  static const MsgReqLoginGameCG& default_instance();
+  static const MsgReqLoginGameCS& default_instance();
 
-  void Swap(MsgReqLoginGameCG* other);
+  void Swap(MsgReqLoginGameCS* other);
 
   // implements Message ----------------------------------------------
 
-  inline MsgReqLoginGameCG* New() const { return New(NULL); }
+  inline MsgReqLoginGameCS* New() const { return New(NULL); }
 
-  MsgReqLoginGameCG* New(::google::protobuf::Arena* arena) const;
+  MsgReqLoginGameCS* New(::google::protobuf::Arena* arena) const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const MsgReqLoginGameCG& from);
-  void MergeFrom(const MsgReqLoginGameCG& from);
+  void CopyFrom(const MsgReqLoginGameCS& from);
+  void MergeFrom(const MsgReqLoginGameCS& from);
   void Clear();
   bool IsInitialized() const;
 
@@ -558,7 +558,7 @@ class MsgReqLoginGameCG : public ::google::protobuf::Message /* @@protoc_inserti
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
-  void InternalSwap(MsgReqLoginGameCG* other);
+  void InternalSwap(MsgReqLoginGameCS* other);
   private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
@@ -596,7 +596,7 @@ class MsgReqLoginGameCG : public ::google::protobuf::Message /* @@protoc_inserti
   ::std::string* release_account_token();
   void set_allocated_account_token(::std::string* account_token);
 
-  // @@protoc_insertion_point(class_scope:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(class_scope:packet_cs.MsgReqLoginGameCS)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -609,7 +609,7 @@ class MsgReqLoginGameCG : public ::google::protobuf::Message /* @@protoc_inserti
   friend void protobuf_ShutdownFile_client_5fserver_2eproto();
 
   void InitAsDefaultInstance();
-  static MsgReqLoginGameCG* default_instance_;
+  static MsgReqLoginGameCS* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -1223,94 +1223,94 @@ inline void MsgSeclectServerResultLC::set_gate_port(::google::protobuf::int32 va
 
 // -------------------------------------------------------------------
 
-// MsgReqLoginGameCG
+// MsgReqLoginGameCS
 
 // optional string account_name = 1;
-inline void MsgReqLoginGameCG::clear_account_name() {
+inline void MsgReqLoginGameCS::clear_account_name() {
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& MsgReqLoginGameCG::account_name() const {
-  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_name)
+inline const ::std::string& MsgReqLoginGameCS::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCS.account_name)
   return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgReqLoginGameCG::set_account_name(const ::std::string& value) {
+inline void MsgReqLoginGameCS::set_account_name(const ::std::string& value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCS.account_name)
 }
-inline void MsgReqLoginGameCG::set_account_name(const char* value) {
+inline void MsgReqLoginGameCS::set_account_name(const char* value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCS.account_name)
 }
-inline void MsgReqLoginGameCG::set_account_name(const char* value, size_t size) {
+inline void MsgReqLoginGameCS::set_account_name(const char* value, size_t size) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCS.account_name)
 }
-inline ::std::string* MsgReqLoginGameCG::mutable_account_name() {
+inline ::std::string* MsgReqLoginGameCS::mutable_account_name() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCS.account_name)
   return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* MsgReqLoginGameCG::release_account_name() {
-  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_name)
+inline ::std::string* MsgReqLoginGameCS::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCS.account_name)
   
   return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgReqLoginGameCG::set_allocated_account_name(::std::string* account_name) {
+inline void MsgReqLoginGameCS::set_allocated_account_name(::std::string* account_name) {
   if (account_name != NULL) {
     
   } else {
     
   }
   account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCS.account_name)
 }
 
 // optional string account_token = 2;
-inline void MsgReqLoginGameCG::clear_account_token() {
+inline void MsgReqLoginGameCS::clear_account_token() {
   account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline const ::std::string& MsgReqLoginGameCG::account_token() const {
-  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_token)
+inline const ::std::string& MsgReqLoginGameCS::account_token() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCS.account_token)
   return account_token_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgReqLoginGameCG::set_account_token(const ::std::string& value) {
+inline void MsgReqLoginGameCS::set_account_token(const ::std::string& value) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCS.account_token)
 }
-inline void MsgReqLoginGameCG::set_account_token(const char* value) {
+inline void MsgReqLoginGameCS::set_account_token(const char* value) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCS.account_token)
 }
-inline void MsgReqLoginGameCG::set_account_token(const char* value, size_t size) {
+inline void MsgReqLoginGameCS::set_account_token(const char* value, size_t size) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCS.account_token)
 }
-inline ::std::string* MsgReqLoginGameCG::mutable_account_token() {
+inline ::std::string* MsgReqLoginGameCS::mutable_account_token() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCS.account_token)
   return account_token_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline ::std::string* MsgReqLoginGameCG::release_account_token() {
-  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_token)
+inline ::std::string* MsgReqLoginGameCS::release_account_token() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCS.account_token)
   
   return account_token_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
-inline void MsgReqLoginGameCG::set_allocated_account_token(::std::string* account_token) {
+inline void MsgReqLoginGameCS::set_allocated_account_token(::std::string* account_token) {
   if (account_token != NULL) {
     
   } else {
     
   }
   account_token_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_token);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCS.account_token)
 }
 
 // -------------------------------------------------------------------

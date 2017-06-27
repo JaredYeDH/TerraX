@@ -64,7 +64,7 @@ void GameState_Connecting2Gate::Enter()
 
 void GameState_CheckingPermission::Enter()
 {
-	MsgReqLoginGameCG req;
+	MsgReqLoginGameCS req;
 	req.set_account_name(Guest::GetInstance().get_account_name());
 	req.set_account_token(Guest::GetInstance().get_token());
 	ClientNetModule::GetInstance().SendPacket2GateServer(req);

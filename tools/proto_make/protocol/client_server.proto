@@ -31,7 +31,7 @@ message MsgQuitLoginCL
 {
 }
 
-message MsgReqLoginGameCG
+message MsgReqLoginGameCS
 {
     string account_name = 1;
     string account_token = 2;

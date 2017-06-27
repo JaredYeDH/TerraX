@@ -39,6 +39,15 @@ void LoginAccountManager::RemoveAccount(TcpConnection* conn)
 	accounts_.EraseValueByPrimaryKey(conn->get_fd());
 }
 
+void LoginAccountManager::AddAccount2FdInfo(const std::string& account_name, int fd)
+{
+	accounts_.SetFKey2PKey(account_name, fd);
+}
+void LoginAccountManager::RemoveAccount2FdInfo(const std::string& account_name)
+{
+	accounts_.EraseForeignKeyOnly(account_name);
+}
+
 LoginAccount* LoginAccountManager::GetAccountByAccountName(const std::string& account_name)
 {
 	auto ptr = accounts_.GetValueByForeignkey(account_name);

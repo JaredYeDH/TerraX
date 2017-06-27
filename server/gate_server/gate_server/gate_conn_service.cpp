@@ -92,6 +92,16 @@ void GateConnService::OnNodeDisconnected(TcpConnection* conn)
 	DestroyConnection(conn);
 }
 
+void GateConnService::SendPacketByServerId(int server_id, google::protobuf::Message& msg)
+{
+	NetObject* obj = server_table_.GetNetObjectByServerID(server_id);
+	if (!obj)
+	{
+		return;
+	}
+	packet_processor_.SendPacket(obj->conn_, msg);
+}
+
 void GateConnService::OnMessage_ServerInfoWS(MsgServerInfoWS* msg)
 {
 	for (int i = 0; i < msg->server_info_size(); ++i) {

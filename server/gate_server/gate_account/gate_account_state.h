@@ -27,6 +27,8 @@ namespace terra
 		virtual void Enter(GateAccount& account) {}
 		virtual void Tick(GateAccount& account) {}
 		virtual void Leave(GateAccount& account) {}
+
+		virtual void HandleMessage(GateAccount& account, packet_cs::MsgReqLoginGameCS* msg) {}
 	};
 
 	class AccountState_WaitingLogin : public AccountState_Base
@@ -35,6 +37,7 @@ namespace terra
 		void Enter(GateAccount& account) override;
 		void Tick(GateAccount& account) override;
 		void Leave(GateAccount& account) override;
+		void HandleMessage(GateAccount& account, packet_cs::MsgReqLoginGameCS* msg) override;
 	};
 
 	class AccountState_CheckingPermission : public AccountState_Base

@@ -10,7 +10,13 @@ using namespace terra;
 void AccountState_WaitingLogin::Enter(GateAccount& account) {}
 void AccountState_WaitingLogin::Tick(GateAccount& account) {}
 void AccountState_WaitingLogin::Leave(GateAccount& account) {}
+void AccountState_WaitingLogin::HandleMessage(GateAccount& account, packet_cs::MsgReqLoginGameCS* msg)
+{
+	account.InitAccountName(msg->account_name());
 
+	GateNetModule::GetInstance().SendPacket2World(*msg);
+	account.EnterState(Account_State_t::ACCOUNT_CHECKING_PERMISSION);
+}
 //////////////////////////////////////////////////////////////////////////
 
 void AccountState_CheckingPermission::Enter(GateAccount& account) {}

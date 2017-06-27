@@ -19,3 +19,9 @@ void ServerAcceptService::SendPacket(TcpConnection* conn, google::protobuf::Mess
 	//you can verify conn by finding conn in TcpServer
 	packet_processor_.SendPacket(conn, msg);
 }
+
+
+void ServerAcceptService::CloseConnection(int fd)
+{
+	server_->Close(fd);
+}

@@ -66,3 +66,23 @@ void GateNetModule::OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf)
 {
     ProcessServerMessage(conn, evbuf);
 }
+
+void GateNetModule::SendPacket2World(google::protobuf::Message& msg)
+{
+	conn_service_.SendPacketByServerId(0, msg);
+}
+
+void GateNetModule::SendPacket2Node(int node_id, google::protobuf::Message& msg)
+{
+	conn_service_.SendPacketByServerId(node_id, msg);
+}
+
+void GateNetModule::SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg)
+{
+
+}
+
+void GateNetModule::SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg)
+{
+
+}

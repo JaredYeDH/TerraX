@@ -32,6 +32,10 @@ namespace terra
 		bool BeforeShut();
 		bool Shut();
 
+		void SendPacket2World(google::protobuf::Message& msg);
+		void SendPacket2Node(int node_id, google::protobuf::Message& msg);
+		void SendPacket2Client(TcpConnection* conn, google::protobuf::Message& msg);
+		void SendPacket2Client(const std::string& account_name, google::protobuf::Message& msg);
 
 		void OnServerSocketEvent(TcpConnection* conn, SocketEvent_t ev);
 		void OnServerMessageEvent(TcpConnection* conn, evbuffer* evbuf);

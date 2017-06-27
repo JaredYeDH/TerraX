@@ -76,3 +76,4 @@ message MsgReqEnterServerResultSL
     string gate_ip = 4;
     int32 gate_port = 5;
 }
+

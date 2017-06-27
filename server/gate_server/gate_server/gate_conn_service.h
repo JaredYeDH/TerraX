@@ -26,6 +26,8 @@ namespace terra
 		void OnNodeConnected(TcpConnection* conn);
 		void OnNodeDisconnected(TcpConnection* conn);
 
+
+		void SendPacketByServerId(int server_id, google::protobuf::Message& msg);
 	private:
 		void Login2World(TcpConnection* conn);
 		void Login2Node(TcpConnection* conn);

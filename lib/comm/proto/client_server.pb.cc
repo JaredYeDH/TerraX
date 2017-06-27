@@ -36,9 +36,9 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* MsgQuitLoginCL_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgQuitLoginCL_reflection_ = NULL;
-const ::google::protobuf::Descriptor* MsgReqLoginGameCG_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* MsgReqLoginGameCS_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  MsgReqLoginGameCG_reflection_ = NULL;
+  MsgReqLoginGameCS_reflection_ = NULL;
 const ::google::protobuf::Descriptor* MsgLoginGameResultGC_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   MsgLoginGameResultGC_reflection_ = NULL;
@@ -141,22 +141,22 @@ void protobuf_AssignDesc_client_5fserver_2eproto() {
       sizeof(MsgQuitLoginCL),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgQuitLoginCL, _internal_metadata_),
       GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgQuitLoginCL, _is_default_instance_));
-  MsgReqLoginGameCG_descriptor_ = file->message_type(5);
-  static const int MsgReqLoginGameCG_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCG, account_name_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCG, account_token_),
+  MsgReqLoginGameCS_descriptor_ = file->message_type(5);
+  static const int MsgReqLoginGameCS_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCS, account_name_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCS, account_token_),
   };
-  MsgReqLoginGameCG_reflection_ =
+  MsgReqLoginGameCS_reflection_ =
     ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
-      MsgReqLoginGameCG_descriptor_,
-      MsgReqLoginGameCG::default_instance_,
-      MsgReqLoginGameCG_offsets_,
+      MsgReqLoginGameCS_descriptor_,
+      MsgReqLoginGameCS::default_instance_,
+      MsgReqLoginGameCS_offsets_,
       -1,
       -1,
       -1,
-      sizeof(MsgReqLoginGameCG),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCG, _internal_metadata_),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCG, _is_default_instance_));
+      sizeof(MsgReqLoginGameCS),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCS, _internal_metadata_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgReqLoginGameCS, _is_default_instance_));
   MsgLoginGameResultGC_descriptor_ = file->message_type(6);
   static const int MsgLoginGameResultGC_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(MsgLoginGameResultGC, result_),
@@ -239,7 +239,7 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgQuitLoginCL_descriptor_, &MsgQuitLoginCL::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      MsgReqLoginGameCG_descriptor_, &MsgReqLoginGameCG::default_instance());
+      MsgReqLoginGameCS_descriptor_, &MsgReqLoginGameCS::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
       MsgLoginGameResultGC_descriptor_, &MsgLoginGameResultGC::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -263,8 +263,8 @@ void protobuf_ShutdownFile_client_5fserver_2eproto() {
   delete MsgSeclectServerResultLC_reflection_;
   delete MsgQuitLoginCL::default_instance_;
   delete MsgQuitLoginCL_reflection_;
-  delete MsgReqLoginGameCG::default_instance_;
-  delete MsgReqLoginGameCG_reflection_;
+  delete MsgReqLoginGameCS::default_instance_;
+  delete MsgReqLoginGameCS_reflection_;
   delete MsgLoginGameResultGC::default_instance_;
   delete MsgLoginGameResultGC_reflection_;
   delete MsgQueryRoleListCG::default_instance_;
@@ -292,7 +292,7 @@ void protobuf_AddDesc_client_5fserver_2eproto() {
     "\n\021MsgSelectServerCL\022\021\n\tserver_id\030\001 \001(\005\"N"
     "\n\030MsgSeclectServerResultLC\022\016\n\006result\030\001 \001"
     "(\005\022\017\n\007gate_ip\030\002 \001(\t\022\021\n\tgate_port\030\003 \001(\005\"\020"
-    "\n\016MsgQuitLoginCL\"@\n\021MsgReqLoginGameCG\022\024\n"
+    "\n\016MsgQuitLoginCL\"@\n\021MsgReqLoginGameCS\022\024\n"
     "\014account_name\030\001 \001(\t\022\025\n\raccount_token\030\002 \001"
     "(\t\"&\n\024MsgLoginGameResultGC\022\016\n\006result\030\001 \001"
     "(\005\"\024\n\022MsgQueryRoleListCG\"\023\n\021MsgSyncRoleL"
@@ -305,7 +305,7 @@ void protobuf_AddDesc_client_5fserver_2eproto() {
   MsgSelectServerCL::default_instance_ = new MsgSelectServerCL();
   MsgSeclectServerResultLC::default_instance_ = new MsgSeclectServerResultLC();
   MsgQuitLoginCL::default_instance_ = new MsgQuitLoginCL();
-  MsgReqLoginGameCG::default_instance_ = new MsgReqLoginGameCG();
+  MsgReqLoginGameCS::default_instance_ = new MsgReqLoginGameCS();
   MsgLoginGameResultGC::default_instance_ = new MsgLoginGameResultGC();
   MsgQueryRoleListCG::default_instance_ = new MsgQueryRoleListCG();
   MsgSyncRoleListGC::default_instance_ = new MsgSyncRoleListGC();
@@ -315,7 +315,7 @@ void protobuf_AddDesc_client_5fserver_2eproto() {
   MsgSelectServerCL::default_instance_->InitAsDefaultInstance();
   MsgSeclectServerResultLC::default_instance_->InitAsDefaultInstance();
   MsgQuitLoginCL::default_instance_->InitAsDefaultInstance();
-  MsgReqLoginGameCG::default_instance_->InitAsDefaultInstance();
+  MsgReqLoginGameCS::default_instance_->InitAsDefaultInstance();
   MsgLoginGameResultGC::default_instance_->InitAsDefaultInstance();
   MsgQueryRoleListCG::default_instance_->InitAsDefaultInstance();
   MsgSyncRoleListGC::default_instance_->InitAsDefaultInstance();
@@ -1952,29 +1952,29 @@ void MsgQuitLoginCL::InternalSwap(MsgQuitLoginCL* other) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int MsgReqLoginGameCG::kAccountNameFieldNumber;
-const int MsgReqLoginGameCG::kAccountTokenFieldNumber;
+const int MsgReqLoginGameCS::kAccountNameFieldNumber;
+const int MsgReqLoginGameCS::kAccountTokenFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-MsgReqLoginGameCG::MsgReqLoginGameCG()
+MsgReqLoginGameCS::MsgReqLoginGameCS()
   : ::google::protobuf::Message(), _internal_metadata_(NULL) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(constructor:packet_cs.MsgReqLoginGameCS)
 }
 
-void MsgReqLoginGameCG::InitAsDefaultInstance() {
+void MsgReqLoginGameCS::InitAsDefaultInstance() {
   _is_default_instance_ = true;
 }
 
-MsgReqLoginGameCG::MsgReqLoginGameCG(const MsgReqLoginGameCG& from)
+MsgReqLoginGameCS::MsgReqLoginGameCS(const MsgReqLoginGameCS& from)
   : ::google::protobuf::Message(),
     _internal_metadata_(NULL) {
   SharedCtor();
   MergeFrom(from);
-  // @@protoc_insertion_point(copy_constructor:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(copy_constructor:packet_cs.MsgReqLoginGameCS)
 }
 
-void MsgReqLoginGameCG::SharedCtor() {
+void MsgReqLoginGameCS::SharedCtor() {
     _is_default_instance_ = false;
   ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
@@ -1982,54 +1982,54 @@ void MsgReqLoginGameCG::SharedCtor() {
   account_token_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-MsgReqLoginGameCG::~MsgReqLoginGameCG() {
-  // @@protoc_insertion_point(destructor:packet_cs.MsgReqLoginGameCG)
+MsgReqLoginGameCS::~MsgReqLoginGameCS() {
+  // @@protoc_insertion_point(destructor:packet_cs.MsgReqLoginGameCS)
   SharedDtor();
 }
 
-void MsgReqLoginGameCG::SharedDtor() {
+void MsgReqLoginGameCS::SharedDtor() {
   account_name_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   account_token_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (this != default_instance_) {
   }
 }
 
-void MsgReqLoginGameCG::SetCachedSize(int size) const {
+void MsgReqLoginGameCS::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* MsgReqLoginGameCG::descriptor() {
+const ::google::protobuf::Descriptor* MsgReqLoginGameCS::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return MsgReqLoginGameCG_descriptor_;
+  return MsgReqLoginGameCS_descriptor_;
 }
 
-const MsgReqLoginGameCG& MsgReqLoginGameCG::default_instance() {
+const MsgReqLoginGameCS& MsgReqLoginGameCS::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_client_5fserver_2eproto();
   return *default_instance_;
 }
 
-MsgReqLoginGameCG* MsgReqLoginGameCG::default_instance_ = NULL;
+MsgReqLoginGameCS* MsgReqLoginGameCS::default_instance_ = NULL;
 
-MsgReqLoginGameCG* MsgReqLoginGameCG::New(::google::protobuf::Arena* arena) const {
-  MsgReqLoginGameCG* n = new MsgReqLoginGameCG;
+MsgReqLoginGameCS* MsgReqLoginGameCS::New(::google::protobuf::Arena* arena) const {
+  MsgReqLoginGameCS* n = new MsgReqLoginGameCS;
   if (arena != NULL) {
     arena->Own(n);
   }
   return n;
 }
 
-void MsgReqLoginGameCG::Clear() {
-// @@protoc_insertion_point(message_clear_start:packet_cs.MsgReqLoginGameCG)
+void MsgReqLoginGameCS::Clear() {
+// @@protoc_insertion_point(message_clear_start:packet_cs.MsgReqLoginGameCS)
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
-bool MsgReqLoginGameCG::MergePartialFromCodedStream(
+bool MsgReqLoginGameCS::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(parse_start:packet_cs.MsgReqLoginGameCS)
   for (;;) {
     ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoff(127);
     tag = p.first;
@@ -2043,7 +2043,7 @@ bool MsgReqLoginGameCG::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->account_name().data(), this->account_name().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "packet_cs.MsgReqLoginGameCG.account_name"));
+            "packet_cs.MsgReqLoginGameCS.account_name"));
         } else {
           goto handle_unusual;
         }
@@ -2060,7 +2060,7 @@ bool MsgReqLoginGameCG::MergePartialFromCodedStream(
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->account_token().data(), this->account_token().length(),
             ::google::protobuf::internal::WireFormatLite::PARSE,
-            "packet_cs.MsgReqLoginGameCG.account_token"));
+            "packet_cs.MsgReqLoginGameCS.account_token"));
         } else {
           goto handle_unusual;
         }
@@ -2081,23 +2081,23 @@ bool MsgReqLoginGameCG::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(parse_success:packet_cs.MsgReqLoginGameCS)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(parse_failure:packet_cs.MsgReqLoginGameCS)
   return false;
 #undef DO_
 }
 
-void MsgReqLoginGameCG::SerializeWithCachedSizes(
+void MsgReqLoginGameCS::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(serialize_start:packet_cs.MsgReqLoginGameCS)
   // optional string account_name = 1;
   if (this->account_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_name().data(), this->account_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_cs.MsgReqLoginGameCG.account_name");
+      "packet_cs.MsgReqLoginGameCS.account_name");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       1, this->account_name(), output);
   }
@@ -2107,23 +2107,23 @@ void MsgReqLoginGameCG::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_token().data(), this->account_token().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_cs.MsgReqLoginGameCG.account_token");
+      "packet_cs.MsgReqLoginGameCS.account_token");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
       2, this->account_token(), output);
   }
 
-  // @@protoc_insertion_point(serialize_end:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(serialize_end:packet_cs.MsgReqLoginGameCS)
 }
 
-::google::protobuf::uint8* MsgReqLoginGameCG::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* MsgReqLoginGameCS::InternalSerializeWithCachedSizesToArray(
     bool deterministic, ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(serialize_to_array_start:packet_cs.MsgReqLoginGameCS)
   // optional string account_name = 1;
   if (this->account_name().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_name().data(), this->account_name().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_cs.MsgReqLoginGameCG.account_name");
+      "packet_cs.MsgReqLoginGameCS.account_name");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         1, this->account_name(), target);
@@ -2134,18 +2134,18 @@ void MsgReqLoginGameCG::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->account_token().data(), this->account_token().length(),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "packet_cs.MsgReqLoginGameCG.account_token");
+      "packet_cs.MsgReqLoginGameCS.account_token");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
         2, this->account_token(), target);
   }
 
-  // @@protoc_insertion_point(serialize_to_array_end:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(serialize_to_array_end:packet_cs.MsgReqLoginGameCS)
   return target;
 }
 
-int MsgReqLoginGameCG::ByteSize() const {
-// @@protoc_insertion_point(message_byte_size_start:packet_cs.MsgReqLoginGameCG)
+int MsgReqLoginGameCS::ByteSize() const {
+// @@protoc_insertion_point(message_byte_size_start:packet_cs.MsgReqLoginGameCS)
   int total_size = 0;
 
   // optional string account_name = 1;
@@ -2168,25 +2168,25 @@ int MsgReqLoginGameCG::ByteSize() const {
   return total_size;
 }
 
-void MsgReqLoginGameCG::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:packet_cs.MsgReqLoginGameCG)
+void MsgReqLoginGameCS::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:packet_cs.MsgReqLoginGameCS)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
-  const MsgReqLoginGameCG* source = 
-      ::google::protobuf::internal::DynamicCastToGenerated<const MsgReqLoginGameCG>(
+  const MsgReqLoginGameCS* source = 
+      ::google::protobuf::internal::DynamicCastToGenerated<const MsgReqLoginGameCS>(
           &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:packet_cs.MsgReqLoginGameCS)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_cs.MsgReqLoginGameCG)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:packet_cs.MsgReqLoginGameCS)
     MergeFrom(*source);
   }
 }
 
-void MsgReqLoginGameCG::MergeFrom(const MsgReqLoginGameCG& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:packet_cs.MsgReqLoginGameCG)
+void MsgReqLoginGameCS::MergeFrom(const MsgReqLoginGameCS& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:packet_cs.MsgReqLoginGameCS)
   if (GOOGLE_PREDICT_FALSE(&from == this)) {
     ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
   }
@@ -2200,133 +2200,133 @@ void MsgReqLoginGameCG::MergeFrom(const MsgReqLoginGameCG& from) {
   }
 }
 
-void MsgReqLoginGameCG::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:packet_cs.MsgReqLoginGameCG)
+void MsgReqLoginGameCS::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:packet_cs.MsgReqLoginGameCS)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void MsgReqLoginGameCG::CopyFrom(const MsgReqLoginGameCG& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:packet_cs.MsgReqLoginGameCG)
+void MsgReqLoginGameCS::CopyFrom(const MsgReqLoginGameCS& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:packet_cs.MsgReqLoginGameCS)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MsgReqLoginGameCG::IsInitialized() const {
+bool MsgReqLoginGameCS::IsInitialized() const {
 
   return true;
 }
 
-void MsgReqLoginGameCG::Swap(MsgReqLoginGameCG* other) {
+void MsgReqLoginGameCS::Swap(MsgReqLoginGameCS* other) {
   if (other == this) return;
   InternalSwap(other);
 }
-void MsgReqLoginGameCG::InternalSwap(MsgReqLoginGameCG* other) {
+void MsgReqLoginGameCS::InternalSwap(MsgReqLoginGameCS* other) {
   account_name_.Swap(&other->account_name_);
   account_token_.Swap(&other->account_token_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata MsgReqLoginGameCG::GetMetadata() const {
+::google::protobuf::Metadata MsgReqLoginGameCS::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = MsgReqLoginGameCG_descriptor_;
-  metadata.reflection = MsgReqLoginGameCG_reflection_;
+  metadata.descriptor = MsgReqLoginGameCS_descriptor_;
+  metadata.reflection = MsgReqLoginGameCS_reflection_;
   return metadata;
 }
 
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
-// MsgReqLoginGameCG
+// MsgReqLoginGameCS
 
 // optional string account_name = 1;
-void MsgReqLoginGameCG::clear_account_name() {
+void MsgReqLoginGameCS::clear_account_name() {
   account_name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& MsgReqLoginGameCG::account_name() const {
-  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_name)
+ const ::std::string& MsgReqLoginGameCS::account_name() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCS.account_name)
   return account_name_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgReqLoginGameCG::set_account_name(const ::std::string& value) {
+ void MsgReqLoginGameCS::set_account_name(const ::std::string& value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCS.account_name)
 }
- void MsgReqLoginGameCG::set_account_name(const char* value) {
+ void MsgReqLoginGameCS::set_account_name(const char* value) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCS.account_name)
 }
- void MsgReqLoginGameCG::set_account_name(const char* value, size_t size) {
+ void MsgReqLoginGameCS::set_account_name(const char* value, size_t size) {
   
   account_name_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCS.account_name)
 }
- ::std::string* MsgReqLoginGameCG::mutable_account_name() {
+ ::std::string* MsgReqLoginGameCS::mutable_account_name() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCS.account_name)
   return account_name_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* MsgReqLoginGameCG::release_account_name() {
-  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_name)
+ ::std::string* MsgReqLoginGameCS::release_account_name() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCS.account_name)
   
   return account_name_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgReqLoginGameCG::set_allocated_account_name(::std::string* account_name) {
+ void MsgReqLoginGameCS::set_allocated_account_name(::std::string* account_name) {
   if (account_name != NULL) {
     
   } else {
     
   }
   account_name_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_name);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_name)
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCS.account_name)
 }
 
 // optional string account_token = 2;
-void MsgReqLoginGameCG::clear_account_token() {
+void MsgReqLoginGameCS::clear_account_token() {
   account_token_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- const ::std::string& MsgReqLoginGameCG::account_token() const {
-  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCG.account_token)
+ const ::std::string& MsgReqLoginGameCS::account_token() const {
+  // @@protoc_insertion_point(field_get:packet_cs.MsgReqLoginGameCS.account_token)
   return account_token_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgReqLoginGameCG::set_account_token(const ::std::string& value) {
+ void MsgReqLoginGameCS::set_account_token(const ::std::string& value) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
-  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set:packet_cs.MsgReqLoginGameCS.account_token)
 }
- void MsgReqLoginGameCG::set_account_token(const char* value) {
+ void MsgReqLoginGameCS::set_account_token(const char* value) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_char:packet_cs.MsgReqLoginGameCS.account_token)
 }
- void MsgReqLoginGameCG::set_account_token(const char* value, size_t size) {
+ void MsgReqLoginGameCS::set_account_token(const char* value, size_t size) {
   
   account_token_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_pointer:packet_cs.MsgReqLoginGameCS.account_token)
 }
- ::std::string* MsgReqLoginGameCG::mutable_account_token() {
+ ::std::string* MsgReqLoginGameCS::mutable_account_token() {
   
-  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_mutable:packet_cs.MsgReqLoginGameCS.account_token)
   return account_token_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- ::std::string* MsgReqLoginGameCG::release_account_token() {
-  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCG.account_token)
+ ::std::string* MsgReqLoginGameCS::release_account_token() {
+  // @@protoc_insertion_point(field_release:packet_cs.MsgReqLoginGameCS.account_token)
   
   return account_token_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
- void MsgReqLoginGameCG::set_allocated_account_token(::std::string* account_token) {
+ void MsgReqLoginGameCS::set_allocated_account_token(::std::string* account_token) {
   if (account_token != NULL) {
     
   } else {
     
   }
   account_token_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), account_token);
-  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCG.account_token)
+  // @@protoc_insertion_point(field_set_allocated:packet_cs.MsgReqLoginGameCS.account_token)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
