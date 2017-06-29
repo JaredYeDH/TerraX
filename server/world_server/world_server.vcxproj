@@ -68,7 +68,11 @@
     <ClCompile Include="world_server\world_conn_service.cpp" />
     <ClCompile Include="world_server\world_net_module.cpp" />
     <ClCompile Include="world_server\world_server.cpp" />
+    <ClCompile Include="world_server_manager\gate_load_info.cpp" />
+    <ClCompile Include="world_server_manager\node_load_info.cpp" />
     <ClCompile Include="world_server_manager\world_account.cpp" />
+    <ClCompile Include="world_server_manager\world_account_manager.cpp" />
+    <ClCompile Include="world_server_manager\world_loadbalancing_manager.cpp" />
     <ClCompile Include="world_server_manager\world_server_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +80,11 @@
     <ClInclude Include="world_server\world_conn_service.h" />
     <ClInclude Include="world_server\world_net_module.h" />
     <ClInclude Include="world_server\world_server.h" />
+    <ClInclude Include="world_server_manager\gate_load_info.h" />
+    <ClInclude Include="world_server_manager\node_load_info.h" />
     <ClInclude Include="world_server_manager\world_account.h" />
+    <ClInclude Include="world_server_manager\world_account_manager.h" />
+    <ClInclude Include="world_server_manager\world_loadbalancing_manager.h" />
     <ClInclude Include="world_server_manager\world_server_manager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

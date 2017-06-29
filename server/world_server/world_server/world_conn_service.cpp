@@ -1,7 +1,8 @@
 #include "world_conn_service.h"
 #include "comm/net/packet_dispatcher.h"
 #include "world_net_module.h"
-#include "world_server_manager/world_server_manager.h"
+#include "world_server_manager/world_account_manager.h"
+#include "world_server_manager/world_loadbalancing_manager.h"
 
 using namespace terra;
 using namespace packet_ss;
@@ -50,13 +51,13 @@ void WorldConnService::OnMessage_WorldRegAtMasterAckMW(MsgWorldRegAtMasterAckMW*
 
 void WorldConnService::OnMessage_ReqEnterServerLS(MsgReqEnterServerLS* msg)
 {
-	WorldAccount* account = WorldServerManager::GetInstance().FindAccountByAccountName(msg->account_name());
+	WorldAccount* account = WorldAccountManager::GetInstance().FindAccountByAccountName(msg->account_name());
 	if (account)
 	{
 		//kick out this account;
 		return;
 	}
-	int server_id = WorldServerManager::GetInstance().GetLowestLoadGateServerId();
+	int server_id = WorldLoadBalancingManager::GetInstance().GetLowestLoadGateServerId();
 	NetObject* net_object = server_table_.GetNetObjectByServerID(server_id);
 	if (!net_object)
 	{

@@ -33,6 +33,7 @@ void WorldAcceptService::OnServerDisconnected(TcpConnection* conn)
 	assert(net_object);
 	server_ids_.push(net_object->server_id_);
 	server_table_.RemoveByConn(conn);
+	//worldservermanager::disconnect
 }
 
 
@@ -49,7 +50,7 @@ void WorldAcceptService::OnMessage_RegisterSW(TcpConnection* conn, int32_t avata
 	server_table_.AddServerInfo(static_cast<PeerType_t>(peer_type), server_id, msg->listen_ip().c_str(), msg->listen_port(), conn);
 	if (peer_type == static_cast<int>(PeerType_t::GATESERVER))
 	{
-		WorldServerManager::GetInstance().CreateAccountMapByGateId(server_id);
+		WorldServerManager::GetInstance().OnGateServerConnected(server_id);
 	}
 }
 
