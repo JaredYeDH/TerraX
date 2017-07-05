@@ -72,6 +72,7 @@
     <ClCompile Include="world_server_manager\node_load_info.cpp" />
     <ClCompile Include="world_server_manager\world_account.cpp" />
     <ClCompile Include="world_server_manager\world_account_manager.cpp" />
+    <ClCompile Include="world_server_manager\world_account_state.cpp" />
     <ClCompile Include="world_server_manager\world_loadbalancing_manager.cpp" />
     <ClCompile Include="world_server_manager\world_server_manager.cpp" />
   </ItemGroup>
@@ -84,6 +85,7 @@
     <ClInclude Include="world_server_manager\node_load_info.h" />
     <ClInclude Include="world_server_manager\world_account.h" />
     <ClInclude Include="world_server_manager\world_account_manager.h" />
+    <ClInclude Include="world_server_manager\world_account_state.h" />
     <ClInclude Include="world_server_manager\world_loadbalancing_manager.h" />
     <ClInclude Include="world_server_manager\world_server_manager.h" />
   </ItemGroup>

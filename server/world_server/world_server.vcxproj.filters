@@ -40,6 +40,9 @@
     <ClCompile Include="world_server_manager\world_loadbalancing_manager.cpp">
       <Filter>world_server_manager</Filter>
     </ClCompile>
+    <ClCompile Include="world_server_manager\world_account_state.cpp">
+      <Filter>world_server_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="world_server\world_server.h">
@@ -70,6 +73,9 @@
       <Filter>world_server_manager</Filter>
     </ClInclude>
     <ClInclude Include="world_server_manager\world_loadbalancing_manager.h">
+      <Filter>world_server_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="world_server_manager\world_account_state.h">
       <Filter>world_server_manager</Filter>
     </ClInclude>
   </ItemGroup>
