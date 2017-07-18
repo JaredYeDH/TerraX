@@ -1,0 +1,34 @@
+{
+  "Guid": {
+    "Field_Name": "Guid",
+    "Type": "char16",
+    "Public": 1,
+    "Private": 1,
+    "Save": 1,
+    "TestServer": null
+  },
+  "ItemID": {
+    "Field_Name": "ItemID",
+    "Type": "int32",
+    "Public": 1,
+    "Private": 1,
+    "Save": 1,
+    "TestServer": 1
+  },
+  "SlotID": {
+    "Field_Name": "SlotID",
+    "Type": "int32",
+    "Public": 1,
+    "Private": 1,
+    "Save": 1,
+    "TestServer": 1
+  },
+  "BagType": {
+    "Field_Name": "BagType",
+    "Type": "int32",
+    "Public": 1,
+    "Private": 1,
+    "Save": 1,
+    "TestServer": null
+  }
+}
