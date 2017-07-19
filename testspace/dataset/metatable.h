@@ -14,58 +14,61 @@
 using namespace rapidjson;
 namespace terra
 {
-    class Property
-    {
-    private:
-        char name_[32];
-        char type_[32];
-        int public_;
-        int private_;
-        int save_;
-    };
+	struct Property
+	{
+		void Init(const char* name, const char* type, int pub, int pri, int sv)
+		{
+			assert(strlen(name) < 32);
+			strcpy(prop_name, name);
+			assert(strlen(type) < 32);
+			strcpy(prop_type, type);
+			prop_public = pub;
+			prop_private = pri;
+			prop_save = sv;
+		}
+		char prop_name[32];
+		char prop_type[32];
+		int prop_public;
+		int prop_private;
+		int prop_save;
+	};
 
+	template <class PropertyT>
     class Field
 	{
 	private:
-		char name_[32]{ 0 };
-		int pub_{ 0 };
-		int pri_{ 0 };
-		int sv_{ 0 };
+		PropertyT prop_;
 		int offset_{ 0 };
 		std::size_t data_size_{ 0 };
     public:
-        Field(const char* name, int pub, int pri, int sv, int data_size, int offset)
+        Field(PropertyT& prop, int data_size, int offset)
         {
-			assert(strlen(name) < 32);
-			strcpy(name_, name);
-            pub_ = pub;
-            pri_ = pri;
-            sv_ = sv;
+			memcpy(&prop_ , &prop, sizeof prop);
             data_size_ = data_size;
             offset_ = offset;
         }
 
         template <typename T>
-        T GetValue(char* pDataBuffer)
+        T GetValue(char* data_buffer)
         {
             assert(sizeof(T) == data_size_);
-            return *((T*)(pDataBuffer + offset_));
+            return *((T*)(data_buffer + offset_));
         }
-        char* GetValueString(char* pDataBuffer) { return pDataBuffer + offset_; }
+        char* GetValueString(char* databuffer) { return databuffer + offset_; }
 
         template <typename T>
-        void SetValue(T value, char* pDataBuffer)
+        void SetValue(T& value, char* pDataBuffer)
         {
             assert(sizeof(T) == data_size_);
             *((T*)(pDataBuffer + offset_)) = value;
         }
-        void SetValueString(const char* pValue, char* pDataBuffer)
+        void SetValueString(const char* val, char* pDataBuffer)
         {
-            std::size_t len = strlen(pValue);
+            std::size_t len = strlen(val);
             if (len > data_size_) {
                 len = data_size_;
             }
-            memcpy(pDataBuffer, pValue, len);
+            memcpy(pDataBuffer, val, len);
         }
     };
 
@@ -76,7 +79,7 @@ namespace terra
         void InitProperty(Document& d) {}
         int get_data_size() const { return 0; }
         int get_field_count() const { return 0; }
-        Field* GetField(std::size_t index) { return nullptr; }
+        Field<PropertyT>* GetField(std::size_t index) { return nullptr; }
         int GetFieldIndex(const char* field_name) const { return -1; }
     };
     template <>
@@ -86,7 +89,7 @@ namespace terra
     private:
         int data_size_{0};
         std::map<std::string, int> name2index_;
-        std::vector<Field> fields_;
+        std::vector<Field<Property>> fields_;
 
     public:
         void InitProperty(Document& d)
@@ -105,7 +108,7 @@ namespace terra
 
 		std::size_t get_data_size() const { return data_size_; }
         std::size_t get_field_count() const { return fields_.size(); }
-		Field* GetField(std::size_t index)
+		Field<Property>* GetField(std::size_t index)
         {
             if (index >= 0 && index < fields_.size()) {
                 return &fields_[index];
@@ -134,7 +137,9 @@ namespace terra
             } else {
                 data_size = 0;
             }
-            fields_.emplace_back(Field(field_name, pub, pri, sv, data_size, data_size_));
+			Property prop;
+			prop.Init(field_name, type_name, pub, pri, sv);
+            fields_.emplace_back(Field<Property>(prop, data_size, data_size_));
             data_size_ += data_size;
         }
     };
@@ -146,7 +151,7 @@ namespace terra
         // using ValueChangeCB = std::function<void()>;
     private:
         Column<PropertyT>& col_;
-        char* pDataBuffer_{nullptr};
+        char* data_buffer_{nullptr};
         dynamic_bitset bitset_;
 
     public:
@@ -154,7 +159,7 @@ namespace terra
         {
             AllocBuffer(col.get_data_size());
         }
-        ~Row() { delete[] pDataBuffer_; }
+        ~Row() { delete[] data_buffer_; }
 
         // void RegValueChangeCB()
 		std::string ToString()
@@ -162,7 +167,7 @@ namespace terra
 			std::string str;
 			for ( int i=0; i < col_.get_field_count(); ++i)
 			{
-				Field* field = col_.GetField(i);
+				Field<PropertyT>* field = col_.GetField(i);
 				if (!field)
 				{
 					continue;
@@ -174,30 +179,40 @@ namespace terra
 		}
 
         template <typename T>
-        T GetValue(const char* field_name)
+        bool GetValue(const char* field_name, T& val)
         {
             int nFieldIndex = col_.GetFieldIndex(field_name);
-            return GetValue<T>(nFieldIndex);
+            return GetValue<T>(nFieldIndex, val);
         }
         template <typename T>
-        T GetValue(int index)
+		bool GetValue(int index, T& val)
         {
-            Field* field = col_.GetField(index);
-            return field->GetValue<T>(pDataBuffer_);
+            Field<PropertyT>* field = col_.GetField(index);
+			if (!field)
+			{
+				return false;
+			}
+			val = field->GetValue<T>(data_buffer_);
+			return true;
         }
 
+		template <typename T>
+		bool SetValue(const char* field_name, T val)
+		{
+			int nFieldIndex = col_.GetFieldIndex(field_name);
+			return SetValue<T>(nFieldIndex, val);
+		}
         template <typename T>
-        void SetValue(int index, T val)
+        bool SetValue(int index, T val)
         {
-            Field* field = col_.GetField(index);
-			field->SetValue<T>(val, pDataBuffer_);
+            Field<PropertyT>* field = col_.GetField(index);
+			if (!field)
+			{
+				return false;
+			}
+			field->SetValue<T>(val, data_buffer_);
             bitset_.set(index);
-        }
-        template <typename T>
-        void SetValue(const char* field_name, T val)
-        {
-            int nFieldIndex = col_.GetFieldIndex(field_name);
-            SetValue<T>(nFieldIndex, val);
+			return true;
         }
 
         const char* GetValueString(const char* field_name)
@@ -207,24 +222,29 @@ namespace terra
         }
         const char* GetValueString(int index)
         {
-            Field* field = col_.GetField(index);
-            return field->GetValueString(pDataBuffer_);
+            Field<PropertyT>* field = col_.GetField(index);
+            return field->GetValueString(data_buffer_);
         }
 
-        void SetValueString(const char* field_name, const char* pVal)
+        bool SetValueString(const char* field_name, const char* pVal)
         {
             int nFieldIndex = col_.GetFieldIndex(field_name);
-            SetValueString(nFieldIndex, pVal);
+            return SetValueString(nFieldIndex, pVal);
         }
-        void SetValueString(int index, const char* pVal)
+        bool SetValueString(int index, const char* pVal)
         {
-            Field* field = col_.GetField(index);
-            field->SetValueString(pVal, pDataBuffer_);
+            Field<PropertyT>* field = col_.GetField(index);
+			if (!field)
+			{
+				return false;
+			}
+            field->SetValueString(pVal, data_buffer_);
             bitset_.set(index);
+			return true;
         }
 
     private:
-        void AllocBuffer(std::size_t buffer_size) { pDataBuffer_ = new char[buffer_size]{0}; }
+        void AllocBuffer(std::size_t buffer_size) { data_buffer_ = new char[buffer_size]{0}; }
     };
 
     template <class PropertyT, int COUNT>
