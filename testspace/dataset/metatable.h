@@ -5,6 +5,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <sstream>
 #include "dynamic_bitset.h"
 #include "macro.h"
 #include "rapidjson/document.h"
@@ -26,12 +27,15 @@ namespace terra
 			prop_private = pri;
 			prop_save = sv;
 		}
+		const char* get_prop_name() { return prop_name; }
+		const char* get_prop_type() { return prop_type; }
 		char prop_name[32];
 		char prop_type[32];
 		int prop_public;
 		int prop_private;
 		int prop_save;
 	};
+
 
 	template <class PropertyT>
     class Field
@@ -47,6 +51,8 @@ namespace terra
             data_size_ = data_size;
             offset_ = offset;
         }
+
+		const PropertyT& get_property() { return prop_; }
 
         template <typename T>
         T GetValue(char* data_buffer)
@@ -165,6 +171,7 @@ namespace terra
 		std::string ToString()
 		{
 			std::string str;
+			std::stringstream ss;
 			for ( int i=0; i < col_.get_field_count(); ++i)
 			{
 				Field<PropertyT>* field = col_.GetField(i);
@@ -172,10 +179,26 @@ namespace terra
 				{
 					continue;
 				}
-				str.append(field->name_);
-				str.append(":");
-				field->GetValueString()
+				PropertyT prop = field->get_property();
+				const char* prop_name = prop.get_prop_name();
+				ss << prop_name;
+				ss << ":";
+				const char* type_name = prop.get_prop_type();
+				if (strcmp(type_name, "int32") == 0) {
+					ss << field->GetValue<int>(data_buffer_);
+				}
+				else if (strcmp(type_name, "char16") == 0) {
+					ss << field->GetValueString(data_buffer_);
+				}
+				else {
+				}
+				if (i < (col_.get_field_count() - 1))
+				{
+					ss << ",";
+				}
 			}
+			ss >> str;
+			return str;
 		}
 
         template <typename T>
