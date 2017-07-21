@@ -27,8 +27,8 @@ namespace terra
 			prop_private = pri;
 			prop_save = sv;
 		}
-		const char* get_prop_name() { return prop_name; }
-		const char* get_prop_type() { return prop_type; }
+		const char* get_prop_name() const { return prop_name; }
+		const char* get_prop_type() const { return prop_type; }
 		char prop_name[32];
 		char prop_type[32];
 		int prop_public;
@@ -179,7 +179,7 @@ namespace terra
 				{
 					continue;
 				}
-				PropertyT prop = field->get_property();
+				const PropertyT& prop = field->get_property();
 				const char* prop_name = prop.get_prop_name();
 				ss << prop_name;
 				ss << ":";
