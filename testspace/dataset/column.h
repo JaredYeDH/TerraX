@@ -18,8 +18,8 @@ namespace dataset
 
 	public:
 		void InitProperty(Document& d);
-		std::size_t get_data_size() const { return data_size_; }
-		std::size_t get_field_count() const { return fields_.size(); }
+		int get_data_size() const { return data_size_; }
+		int get_field_count() const { return static_cast<int>(fields_.size()); }
 
 		Field* GetField(uint32_t index);
 		int GetFieldIndex(const char* field_name) const;

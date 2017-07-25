@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include <cassert>
 #include <fstream>
 #include <iostream>
@@ -83,3 +83,4 @@ namespace terra
 		}
 	};
 }
+*/

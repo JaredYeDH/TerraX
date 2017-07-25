@@ -1,19 +1,10 @@
 #include <iostream>
-#include <fstream>
-#include "rapidjson/filereadstream.h"
-#include "rapidjson/document.h"
-#include "rapidjson/istreamwrapper.h"
+//#include "dataset2.h"
 #include "dataset.h"
-#include <memory>
-#include "file_reader.h"
-#include "metatable.h"
-#include <array>
-#include "dynamic_bitset.h"
 using namespace rapidjson;
-using namespace terra;
-
-
-int main()
+//using namespace terra;
+/*
+int main1()
 {
 	DataSet<Property> ds;
 	ds.LoadTables(kDataSetRootDir);
@@ -38,5 +29,15 @@ int main()
 
 	std::cin.get();
 	std::cin.get();
+	return 0;
+}
+*/
+
+using namespace dataset;
+
+int main()
+{
+
+
 	return 0;
 }

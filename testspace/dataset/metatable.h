@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include <cassert>
 #include <functional>
 #include <map>
@@ -267,7 +267,7 @@ namespace terra
         }
 
     private:
-        void AllocBuffer(std::size_t buffer_size) { data_buffer_ = new char[buffer_size]{0}; }
+        void AllocBuffer(uint32_t buffer_size) { data_buffer_ = new char[buffer_size]{0}; }
     };
 
     template <class PropertyT, int COUNT>
@@ -339,3 +339,5 @@ namespace terra
 		}
     };
 }  // namespace terra
+
+*/

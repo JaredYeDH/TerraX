@@ -33,9 +33,6 @@
     <ClCompile Include="dataset.cpp">
       <Filter>data_set</Filter>
     </ClCompile>
-    <ClCompile Include="table.cpp">
-      <Filter>data_set</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dynamic_bitset.h">

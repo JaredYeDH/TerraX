@@ -54,7 +54,7 @@ namespace terra
 			assert(0);
 			return;
 		}
-		LoginAccount* account = (*ptr).get();
+		GateAccount* account = (*ptr).get();
 		AccountState_Base* state = account->get_current_state();
 		state->HandleMessage(*account, msg);
 	}
@@ -62,7 +62,7 @@ namespace terra
 	template<class T>
 	void GateAccountManager::ProcessMessageByAccountName(const std::string& account_name, T* msg)
 	{
-		LoginAccount* account = GetAccountByAccountName(account_name);
+		GateAccount* account = GetAccountByAccountName(account_name);
 		if (!account)
 		{
 			assert(0);

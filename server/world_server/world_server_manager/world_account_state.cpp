@@ -10,13 +10,6 @@ using namespace terra;
 void AccountState_WaitingLogin::Enter(WorldAccount& account) {}
 void AccountState_WaitingLogin::Tick(WorldAccount& account) {}
 void AccountState_WaitingLogin::Leave(WorldAccount& account) {}
-void AccountState_WaitingLogin::HandleMessage(WorldAccount& account, packet_cs::MsgReqLoginGameCS* msg)
-{
-	account.InitAccountName(msg->account_name());
-
-	WorldNetModule::GetInstance().SendPacket2World(*msg);
-	account.EnterState(Account_State_t::ACCOUNT_CHECKING_PERMISSION);
-}
 //////////////////////////////////////////////////////////////////////////
 
 void AccountState_CheckingPermission::Enter(WorldAccount& account) {}

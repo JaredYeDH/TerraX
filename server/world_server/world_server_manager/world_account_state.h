@@ -37,7 +37,6 @@ namespace terra
 		void Enter(WorldAccount& account) override;
 		void Tick(WorldAccount& account) override;
 		void Leave(WorldAccount& account) override;
-		void HandleMessage(WorldAccount& account, packet_cs::MsgReqLoginGameCS* msg) override;
 	};
 
 	class AccountState_CheckingPermission : public AccountState_Base

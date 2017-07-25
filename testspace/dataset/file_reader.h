@@ -11,7 +11,7 @@
 
 namespace terra
 {
-	const char* kTableFileExName = "json";
+	static const char* kTableFileExName = "json";
 	struct FileInfo_t
 	{
 		char file_path[256];

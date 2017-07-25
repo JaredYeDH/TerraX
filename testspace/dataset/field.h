@@ -37,7 +37,7 @@ namespace dataset
 		}
 		void SetValueString(const char* val, char* data_buffer)
 		{
-			uint32_t len = strlen(val);
+			std::size_t len = strlen(val);
 			assert(len + 1 < data_size_);
 			memcpy(data_buffer, val, len);
 		}
