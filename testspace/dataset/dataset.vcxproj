@@ -112,15 +112,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="column.cpp" />
+    <ClCompile Include="dataset.cpp" />
     <ClCompile Include="dynamic_bitset.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="rowdata.cpp" />
+    <ClCompile Include="table.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="column.h" />
     <ClInclude Include="dataset.h" />
+    <ClInclude Include="dataset2.h" />
+    <ClInclude Include="field.h" />
     <ClInclude Include="metatable.h" />
     <ClInclude Include="dynamic_bitset.h" />
     <ClInclude Include="file_reader.h" />
     <ClInclude Include="macro.h" />
+    <ClInclude Include="property.h" />
+    <ClInclude Include="property_define.h" />
+    <ClInclude Include="rowdata.h" />
+    <ClInclude Include="table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

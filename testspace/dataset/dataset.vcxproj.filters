@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="data_set">
+      <UniqueIdentifier>{402dc990-d49a-43e2-8d49-7a0cd20aec45}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -20,6 +23,18 @@
     </ClCompile>
     <ClCompile Include="dynamic_bitset.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="column.cpp">
+      <Filter>data_set</Filter>
+    </ClCompile>
+    <ClCompile Include="rowdata.cpp">
+      <Filter>data_set</Filter>
+    </ClCompile>
+    <ClCompile Include="dataset.cpp">
+      <Filter>data_set</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>data_set</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32,11 +47,32 @@
     <ClInclude Include="file_reader.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="dataset.h">
-      <Filter>dataset</Filter>
-    </ClInclude>
     <ClInclude Include="metatable.h">
       <Filter>dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="property_define.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="property.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="column.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="rowdata.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="dataset2.h">
+      <Filter>dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="dataset.h">
+      <Filter>data_set</Filter>
+    </ClInclude>
+    <ClInclude Include="table.h">
+      <Filter>data_set</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

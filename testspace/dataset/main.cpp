@@ -33,6 +33,8 @@ int main()
 
 	std::cout << item_row->ToString() << std::endl;
 
+	std::cout << std::is_pod<Property>::value << std::endl;
+
 
 	std::cin.get();
 	std::cin.get();
