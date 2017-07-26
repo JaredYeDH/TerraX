@@ -1,0 +1,32 @@
+{
+  "name": {
+    "field_name": "name",
+    "type_id": 12,
+    "flag": 8
+  },
+  "creation_time": {
+    "field_name": "creation_time",
+    "type_id": 12,
+    "flag": 8
+  },
+  "avatar_guid1": {
+    "field_name": "avatar_guid1",
+    "type_id": 7,
+    "flag": 8
+  },
+  "avatar_guid2": {
+    "field_name": "avatar_guid2",
+    "type_id": 7,
+    "flag": 8
+  },
+  "avatar_guid3": {
+    "field_name": "avatar_guid3",
+    "type_id": 7,
+    "flag": 8
+  },
+  "avatar_guid4": {
+    "field_name": "avatar_guid4",
+    "type_id": 7,
+    "flag": 8
+  }
+}

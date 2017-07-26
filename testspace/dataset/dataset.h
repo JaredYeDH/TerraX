@@ -12,7 +12,6 @@
 using namespace rapidjson;
 namespace dataset
 {
-	static const char* kDataSetRootDir = ".\\data_pool_config";
 	static const char* kJsonTypeNames[] = { "Null", "False", "True", "Object", "Array", "String", "Number" };
 
 	class DataSet

@@ -30,16 +30,16 @@ namespace dataset
 		char* GetValueString(char* data_buffer) { return data_buffer + offset_; }
 
 		template <typename T>
-		void SetValue(T& value, char* pDataBuffer)
+		void SetValue(T& value, char* data_buffer)
 		{
 			assert(sizeof(T) == data_size_);
-			*((T*)(pDataBuffer + offset_)) = value;
+			*((T*)(data_buffer + offset_)) = value;
 		}
 		void SetValueString(const char* val, char* data_buffer)
 		{
 			std::size_t len = strlen(val);
 			assert(len + 1 < data_size_);
-			memcpy(data_buffer, val, len);
+			memcpy(data_buffer + offset_, val, len);
 		}
 	};
 }

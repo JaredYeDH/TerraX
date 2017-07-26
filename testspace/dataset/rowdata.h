@@ -2,6 +2,7 @@
 
 #include "column.h"
 #include "dynamic_bitset.h"
+#include "property_define.h"
 #include <sstream>
 
 using namespace terra;
@@ -9,7 +10,7 @@ namespace dataset
 {
 	class RowData
 	{
-		//DISABLE_COPY(Row);
+		DISABLE_COPY(RowData);
 		// using ValueChangeCB = std::function<void()>;
 	private:
 		Column& col_;
@@ -21,7 +22,11 @@ namespace dataset
 		~RowData();
 
 		// void RegValueChangeCB()
-		std::string ToString();
+		std::string SerilizeToStringWithName(int flag = prop_null, bool only_dirty = false);
+		std::string SerilizeToStringWithIndex(int flag = prop_null, bool only_dirty = false);
+
+		bool ParseFromStringWithName(bool overwrite = false);
+		bool ParseFromStringWithIndex(bool overwrite = false);
 
 		template <typename T>
 		bool GetValue(const char* field_name, T& val);
@@ -41,6 +46,8 @@ namespace dataset
 
 	private:
 		void AllocBuffer(uint32_t buffer_size);
+		std::string SerilizeToString(bool name_or_index, int flag, bool only_dirty);
+		bool CheckDirty(int index);
 	};
 
 

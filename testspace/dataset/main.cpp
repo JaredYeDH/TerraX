@@ -33,11 +33,24 @@ int main1()
 }
 */
 
+static const char* kDataSetRootDir = ".\\dataset";
 using namespace dataset;
 
 int main()
 {
+	DataSet ds;
+	ds.LoadTables(kDataSetRootDir);
+	Table* tbl = ds.FindTable("account");
+	std::unique_ptr<RowData> row;
+	row.reset(tbl->NewRowData());
+	row->SetValueString("name", "test001");
+	row->SetValueString("creation_time", "2017-01-01 08:00:00");
+	row->SetValue<int64_t>("avatar_guid1", 10000001);
 
+	std::cout << row->SerilizeToStringWithName() << std::endl;
+	std::cout << row->SerilizeToStringWithIndex() << std::endl;
 
+	std::cout << row->SerilizeToStringWithName(prop_save, true) << std::endl;
+	std::cin.get();
 	return 0;
 }

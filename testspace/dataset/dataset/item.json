@@ -1,0 +1,22 @@
+{
+  "guid": {
+    "field_name": "guid",
+    "type_id": 7,
+    "flag": 9
+  },
+  "item_id": {
+    "field_name": "item_id",
+    "type_id": 5,
+    "flag": 9
+  },
+  "slot_index": {
+    "field_name": "slot_index",
+    "type_id": 5,
+    "flag": 9
+  },
+  "container_index": {
+    "field_name": "container_index",
+    "type_id": 1,
+    "flag": 9
+  }
+}

@@ -6,10 +6,10 @@ void Column::InitProperty(Document& d)
 {
 	for (Value::ConstMemberIterator itr = d.MemberBegin(); itr != d.MemberEnd(); ++itr) {
 		auto val = d[itr->name].GetObject();
-		assert(d.IsObject() && val.HasMember("Field_Name"));
-		assert(d.IsObject() && val.HasMember("Type"));
-		assert(d.IsObject() && val.HasMember("Flag"));
-		InitProperty(val["Field_Name"].GetString(), val["Type"].GetInt(), val["Flag"].GetInt());
+		assert(d.IsObject() && val.HasMember("field_name"));
+		assert(d.IsObject() && val.HasMember("type_id"));
+		assert(d.IsObject() && val.HasMember("flag"));
+		InitProperty(val["field_name"].GetString(), val["type_id"].GetInt(), val["flag"].GetInt());
 	}
 }
 
