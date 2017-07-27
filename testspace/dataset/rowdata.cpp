@@ -12,7 +12,7 @@ bool RowData::ParseFromString(const char* buffer, int size, bool overwrite /*= f
 {
 	if (overwrite)
 	{
-		memset(data_buffer_, 0, col_.get_data_size());
+		Reset();
 	}
 	return true;
 }
@@ -20,7 +20,21 @@ bool RowData::ParseFromByte(const char* buffer, int size, bool overwrite /*= fal
 {
 	if (overwrite)
 	{
-		memset(data_buffer_, 0, col_.get_data_size());
+		Reset();
+	}
+	int start_index = 0;
+	while (start_index < size)
+	{
+		uint16_t index = ParseIndex(buffer, start_index, size);
+		start_index += sizeof(uint16_t);
+		uint16_t length = ParseLength(buffer, start_index, size);
+		start_index += sizeof(uint16_t);
+		Field* field = col_.GetField(index);
+		if (!field) {
+			return false;
+		}
+		field->ParseFromByte(buffer + start_index, length, data_buffer_);
+		start_index += length;
 	}
 	return true;
 }
@@ -29,7 +43,7 @@ bool RowData::ParseFromByte(const char* buffer, int size, bool overwrite /*= fal
 std::string RowData::SerilizeToByte(int flag /*= prop_null*/, bool only_dirty /*= false*/)
 {
 	std::string str;
-	for (int i = 0; i < col_.get_field_count(); ++i) {
+	for (uint16_t i = 0; i < col_.get_field_count(); ++i) {
 		Field* field = col_.GetField(i);
 		if (!field) {
 			continue;
@@ -43,13 +57,11 @@ std::string RowData::SerilizeToByte(int flag /*= prop_null*/, bool only_dirty /*
 		{
 			continue;
 		}
-
-		str.append((char*)&i, sizeof(i));
-		str.append(":");
+		//index[16]:length[16]:value
+		str.append((char*)&i, sizeof(uint16_t));
+		uint16_t data_size = field->get_data_size();
+		str.append((char*)&data_size, sizeof(uint16_t));
 		field->SerilizeToByte(str, data_buffer_);
-		if (i < (col_.get_field_count() - 1)) {
-			str.append(",");
-		}
 	}
 	return str;
 }
@@ -167,4 +179,29 @@ bool RowData::SetValueString(int index, const char* pVal)
 bool RowData::CheckDirty(int index)
 {
 	return bitset_.test(index);
+}
+
+void RowData::Reset()
+{
+	for (int i = 0; i < col_.get_field_count(); ++i)
+	{
+		Field* field = col_.GetField(i);
+		if (!field) {
+			continue;
+		}
+		field->clear_data_size();
+	}
+	memset(data_buffer_, 0, col_.get_data_size());
+}
+
+uint16_t RowData::ParseIndex(const char* buffer, int offset, int buffer_size)
+{
+	assert(offset + sizeof(uint16_t) <= buffer_size);
+	return *(uint16_t*)(buffer + offset);
+}
+
+uint16_t RowData::ParseLength(const char* buffer, int offset, int buffer_size)
+{
+	assert(offset + sizeof(uint16_t) <= buffer_size);
+	return *(uint16_t*)(buffer + offset);
 }

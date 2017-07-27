@@ -112,16 +112,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="abstract_behaviour.cpp" />
-    <ClCompile Include="concrete_behaviour.cpp" />
-    <ClCompile Include="fsm_component.cpp" />
+    <ClCompile Include="ai_controller.cpp" />
+    <ClCompile Include="component.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="abstract_behaviour.h" />
+    <ClInclude Include="ai_controller.h" />
     <ClInclude Include="behaviour_args.h" />
-    <ClInclude Include="concrete_behaviour.h" />
     <ClInclude Include="data_define.h" />
-    <ClInclude Include="fsm_component.h" />
+    <ClInclude Include="component.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

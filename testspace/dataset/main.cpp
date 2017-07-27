@@ -48,8 +48,13 @@ int main()
 	row->SetValue<int64_t>("avatar_guid1", 10000001);
 
 	std::cout << row->SerilizeToString() << std::endl;
-	std::cout << row->SerilizeToByte() << std::endl;
+	std::string str = row->SerilizeToByte();
+	std::cout << str << std::endl;
 	std::cout << row->SerilizeToString(prop_save, true) << std::endl;
+
+	row.reset(tbl->NewRowData());
+	row->ParseFromByte(str.c_str(), static_cast<uint32_t>(str.length()));
+	std::cout << row->SerilizeToString() << std::endl;
 	std::cin.get();
 	return 0;
 }

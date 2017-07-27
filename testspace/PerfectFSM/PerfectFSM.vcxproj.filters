@@ -18,20 +18,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fsm_component.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="abstract_behaviour.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="concrete_behaviour.cpp">
+    <ClCompile Include="component.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ai_controller.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fsm_component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="abstract_behaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -41,7 +38,10 @@
     <ClInclude Include="behaviour_args.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="concrete_behaviour.h">
+    <ClInclude Include="component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ai_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

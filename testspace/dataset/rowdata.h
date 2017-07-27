@@ -45,9 +45,13 @@ namespace dataset
 		bool SetValueString(const char* field_name, const char* pVal);
 		bool SetValueString(int index, const char* pVal);
 
+		void ClearDirty() { bitset_.reset(); }
 	private:
 		void AllocBuffer(uint32_t buffer_size);
 		bool CheckDirty(int index);
+		void Reset();
+		uint16_t ParseIndex(const char* buffer, int offset, int buffer_size);
+		uint16_t ParseLength(const char* buffer, int offset, int buffer_size);
 	};
 
 
