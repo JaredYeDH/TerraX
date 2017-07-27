@@ -1,5 +1,6 @@
 #pragma once
 
+#include "macro.h"
 #include "column.h"
 #include "dynamic_bitset.h"
 #include "property_define.h"
@@ -22,11 +23,11 @@ namespace dataset
 		~RowData();
 
 		// void RegValueChangeCB()
-		std::string SerilizeToStringWithName(int flag = prop_null, bool only_dirty = false);
-		std::string SerilizeToStringWithIndex(int flag = prop_null, bool only_dirty = false);
+		std::string SerilizeToString(int flag = prop_null, bool only_dirty = false);
+		std::string SerilizeToByte(int flag = prop_null, bool only_dirty = false);
 
-		bool ParseFromStringWithName(bool overwrite = false);
-		bool ParseFromStringWithIndex(bool overwrite = false);
+		bool ParseFromString(const char* buffer, int size, bool overwrite = false);
+		bool ParseFromByte(const char* buffer, int size, bool overwrite = false);
 
 		template <typename T>
 		bool GetValue(const char* field_name, T& val);
@@ -46,7 +47,6 @@ namespace dataset
 
 	private:
 		void AllocBuffer(uint32_t buffer_size);
-		std::string SerilizeToString(bool name_or_index, int flag, bool only_dirty);
 		bool CheckDirty(int index);
 	};
 

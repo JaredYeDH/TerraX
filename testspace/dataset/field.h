@@ -41,5 +41,10 @@ namespace dataset
 			assert(len + 1 < data_size_);
 			memcpy(data_buffer + offset_, val, len);
 		}
+
+		void SerilizeToByte(std::string& str, char* data_buffer)
+		{
+			str.append(data_buffer + offset_, data_size_);
+		}
 	};
 }

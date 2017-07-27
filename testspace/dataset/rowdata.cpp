@@ -8,26 +8,53 @@ RowData::RowData(Column& col) : col_(col), bitset_(col.get_field_count())
 
 RowData::~RowData() { delete[] data_buffer_; }
 
-bool ParseFromStringWithName(bool overwrite /*= false*/)
+bool RowData::ParseFromString(const char* buffer, int size, bool overwrite /*= false*/)
 {
+	if (overwrite)
+	{
+		memset(data_buffer_, 0, col_.get_data_size());
+	}
 	return true;
 }
-bool ParseFromStringWithIndex(bool overwrite /*= false*/)
+bool RowData::ParseFromByte(const char* buffer, int size, bool overwrite /*= false*/)
 {
+	if (overwrite)
+	{
+		memset(data_buffer_, 0, col_.get_data_size());
+	}
 	return true;
 }
 
-std::string RowData::SerilizeToStringWithIndex(int flag /*= prop_null*/, bool only_dirty /*= false*/)
+//t-l-v do not use ',' ':' as delimiter
+std::string RowData::SerilizeToByte(int flag /*= prop_null*/, bool only_dirty /*= false*/)
 {
-	return SerilizeToString(false, flag, only_dirty);
+	std::string str;
+	for (int i = 0; i < col_.get_field_count(); ++i) {
+		Field* field = col_.GetField(i);
+		if (!field) {
+			continue;
+		}
+		Property& prop = field->get_property();
+		if (!PropertyUtil::CheckPropertyFlag(prop.prop_flag, flag))
+		{
+			continue;
+		}
+		if (only_dirty && !CheckDirty(i))
+		{
+			continue;
+		}
+
+		str.append((char*)&i, sizeof(i));
+		str.append(":");
+		field->SerilizeToByte(str, data_buffer_);
+		if (i < (col_.get_field_count() - 1)) {
+			str.append(",");
+		}
+	}
+	return str;
 }
 
-std::string RowData::SerilizeToStringWithName(int flag /*= prop_null*/, bool only_dirty /*= false*/)
-{
-	return SerilizeToString(true, flag, only_dirty);
-}
-
-std::string RowData::SerilizeToString(bool name_or_index, int flag, bool only_dirty)
+std::string RowData::SerilizeToString(int flag /*= prop_null*/, bool only_dirty /*= false*/)
 {
 	std::stringstream ss;
 	for (int i = 0; i < col_.get_field_count(); ++i) {
@@ -45,14 +72,7 @@ std::string RowData::SerilizeToString(bool name_or_index, int flag, bool only_di
 			continue;
 		}
 
-		if (name_or_index)
-		{
-			ss << prop.prop_name;
-		}
-		else
-		{
-			ss << i;
-		}
+		ss << prop.prop_name;
 		ss << ":";
 		int prop_typeid = prop.prop_typeid;
 		switch (prop_typeid) {
@@ -110,6 +130,7 @@ std::string RowData::SerilizeToString(bool name_or_index, int flag, bool only_di
 	}
 	return ss.str();
 }
+
 
 void RowData::AllocBuffer(uint32_t buffer_size) { data_buffer_ = new char[buffer_size]{0}; }
 

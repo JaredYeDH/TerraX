@@ -44,13 +44,12 @@ int main()
 	std::unique_ptr<RowData> row;
 	row.reset(tbl->NewRowData());
 	row->SetValueString("name", "test001");
-	row->SetValueString("creation_time", "2017-01-01 08:00:00");
+	//row->SetValueString("creation_time", "2017-01-01 08:00:00");
 	row->SetValue<int64_t>("avatar_guid1", 10000001);
 
-	std::cout << row->SerilizeToStringWithName() << std::endl;
-	std::cout << row->SerilizeToStringWithIndex() << std::endl;
-
-	std::cout << row->SerilizeToStringWithName(prop_save, true) << std::endl;
+	std::cout << row->SerilizeToString() << std::endl;
+	std::cout << row->SerilizeToByte() << std::endl;
+	std::cout << row->SerilizeToString(prop_save, true) << std::endl;
 	std::cin.get();
 	return 0;
 }
