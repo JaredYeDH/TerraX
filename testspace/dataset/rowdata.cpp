@@ -8,15 +8,38 @@ RowData::RowData(Column& col) : col_(col), bitset_(col.get_field_count())
 
 RowData::~RowData() { delete[] data_buffer_; }
 
-bool RowData::ParseFromString(const char* buffer, int size, bool overwrite /*= false*/)
+bool RowData::ParseFromString(const char* buffer, int size, int flag /*= prop_null*/, bool overwrite /*= false*/)
 {
 	if (overwrite)
 	{
 		Reset();
 	}
+	char key[256];
+	char value[256];
+	int start_index = 0;
+	for (int i = 0; i <= size; ++i) //until '\0'
+	{
+		if (buffer[i] == ':')
+		{
+			//get key
+			memset(key, 0, sizeof key);
+			memcpy(key, buffer + start_index, i - start_index);
+			start_index = i + 1;
+			continue;
+		}
+		if (buffer[i] == ',' || buffer[i] == '\0')
+		{
+			//get value
+			memset(value, 0, sizeof value);
+			memcpy(value, buffer + start_index, i - start_index);
+			start_index = i + 1;
+			//ParseKeyValue(key, 256, value, 256);
+			continue;
+		}
+	}
 	return true;
 }
-bool RowData::ParseFromByte(const char* buffer, int size, bool overwrite /*= false*/)
+bool RowData::ParseFromByte(const char* buffer, int size, int flag /*= prop_null*/, bool overwrite /*= false*/)
 {
 	if (overwrite)
 	{
@@ -32,6 +55,12 @@ bool RowData::ParseFromByte(const char* buffer, int size, bool overwrite /*= fal
 		Field* field = col_.GetField(index);
 		if (!field) {
 			return false;
+		}
+		Property& prop = field->get_property();
+		if (!PropertyUtil::CheckPropertyFlag(prop.prop_flag, flag))
+		{
+			start_index += length;
+			continue;
 		}
 		field->ParseFromByte(buffer + start_index, length, data_buffer_);
 		start_index += length;
@@ -119,19 +148,19 @@ std::string RowData::SerilizeToString(int flag /*= prop_null*/, bool only_dirty 
 			ss << field->GetValue<double>(data_buffer_);
 			break;
 		case TYPE_CHAR16:
-			ss << field->GetValueString(data_buffer_);
+			ss << '"' << field->GetValueString(data_buffer_) << '"';
 			break;
 		case TYPE_CHAR32:
-			ss << field->GetValueString(data_buffer_);
+			ss << '"' << field->GetValueString(data_buffer_) << '"';
 			break;
 		case TYPE_CHAR64:
-			ss << field->GetValueString(data_buffer_);
+			ss << '"' << field->GetValueString(data_buffer_) << '"';
 			break;
 		case TYPE_CHAR128:
-			ss << field->GetValueString(data_buffer_);
+			ss << '"' << field->GetValueString(data_buffer_) << '"';
 			break;
 		case TYPE_CHAR256:
-			ss << field->GetValueString(data_buffer_);
+			ss << '"' << field->GetValueString(data_buffer_) << '"';
 			break;
 		default:
 			break;

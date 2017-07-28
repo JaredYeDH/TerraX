@@ -24,10 +24,10 @@ namespace dataset
 
 		// void RegValueChangeCB()
 		std::string SerilizeToString(int flag = prop_null, bool only_dirty = false);
-		std::string SerilizeToByte(int flag = prop_null, bool only_dirty = false);
+		bool ParseFromString(const char* buffer, int size, int flag = prop_null, bool overwrite = false);
 
-		bool ParseFromString(const char* buffer, int size, bool overwrite = false);
-		bool ParseFromByte(const char* buffer, int size, bool overwrite = false);
+		std::string SerilizeToByte(int flag = prop_null, bool only_dirty = false);
+		bool ParseFromByte(const char* buffer, int size, int flag = prop_null, bool overwrite = false);
 
 		template <typename T>
 		bool GetValue(const char* field_name, T& val);
