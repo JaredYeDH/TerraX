@@ -44,7 +44,7 @@ int main()
 	std::unique_ptr<RowData> row;
 	row.reset(tbl->NewRowData());
 	row->SetValueString("name", "test001");
-	//row->SetValueString("creation_time", "2017-01-01 08:00:00");
+	row->SetValueString("creation_time", "2017-01-01 08:00:00");
 	row->SetValue<int64_t>("avatar_guid1", 10000001);
 
 	std::cout << row->SerilizeToString() << std::endl;
@@ -54,6 +54,10 @@ int main()
 
 	row.reset(tbl->NewRowData());
 	row->ParseFromByte(str.c_str(), static_cast<uint32_t>(str.length()));
+	std::string sss = row->SerilizeToString();
+	std::cout << sss << std::endl;
+	row.reset(tbl->NewRowData());
+	row->ParseFromString(sss.c_str(), static_cast<int>(sss.length()));
 	std::cout << row->SerilizeToString() << std::endl;
 	std::cin.get();
 	return 0;

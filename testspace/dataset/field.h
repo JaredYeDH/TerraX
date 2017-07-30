@@ -33,7 +33,7 @@ namespace dataset
 		char* GetValueString(char* data_buffer) { return data_buffer + offset_; }
 
 		template <typename T>
-		void SetValue(T& value, char* data_buffer)
+		void SetValue(T value, char* data_buffer)
 		{
 			assert(sizeof(T) == max_data_size_);
 			data_size_ = max_data_size_;

@@ -14,26 +14,83 @@ bool RowData::ParseFromString(const char* buffer, int size, int flag /*= prop_nu
 	{
 		Reset();
 	}
-	char key[256];
-	char value[256];
-	int start_index = 0;
+	CharStack<256> readstream;
+	Field* cur_field = nullptr;
+	bool parse_key = false , parse_value = false;
 	for (int i = 0; i <= size; ++i) //until '\0'
 	{
-		if (buffer[i] == ':')
+		readstream.Push(buffer[i]);
+		if (buffer[i] == ':' && parse_key == false)
 		{
 			//get key
-			memset(key, 0, sizeof key);
-			memcpy(key, buffer + start_index, i - start_index);
-			start_index = i + 1;
+			parse_key = true;
+			readstream.Pop();
+			int index = col_.GetFieldIndex(readstream.buffer());
+			cur_field = col_.GetField(index);
+			readstream.Reset();
 			continue;
+		}
+		if (buffer[i] == '"')
+		{
+			readstream.Pop();
 		}
 		if (buffer[i] == ',' || buffer[i] == '\0')
 		{
+			if ()
+			{
+			}
 			//get value
-			memset(value, 0, sizeof value);
-			memcpy(value, buffer + start_index, i - start_index);
-			start_index = i + 1;
-			//ParseKeyValue(key, 256, value, 256);
+			parse_value == true;
+			readstream.Pop();
+			const char* val = readstream.buffer();
+			if (!cur_field)
+			{
+				continue;
+			}
+			Property& prop = cur_field->get_property();
+			int prop_typeid = prop.prop_typeid;
+			switch (prop_typeid) {
+			case TYPE_INT8:
+				cur_field->SetValue<int8_t>(ConvertTo<int8_t>(val), data_buffer_);
+				break;
+			case TYPE_UINT8:
+				cur_field->SetValue<uint8_t>(ConvertTo<uint8_t>(val), data_buffer_);
+				break;
+			case TYPE_INT16:
+				cur_field->SetValue<int16_t>(ConvertTo<int16_t>(val), data_buffer_);
+				break;
+			case TYPE_UINT16:
+				cur_field->SetValue<uint16_t>(ConvertTo<uint16_t>(val), data_buffer_);
+				break;
+			case TYPE_INT32:
+				cur_field->SetValue<int32_t>(ConvertTo<int32_t>(val), data_buffer_);
+				break;
+			case TYPE_UINT32:
+				cur_field->SetValue<uint32_t>(ConvertTo<uint32_t>(val), data_buffer_);
+				break;
+			case TYPE_INT64:
+				cur_field->SetValue<int64_t>(ConvertTo<int64_t>(val), data_buffer_);
+				break;
+			case TYPE_UINT64:
+				cur_field->SetValue<uint64_t>(ConvertTo<uint64_t>(val), data_buffer_);
+				break;
+			case TYPE_FLOAT:
+				cur_field->SetValue<float>(ConvertTo<float>(val), data_buffer_);
+				break;
+			case TYPE_DOUBLE:
+				cur_field->SetValue<double>(ConvertTo<double>(val), data_buffer_);
+				break;
+			case TYPE_CHAR16:
+			case TYPE_CHAR32:
+			case TYPE_CHAR64:
+			case TYPE_CHAR128:
+			case TYPE_CHAR256:
+				cur_field->SetValueString(val, data_buffer_);
+				break;
+			default:
+				break;
+			}
+			readstream.Reset();
 			continue;
 		}
 	}
