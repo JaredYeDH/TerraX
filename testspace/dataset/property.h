@@ -7,6 +7,27 @@
 
 namespace dataset
 {
+	/*
+	class BaseValue_t
+	{
+	private:
+		int typeid_;
+		int size_;
+		char* data_;
+	public:
+		template <typename T>
+		T GetValue()
+		{
+			assert(sizeof(T) == size_);
+			return *((T*)(data_));
+		}
+		const char* GetValueString() 
+		{ 
+			assert(strlen(data_) == size_);
+			return data_;
+		}
+	};
+	*/
 	// pod type
 	struct Property
 	{
