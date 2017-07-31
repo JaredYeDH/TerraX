@@ -21,6 +21,7 @@ namespace dataset
 		int get_data_size() const { return data_size_; }
 		int get_field_count() const { return static_cast<int>(fields_.size()); }
 
+		Field* GetField(const char* field_name);
 		Field* GetField(uint32_t index);
 		int GetFieldIndex(const char* field_name) const;
 

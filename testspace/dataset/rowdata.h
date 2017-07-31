@@ -19,45 +19,6 @@ namespace dataset
 		return out;
 	}
 
-    template <int SIZE>
-    class CharStack
-    {
-    private:
-        char buf_[SIZE];
-        int cur_index;
-
-    public:
-        CharStack() { Reset(); }
-
-        bool Push(char c)
-        {
-            if (cur_index >= SIZE) {
-				return false;
-            }
-			buf_[cur_index++] = c;
-			return true;
-        }
-		bool Pop()
-		{
-			if (cur_index <= 0)
-			{
-				return false;
-			}
-			buf_[--cur_index] = '\0';
-			return true;
-		}
-		char Top()
-		{
-			return buf_[cur_index];
-		}
-		void Reset() { 
-			cur_index = 0;
-			memset(buf_, 0, sizeof(buf_));
-		}
-        const char* buffer() const { return buf_; }
-		int size() const { return cur_index + 1; }
-    };
-
     class RowData
     {
         DISABLE_COPY(RowData);

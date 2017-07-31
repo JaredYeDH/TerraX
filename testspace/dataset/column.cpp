@@ -13,6 +13,12 @@ void Column::InitProperty(Document& d)
 	}
 }
 
+
+Field* Column::GetField(const char* field_name)
+{
+	return GetField(GetFieldIndex(field_name));
+}
+
 Field* Column::GetField(uint32_t index)
 {
 	if (index >= 0 && index < fields_.size()) {
