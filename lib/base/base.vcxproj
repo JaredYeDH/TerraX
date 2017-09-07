@@ -142,8 +142,10 @@
     <ClInclude Include="event_dynamic2.h" />
     <ClInclude Include="event_static.h" />
     <ClInclude Include="guid.h" />
+    <ClInclude Include="heap_vector.h" />
     <ClInclude Include="intrusive_list.h" />
     <ClInclude Include="macro.h" />
+    <ClInclude Include="make_heap.h" />
     <ClInclude Include="module_interface.h" />
     <ClInclude Include="multi_index_map.h" />
     <ClInclude Include="observer.h" />
