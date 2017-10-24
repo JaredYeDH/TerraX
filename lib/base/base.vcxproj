@@ -137,6 +137,7 @@
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="auto_register.h" />
     <ClInclude Include="dynamic_bitset.h" />
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="event_dynamic2.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="timekeeper.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="type_identify.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
